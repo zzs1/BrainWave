@@ -1,44 +1,38 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-
-import Home from './screens/Home';
-import About from './screens/About';
+import React from 'react';
+import { Text, StyleSheet, View, useColorScheme } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
+  const colorScheme = useColorScheme();
+
+  const themeTextStyle = colorScheme === 'light' ? styles.lightThemeText : styles.darkThemeText;
+  const themeContainerStyle =
+    colorScheme === 'light' ? styles.lightContainer : styles.darkContainer;
 
   return (
-      <SafeAreaView style={{flex: 1}}>
-          <NavigationContainer>
-          <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen 
-            name="Home"
-            component={Home}
-            options={{
-              title: 'Welcome!',
-              headerStyle: {
-                backgroundColor: '#f4511e',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              },
-            }}
-          />
-          <Stack.Screen name="About" component={About}/>
-        </Stack.Navigator>
-          </NavigationContainer>
-      </SafeAreaView>
+    <View style={[styles.container, themeContainerStyle]}>
+      <Text style={[styles.text, themeTextStyle]}>Color scheme: {colorScheme}</Text>
+      <StatusBar />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  lightContainer: {
+    backgroundColor: '#d0d0c0',
+  },
+  darkContainer: {
+    backgroundColor: '#242c40',
+  },
+  lightThemeText: {
+    color: '#242c40',
+  },
+  darkThemeText: {
+    color: '#d0d0c0',
   },
 });
