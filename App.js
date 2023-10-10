@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
-import { Text, StyleSheet, View, useColorScheme, Switch } from 'react-native';
-import { StatusBar } from 'expo-status-bar'; // automatically switches bar style based on theme!
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-
-import Home from './screens/Home';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import About from './screens/About';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
 
-  const Stack = createNativeStackNavigator();
+  var colorScheme = useColorScheme();
 
   // const colorScheme = useColorScheme();
   // const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
@@ -17,36 +14,19 @@ export default function App() {
   // const themeTextStyle = isDarkMode ? styles.darkThemeText : styles.lightThemeText;
   // const themeContainerStyle = isDarkMode ? styles.darkContainer : styles.lightContainer;
 
-  // const toggleTheme = () => {
-  //   setIsDarkMode(!isDarkMode);
-  // };
+  // useEffect(() => {
+  //   console.log(colorScheme);
+  // }, [colorScheme])
 
   return (
-
-    <SafeAreaView style={{flex:1}}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-
-    </SafeAreaView>
-
-
-    //  <View style={[styles.container, themeContainerStyle]}>
-
-    //   <Text style={[styles.text, themeTextStyle]}>Color scheme: {colorScheme}</Text>
-    //   <Switch
-    //     value={isDarkMode}
-    //     onValueChange={toggleTheme}
-    //     trackColor={{ false: '#d0d0c0', true: '#242c40' }}
-    //     thumbColor={'#ffffff'}
-    //   /> 
- 
-
+    <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#0c7bdc': '#584b9d'}}>
+      <View>
+        <Text style={styles.lightThemeText}>
+          <About/>
+        </Text>
+        <StatusBar style="auto" />
+      </View>
+    </SafeAreaView>  
   );
 }
 
@@ -55,17 +35,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    height: '100%',
   },
   lightContainer: {
-    backgroundColor: '#d0d0c0',
+    backgroundColor: '#0c7bdc',
   },
   darkContainer: {
-    backgroundColor: '#242c40',
+    backgroundColor: '#584b9d',
   },
   lightThemeText: {
-    color: '#242c40',
+    color: '#FFFFFF',
   },
   darkThemeText: {
-    color: '#d0d0c0',
-  },
+    color: '#FFFFFF',
+  }
 });
