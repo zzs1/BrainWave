@@ -1,29 +1,52 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, useColorScheme, Switch } from 'react-native';
 import { StatusBar } from 'expo-status-bar'; // automatically switches bar style based on theme!
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+import Home from './screens/Home';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
-  const colorScheme = useColorScheme();
-  const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
 
-  const themeTextStyle = isDarkMode ? styles.darkThemeText : styles.lightThemeText;
-  const themeContainerStyle = isDarkMode ? styles.darkContainer : styles.lightContainer;
+  const Stack = createNativeStackNavigator();
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  // const colorScheme = useColorScheme();
+  // const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
+
+  // const themeTextStyle = isDarkMode ? styles.darkThemeText : styles.lightThemeText;
+  // const themeContainerStyle = isDarkMode ? styles.darkContainer : styles.lightContainer;
+
+  // const toggleTheme = () => {
+  //   setIsDarkMode(!isDarkMode);
+  // };
 
   return (
-    <View style={[styles.container, themeContainerStyle]}>
-      <Text style={[styles.text, themeTextStyle]}>Color scheme: {colorScheme}</Text>
-      <Switch
-        value={isDarkMode}
-        onValueChange={toggleTheme}
-        trackColor={{ false: '#d0d0c0', true: '#242c40' }}
-        thumbColor={'#ffffff'}
-      />
-      <StatusBar />
-    </View>
+
+    <SafeAreaView style={{flex:1}}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+
+    </SafeAreaView>
+
+
+    //  <View style={[styles.container, themeContainerStyle]}>
+
+    //   <Text style={[styles.text, themeTextStyle]}>Color scheme: {colorScheme}</Text>
+    //   <Switch
+    //     value={isDarkMode}
+    //     onValueChange={toggleTheme}
+    //     trackColor={{ false: '#d0d0c0', true: '#242c40' }}
+    //     thumbColor={'#ffffff'}
+    //   /> 
+ 
+
   );
 }
 
