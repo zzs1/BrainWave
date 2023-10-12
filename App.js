@@ -56,16 +56,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  lightContainer: {
-    backgroundColor: '#d0d0c0',
-  },
-  darkContainer: {
-    backgroundColor: '#242c40',
-  },
-  lightThemeText: {
-    color: '#242c40',
-  },
-  darkThemeText: {
-    color: '#d0d0c0',
-  },
+  // lightContainer: {
+  //   backgroundColor: '#d0d0c0',
+  // },
+  // darkContainer: {
+  //   backgroundColor: '#242c40',
+  // },
+  // lightThemeText: {
+  //   color: '#242c40',
+  // },
+  // darkThemeText: {
+  //   color: '#d0d0c0',
+  // },
 });

@@ -3,15 +3,17 @@ import React from 'react';
 import { View, Text, StyleSheet,Button } from 'react-native';
 import SideMenu from '../components/SideMenu'
 import PrimaryButton from '../components/PrimaryButton';
+import MoveButton from '../components/MoveButton';
 
 export default function Home({navigation}) {
 
     return (
         <View style={styles.container}>
-        <Text>Welcome!</Text>
+
    
     {/* <SideMenu /> */}
     <PrimaryButton/>
+    <MoveButton/>
     </View>
     );
 }
@@ -21,8 +23,6 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      gap: 10,
     },
-    text:{
-
-    }
 });
