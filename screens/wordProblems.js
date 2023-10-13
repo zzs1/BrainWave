@@ -1,5 +1,15 @@
+import { inventory } from "../data/quizTest"
+
 export default function wordProblem({navigation}) {
     return (
-        <Text>WordProblem</Text>
+        <>
+            <View>
+                <View></View>
+                <Text></Text>
+
+                <View></View>
+
+            </View>
+        </>
     )
 }
