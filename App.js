@@ -8,15 +8,9 @@ export default function App() {
 
   var colorScheme = useColorScheme();
 
-  // const colorScheme = useColorScheme();
-  // const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
-
-  // const themeTextStyle = isDarkMode ? styles.darkThemeText : styles.lightThemeText;
-  // const themeContainerStyle = isDarkMode ? styles.darkContainer : styles.lightContainer;
-
-  // useEffect(() => {
-  //   console.log(colorScheme);
-  // }, [colorScheme])
+  useEffect(() => {
+    console.log(colorScheme);
+  }, [colorScheme])
 
   return (
     <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#0c7bdc': '#584b9d'}}>
