@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import About from './screens/About';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+
 export default function App() {
 
   var colorScheme = useColorScheme();
