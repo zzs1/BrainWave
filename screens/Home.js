@@ -1,19 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View, Text, StyleSheet,Button } from 'react-native';
-
+import { View, Text, StyleSheet,Button, TouchableOpacity } from 'react-native';
+import SideMenu from '../components/SideMenu'
+import PrimaryButton from '../components/PrimaryButton';
+import MoveButton from '../components/MoveButton';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home({navigation}) {
 
+    
+
     return (
         <View style={styles.container}>
-        <Text>Welcome!</Text>
-        <StatusBar style="auto" />
-        <Button 
-            title="Go to about page"
-            onPress={() => navigation.push('About')}
-        />
-    </View>
+
+   
+                {/* <SideMenu /> */}
+                <PrimaryButton/>
+                <MoveButton/>
+
+            <TouchableOpacity onPress={navigateToQuizTest}>
+                <Text style={styles.text}>Test Quiz</Text>
+            </TouchableOpacity>
+
+    
+         </View>
     );
 }
 
@@ -22,8 +32,9 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      gap: 10,
     },
-    text:{
-
+    text: {
+        color: '#b4b4b4',
     }
 });
