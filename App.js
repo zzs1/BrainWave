@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import About from './screens/About';
+import InNav from './screens/InNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
@@ -13,10 +13,10 @@ export default function App() {
   }, [colorScheme])
 
   return (
-    <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#0c7bdc': '#584b9d'}}>
+    <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFFc': '#584b9d'}}>
       <View>
         <Text style={styles.lightThemeText}>
-          <About/>
+          <InNav/>
         </Text>
         <StatusBar style="auto" />
       </View>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   lightContainer: {
-    backgroundColor: '#0c7bdc',
+    backgroundColor: '#FFFFFF',
   },
   darkContainer: {
     backgroundColor: '#584b9d',
