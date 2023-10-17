@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, Button,useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Start from './Jerry/StartButton';
+import PrimaryButton from '../components/PrimaryButton';
 
 
 
@@ -22,7 +22,7 @@ export default function InNav({navigation}) {
                 <Image source={require('./Jerry/logo-blue.png')} style={styles.imageLogo} />
                 <Image source={require('./Jerry/type-blue.png')} style={styles.imageStyle} />
                 <Text type='submit'>Place Holder</Text>
-                <Start/>
+                <PrimaryButton/>
                 <StatusBar style="auto" />
             </View>
         </SafeAreaView>

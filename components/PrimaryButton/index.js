@@ -4,7 +4,7 @@ import { StyleSheet, View, Pressable, Text} from 'react-native';
 
 export default function PrimaryButton ({navigation}){
 
-    const primaryButtonText = "tests";
+    const primaryButtonText = "Get Started";
     const [isPressed, setIsPressed] = useState(false);
 
     function handlePress(){
@@ -42,6 +42,7 @@ const styles =  StyleSheet.create({
         shadowRadius: 10,
         elevation: 4,
         shadowOpacity: 0.9,
+        cursor: 'pointer',
 
     },
 
@@ -62,6 +63,7 @@ const styles =  StyleSheet.create({
 
     primaryButtonText: {
         fontSize: 25,
-        color: '#FFFFFF'
+        color: '#FFFFFF',
+        fontFamily: "Poppin",
     }   
 }); 
