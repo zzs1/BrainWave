@@ -64,6 +64,5 @@ const styles =  StyleSheet.create({
     primaryButtonText: {
         fontSize: 25,
         color: '#FFFFFF',
-        fontFamily: "Poppin",
     }   
 }); 

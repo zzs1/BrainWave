@@ -21,8 +21,9 @@ export default function InNav({navigation}) {
             <View style={styles.containerImage}>
                 <Image source={require('./Jerry/logo-blue.png')} style={styles.imageLogo} />
                 <Image source={require('./Jerry/type-blue.png')} style={styles.imageStyle} />
-                <Text type='submit'>Place Holder</Text>
-                <PrimaryButton/>
+                <View style={styles.containerButton}>
+                  <PrimaryButton style={styles.containerImage}/>
+                </View>
                 <StatusBar style="auto" />
             </View>
         </SafeAreaView>
@@ -40,11 +41,15 @@ const styles = StyleSheet.create({
     pressColor: {
       backgroundColor: 'blue',
     },
+    containerButton: {
+      marginTop: 260,
+    },
     containerImage: {
       alignItems: 'center',
       justifyContent: 'center',
       gap: 19,
-      bottom: 220,
+      marginTop: 220,
+
     },
     imageLogo: {
       justifyContent: 'center',

@@ -3,14 +3,9 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import InNav from './screens/InNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFonts } from 'expo-font';
 
 
 export default function App() {
-
-  const [fontsLoaded] = useFonts({
-    'Poppins': require('./assets/fonts/Poppins-Regular.otf'),
-  });
 
   var colorScheme = useColorScheme();
   
@@ -34,7 +29,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     height: '100%',
   },
   lightContainer: {
