@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, Button,useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import PrimaryButton from '../components/PrimaryButton';
+import PrimaryButton from '../components/Atoms/PrimaryButton';
 import { Link } from 'expo-router';
 
 
