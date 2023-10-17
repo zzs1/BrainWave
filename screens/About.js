@@ -7,6 +7,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
+
+
+
 export default function About({navigation}) {
 
     var colorScheme = useColorScheme();
@@ -21,7 +24,14 @@ export default function About({navigation}) {
                 <Text style={styles.lightThemeText}>About Page</Text>
                 <StatusBar style="auto" />
                 <Button title="Go Back" onPress={() => navigation.goBack()}/>
+                
+                
             </View>
+            
+            
+    
+            
+
         </SafeAreaView>
     );
 }
