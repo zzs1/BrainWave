@@ -4,10 +4,11 @@ import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import InNav from './screens/InNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+
 export default function App() {
 
   var colorScheme = useColorScheme();
-
+  
   useEffect(() => {
     console.log(colorScheme);
   }, [colorScheme])
