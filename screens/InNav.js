@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View, Button,useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/PrimaryButton';
-import SideMenu from '../components/SideMenu'
+import SubMenu from '../components/SubMenu';
+
 
 export default function InNav({navigation}) {
 
@@ -16,7 +17,7 @@ export default function InNav({navigation}) {
 
     return (
         <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#584b9d'}}>
-          <SideMenu/>
+          <SubMenu />
             <View style={styles.containerImage}>
                 <Image source={require('./Jerry/logo-blue.png')} style={styles.imageLogo} />
                 <Image source={require('./Jerry/type-blue.png')} style={styles.imageStyle} />

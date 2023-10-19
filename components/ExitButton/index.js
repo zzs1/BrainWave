@@ -6,8 +6,8 @@ export default function ExitButton (){
         <View style={styles.container}>
                 <View>
                     <Pressable style={styles.exitButton}>
-                        <View style={styles.exitButtonLine}></View>
-                        <View style={styles.exitButtonLine}></View>
+                        <View style={styles.exitButtonLine1}></View>
+                        <View style={styles.exitButtonLine2}></View>
                     </Pressable>
                 
                 </View>
@@ -18,18 +18,25 @@ export default function ExitButton (){
 }
 
 const styles =  StyleSheet.create({
-    menuButton: {
-       transform: [{ rotate: '45deg'}]
-
-    },
-    exitButtonLine: {
-        backgroundColor: '#3366FF',
-        width: 40,
-        height: 4,
+    exitButtonLine1: {
+        backgroundColor: 'white',
+        display: 'block',
+        width: 30,
+        height: 6,
         borderRadius: 10,
-        position: 'absolute',
-        top: '50%',
-        left: 0,
-        transform: [{ translateY: -50}],
-    }
+        transform: [{rotate: '45deg'}],
+    },
+    exitButtonLine2: {
+        backgroundColor: 'white',
+        display: 'block',
+        width: 30,
+        height: 6,
+        borderRadius: 10,
+        transform: [{rotate: '-45deg'}],
+    },
+    // exitButton: {
+    //     display: inline-block;
+    //     padding:25px 0;
+      
+    // }
 }); 
