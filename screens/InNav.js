@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View, Button,useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
-import { Link } from 'expo-router';
+import DropdownButton from '../components/Atoms/DropdownButton';
+
 
 
 
@@ -18,11 +19,7 @@ export default function InNav({navigation}) {
 
     return (
         <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#584b9d'}}>
-          <Link href="/quizTest" asChild>
-            <Pressable>
-              <Text>Test Quiz</Text>
-            </Pressable>
-          </Link>
+
             <View style={styles.containerImage}>
                 <Image source={require('./Jerry/logo-blue.png')} style={styles.imageLogo} />
                 <Image source={require('./Jerry/type-blue.png')} style={styles.imageStyle} />
