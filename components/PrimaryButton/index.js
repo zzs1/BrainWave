@@ -5,19 +5,21 @@ import { StyleSheet, View, Pressable, Text} from 'react-native';
 export default function PrimaryButton ({navigation}){
 
     const primaryButtonText = "Get Started";
-    const [isPressed, setIsPressed] = useState(false);
+    // const [isPressed, setIsPressed] = useState(false);
 
-    function handlePress(){
-        setIsPressed(true);
-        isPressed ? styles.primaryButtonPressed : styles.primaryButton;
-    }
+    // function handlePress(){
+    //     setIsPressed(true);
+    //     isPressed ? styles.primaryButtonPressed : styles.primaryButton;
+    // }
 
 
     return(
         <View style={styles.container}>
             {/* <StatusBar style="auto" /> */}
                 <View>
-                    <Pressable style={styles.primaryButton} onPress= {() => { handlePress(); navigation.push('/');}}>
+                    <Pressable style={styles.primaryButton} 
+                    // onPress= {() => { handlePress(); navigation.push('/');}}
+                    >
                         <Text style={styles.primaryButtonText}>{primaryButtonText}</Text>
                     </Pressable>
                 

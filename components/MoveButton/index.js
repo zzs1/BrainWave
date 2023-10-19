@@ -2,21 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, View, Pressable, Text} from 'react-native';
 
-export default function MoveButton ({navigation}){
+export default function MoveButton (){
 
-    const moveButtonText = "→";
-    const [isPressed, setIsPressed] = useState(false);
+    const moveButtonText = "";
+    // const [isPressed, setIsPressed] = useState(false);
 
-    function handlePress(){
-        setIsPressed(true);
-        isPressed ? styles.moveButtonPressed : styles.moveButton;
-    }
+    // function handlePress(){
+    //     setIsPressed(true);
+    //     isPressed ? styles.moveButtonPressed : styles.moveButton;
+    // }
 
     return(
         <View style={styles.container}>
             {/* <StatusBar style="auto" /> */}
                 <View>
-                    <Pressable style={styles.moveButton} onPress= {() => { handlePress(); navigation.push('/');}}>
+                    <Pressable style={styles.moveButton}
+                    //  onPress= {() => { handlePress(); navigation.push('/');}}
+                     >
                         <Text style={styles.moveButtonArrow}>{moveButtonText}</Text>
                     </Pressable>
                 
@@ -30,7 +32,7 @@ export default function MoveButton ({navigation}){
 const styles =  StyleSheet.create({
     moveButton: {
         width: 70,
-        height: 60,
+        height: 70,
         backgroundColor: '#0C7BDC',
         borderRadius: 10, 
         justifyContent: 'center',
@@ -46,7 +48,7 @@ const styles =  StyleSheet.create({
     },
     moveButtonPressed: {
         width: 70,
-        height: 60,
+        height: 70,
         backgroundColor: '#0C7BDC',
         borderRadius: 10, 
         justifyContent: 'center',

@@ -4,16 +4,8 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import { Image } from 'expo-image';
 import PuzzleMapOption from './PuzzleMapOption';
 
-/* SVGs */
-// import MenuXButton from '../assets/menu-x.svg';
-// import HomeButton from '../assets/home.svg';
-// import PuzzleMapButton from '../assets/puzzle-map.svg';
-// import AccountButton from '../assets/account.svg';
-// import SettingButton from '../assets/settings.svg';
 
-
-
-export default function SideMenu({navigation}) {
+export default function SideMenu() {
 
     return (
         <View style={styles.container}>   
