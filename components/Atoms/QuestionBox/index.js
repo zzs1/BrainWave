@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text} from 'react-native';
 
-export default function QuestionBox() {
+export default function QuestionBox({}) {
     return(
         <View>
             <View style={styles.box}></View>

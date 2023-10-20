@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button,useColorScheme } from 'react-native';
-export default function DialogueBoxLower() {
+export default function DialogueBoxLower({}) {
     return(
         <View>
         

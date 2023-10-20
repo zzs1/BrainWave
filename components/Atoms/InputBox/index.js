@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button,useColorScheme, TextInput } from 'react-native';
-export default function InputBox() {
+export default function InputBox({}) {
     return(
         <View>
             <TextInput style={styles.input_box} type="text"/> 

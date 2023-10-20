@@ -1,11 +1,11 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import Dialogue from '../../components/DialogueBox';
-import Logo from '../../components/Logo';
-import InputBox from '../../components/InputBox';
-import DialogueBoxLower from '../../components/DialogueBoxLower';
-import DialogueBoxUpper from '../../components/DialogueBoxUpper';
-import QuestionBox from '../../components/QuestionBox';
+import Dialogue from '../components/Atoms/DialogueBox';
+import Logo from '../components/Atoms//Logo';
+import InputBox from '../components/Atoms//InputBox';
+import DialogueBoxLower from '../components/Atoms//DialogueBoxLower';
+import DialogueBoxUpper from '../components/Atoms//DialogueBoxUpper';
+import QuestionBox from '../components/Atoms//QuestionBox';
 export default function Ivona() {
 
   

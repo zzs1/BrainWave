@@ -5,6 +5,8 @@ import SideMenu from '../components/SideMenu'
 import PrimaryButton from '../components/PrimaryButton';
 import MoveButton from '../components/MoveButton';
 import { useNavigation } from '@react-navigation/native';
+import SubjectBox from  '../components/Atoms/SubjectBox';
+
 
 export default function Home({navigation}) {
 
@@ -20,7 +22,10 @@ export default function Home({navigation}) {
 
             <TouchableOpacity onPress={navigateToQuizTest}>
                 <Text style={styles.text}>Test Quiz</Text>
+                
             </TouchableOpacity>
+            
+            
 
     
          </View>
