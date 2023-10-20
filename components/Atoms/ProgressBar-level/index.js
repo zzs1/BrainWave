@@ -3,21 +3,27 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 
 export default function ProgressBar({
     fill=0,
-    bgColor='',
-    fillColor=''
+    theme='',
+    color=''
 }) {
   return (
     <View style={{
-        height: 10,
-        width: 150,
-        borderRadius: 10,
-        backgroundColor: bgColor
+      ...styles.container,
+      backgroundColor: theme === 'dark' ? color : '#CDDDEC'
     }}>
         <View style={{
             width:`${fill}%`,
             height:'100%',
-            backgroundColor: fillColor
+            backgroundColor: theme === 'dark' ? '#CDDDEC' : color
         }}></View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: 10,
+    width: 150,
+    borderRadius: 10
+  }
+})
