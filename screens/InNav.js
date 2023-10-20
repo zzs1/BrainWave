@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View, Button,useColorScheme, Image, Pressable} from 'react-native';
+import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import { Link } from 'expo-router';
-
+import PatternIconBlack from '../components/Atoms/PatternIcon/IconBlack';
 
 
 export default function InNav({navigation}) {
@@ -24,6 +24,7 @@ export default function InNav({navigation}) {
             </Pressable>
           </Link>
             <View style={styles.containerImage}>
+            <PatternIconBlack/>
                 <Image source={require('./Jerry/logo-blue.png')} style={styles.imageLogo} />
                 <Image source={require('./Jerry/type-blue.png')} style={styles.imageStyle} />
                 <View style={styles.containerButton}>
