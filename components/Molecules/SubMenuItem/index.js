@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, Button,useColorScheme, TextInput, Image } from 'react-native';
-import ExitButton from '../ExitButton';
 
 export default function SubMenu() {
     return(
@@ -7,7 +6,7 @@ export default function SubMenu() {
             <Text style={styles.sections} >
                 <View style={styles.section}>
                     <Image 
-                    source={require('../../assets/subMenu/lamp.png')} 
+                    source={require('../../../assets/subMenu/lamp.png')} 
                     style={styles.sideMenuIcon} 
                     width={30}
                     height={30}/>
@@ -15,7 +14,7 @@ export default function SubMenu() {
                 </View>
                 <View style={styles.section}>
                     <Image 
-                    source={require('../../assets/subMenu/number.png')} 
+                    source={require('../../../assets/subMenu/number.png')} 
                     style={styles.sideMenuIcon} 
                     width={30}
                     height={30}/>
@@ -23,7 +22,7 @@ export default function SubMenu() {
                 </View>
                 <View style={styles.section}>
                     <Image 
-                    source={require('../../assets/subMenu/pattern.png')} 
+                    source={require('../../../assets/subMenu/pattern.png')} 
                     style={styles.sideMenuIcon} 
                     width={30}
                     height={30}/>
@@ -43,7 +42,9 @@ const styles = StyleSheet.create({
         width: 176,
         height: 110,
         borderRadius: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        display: 'flex',
+        flexDirection: 'column',
     },
     sideMenuLogo: {
         display: 'flex',
@@ -62,5 +63,7 @@ const styles = StyleSheet.create({
   
     sections: {
         paddingTop: 30,
+        display: 'flex',
+        flexDirection: 'column',
     }
 })

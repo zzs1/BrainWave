@@ -11,7 +11,7 @@ export default function SideMenu() {
             <Text style={styles.sections} >
                 <View style={styles.section} >
                     <Image 
-                    source={require('../../assets/sideMenu/home.png')} 
+                    source={require('../../../assets/sideMenu/home.png')} 
                     style={styles.sideMenuIcon} 
                     width={30}
                     height={30}/>
@@ -19,7 +19,7 @@ export default function SideMenu() {
                 </View>
                 <View style={styles.section}>
                     <Image 
-                    source={require('../../assets/sideMenu/map.png')} 
+                    source={require('../../../assets/sideMenu/map.png')} 
                     style={styles.sideMenuIcon} 
                     width={30}
                     height={30}/>
@@ -27,7 +27,7 @@ export default function SideMenu() {
                 </View>
                 <View style={styles.section}>
                     <Image 
-                    source={require('../../assets/sideMenu/acount.png')} 
+                    source={require('../../../assets/sideMenu/acount.png')} 
                     style={styles.sideMenuIcon} 
                     width={30}
                     height={30}/>
@@ -35,7 +35,7 @@ export default function SideMenu() {
                 </View>
                 <View style={styles.section}>
                     <Image 
-                    source={require('../../assets/sideMenu/setting.png')} 
+                    source={require('../../../assets/sideMenu/setting.png')} 
                     style={styles.sideMenuIcon} 
                     width={30}
                     height={30}/>
@@ -44,7 +44,7 @@ export default function SideMenu() {
             </Text>
         <View  style={styles.sideMenuLogo} >
                 <Image 
-                source={require('../../assets/sideMenu/logo-white.png')} 
+                source={require('../../../assets/sideMenu/logo-white.png')} 
                 style={styles.imageLogo} 
                 width={95}
                 height={90}/>
