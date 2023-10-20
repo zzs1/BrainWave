@@ -1,12 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View, Button,useColorScheme, Image, Pressable} from 'react-native';
+import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import PuzzleMapDropdown from '../components/Molecules/PuzzleMapDropdown';
 import SubMenu from '../components/Molecules/SubMenuItem';
-
 
 
 
