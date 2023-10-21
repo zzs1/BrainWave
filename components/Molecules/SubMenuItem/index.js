@@ -3,55 +3,52 @@ import { StyleSheet, Text, View, Button,useColorScheme, TextInput, Image } from 
 export default function SubMenu() {
     return(
         <View style={styles.subMenuBody}>
-            <Text style={styles.sections} >
+
                 <View style={styles.section}>
                     <Image 
                     source={require('../../../assets/subMenu/lamp.png')} 
-                    style={styles.sideMenuIcon} 
+                    style={styles.subMenuIcon} 
                     width={30}
                     height={30}/>
-                    <Text style={styles.sideMenuFont}>Logic</Text>
+                    <Text style={styles.subMenuFont}>Logic</Text>
                 </View>
+
                 <View style={styles.section}>
                     <Image 
                     source={require('../../../assets/subMenu/number.png')} 
-                    style={styles.sideMenuIcon} 
+                    style={styles.subMenuIcon} 
                     width={30}
                     height={30}/>
-                    <Text style={styles.sideMenuFont}>Numbers</Text>     
+                    <Text style={styles.subMenuFont}>Numbers</Text>     
                 </View>
+
                 <View style={styles.section}>
                     <Image 
                     source={require('../../../assets/subMenu/pattern.png')} 
-                    style={styles.sideMenuIcon} 
+                    style={styles.subMenuIcon} 
                     width={30}
                     height={30}/>
-                    <Text style={styles.sideMenuFont}>Patterns</Text>     
+                    <Text style={styles.subMenuFont}>Patterns</Text>     
                 </View>
-            </Text>
         </View>
     )
 }
 const styles = StyleSheet.create({
-    sideMenuFont:{
+    subMenuFont:{
         fontSize: 16,
         color: '#0C7BDC',
         paddingLeft: 20,
     },
-    sideMenuBody: {
+    subMenuBody: {
         width: 176,
         height: 110,
         borderRadius: 10,
-        backgroundColor: 'white',
+        backgroundColor: '#white',
         display: 'flex',
         flexDirection: 'column',
+        gap: -30,
     },
-    sideMenuLogo: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: 170,
-    },
-    sideMenuIcon: {
+    SubMenu: {
         paddingLeft: 20,
     },
     section: {
@@ -60,10 +57,8 @@ const styles = StyleSheet.create({
         paddingTop: 50,
         paddingLeft: 30,
     },
-  
-    sections: {
-        paddingTop: 30,
-        display: 'flex',
-        flexDirection: 'column',
-    }
+    subMenuIcon: {
+
+    },
+
 })
