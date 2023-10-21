@@ -19,7 +19,7 @@ export default function ExitButton (){
 
 const styles =  StyleSheet.create({
     exitButtonLine1: {
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         display: 'block',
         width: 30,
         height: 6,
@@ -27,13 +27,16 @@ const styles =  StyleSheet.create({
         transform: [{rotate: '45deg'}],
     },
     exitButtonLine2: {
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         display: 'block',
         width: 30,
         height: 6,
         borderRadius: 10,
         transform: [{rotate: '-45deg'}],
     },
+    exitButton: {
+       paddingTop: 30,
+    }
     // exitButton: {
     //     display: inline-block;
     //     padding:25px 0;
