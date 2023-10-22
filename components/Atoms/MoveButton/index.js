@@ -1,68 +1,71 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
 import { StyleSheet, View, Pressable, Text} from 'react-native';
+import { Image } from 'expo-image';
 
-export default function MoveButton ({navigation}){
+import { useState, useEffect } from 'react';
 
-    const moveButtonText = "→";
+import ArrowLeft from '../../../assets/Icons/arrowLeft.png'
+import ArrowRight from '../../../assets/Icons/arrowRight.png'
+
+export default function MoveButton ({
+    direction='',
+    color='',
+    shadowColor=''
+}){
     const [isPressed, setIsPressed] = useState(false);
 
-    function handlePress(){
-        setIsPressed(true);
-        isPressed ? styles.moveButtonPressed : styles.moveButton;
-    }
-
+    useEffect(() => {
+        if(isPressed) {
+            setTimeout(() => {
+                setIsPressed(false);
+            }, 500)
+        }
+    })
     return(
-        <View style={styles.container}>
-            {/* <StatusBar style="auto" /> */}
-                <View>
-                    <Pressable style={styles.moveButton} onPress= {() => { handlePress(); navigation.push('/');}}>
-                        <Text style={styles.moveButtonArrow}>{moveButtonText}</Text>
-                    </Pressable>
-                
-                </View>
-      
-
+        <View onPress={() => {
+            setIsPressed(true);
+        }} style={styles.container}>
+            <View style={{
+                ...styles.btn,
+                backgroundColor: color
+            }}>
+                <Image style={styles.arrow} source={direction === 'right' ? ArrowRight : ArrowLeft}/>
+            </View>
+            {
+                isPressed ? <></> : <View style={{
+                    ...styles.btnShadow,
+                    backgroundColor: shadowColor
+                }}></View>
+            }
         </View>
     );
 }
 
 const styles =  StyleSheet.create({
-    moveButton: {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        height: 70
+    },
+    btn: {
         width: 70,
         height: 60,
-        backgroundColor: '#0C7BDC',
         borderRadius: 10, 
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#b4b4b4',
-        shadowOffset: {
-            width: 5, 
-            height: 5,
-        },
-        shadowRadius: 3,
-        shadowOpacity: 0.9,
-        elevation: 4,
     },
-    moveButtonPressed: {
+    btnShadow: {
         width: 70,
         height: 60,
-        backgroundColor: '#0C7BDC',
         borderRadius: 10, 
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#b4b4b4',
-        shadowOffset: {
-            width: 5, 
-            height: 5,
-        },
-        shadowRadius: 3,
-        shadowOpacity: 0.9,
-        elevation: 0,
+        marginTop: -50,
+        zIndex: -1
     },
-    moveButtonArrow: {
-        fontSize: 30,
-        color: '#FFFFFF'
-    },
-
+    arrow: {
+        width: 30,
+        height:30
+    }
 }); 
