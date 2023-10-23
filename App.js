@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import InNav from './screens/InNav';
+import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
@@ -17,7 +17,7 @@ export default function App() {
     <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFFc': '#584b9d'}}>
       <View>
         <Text style={styles.lightThemeText}>
-          <InNav/>
+          <AccessibilityPromptSecond/>
         </Text>
         <StatusBar style="auto" />
       </View>
