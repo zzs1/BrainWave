@@ -58,6 +58,7 @@ return(
         <View style={styles.accountStartButton}>
             <PrimaryButton
                 primaryButtonText="SET AVATAR"
+                onPress={() => navigation.push('AccountStartTime')}
             />
         </View>
 

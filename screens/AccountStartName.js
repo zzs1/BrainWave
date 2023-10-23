@@ -7,11 +7,11 @@ import { useState } from "react";
 const [userName, setUserName] = useState('');
 
 function handleNameChange(text){
-setUserName(text);
+    setUserName(text);
 }
 
 function handleSubmit(){
-console.log(userName);
+    console.log(userName);
 };
 
 
@@ -46,7 +46,7 @@ return(
             <View style={styles.accountStartButton}>
               <PrimaryButton
                 primaryButtonText="SET NAME"
-                onPress = {handleSubmit}/>
+                onPress = {[handleSubmit, ()=> navigation.push('AccountStartName')]}/>
             </View>
 
 

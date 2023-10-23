@@ -5,6 +5,10 @@ import PrimaryButton from '../components/Atoms/PrimaryButton';
 
 export default function AccountPageStart(){
 
+    function timeMode(){
+        console.log(mode);
+    }
+
 
 return(
 <>
@@ -26,18 +30,24 @@ return(
 
         <View style={styles.accountStartButton}>
             <PrimaryButton
-            primaryButtonText="Beginner (5mins/day)"
-            style={styles.buttonTexts}
+                primaryButtonText="Beginner(5mins/day)"
+                style={styles.buttonTexts}
+                onPress={[timeMode, ()=> navigation.push('AccountStartTime2')]}
+                value={mode}
             />
 
             <PrimaryButton
-            primaryButtonText="Intermediate (10mins/day)"
-            style={styles.buttonTexts}
+                primaryButtonText="Intermediate(10mins/day)"
+                style={styles.buttonTexts}
+                onPress={[timeMode, ()=> navigation.push('AccountStartTime2')]}
+                value={mode}
             />
 
             <PrimaryButton
-            primaryButtonText="Advanced (20mins/day)"
-            style={styles.buttonTexts}
+                primaryButtonText="Advanced(20mins/day)"
+                style={styles.buttonTexts}
+                onPress={[timeMode, ()=> navigation.push('AccountStartTime2')]}
+                value={mode}
             />
         </View>
 

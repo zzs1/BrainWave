@@ -28,9 +28,9 @@ return(
 
 
         <View>
-            <Text>WIMMY SAYS...</Text>
-            <Text>Here is the interface for your account. You can keep track of you progress and make changes here!</Text>
-            <Text>Tap to continue.</Text>
+            <Text style={styles.title}>WIMMY SAYS...</Text>
+            <Text style={styles.texts}>Here is the interface for your account. You can keep track of you progress and make changes here!</Text>
+            <Text style={styles.continue}>Tap to continue.</Text>
         </View>
 
         <View>
@@ -52,7 +52,7 @@ return(
 
 const styles = StyleSheet.create({
 title: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
 },
 texts: {
