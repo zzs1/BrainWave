@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-
+import InNav from './screens/InNav';
 
 export default function App() {
-
+  const Stack = createNativeStackNavigator();
   var colorScheme = useColorScheme();
   
   useEffect(() => {
@@ -16,12 +18,9 @@ export default function App() {
 
   return (
     <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFFc': '#584b9d'}}>
-      <View>
-        <Text style={styles.lightThemeText}>
-          <AccessibilityPromptSecond/>
-        </Text>
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer initialRouteName='Landing'>
+        <Stack.Navigator name='Landing' component={InNav}/>
+      </NavigationContainer>
     </SafeAreaView>  
   );
 }
