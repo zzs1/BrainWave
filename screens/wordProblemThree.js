@@ -1,7 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context"
 import { StyleSheet, View, Linking,Text } from "react-native";
-import { Pressable, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
 import { Link } from 'expo-router';
 import NavBar from '../components/Molecules/NavBar';
 import DialogueBar from "../components/Atoms/DialogueBar";
@@ -10,9 +9,7 @@ import PrimaryButton from "../components/Atoms/PrimaryButton";
 import OptionButton from "../components/Atoms/OptionButton";
 import QuestionBox from "../components/Atoms/QuestionBox";
 
-
-export default function WordProblem({navigation}) {
-    
+export default function WordProblemThree({navigation}) {
     return (
         <>
         <View style={styles.main_container}>
@@ -31,9 +28,9 @@ export default function WordProblem({navigation}) {
     {/* <PrimaryButton/> */}
     <View >
         <View style={styles.question}>
-        <QuestionBox  style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?"/>
+        <QuestionBox   />
         </View>
-        <Pressable style={styles.option_buttons} onPress={() => navigation('wordProblemTwo')}>
+        <Pressable style={styles.option_buttons}>
        
     <OptionButton  />
     </Pressable>
@@ -63,7 +60,7 @@ const styles = StyleSheet.create({
     },
     image:{
         marginTop:35,
-        marginLeft:78
+        marginLeft:75
 
     },
     question:{
@@ -75,9 +72,6 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     option_buttons:{
-        marginLeft: 20,
-    },
-    text_container:{
-        fontSize:14
+        marginLeft: 20
     }
 })

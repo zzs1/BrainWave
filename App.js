@@ -5,6 +5,7 @@ import InNav from './screens/InNav';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
+
 export default function App() {
 
   var colorScheme = useColorScheme();
@@ -18,6 +19,7 @@ export default function App() {
       <View>
         <Text style={styles.lightThemeText}>
           <InNav/>
+        
         </Text>
         <StatusBar style="auto" />
       </View>

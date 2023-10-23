@@ -9,7 +9,7 @@ export default function ProgressBar({
   return (
     <View style={{
       ...styles.container,
-      backgroundColor: theme === 'dark' ? color : '#CDDDEC'
+      
     }}>
         <View style={{
             width:`${fill}%`,
