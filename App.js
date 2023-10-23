@@ -5,6 +5,7 @@ import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
+
 export default function App() {
 
   var colorScheme = useColorScheme();

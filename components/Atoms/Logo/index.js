@@ -4,7 +4,7 @@ export default function Logo() {
     return(
         <View>
             
-                <Image style={styles.image} source={require("../../assets/logoblue.png")} alt="" width={90} height={95}/>
+                <Image style={styles.image} source={require("../../../assets/Logo/logoblue.png")} alt="" width={90} height={95}/>
             
         </View>
     )
