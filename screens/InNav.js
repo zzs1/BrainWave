@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { useEffect } from 'react';
-import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, useColorScheme, Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
-import PuzzleMapDropdown from '../components/Molecules/PuzzleMapDropdown';
-import SubMenu from '../components/Molecules/SubMenuItem';
 
 
 
-export default function InNav({navigation}) {
+export default function InNav(navigation) {
+
+  const [animationWhale, setAnimationWhale] = useState(false);
+  const [waves, setWaves] = useState(true);
 
     var colorScheme = useColorScheme();
 
@@ -17,17 +18,35 @@ export default function InNav({navigation}) {
       console.log(colorScheme);
     }, [colorScheme])
 
+    useEffect(() => {
+      const timeoutId = setTimeout(() => {
+        setAnimationWhale(true);
+        setWaves(false);
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
+    }, []);
+
     return (
         <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#584b9d'}}>
-          <SubMenu />
-            <View style={styles.containerImage}>
-                <Image source={require('./Jerry/logo-blue.png')} style={styles.imageLogo} />
-                <Image source={require('./Jerry/type-blue.png')} style={styles.imageStyle} />
-                <View style={styles.containerButton}>
-                  <PrimaryButton style={styles.containerImage}/>
-                </View>
-                <StatusBar style="auto" />
-            </View>
+          {
+            waves && (
+              <View>
+                 <Image source={require('../assets/Waves/wavesNav.png')} style={styles.waves} />
+              </View>
+            )
+          }
+            {
+            animationWhale && (
+        <View style={styles.containerImage}>
+          <Image source={require('../assets/Logo/logo-blueNav.png')} style={styles.imageLogo} />
+          <Image source={require('../assets/Logo/type-blueNav.png')} style={styles.imageLogo} />
+          <View style={styles.containerButton}>
+            <PrimaryButton onPress={() => navigation.push('AccessibilityPrompt')}/>
+          </View>
+        </View>
+          )
+            }
         </SafeAreaView>
     );
 }
@@ -50,8 +69,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       gap: 19,
-      marginTop: 220,
-
+      marginTop: 190,
+    },
+    waves:{
+      flex: 1,
+      width: 420, 
+      alignItems: 'center',
+      marginTop: 760,
     },
     imageLogo: {
       justifyContent: 'center',

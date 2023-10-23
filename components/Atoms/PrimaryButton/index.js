@@ -2,9 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, View, Pressable, Text} from 'react-native';
 
-export default function PrimaryButton ({navigation}){
+export default function PrimaryButton ({navigation, name="", colorBackground=''}){
 
-    const primaryButtonText = "Get Started";
     const [isPressed, setIsPressed] = useState(false);
 
     function handlePress(){
@@ -17,9 +16,10 @@ export default function PrimaryButton ({navigation}){
         <View style={styles.container}>
             {/* <StatusBar style="auto" /> */}
                 <View>
-                    <Pressable style={styles.primaryButton} onPress= {() => { handlePress(); navigation.push('/');}}>
-                        <Text style={styles.primaryButtonText}>{primaryButtonText}</Text>
-                    </Pressable>
+                <Pressable style={{ ...styles.primaryButton, backgroundColor: colorBackground }}>
+                    <Text style={styles.primaryButtonText}>{name}</Text>
+                </Pressable>
+
                 
                 </View>
       
