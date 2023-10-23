@@ -47,6 +47,7 @@ export default function InNav(navigation) {
         </View>
           )
             }
+          
         </SafeAreaView>
     );
 }

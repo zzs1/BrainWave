@@ -14,7 +14,8 @@ export default function ProgressBar({
         <View style={{
             width:`${fill}%`,
             height:'100%',
-            backgroundColor: theme === 'dark' ? '#CDDDEC' : color
+            backgroundColor: theme === 'dark' ? '#CDDDEC' : color,
+            borderRadius: 10
         }}></View>
     </View>
   )

@@ -6,7 +6,8 @@ import { Image } from 'expo-image';
 import ProgressBar from '../../Atoms/ProgressBar-level';
 
 export default function SectionCardMain({
-    color=[],
+    color='',
+    border='',
     theme='',
     image='',
     title='',
@@ -14,32 +15,22 @@ export default function SectionCardMain({
 }) {
   return (
     <View style={{
-      border: `3px solid ${color[1]}`, 
-      backgroundColor: theme === 'dark' ? color[0] : `linear-gradient(white, ${color[1]})`,
-      width: 230,
-      height: 325,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
+      ...styles.container,
+      border: `3px solid ${border}`, 
+      backgroundColor: theme === 'dark' ? color : `linear-gradient(white, ${color})`,
     }}>
         <Text style={{
-          fontSize: 20,
-          fontWeight: 'bold'
+          ...styles.title,
+          color: theme === 'dark' ? 'white' : '#1E1E1E'
         }}>{title}</Text>
-        <Image source={image} style={{
+        <Image source={image} contentFit='contain' style={{
           width: 150,
-          height: 150
+          height: 150,
         }}/>
-        <View style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: 200
-        }}>
+        <View style={styles.progContainer}>
           <ProgressBar 
             fill={prog}
-            color={color[0]}
+            color={border}
             theme={theme}
           />
           <Text style={{
@@ -50,3 +41,28 @@ export default function SectionCardMain({
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: 230,
+    height: 325,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderRadius: 10
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 15
+  },
+  progContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: 200,
+    marginBottom: 10
+  }
+})

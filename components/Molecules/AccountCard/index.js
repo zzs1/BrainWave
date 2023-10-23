@@ -19,7 +19,7 @@ export default function AccountCard({
             color: fontColor,
             fontSize: 20,
             fontWeight: '700',
-            marginBottom: 45
+            marginBottom: 20
           }}>{name}</Text>
           <Text style={{
             color: fontColor,

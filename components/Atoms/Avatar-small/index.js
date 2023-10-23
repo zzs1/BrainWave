@@ -9,9 +9,7 @@ export default function AvatarSmall({
 }) {
   return (
     <View style={{
-        width: 75,
-        height: 75,
-        borderRadius: 15,
+        ...styles.container,
         border: `4px solid ${frameColor}`
     }}>
         <Image style={{
@@ -21,3 +19,11 @@ export default function AvatarSmall({
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: 75,
+    height: 75,
+    borderRadius: 15
+  }
+})
