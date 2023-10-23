@@ -18,7 +18,7 @@ export default function CarouselButton ({
     })
 
     return(
-        <Pressable onPress={() => setIsPressed(true)} style={styles.container}>
+        <View onPress={() => setIsPressed(true)} style={styles.container}>
             <View style={{
                 ...styles.carouselButton,
                 backgroundColor: color
@@ -32,7 +32,7 @@ export default function CarouselButton ({
                     backgroundColor: shadowColor,
                 }}></View> 
             }             
-        </Pressable>
+        </View>
     );
 }
 

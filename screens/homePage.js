@@ -14,10 +14,10 @@ import Avatar from '../assets/Icons/Avatar.png'
 
 import { sectionCard } from '../data/sectionCards.js';
 
-export default function homePage({navigation}) {
+export default function HomePage({navigation}) {
     const [data, setData] = useState(sectionCard);
     const [number, setNumber] = useState(0);
-  
+
     var colorScheme = useColorScheme();
 
     useEffect(() => {
@@ -75,7 +75,7 @@ export default function homePage({navigation}) {
             shadowColor='#005AB5'
           />
         </Pressable>
-        <Pressable>
+        <Pressable onPress={() => navigation.push('InNav', {title: data[number].title})}>
           <CarouselButton 
             btnText="Let's Go"
             color='#0C7BDC'
