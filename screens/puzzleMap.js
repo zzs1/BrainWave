@@ -1,81 +1,86 @@
-import { Image } from "expo-image"
-import { View, Text, Pressable } from "react-native"
-import { StyleSheet } from "react-native"
-import NavBar from "../components/Molecules/NavBar"
-export default function PuzzleMap() {
-    return(
-        <>
-        <View style={styles.navbar}>
-        <NavBar />
-        </View>
-        <View style={styles.main_container}>
-        <View>
-        <Text style={styles.text}>LOGIC MAP</Text>
-        </View>
-        {/* <View>
-        <Image style={styles.level_lock_two} source={require("../assets/levelLocker/LevelLockBlack.png")} alt="" width={107} height={112}/> 
-        </View> */}
-        <View>
-        <View>
-        <Image style={styles.level_lock_two} source={require("../assets/levelLocker/LevelLockBlack.png")} alt="" width={107} height={112}/>
-        <View style={styles.line_one} ></View>
-        <Image style={styles.level_lock} source={require("../assets/levelLocker/LevelLockBlack.png")} alt="" width={107} height={112}/> 
-        </View>
-        <View style={styles.line_two} ></View>
-        <View>
-            <Pressable>
-            <Image style={styles.level1_vector} source={require("../assets/level1/Level1.png")} height={121} width={176}/>
-            </Pressable>
-        </View>
-        </View>
-        </View>
-        </>
-    )
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { useEffect } from 'react';
+import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import PrimaryButton from '../components/Atoms/PrimaryButton';
+import LevelIsland from '../components/Molecules/LevelIsland';
+import PuzzleMapTitle from '../components/Atoms/PuzzleMapTitle';
+import { Button } from 'react-native';
+import { useNavigation } from 'expo-router';
+import { useRoute } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+
+
+export default function PuzzleMap({navigation}) {
+  const route = useRoute()
+  const title = route.params.title
+    var colorScheme = useColorScheme();
+
+    useEffect(() => {
+      console.log(colorScheme);
+    }, [colorScheme])
+
+    return (
+        <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#584b9d'}}>
+          <PuzzleMapTitle style={styles.gradient} title={title} theme='light'/>
+          <View style={styles.islandCont}>
+            <View style={styles.islandRight}>
+              <LevelIsland locked={true} color='#0C7BDC' shadow='#005AB5'/>
+            </View>
+            <View style={styles.islandLeft}>
+              <LevelIsland locked={true} color='#0C7BDC' shadow='#005AB5'/>
+            </View>
+            <View style={styles.islandRight}>
+              <LevelIsland locked={true} color='#0C7BDC' shadow='#005AB5'/>
+            </View>
+            <View style={styles.islandLeft}>
+              <LevelIsland locked={true} color='#0C7BDC' shadow='#005AB5'/>
+            </View>
+            <View style={styles.islandRight}>
+              <LevelIsland locked={false} color='#0C7BDC' shadow='#005AB5'/>
+            </View>
+          </View>
+          <LinearGradient colors={['transparent','#005AB5']} style={{
+            width: 400,
+            height: 500,
+            position: 'absolute',
+            bottom: 0,
+            zIndex: -2
+          }}></LinearGradient>
+        </SafeAreaView>
+    );
 }
+
 const styles = StyleSheet.create({
-    navbar:{
-        marginTop: 24
-
+    container: {
+      flex: 1,
+      alignItems: 'center',
     },
-    main_container:{
-        height: '100vh',
-        marginTop: 40,
+    gradient: {
+      position: 'absolute',
+      top: 50,
+      left: 0,
+      zIndex: 0
     },
-    
-    level_lock:{
-        // marginTop:100,
-        marginLeft: 50
+    islandCont: {
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'absolute',
+      top: 60,
+      zIndex: -1
     },
-    text:{
-        fontSize: 32,
-        fontWeight: 'bold',
-        marginTop: 30
+    islandLeft: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      width: 350
     },
-    level1_vector:{
-        marginLeft: 150,
-        // marginTop: 30
-        marginBottom: 80
+    islandRight: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      width: 350
     },
-    level_lock_two:{
-        marginLeft: 190,
-        // marginTop:150,
-
-    },
-    line_one:{
-        width:190,
-        height: 15,
-        backgroundColor:'#343434',
-        transform:[{rotate: '-55deg'}],
-        marginLeft: 60,
-        marginTop: 40
-
-    },
-    line_two:{
-        width:190,
-        height: 15,
-        backgroundColor:'#343434',
-        transform:[{rotate: '55deg'}],
-        marginLeft: 60,
-        marginTop: 60
-    }
 })
