@@ -1,14 +1,19 @@
 import { StyleSheet, Text, View, Button,useColorScheme } from 'react-native';
-export default function DialogueBoxUpper() {
+export default function DialogueBoxUpper({interestingText}) {
     return(
-        <View>
-        
-            <View style={styles.dialogue_box}></View>
-    
+        <View style={styles.container}>
+            <View style={styles.dialogue_box}>
+                <Text>{interestingText}</Text>
+            </View>
         </View>
     )
     }
     const styles = StyleSheet.create({
+        conatiner: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
         dialogue_box:{
             height:67,
             width: 315,
