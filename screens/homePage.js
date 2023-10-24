@@ -14,6 +14,7 @@ import NavBar from '../components/Molecules/NavBar';
 import Avatar from '../assets/Icons/Avatar.png'
 
 import { sectionCard } from '../data/sectionCards.js';
+import WimmyPopup from '../components/Molecules/WimmyPopup';
 
 export default function HomePage({navigation}) {
     const [data, setData] = useState(sectionCard);
@@ -92,6 +93,7 @@ export default function HomePage({navigation}) {
         </Pressable>
       </View>
       <NavBar color='#0C7BDC' navigation={navigation} />
+      <WimmyPopup title='WIMMY SAYS...' desc='Select a puzzle catagory that you want to explore!' instuction='Tap to continue.'/>
     </SafeAreaView>
   );
 }
