@@ -22,6 +22,26 @@ export default function HomePage({navigation}) {
 
     var colorScheme = useColorScheme();
 
+    const handleImageOne = (num) => {
+      if (num === 0) {
+        return 2;
+      } else if (num === 1) {
+        return 0;
+      } else if (num === 2) {
+        return 1;
+      }
+    }
+
+    const handleImageTwo = (num) => {
+      if (num === 0) {
+        return 1;
+      } else if (num === 1) {
+        return 2;
+      } else if (num === 2) {
+        return 0;
+      }
+    }
+
     useEffect(() => {
         console.log(colorScheme);
     }, [colorScheme])
@@ -44,8 +64,8 @@ export default function HomePage({navigation}) {
             color='#256FB9'
             border='#005AB5'
             theme='dark'
-            image={data[number].image}
-            title={data[number].title}
+            image={data[handleImageOne(number)].image}
+            title={data[handleImageOne(number)].title}
           />
         </View>
         <SectionCardMain 
@@ -64,8 +84,8 @@ export default function HomePage({navigation}) {
             color='#256FB9'
             border='#005AB5'
             theme='dark'
-            image={data[number].image}
-            title={data[number].title}
+            image={data[handleImageTwo(number)].image}
+            title={data[handleImageTwo(number)].title}
           />
         </View>
       </View>
