@@ -12,47 +12,8 @@ export default function NavBar({
     color=''
 }) {
   return (
-    <View style={{
-      ...styles.navBarBody,
-      backgroundColor: color
-    }} >
-      <Pressable onPress={() => navigation.push('Home')}>
-        <View style={styles.navItem}>
-          <Image source={Home} contentFit='contain' style={{
-            width: 30,
-            height: 30
-          }}/>
-          <Text style={styles.navText}>Home</Text>
-        </View>
-      </Pressable>
-      <Pressable onPress={() => navigation.push('Home')}>
-        <View style={styles.navItem}>
-          <Image source={Map} contentFit='contain' style={{
-            width: 30,
-            height: 30
-          }}/>
-          <Text style={styles.navText}>Performance</Text>
-        </View>
-      </Pressable>
-      <Pressable onPress={() => navigation.push('AccountStartPage')}>
-        <View style={styles.navItem}>
-          <Image source={User} contentFit='contain' style={{
-            width: 30,
-            height: 30
-          }}/>
-          <Text style={styles.navText}>Account</Text>
-        </View>
-      </Pressable>
-      <Pressable onPress={() => navigation.push('Home')}>
-        <View style={styles.navItem}>
-          <Image source={Settings} contentFit='contain' style={{
-            width: 30,
-            height: 30
-          }}/>
-          <Text style={styles.navText}>Settings</Text>
-        </View>
-      </Pressable>
-    </View>
+   <>
+   </>
   )
 }
 

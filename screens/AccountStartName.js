@@ -1,18 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, Image, TextInput, Pressable} from "react-native";
 import PrimaryButton from '../components/Atoms/PrimaryButton';
-import { React, useState } from "react";
+import  React, { useState } from "react";
 
 
-// const [userName, setUserName] = useState('');
+// const [userName, setUserName] = useState("");
 
 // function handleNameChange(text){
 //     setUserName(text);
 // }
 
-// function handleSubmit(){
-//     console.log(userName);
-// };
+
 
 
 export default function AccountPageStart({navigation}){

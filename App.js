@@ -13,6 +13,7 @@ import AccountStartName from './screens/AccountStartName';
 import AccountStartAvater from './screens/AccountStartAvater';
 import AccountStartTime from './screens/AccountStartTime';
 import AccountStartTime2 from './screens/AccountStartTime2';
+
 import HomePage from './screens/homePage';
 import PuzzleMap from './screens/puzzleMap';
 import WordProblem from './screens/wordProblems';
@@ -20,6 +21,11 @@ import WordProblemTwo from './screens/wordProblemTwo';
 import WordProblemThree from './screens/wordProblemThree';
 import WordProblemFour from './screens/wordProblemFour';
 import Feedback from './screens/Feedback';
+
+import AccountInterfaceStart from './screens/AccountInterfaceStart';
+
+import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -44,12 +50,17 @@ export default function App() {
           <Stack.Screen name='AccountStartTime' component={AccountStartTime} options={{headerShown: false}}/>
           <Stack.Screen name='AccountStartTime2' component={AccountStartTime2} options={{headerShown: false}}/>
 
+
           <Stack.Screen name='WordProblems' component={WordProblem} options={{headerShown: false}}/>
           <Stack.Screen name='WordProblemTwo' component={WordProblemTwo} options={{headerShown: false}}/>
           <Stack.Screen name='WordProblemThree' component={WordProblemThree} options={{headerShown: false}}/>
           <Stack.Screen name='WordProblemFour' component={WordProblemFour} options={{headerShown: false}}/>
 
           <Stack.Screen name='Feedback' component={Feedback} options={{headerShown: false}}/>
+
+          <Stack.Screen name='AccountInterfaceStart' component={AccountInterfaceStart} options={{headerShown: false}}/>
+          
+
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

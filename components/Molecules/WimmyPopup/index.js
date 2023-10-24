@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: '100%',
-    zIndex: 2
+    height: '100%'
   },
   bg: {
     width: 400,
