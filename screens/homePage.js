@@ -9,6 +9,7 @@ import SectionCardMain from '../components/Molecules/SectionCardMain';
 import SectionCardSide from '../components/Molecules/SectionCardSide';
 import CarouselButton from '../components/Atoms/CarouselBotton';
 import MoveButton from '../components/Atoms/MoveButton';
+import NavBar from '../components/Molecules/NavBar';
 
 import Avatar from '../assets/Icons/Avatar.png'
 
@@ -75,7 +76,7 @@ export default function HomePage({navigation}) {
             shadowColor='#005AB5'
           />
         </Pressable>
-        <Pressable onPress={() => navigation.push('InNav', {title: data[number].title})}>
+        <Pressable onPress={() => navigation.push('PuzzleMap', {title: data[number].title})}>
           <CarouselButton 
             btnText="Let's Go"
             color='#0C7BDC'
@@ -90,6 +91,7 @@ export default function HomePage({navigation}) {
           />
         </Pressable>
       </View>
+      <NavBar color='#0C7BDC' navigation={navigation} />
     </SafeAreaView>
   );
 }
@@ -98,21 +100,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    height: 635,
     width: '100%',
+    paddingTop: 50
   },
   btnContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 340
+    width: 340,
+    marginTop: 70
   },
   cardContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 80
   }
 })
