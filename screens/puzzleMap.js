@@ -1,15 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import PrimaryButton from '../components/Atoms/PrimaryButton';
-import LevelIsland from '../components/Molecules/LevelIsland';
-import PuzzleMapTitle from '../components/Atoms/PuzzleMapTitle';
-import { Button } from 'react-native';
-import { useNavigation } from 'expo-router';
 import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+
+import LevelIsland from '../components/Molecules/LevelIsland';
+import PuzzleMapTitle from '../components/Atoms/PuzzleMapTitle';
+import NavBar from '../components/Molecules/NavBar';
+import WimmyPopup from '../components/Molecules/WimmyPopup';
 
 
 
@@ -23,8 +22,11 @@ export default function PuzzleMap({navigation}) {
     }, [colorScheme])
 
     return (
-        <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#584b9d'}}>
-          <PuzzleMapTitle style={styles.gradient} title={title} theme='light'/>
+        <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#1E1E1E'}}>
+            <WimmyPopup title='WIMMY SAYS...' desc="Let's start solving some puzzles!" instuction='tap to continue'/>
+          <View style={styles.gradient}>
+            <PuzzleMapTitle title={title} theme='light'/>
+          </View>
           <View style={styles.islandCont}>
             <View style={styles.islandRight}>
               <LevelIsland locked={true} color='#0C7BDC' shadow='#005AB5'/>
@@ -39,16 +41,19 @@ export default function PuzzleMap({navigation}) {
               <LevelIsland locked={true} color='#0C7BDC' shadow='#005AB5'/>
             </View>
             <View style={styles.islandRight}>
-              <LevelIsland locked={false} color='#0C7BDC' shadow='#005AB5'/>
+                <Pressable>
+                    <LevelIsland locked={false} color='#0C7BDC' shadow='#005AB5'/>
+                </Pressable>
             </View>
           </View>
-          <LinearGradient colors={['transparent','#005AB5']} style={{
+          <LinearGradient colors={['transparent','#0C7BDC']} style={{
             width: 400,
             height: 500,
             position: 'absolute',
             bottom: 0,
             zIndex: -2
           }}></LinearGradient>
+          <NavBar color='#0C7BDC' navigation={navigation}/>
         </SafeAreaView>
     );
 }
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'column',
       position: 'absolute',
-      top: 60,
+      top: 80,
       zIndex: -1
     },
     islandLeft: {
