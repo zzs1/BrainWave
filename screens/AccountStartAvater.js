@@ -1,28 +1,28 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, Pressable } from "react-native";
+import { StyleSheet, Text, View, Button, Pressable, Image} from "react-native";
 import PrimaryButton from '../components/Atoms/PrimaryButton';
+import { React, useState } from "react";
+
+export default function AccountPageStart({navigation}){
 
 
-export default function AccountPageStart(){
 
+    // const [image, setImage] = userState(null);
 
+    // const pickImage = async () => {
+    //     let result = await ImagePicker.launchImageLibraryAsync({
+    //         mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //         allowsEditing: true,
+    //         aspect: [4, 3],
+    //         quality: 1,
+    //     });
 
-    const [image, setImage] = userState(null);
+    //     console.log(result);
 
-    const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        console.log(result);
-
-        if(!result.canceled){
-            setImage(result.assets[0].uri);
-        }
-    };
+    //     if(!result.canceled){
+    //         setImage(result.assets[0].uri);
+    //     }
+    // };
 
 
 return(
@@ -30,7 +30,7 @@ return(
     <View style={styles.accountStartPageBody}>
         <View>
             <Image
-            source={require('../../../assets/Icons/wimmy.png')}
+            source={require('../assets/Icons/wimmy.png')}
             style={styles.wimmyPic}
             width={270}
             height={188}/>
@@ -42,24 +42,27 @@ return(
         </View>
 
             
-        <Pressable onPress={pickImage}>
-            <Image 
-                source={require('../../../assets/accountPages/imageUpload.png')}
-                style={styles.wimmyPic}
+        {/* <Pressable onPress={pickImage}> */}
+        <View style={styles.avatarIconView}>
+             <Image 
+                source={require('../assets/accountPages/imageUpload.png')}
+                style={styles.avatarIcon}
                 width={210}
                 height={210}
                 />
-                 {image && <Image source={{ uri: image }} style={{ width: 190, height: 190 }} />}
-        </Pressable>
+            
+        </View>
+
+                 {/* {image && <Image source={{ uri: image }} style={{ width: 190, height: 190 }} />} */}
+        {/* </Pressable> */}
 
 
 
 
-        <View style={styles.accountStartButton}>
-            <PrimaryButton
-                primaryButtonText="SET AVATAR"
-                onPress={() => navigation.push('AccountStartTime')}
-            />
+        <View>
+                <Pressable style={styles.startButton} onPress={() => navigation.push('AccountStartTime')}>
+                    <PrimaryButton name="SET AVATAR" colorBackground="#0C7BDC" shadow="#005AB5"/>
+                </Pressable>
         </View>
 
 
@@ -71,20 +74,31 @@ return(
 
 const styles = StyleSheet.create({
 texts: {
-fontSize: 20,
+    fontSize: 20,
 },
 accountStartTexts: {
-height:67,
-width: 292,
-borderTopLeftRadius: 20,
-borderBottomRightRadius: 20,
-borderTopRightRadius: 20,
-borderColor:'#C8C8C8',
-borderWidth: 2,
-backgroundColor: '#F9F9F9'
+    height:67,
+    width: 292,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    borderTopRightRadius: 20,
+    borderColor:'#C8C8C8',
+    borderWidth: 2,
+    backgroundColor: '#F9F9F9',
+    justifyContent: 'center',
+    alignItems: 'center',
 },
 accountStartPageBody: {
-display:'flex',
-flexDirection: 'column'
+    display:'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 100,
 },
+avatarIconView: {
+    marginTop: 70,
+},
+startButton: {
+    padding: 40,
+}
+
 });

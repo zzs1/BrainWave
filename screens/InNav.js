@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
+import NavBar from '../components/Molecules/NavBar';
 
 export default function InNav({navigation}) {
 
@@ -43,11 +44,12 @@ export default function InNav({navigation}) {
             <Pressable onPress={() => navigation.push('AccessibilityPrompt')}>
               <PrimaryButton name='Get Started' colorBackground='#0C7BDC' shadow='#005AB5'/>
             </Pressable>
+            
           </View>
         </View>
           )
             }
-          
+          <NavBar color='#005AB5' navigation={navigation}/>
         </SafeAreaView>
     );
 }
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
       marginTop: 200
     },
     containerImage: {
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       gap: 19,
