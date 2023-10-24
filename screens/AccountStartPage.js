@@ -66,7 +66,7 @@ accountStartPageBody: {
     marginTop: 100,
 },
 startButton: {
-    paddingTop: 150,
+    paddingTop: 100,
 }
 
 });

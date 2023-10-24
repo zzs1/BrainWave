@@ -73,6 +73,6 @@ buttonTexts: {
     fontWeight: 'bold',
 },
 startButton: {
-    paddingTop: 180,
+    paddingTop: 130,
 }
 });

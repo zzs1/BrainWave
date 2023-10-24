@@ -95,10 +95,10 @@ accountStartPageBody: {
     marginTop: 100,
 },
 avatarIconView: {
-    marginTop: 70,
+    marginTop: 40,
 },
 startButton: {
-    padding: 40,
+    padding: 10,
 }
 
 });

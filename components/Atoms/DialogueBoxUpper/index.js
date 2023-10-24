@@ -3,7 +3,7 @@ export default function DialogueBoxUpper({interestingText}) {
     return(
         <View style={styles.container}>
             <View style={styles.dialogue_box}>
-                <Text>{interestingText}</Text>
+                <Text style={styles.text}>{interestingText}</Text>
             </View>
         </View>
     )
@@ -15,13 +15,17 @@ export default function DialogueBoxUpper({interestingText}) {
             alignItems: 'center',
         },
         dialogue_box:{
-            height:67,
+            height:'auto',
             width: 315,
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
             borderTopRightRadius: 20,
             borderColor:'#C8C8C8',
             borderWidth: 2,
-            backgroundColor: '#F9F9F9'
+            backgroundColor: '#F9F9F9',
+            padding: 20
+        },
+        text: {
+            fontSize: 20
         }
         })

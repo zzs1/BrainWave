@@ -6,18 +6,12 @@ import * as ImagePicker from 'expo-image-picker';
 import WimmyPopup from "../components/Molecules/WimmyPopup"
 import ProgressBar from "../components/Atoms/ProgressBar-level"
 
-export default function AccountPageStart(){
+export default function AccountPageStart({navigation}){
 
     
 
 return(
 <SafeAreaView style={styles.container}>
-
-<View style={styles.navBar}>
-    <NavBar/>
-</View>
-
-
     <View style={styles.accountStartPageBody}>
 
             <View style={styles.avarter} >
@@ -30,7 +24,7 @@ return(
 
 
         <View style={styles.userNameSection}>
-         <Text style={styles.userName}>NAMEE</Text>
+         <Text style={styles.userName}>NAME</Text>
             <Image 
                 source={require('../assets/Icons/editBlack.png')}
                 style={styles.editIcon}
@@ -60,16 +54,14 @@ return(
                     source={require('../assets/Icons/wimmyTail.png')}
                     />
             </View>
-
-
+        </View>
+        <NavBar color='#005AB5' navigation={navigation}/>
     <WimmyPopup 
             title='WIMMY SAYS...' 
             desc='Here is the interface for your account. You can keep track of you progress and make changes here!' 
             instuction='Tap to continue.'
     />
-        </View>
-        
-        </SafeAreaView>
+</SafeAreaView>
         );
 }
 
@@ -78,11 +70,6 @@ const styles = StyleSheet.create({
 container: {
     margin: 0,
     flex: 1,
-},
-title: {
-},
-navBar: {
-    paddingTop: 10,
 },
 avarter: {
     alignItems: 'center',
@@ -122,7 +109,7 @@ accountStartPageBody: {
     justifyContent: 'center',
 },
 wimmyTail: {
-    paddingTop: 50,
+    paddingTop: 80,
 },
 title: {
     fontSize: 24,

@@ -80,10 +80,10 @@ accountStartPageBody: {
     display:'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: 50,
 },
 buttons: {
-    marginTop: 25,
+    marginTop: 10,
     gap: 15,
 }
 });

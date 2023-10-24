@@ -16,8 +16,6 @@ export default function Intro({navigation}) {
 
 
     const handleButtonPress = () => {
-        setNumber(number + 1);
-    
         if (number === 1) {
           setBegin(true);
           setEnd(false);
@@ -33,6 +31,7 @@ export default function Intro({navigation}) {
         }else if (number === 4) {
             navigation.push('Home');
         }
+        setNumber(number + 1);
       };
 
     var colorScheme = useColorScheme();
@@ -45,7 +44,7 @@ export default function Intro({navigation}) {
         <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#584b9d'}}>
             <View style={styles.bigContainer}>
                 <View style={styles.progressStyle}>
-                    <ProgressBar/>
+                    <ProgressBar step={number} num={4}/>
                 </View>
                 <View style={styles.imageLogo} >
                     <Image source={require('../assets/Icons/wimmy.png')} style={styles.whale} />
@@ -66,7 +65,7 @@ export default function Intro({navigation}) {
                       {
                         endthree && (
                             <View style={styles.dialogueBox}>
-                        <DialogueBoxUpper interestingText= 'I will be guiding you along as you learn..'/>
+                        <DialogueBoxUpper interestingText= 'I will be guiding you along as you learn.'/>
                     </View>
                         )
                     }
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     },
     bigContainer: {
         display: 'flex',
-        gap: 100,
+        gap: 50,
     },
     progressStyle: {
         marginTop: 100,

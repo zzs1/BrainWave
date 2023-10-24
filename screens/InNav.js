@@ -48,8 +48,7 @@ export default function InNav({navigation}) {
           </View>
         </View>
           )
-            }
-          <NavBar color='#005AB5' navigation={navigation}/>
+          }
         </SafeAreaView>
     );
 }

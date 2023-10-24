@@ -83,7 +83,7 @@ accountStartPageBody: {
     marginTop: 100,
 },
 accountStartButton: {
-    marginTop: 230,
+    marginTop: 180,
 },
 userNameInput: {
     width: 280,
