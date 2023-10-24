@@ -41,7 +41,7 @@ export default function PuzzleMap({navigation}) {
               <LevelIsland locked={true} color='#0C7BDC' shadow='#005AB5'/>
             </View>
             <View style={styles.islandRight}>
-                <Pressable>
+                <Pressable onPress={() => navigation.push('WordProblems')}>
                     <LevelIsland locked={false} color='#0C7BDC' shadow='#005AB5'/>
                 </Pressable>
             </View>
