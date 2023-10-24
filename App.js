@@ -12,6 +12,7 @@ import AccountStartName from './screens/AccountStartName';
 import AccountStartAvater from './screens/AccountStartAvater';
 import AccountStartTime from './screens/AccountStartTime';
 import AccountStartTime2 from './screens/AccountStartTime2';
+import AccountInterfaceStart from './screens/AccountInterfaceStart';
 
 import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
 
@@ -34,7 +35,8 @@ export default function App() {
           <Stack.Screen name='AccountStartAvater' component={AccountStartAvater} options={{headerShown: false}}/>
           <Stack.Screen name='AccountStartTime' component={AccountStartTime} options={{headerShown: false}}/>
           <Stack.Screen name='AccountStartTime2' component={AccountStartTime2} options={{headerShown: false}}/>
-
+          <Stack.Screen name='AccountInterfaceStart' component={AccountInterfaceStart} options={{headerShown: false}}/>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

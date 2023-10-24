@@ -25,7 +25,7 @@ return(
 
 
         <View style={styles.startButton}>
-                <Pressable onPress={() => navigation.push('AccountStartPage')}>
+                <Pressable onPress={() => navigation.push('AccountInterfaceStart')}>
                     <PrimaryButton name="CONTINUE!" colorBackground="#0C7BDC" shadow="#005AB5"/>
                 </Pressable>
         </View>

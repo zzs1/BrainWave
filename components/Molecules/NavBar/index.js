@@ -19,7 +19,7 @@ export default function NavBar({
                         width={22}
                         height={160}/>
                 </View>
-         <MenuButton  style={{backgroundColor: 'black'}}/>
+         {/* <MenuButton  style={{backgroundColor: 'black'}}/> */}
     </View>
   )
 }
