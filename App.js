@@ -7,12 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import InNav from './screens/InNav';
 import AccessibilityPrompt from './screens/AccessibilityPrompt';
+import Intro from './screens/Intro';
 import AccountStartPage from './screens/AccountStartPage';
 import AccountStartName from './screens/AccountStartName';
 import AccountStartAvater from './screens/AccountStartAvater';
 import AccountStartTime from './screens/AccountStartTime';
 import AccountStartTime2 from './screens/AccountStartTime2';
-
 import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
 import HomePage from './screens/homePage';
 import PuzzleMap from './screens/puzzleMap';
@@ -31,11 +31,10 @@ export default function App() {
         <Stack.Navigator initialRouteName='AccountStartPage'>
           <Stack.Screen name='Landing' component={InNav} options={{headerShown: false}}/>
           <Stack.Screen name='AccessibilityPrompt' component={AccessibilityPrompt} options={{headerShown: false}}/>
+          <Stack.Screen name="Intro" component={Intro} options={{headerShown: false}}/>
           <Stack.Screen name='AccessibiltyPromptSecond' component={AccessibilityPromptSecond} options={{headerShown: false}} />
-          
           <Stack.Screen name='Home' component={HomePage} options={{headerShown: false}}/>
           <Stack.Screen name='PuzzleMap' component={PuzzleMap} options={{headerShown: false}}/>
-
           <Stack.Screen name='AccountStartPage' component={AccountStartPage} options={{headerShown: false}}/>
           <Stack.Screen name='AccountStartName' component={AccountStartName} options={{headerShown: false}}/>
           <Stack.Screen name='AccountStartAvater' component={AccountStartAvater} options={{headerShown: false}}/>
