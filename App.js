@@ -24,8 +24,6 @@ import Feedback from './screens/Feedback';
 
 import AccountInterfaceStart from './screens/AccountInterfaceStart';
 
-import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
-
 
 export default function App() {
   const Stack = createNativeStackNavigator();

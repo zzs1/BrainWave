@@ -12,8 +12,27 @@ export default function NavBar({
     color=''
 }) {
   return (
-   <>
-   </>
+   <View style={{
+    ...styles.navBarBody,
+    backgroundColor: color
+   }}>
+    <Pressable style={styles.navItem} onPress={() => navigation.push('Home')}>
+      <Image source={Home} contentFit='contain' style={{width: 30, height: 30}}/>
+      <Text style={styles.navText}>Home</Text>
+    </Pressable>
+    <Pressable style={styles.navItem} onPress={() => navigation.push('Home')}>
+      <Image source={Map} contentFit='contain' style={{width: 30, height: 30}}/>
+      <Text style={styles.navText}>Progression</Text>
+    </Pressable>
+    <Pressable style={styles.navItem} onPress={() => navigation.push('AccountStartPage')}>
+      <Image source={User} contentFit='contain' style={{width: 30, height: 30}}/>
+      <Text style={styles.navText}>Account</Text>
+    </Pressable>
+    <Pressable style={styles.navItem} onPress={() => navigation.push('Settings')}>
+      <Image source={Settings} contentFit='contain' style={{width: 30, height: 30}}/>
+      <Text style={styles.navText}>Settings</Text>
+    </Pressable>
+   </View>
   )
 }
 
@@ -31,8 +50,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     paddingLeft: 20,
-    paddingRight: 20
-
+    paddingRight: 20,
+    zIndex: 1
    },
    navItem: {
     display: 'flex',
