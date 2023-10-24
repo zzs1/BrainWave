@@ -34,7 +34,7 @@ export default function NavBar({
           <Text style={styles.navText}>Performance</Text>
         </View>
       </Pressable>
-      <Pressable onPress={() => navigation.push('Home')}>
+      <Pressable onPress={() => navigation.push('AccountStartPage')}>
         <View style={styles.navItem}>
           <Image source={User} contentFit='contain' style={{
             width: 30,
