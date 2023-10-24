@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image, Pressable } from "react-native";
 import PrimaryButton from '../components/Atoms/PrimaryButton';
+import { React, useState } from "react";
 
+export default function AccountPageStart({navigation}){
 
-export default function AccountPageStart(){
-
-    function timeMode(){
-        console.log(mode);
-    }
+    // function timeMode(){
+    //     console.log(mode);
+    // }
 
 
 return(
@@ -15,7 +15,7 @@ return(
     <View style={styles.accountStartPageBody}>
         <View>
             <Image
-            source={require('../../../assets/Icons/wimmy.png')}
+            source={require('../assets/Icons/wimmy.png')}
             style={styles.wimmyPic}
             width={270}
             height={188}/>
@@ -28,27 +28,21 @@ return(
             </View>
 
 
-        <View style={styles.accountStartButton}>
-            <PrimaryButton
-                primaryButtonText="Beginner(5mins/day)"
-                style={styles.buttonTexts}
-                onPress={[timeMode, ()=> navigation.push('AccountStartTime2')]}
-                value={mode}
-            />
+        <View style={styles.buttons}>
 
-            <PrimaryButton
-                primaryButtonText="Intermediate(10mins/day)"
-                style={styles.buttonTexts}
-                onPress={[timeMode, ()=> navigation.push('AccountStartTime2')]}
-                value={mode}
-            />
+                <Pressable onPress={() => navigation.push('AccountStartTime2')}>
+                    <PrimaryButton name="Beginner (5mins/day)" colorBackground="#0C7BDC" shadow="#005AB5"/>
+                </Pressable>
 
-            <PrimaryButton
-                primaryButtonText="Advanced(20mins/day)"
-                style={styles.buttonTexts}
-                onPress={[timeMode, ()=> navigation.push('AccountStartTime2')]}
-                value={mode}
-            />
+
+                <Pressable onPress={() => navigation.push('AccountStartTime2')}>
+                    <PrimaryButton name="Intermediate (10mins/day)" colorBackground="#0C7BDC" shadow="#005AB5"/>
+                </Pressable>
+
+                <Pressable onPress={() => navigation.push('AccountStartTime2')}>
+                    <PrimaryButton name="Advanced 20mins/day)" colorBackground="#0C7BDC" shadow="#005AB5"/>
+                </Pressable>
+
         </View>
 
 
@@ -65,23 +59,31 @@ title: {
 },
 texts: {
     fontSize: 20,
+    lineHeight: 30,
+    paddingTop: 10,
 },
 accountStartTexts: {
     height:183,
     width: 292,
-    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     borderTopRightRadius: 20,
     borderColor:'#C8C8C8',
     borderWidth: 2,
-    backgroundColor: '#F9F9F9'
+    backgroundColor: '#F9F9F9',
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 20,
+    marginTop: 10,
 },
 accountStartPageBody: {
     display:'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 100,
 },
-buttonTexts: {
-    fontSize: 22,
-    fontWeight: 'bold',
+buttons: {
+    marginTop: 25,
+    gap: 15,
 }
 });
