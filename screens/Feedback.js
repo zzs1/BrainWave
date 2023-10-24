@@ -1,12 +1,15 @@
 import { Image } from "expo-image"
-import { StyleSheet, Text } from "react-native"
+import { SafeAreaView, StyleSheet, Text, Pressable } from "react-native"
 import { View } from "react-native"
-import NavBar from "../components/Molecules/NavBar"
+
 import QuestionBox from "../components/Atoms/QuestionBox"
 import NextButton from "../components/Atoms/NextButton"
-export default function Feedback() {
+import NavBar from "../components/Molecules/NavBar"
+import PrimaryButton from "../components/Atoms/PrimaryButton"
+
+export default function Feedback({navigation}) {
     return(
-        <>
+        <SafeAreaView style={styles.container}>
         <View style={styles.main_container}>
         <View style={styles.navbar_container}>
         <NavBar />
@@ -19,22 +22,29 @@ export default function Feedback() {
         <QuestionBox style={styles.text}  text="This section contains a list of feedback. Break down the questions and the logic behind them, let users know what they need to work on as well as a list of resources that can also help "/>
         </View>
         <View style={styles.button}>
-        <NextButton text='NEXT'/>
+        <Pressable onPress={() => navigation.push('PuzzleMap', {title: 'NUMBER PROBLEMS'})}>
+            <PrimaryButton name="NEXT" colorBackground="#0C7BDC" shadow="#005AB5" />
+        </Pressable>
+        
         </View>
         </View>
-        </>
+        <NavBar color='#0C7BDC' navigation={navigation}/>
+        </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        flexDirection: "column",
+        alignItems: "center",
+        height: '100%'
+    },
     main_container:{
         height: '100vh',
         width: '309vw',
-        
-
     },
     navbar_container:{
         marginTop: 24,
-
     },
  image_box:{
     width:'100vw',
