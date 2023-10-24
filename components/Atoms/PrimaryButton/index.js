@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, View, Pressable, Text} from 'react-native';
 
-export default function PrimaryButton ({navigation, name="", colorBackground=''}){
+export default function PrimaryButton ({navigation, name="", colorBackground='', shadow=''}){
 
     const [isPressed, setIsPressed] = useState(false);
 
@@ -15,35 +15,44 @@ export default function PrimaryButton ({navigation, name="", colorBackground=''}
     return(
         <View style={styles.container}>
             {/* <StatusBar style="auto" /> */}
-                <View>
-                <Pressable style={{ ...styles.primaryButton, backgroundColor: colorBackground }}>
+                <View style={{
+                    ...styles.primaryButton,
+                    backgroundColor: colorBackground
+                }}>
                     <Text style={styles.primaryButtonText}>{name}</Text>
-                </Pressable>
-
-                
                 </View>
-      
+                <View style={{
+                    ...styles.btnShadow,
+                    backgroundColor: shadow
+                }}></View>
 
         </View>
     );
 }
 
 const styles =  StyleSheet.create({
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end'
+    },
+    
     primaryButton: {
         width: 330,
         height: 70,
-        backgroundColor: '#0C7BDC',
         borderRadius: 10, 
         justifyContent: 'center',
         alignItems: 'center',
+    },
 
-        shadowOffset: {width: 5, height: 5},
-        shadowColor: '#b4b4b4',
-        shadowRadius: 10,
-        elevation: 4,
-        shadowOpacity: 0.9,
-        cursor: 'pointer',
-
+    btnShadow: {
+        width: 330,
+        height: 70,
+        borderRadius: 10, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: -60,
+        zIndex: -1
     },
 
     primaryButtonPressed: {

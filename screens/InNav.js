@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, useColorScheme, Image} from 'react-native';
+import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 
-
-
-export default function InNav(navigation) {
+export default function InNav({navigation}) {
 
   const [animationWhale, setAnimationWhale] = useState(false);
   const [waves, setWaves] = useState(true);
@@ -42,7 +40,9 @@ export default function InNav(navigation) {
           <Image source={require('../assets/Logo/logo-blueNav.png')} style={styles.imageLogo} />
           <Image source={require('../assets/Logo/type-blueNav.png')} style={styles.imageLogo} />
           <View style={styles.containerButton}>
-            <PrimaryButton onPress={() => navigation.push('AccessibilityPrompt')}/>
+            <Pressable onPress={() => navigation.push('AccessibilityPrompt')}>
+              <PrimaryButton name='Get Started' colorBackground='#0C7BDC' shadow='#005AB5'/>
+            </Pressable>
           </View>
         </View>
           )
@@ -56,15 +56,12 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '100%',
     },
     pressColor: {
       backgroundColor: 'blue',
     },
     containerButton: {
-      marginTop: 260,
+      marginTop: 200
     },
     containerImage: {
       alignItems: 'center',

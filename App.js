@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import InNav from './screens/InNav';
+import AccessibilityPrompt from './screens/AccessibilityPrompt';
+import AccessibilityPromptSecond from './screens/AccessibilityPromptSecond';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -18,18 +19,19 @@ export default function App() {
 
   return (
     <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFFc': '#584b9d'}}>
-      <NavigationContainer initialRouteName='Landing'>
-        <Stack.Navigator name='Landing' component={InNav}/>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Landing'>
+          <Stack.Screen name='Landing' component={InNav} options={{headerShown: false}}/>
+          <Stack.Screen name='AccessibilityPrompt' component={AccessibilityPrompt} options={{headerShown: false}}/>
+        </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaView>  
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    height: '100%',
+    flex: 1
   },
   lightContainer: {
     backgroundColor: '#FFFFFF',
