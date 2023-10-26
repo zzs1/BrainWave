@@ -4,11 +4,15 @@ import PrimaryButton from '../components/Atoms/PrimaryButton';
 import  React, { useState } from "react";
 
 
-// const [userName, setUserName] = useState("");
+const [userName, setUserName] = useState("");
 
-// function handleNameChange(text){
-//     setUserName(text);
-// }
+function handleNameChange(text){
+    setUserName(text);
+}
+
+function handleSubmit(onSave){
+    onSave(userName);
+}
 
 
 
@@ -36,14 +40,14 @@ return(
             <TextInput
                 style={styles.userNameInput}
                 placeholder = "Type your name..."
-                // onChangeText = {handleNameChange}
-                // value = {userName}
+                onChangeText = {handleNameChange}
+                value = {userName}
             />
 
 
             <View style={styles.accountStartButton}>
 
-                <Pressable style={styles.startButton} onPress={() => navigation.push('AccountStartAvater')}>
+                <Pressable style={styles.startButton} onPress={() => {navigation.push('AccountStartAvater'); handleSubmit();}}>
                     <PrimaryButton name="SET NAME" colorBackground="#0C7BDC" shadow="#005AB5"/>
                 </Pressable>
             </View>

@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import WimmyPopup from "../components/Molecules/WimmyPopup"
 import ProgressBar from "../components/Atoms/ProgressBar-level"
 
-export default function AccountPageStart({navigation}){
+export default function AccountPageStart({navigation, userName}){
 
     
 
@@ -24,7 +24,7 @@ return(
 
 
         <View style={styles.userNameSection}>
-         <Text style={styles.userName}>NAME</Text>
+         <Text style={styles.userName}>{userName}</Text>
             <Image 
                 source={require('../assets/Icons/editBlack.png')}
                 style={styles.editIcon}
