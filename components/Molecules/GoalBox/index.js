@@ -1,35 +1,41 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button} from 'react-native';
+import { useTheme } from '@react-navigation/native';
+
 import ProgressBar from '../../Atoms/ProgressBar-level';
 
 export default function GoalBox({
-  color='',
   prog=0,
   time='',
   goal='',
   level='',
-  theme=''
 }) {
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={{
+      ...styles.container,
+      backgroundColor: colors.dialogueBG,
+      borderColor: colors.dialogueBorder
+    }}>
         <Text style={{
           ...styles.header,
-          color: color
+          color: colors.text
         }}>Daily Goal</Text>
         <Text style={{
           fontSize: 20,
-          color: color
+          color: colors.text
         }}>{level}</Text>
         <View style={styles.progContainer}>
-          <ProgressBar fill={prog} color={color} theme={theme}/>
+          <ProgressBar fill={prog}/>
           <Text style={{
             fontSize: 16,
-            color: color
+            color: colors.text
           }}>{time}/{goal} mins</Text>
         </View>
         <Text style={{
           fontSize: 20,
-          color: color,
+          color: colors.text,
         }}>{prog <= 50 ? "You're less than halfway there to your daily goal!" : "You're more than halfway there to you daily goal!"}</Text>
     </View>
   )
@@ -38,10 +44,14 @@ export default function GoalBox({
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     padding: 20,
     borderRadius: 15,
-    borderBottomLeftRadius: 0
+    borderBottomLeftRadius: 0,
+    width: 300,
+    height: 250,
+    borderWidth: 3
   },
   header: {
     fontSize: 24,
@@ -50,6 +60,7 @@ const styles = StyleSheet.create({
   progContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 })

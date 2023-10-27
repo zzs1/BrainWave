@@ -1,9 +1,20 @@
-import { StyleSheet, Text, View, Button,useColorScheme } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+
 export default function DialogueBoxUpper({interestingText}) {
+    const { colors } = useTheme();
+
     return(
         <View style={styles.container}>
-            <View style={styles.dialogue_box}>
-                <Text style={styles.text}>{interestingText}</Text>
+            <View style={{
+                ...styles.dialogue_box,
+                backgroundColor: colors.dialogueBG,
+                borderColor: colors.dialogueBorder
+            }}>
+                <Text style={{
+                    ...styles.text,
+                    color: colors.text
+                }}>{interestingText}</Text>
             </View>
         </View>
     )
@@ -20,12 +31,10 @@ export default function DialogueBoxUpper({interestingText}) {
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
             borderTopRightRadius: 20,
-            borderColor:'#C8C8C8',
-            borderWidth: 2,
-            backgroundColor: '#F9F9F9',
+            borderWidth: 3,
             padding: 20
         },
         text: {
-            fontSize: 20
+            fontSize: 18
         }
         })

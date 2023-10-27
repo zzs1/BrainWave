@@ -2,30 +2,31 @@ import React from 'react'
 
 import { StyleSheet, Text, View, Button} from 'react-native';
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useTheme } from '@react-navigation/native';
 
 export default function SectionCardSide({
-    color='',
-    border='',
-    theme='',
     image='',
     title='',
 }) {
+  const { colors } = useTheme();
+
   return (
-    <View style={{
+    <LinearGradient colors={[colors.cardBGTwo, colors.cardBGOne]} style={{
       ...styles.container,
-      border: `3px solid ${border}`, 
-      backgroundColor: theme === 'dark' ? color : `linear-gradient(white, ${color})`,
+      borderColor: colors.cardBorder, 
+      backgroundColor: colors.cardBorder
     }}>
         <Text style={{
           fontSize: 16,
           fontWeight: 'bold',
-          color: theme === 'dark' ? 'white' : '#1E1E1E'
+          color: colors.text
         }}>{title}</Text>
         <Image source={image} contentFit='contain' style={{
           width: 100,
           height: 100
         }}/>
-    </View>
+    </LinearGradient>
   )
 }
 
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    borderRadius: 10
+    borderRadius: 10,
+    borderWidth: 3
   }
 })

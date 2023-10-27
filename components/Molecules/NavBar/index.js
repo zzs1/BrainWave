@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Pressable} from 'react-native';
 import { Image } from 'expo-image';
+import { useTheme } from '@react-navigation/native';
 
 import Home from '../../../assets/Icons/home.png'
 import Settings from '../../../assets/Icons/setting.png'
@@ -9,28 +10,42 @@ import User from '../../../assets/Icons/user.png'
 
 export default function NavBar({
   navigation,
-    color=''
+  color=''
 }) {
+  const { colors } = useTheme();
+
   return (
    <View style={{
     ...styles.navBarBody,
-    backgroundColor: color
+    backgroundColor: colors.navBG
    }}>
     <Pressable style={styles.navItem} onPress={() => navigation.push('Home')}>
       <Image source={Home} contentFit='contain' style={{width: 30, height: 30}}/>
-      <Text style={styles.navText}>Home</Text>
+      <Text style={{
+        ...styles.navText,
+        color: colors.navText
+      }}>Home</Text>
     </Pressable>
     <Pressable style={styles.navItem} onPress={() => navigation.push('Home')}>
       <Image source={Map} contentFit='contain' style={{width: 30, height: 30}}/>
-      <Text style={styles.navText}>Progression</Text>
+      <Text style={{
+        ...styles.navText,
+        color: colors.navText
+      }}>Progression</Text>
     </Pressable>
     <Pressable style={styles.navItem} onPress={() => navigation.push('AccountStartPage')}>
       <Image source={User} contentFit='contain' style={{width: 30, height: 30}}/>
-      <Text style={styles.navText}>Account</Text>
+      <Text style={{
+        ...styles.navText,
+        color: colors.navText
+      }}>Account</Text>
     </Pressable>
     <Pressable style={styles.navItem} onPress={() => navigation.push('Settings')}>
       <Image source={Settings} contentFit='contain' style={{width: 30, height: 30}}/>
-      <Text style={styles.navText}>Settings</Text>
+      <Text style={{
+        ...styles.navText,
+        color: colors.navText
+      }}>Settings</Text>
     </Pressable>
    </View>
   )
@@ -59,7 +74,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
    },
   navText: {
-    color: 'white',
     fontSize: 16
   }
 });

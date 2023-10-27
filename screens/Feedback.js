@@ -3,7 +3,6 @@ import { SafeAreaView, StyleSheet, Text, Pressable } from "react-native"
 import { View } from "react-native"
 
 import QuestionBox from "../components/Atoms/QuestionBox"
-import NextButton from "../components/Atoms/NextButton"
 import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
 

@@ -3,15 +3,16 @@ import { StyleSheet, View, Pressable, Text} from 'react-native';
 import { Image } from 'expo-image';
 
 import { useState, useEffect } from 'react';
+import { useTheme } from '@react-navigation/native'
 
 import ArrowLeft from '../../../assets/Icons/arrowLeft.png'
 import ArrowRight from '../../../assets/Icons/arrowRight.png'
 
 export default function MoveButton ({
     direction='',
-    color='',
-    shadowColor=''
 }){
+    const { colors } = useTheme ();
+
     const [isPressed, setIsPressed] = useState(false);
 
     useEffect(() => {
@@ -27,14 +28,14 @@ export default function MoveButton ({
         }} style={styles.container}>
             <View style={{
                 ...styles.btn,
-                backgroundColor: color
+                backgroundColor: colors.primaryBtnColor
             }}>
                 <Image style={styles.arrow} source={direction === 'right' ? ArrowRight : ArrowLeft}/>
             </View>
             {
                 isPressed ? <></> : <View style={{
                     ...styles.btnShadow,
-                    backgroundColor: shadowColor
+                    backgroundColor: colors.primaryBtnShadow
                 }}></View>
             }
         </View>
