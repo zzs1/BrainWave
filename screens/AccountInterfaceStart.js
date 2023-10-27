@@ -6,14 +6,16 @@ import * as ImagePicker from 'expo-image-picker';
 
 import WimmyPopup from "../components/Molecules/WimmyPopup"
 import GoalBox from "../components/Molecules/GoalBox";
+import { useState } from "react";
 
-export default function AccountPageStart({ navigation, userName }) {
+export default function AccountPageStart({ navigation }) {
+    const [userName, setUserName] = useState('User Name')
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.accountStartPageBody}>
 
-                <View style={styles.avarter} >
+                <View style={styles.avartar} >
                     <Image
                         source={require('../assets/Icons/userEdit.png')}
                         style={styles.wimmyPic}
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
         margin: 0,
         flex: 1,
     },
-    avarter: {
+    avartar: {
         alignItems: 'center',
         paddingTop: 40,
     },
@@ -67,6 +69,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 30,
+        marginBottom: 50
     },
     editIcon: {
         marginLeft: 10,
@@ -89,9 +92,6 @@ const styles = StyleSheet.create({
     accountStartPageBody: {
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    wimmyTail: {
-        paddingTop: 80,
     },
     title: {
         fontSize: 24,
