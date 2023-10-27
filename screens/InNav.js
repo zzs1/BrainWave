@@ -42,9 +42,7 @@ export default function InNav({ navigation }) {
               <Image source={dark ? require('../assets/Logo/type-white.png') : require('../assets/Logo/type-blue.png')} style={styles.imageType} />
             </View>
             <View style={styles.containerButton}>
-              <Pressable onPress={() => navigation.push('AccessibilityPrompt')}>
-                <PrimaryButton name='Get Started' colorBackground='#0C7BDC' shadow='#005AB5' />
-              </Pressable>
+              <PrimaryButton name='Get Started' onPress={() => navigation.push('AccessibilityPrompt')} />
             </View>
           </View>
         )
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
     height: screenHeight,
   },
-  imgs:{
+  imgs: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

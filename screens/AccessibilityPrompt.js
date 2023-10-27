@@ -39,12 +39,8 @@ export default function AccessibilityPrompt({ navigation }) {
                         </View>
 
                         <View style={styles.textStyleYes}>
-                            <Pressable onPress={handleYesButtonPress} >
-                                <PrimaryButton name='Yes' />
-                            </Pressable>
-                            <Pressable onPress={() => navigation.push('Intro')}>
-                                <PrimaryButton name='No' />
-                            </Pressable>
+                            <PrimaryButton name='Yes' onPress={handleYesButtonPress} />
+                            <PrimaryButton name='No' onPress={() => navigation.push('Intro')} />
                         </View>
                     </View>
                 )
@@ -65,9 +61,7 @@ export default function AccessibilityPrompt({ navigation }) {
                             <PrimaryButton name='Color Blind Mode' />
                             <PrimaryButton name='Dyslexia Font' />
                             <PrimaryButton name='Explanation Label' />
-                            <Pressable onPress={() => navigation.push('Intro')}>
-                                <PrimaryButton name='Continue' />
-                            </Pressable>
+                            <PrimaryButton name='Continue' onPress={() => navigation.push('Intro')} />
                         </View>
                     </View>
                 )

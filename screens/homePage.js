@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Pressable} from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useState, useEffect } from 'react';
@@ -16,33 +16,33 @@ import Avatar from '../assets/Icons/Avatar.png'
 import { sectionCard } from '../data/sectionCards.js';
 import WimmyPopup from '../components/Molecules/WimmyPopup';
 
-export default function HomePage({navigation}) {
-    const [data, setData] = useState(sectionCard);
-    const [number, setNumber] = useState(0);
+export default function HomePage({ navigation }) {
+  const [data, setData] = useState(sectionCard);
+  const [number, setNumber] = useState(0);
 
-    const handleImageOne = (num) => {
-      if (num === 0) {
-        return 2;
-      } else if (num === 1) {
-        return 0;
-      } else if (num === 2) {
-        return 1;
-      }
+  const handleImageOne = (num) => {
+    if (num === 0) {
+      return 2;
+    } else if (num === 1) {
+      return 0;
+    } else if (num === 2) {
+      return 1;
     }
+  }
 
-    const handleImageTwo = (num) => {
-      if (num === 0) {
-        return 1;
-      } else if (num === 1) {
-        return 2;
-      } else if (num === 2) {
-        return 0;
-      }
+  const handleImageTwo = (num) => {
+    if (num === 0) {
+      return 1;
+    } else if (num === 1) {
+      return 2;
+    } else if (num === 2) {
+      return 0;
     }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
-      <AccountCard 
+      <AccountCard
         name='Navid Memari'
         level={15}
         fontColor='#0C7BDC'
@@ -54,7 +54,7 @@ export default function HomePage({navigation}) {
         <View style={{
           marginRight: -100
         }}>
-          <SectionCardSide 
+          <SectionCardSide
             color='#256FB9'
             border='#005AB5'
             theme='dark'
@@ -62,7 +62,7 @@ export default function HomePage({navigation}) {
             title={data[handleImageOne(number)].title}
           />
         </View>
-        <SectionCardMain 
+        <SectionCardMain
           color='#0C7BDC'
           border='#005AB5'
           theme='dark'
@@ -74,7 +74,7 @@ export default function HomePage({navigation}) {
           marginLeft: -100,
           zIndex: -1
         }}>
-          <SectionCardSide 
+          <SectionCardSide
             color='#256FB9'
             border='#005AB5'
             theme='dark'
@@ -84,30 +84,21 @@ export default function HomePage({navigation}) {
         </View>
       </View>
       <View style={styles.btnContainer}>
-        <Pressable onPress={() => setNumber(number === 0 ? data.length - 1 : number - 1)}>
-          <MoveButton 
-            direction='left'
-            color='#0C7BDC'
-            shadowColor='#005AB5'
-          />
-        </Pressable>
-        <Pressable onPress={() => navigation.push('PuzzleMap', {title: data[number].title})}>
-          <CarouselButton 
-            btnText="Let's Go"
-            color='#0C7BDC'
-            shadowColor='#005AB5'
-          />
-        </Pressable>
-        <Pressable onPress={() => setNumber(number === data.length - 1 ? 0 : number + 1)}>
-          <MoveButton 
-            direction='right'
-            color='#0C7BDC'
-            shadowColor='#005AB5'
-          />
-        </Pressable>
+        <MoveButton
+          direction='left'
+          onPress={() => setNumber(number === 0 ? data.length - 1 : number - 1)}
+        />
+        <CarouselButton
+          btnText="Let's Go"
+          onPress={() => navigation.push('PuzzleMap', { title: data[number].title })}
+        />
+        <MoveButton
+          direction='right'
+          onPress={() => setNumber(number === data.length - 1 ? 0 : number + 1)}
+        />
       </View>
       <NavBar color='#0C7BDC' navigation={navigation} />
-      <WimmyPopup title='WIMMY SAYS...' desc='Select a puzzle catagory that you want to explore!' instuction='Tap to continue.'/>
+      <WimmyPopup title='WIMMY SAYS...' desc='Select a puzzle catagory that you want to explore!' instuction='Tap to continue.' />
     </SafeAreaView>
   );
 }

@@ -10,6 +10,7 @@ import ArrowRight from '../../../assets/Icons/arrowRight.png'
 
 export default function MoveButton ({
     direction='',
+    onPress={}
 }){
     const { colors } = useTheme ();
 
@@ -23,7 +24,8 @@ export default function MoveButton ({
         }
     })
     return(
-        <View onPress={() => {
+        <Pressable onPress={() => {
+            onPress();
             setIsPressed(true);
         }} style={styles.container}>
             <View style={{
@@ -38,7 +40,7 @@ export default function MoveButton ({
                     backgroundColor: colors.primaryBtnShadow
                 }}></View>
             }
-        </View>
+        </Pressable>
     );
 }
 

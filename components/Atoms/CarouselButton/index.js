@@ -5,6 +5,7 @@ import { useTheme } from '@react-navigation/native';
 
 export default function CarouselButton ({
     btnText='',
+    onPress={}
 }){
     const { colors } = useTheme();
 
@@ -19,7 +20,10 @@ export default function CarouselButton ({
     })
 
     return(
-        <View onPress={() => setIsPressed(true)} style={styles.container}>
+        <Pressable onPress={() => {
+            onPress();
+            setIsPressed(true);
+        }} style={styles.container}>
             <View style={{
                 ...styles.carouselButton,
                 backgroundColor: colors.primaryBtnColor
@@ -36,7 +40,7 @@ export default function CarouselButton ({
                     backgroundColor: colors.primaryBtnShadow
                 }}></View> 
             }             
-        </View>
+        </Pressable>
     );
 }
 

@@ -31,9 +31,7 @@ export default function Intro({ navigation }) {
                 <Image source={require('../assets/Icons/wimmy.png')}/>
                 <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
             </View>
-            <Pressable onPress={handleButtonPress}>
-                <PrimaryButton name='Continue'/>
-            </Pressable>
+            <PrimaryButton name='Continue' onPress={handleButtonPress}/>
         </SafeAreaView>
     );
 }
