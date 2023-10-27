@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-export default function DialogueBoxUpper({interestingText}) {
+export default function DialogueBoxUpper({
+    hasTitle={},
+    title='',
+    interestingText=''
+}) {
     const { colors } = useTheme();
 
     return(
@@ -11,6 +15,12 @@ export default function DialogueBoxUpper({interestingText}) {
                 backgroundColor: colors.dialogueBG,
                 borderColor: colors.dialogueBorder
             }}>
+                {
+                    hasTitle ?  <Text style={{
+                        ...styles.title,
+                        color: colors.text
+                    }}>{title}</Text> : <></>
+                }
                 <Text style={{
                     ...styles.text,
                     color: colors.text
@@ -35,6 +45,11 @@ export default function DialogueBoxUpper({interestingText}) {
             padding: 20
         },
         text: {
-            fontSize: 18
+            fontSize: 20
+        },
+        title: {
+            fontSize: 22,
+            fontWeight: 'bold',
+            marginBottom: 20
         }
         })
