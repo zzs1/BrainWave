@@ -29,7 +29,7 @@ export default function Intro({ navigation }) {
             <ProgressBar step={number + 1} num={line.length} />
             <View style={styles.imageLogo} >
                 <Image source={require('../assets/Icons/wimmy.png')}/>
-                <DialogueBoxUpper interestingText={line[number]} />
+                <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
             </View>
             <Pressable onPress={handleButtonPress}>
                 <PrimaryButton name='Continue'/>
