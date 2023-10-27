@@ -1,8 +1,11 @@
-import { StatusBar } from "expo-status-bar";
+
 import { StyleSheet, Text, View, Button, Image, TextInput, Pressable} from "react-native";
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import  React, { useState } from "react";
 import { useTheme } from '@react-navigation/native'
+
+export default function AccountPageStart({navigation}){
+const { colors } = useTheme()
 
 const [userName, setUserName] = useState("");
 
@@ -10,15 +13,11 @@ function handleNameChange(text){
     setUserName(text);
 }
 
-function handleSubmit(onSave){
-    onSave(userName);
-}
+// You can use useRoute to transfer the data instead of making a custom function
 
-
-
-
-export default function AccountPageStart({navigation}){
-const { colors } = useTheme()
+// function handleSubmit(onSave){
+//     onSave(userName);
+// }
 
 return(
         <>
@@ -51,7 +50,7 @@ return(
 
             <View style={styles.accountStartButton}>
 
-                <Pressable style={styles.startButton} onPress={() => {navigation.push('AccountStartAvater'); handleSubmit();}}>
+                <Pressable style={styles.startButton} onPress={() => {navigation.push('AccountStartAvater'); /*handleSubmit();*/}}>
                     <PrimaryButton name="SET NAME" colorBackground="#0C7BDC" shadow="#005AB5"/>
                 </Pressable>
             </View>
