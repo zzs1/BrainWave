@@ -31,16 +31,16 @@ return(
         <View style={styles.buttons}>
 
                 <Pressable onPress={() => navigation.push('AccountStartTime2')}>
-                    <PrimaryButton name="Beginner (5mins/day)" colorBackground="#0C7BDC" shadow="#005AB5"/>
+                    <PrimaryButton name="Beginner (5mins/day)" colorBackground="#0C7BDC" shadow="#005AB5" value="Beginner"/>
                 </Pressable>
 
 
                 <Pressable onPress={() => navigation.push('AccountStartTime2')}>
-                    <PrimaryButton name="Intermediate (10mins/day)" colorBackground="#0C7BDC" shadow="#005AB5"/>
+                    <PrimaryButton name="Intermediate (10mins/day)" colorBackground="#0C7BDC" shadow="#005AB5" value="Intermediate"/>
                 </Pressable>
 
                 <Pressable onPress={() => navigation.push('AccountStartTime2')}>
-                    <PrimaryButton name="Advanced 20mins/day)" colorBackground="#0C7BDC" shadow="#005AB5"/>
+                    <PrimaryButton name="Advanced 20mins/day)" colorBackground="#0C7BDC" shadow="#005AB5" value="Advanced"/>
                 </Pressable>
 
         </View>

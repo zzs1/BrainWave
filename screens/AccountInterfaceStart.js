@@ -7,7 +7,7 @@ import * as ImagePicker from 'expo-image-picker';
 import WimmyPopup from "../components/Molecules/WimmyPopup"
 import GoalBox from "../components/Molecules/GoalBox";
 
-export default function AccountPageStart({ navigation }) {
+export default function AccountPageStart({ navigation, userName }) {
 
     return (
         <SafeAreaView style={styles.container}>
@@ -21,16 +21,15 @@ export default function AccountPageStart({ navigation }) {
                         height={210} />
                 </View>
 
-
-                <View style={styles.userNameSection}>
-                    <Text style={styles.userName}>NAME</Text>
-                    <Image
-                        source={require('../assets/Icons/editBlack.png')}
-                        style={styles.editIcon}
-                        width={20}
-                        height={20}
-                    />
-                </View>
+        <View style={styles.userNameSection}>
+         <Text style={styles.userName}>{userName}</Text>
+            <Image 
+                source={require('../assets/Icons/editBlack.png')}
+                style={styles.editIcon}
+                width={20}
+                height={20}
+            />
+        </View>
 
                 <GoalBox prog={60} level="Intermediate" goal="15" time="8"/>
 
