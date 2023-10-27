@@ -2,15 +2,18 @@ import React from 'react'
 
 import { StyleSheet, Text, View, Button} from 'react-native';
 import { Image } from 'expo-image';
+import { useTheme } from '@react-navigation/native';
 
 export default function AvatarSmall({
-    frameColor='',
     image=''
 }) {
+  const { colors } = useTheme();
+
   return (
     <View style={{
         ...styles.container,
-        border: `4px solid ${frameColor}`
+        borderWidth: 4,
+        borderColor: colors.text
     }}>
         <Image style={{
             width: '100%',

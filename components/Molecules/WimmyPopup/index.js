@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-import { StyleSheet, Text, View, Button, Pressable} from 'react-native';
+import { StyleSheet, View, Pressable} from 'react-native';
 import { Image } from 'expo-image';
 
 import DialogueBoxLower from '../../Atoms/DialogueBoxLower';
-
 import Wimmy from '../../../assets/Illustrations/Wimmy/WimmyFront.png'
 
 export default function WimmyPopup({
@@ -49,11 +48,11 @@ const styles = StyleSheet.create({
   bg: {
     width: 400,
     height: 845,
-    backgroundColor: '#000000',
-    opacity: 0.4
+    backgroundColor: 'black',
+    opacity: 0.6,
+    marginBottom: -435,
   },
   wimmyDialogue: {
-    marginTop: -435,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'

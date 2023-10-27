@@ -1,14 +1,31 @@
 import { StyleSheet, Text, View, Button,useColorScheme } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+
 export default function DialogueBoxLower({
     title='',
     desc='',
     instuction=''
 }) {
+    const { colors } = useTheme();
+
     return(
-        <View style={styles.dialogue_box}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.desc}>{desc}</Text>
-            <Text style={styles.instuction}>{instuction}</Text>
+        <View style={{
+            ...styles.dialogue_box,
+            borderColor: colors.dialogueBorder,
+            backgroundColor: colors.dialogueBG
+        }}>
+            <Text style={{
+                ...styles.title,
+                color: colors.text
+            }}>{title}</Text>
+            <Text style={{
+                ...styles.desc,
+                color: colors.text
+            }}>{desc}</Text>
+            <Text style={{
+                ...styles.instuction,
+                color: colors.fadedText
+            }}>{instuction}</Text>
         </View>
     )
     }
@@ -18,19 +35,15 @@ export default function DialogueBoxLower({
             borderTopLeftRadius: 20,
             borderBottomRightRadius: 20,
             borderTopRightRadius: 20,
-            borderColor:'#C8C8C8',
             borderWidth: 2,
-            backgroundColor: '#F9F9F9',
             padding: 15
         },
         title: {
             fontSize: 22,
             fontWeight: 'bold',
-            color: '#1E1E1E'
         },
         desc: {
             fontSize: 18,
-            color: '#1E1E1E',
             marginTop: 20
         },
         instuction: {

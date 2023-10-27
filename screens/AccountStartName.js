@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, Image, TextInput, Pressable} from "react-native";
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import  React, { useState } from "react";
-
+import { useTheme } from '@react-navigation/native'
 
 const [userName, setUserName] = useState("");
 
@@ -18,7 +18,7 @@ function handleSubmit(onSave){
 
 
 export default function AccountPageStart({navigation}){
-
+const { colors } = useTheme()
 
 return(
         <>
@@ -38,7 +38,11 @@ return(
 
 
             <TextInput
-                style={styles.userNameInput}
+                style={{
+                    ...styles.userNameInput,
+                    borderColor: colors.inputBorder,
+                    backgroundColor: colors.inputBG
+                }} 
                 placeholder = "Type your name..."
                 onChangeText = {handleNameChange}
                 value = {userName}
@@ -93,9 +97,7 @@ userNameInput: {
     width: 280,
     height: 50,
     borderRadius: 6,
-    borderColor: '#A4A4A4',
     borderWidth: 1.5,
-    backgroundColor: '#E9E9E9',
     fontSize: 20,
     textAlign: 'center',
     marginTop: 30,

@@ -1,12 +1,13 @@
 import { StyleSheet, View, Pressable, Text} from 'react-native';
 import { useState, useEffect } from 'react';
+import { useTheme } from '@react-navigation/native';
 
 
 export default function CarouselButton ({
     btnText='',
-    color='',
-    shadowColor=''
 }){
+    const { colors } = useTheme();
+
     const [isPressed, setIsPressed] = useState(false)
 
     useEffect(() => {
@@ -21,15 +22,18 @@ export default function CarouselButton ({
         <View onPress={() => setIsPressed(true)} style={styles.container}>
             <View style={{
                 ...styles.carouselButton,
-                backgroundColor: color
+                backgroundColor: colors.primaryBtnColor
             }}>
-                <Text style={styles.carouselButtonText}>{btnText}</Text>
+                <Text style={{
+                    ...styles.carouselButtonText,
+                    color: colors.btnText
+                }}>{btnText}</Text>
             </View>
             
             {
                 isPressed ? <></> : <View style={{
                     ...styles.btnShadow,
-                    backgroundColor: shadowColor,
+                    backgroundColor: colors.primaryBtnShadow
                 }}></View> 
             }             
         </View>
@@ -60,6 +64,5 @@ const styles =  StyleSheet.create({
     carouselButtonText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#ffffff',
     },
 }); 

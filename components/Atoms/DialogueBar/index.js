@@ -1,54 +1,45 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, Text, View, useColorScheme, Image } from 'react-native'
+import { StyleSheet, View} from 'react-native'
+import { useTheme } from '@react-navigation/native';
 
-export default function DialogueBar({}) {
-    return(
-        
-        <>
+export default function ProgressBar({
+    num = 5,
+    step = 1
+}) {
+    const { colors } = useTheme();
 
-        <View style={styles.dialogue_container}>
-        <View style={styles.dialogue_bar_1}></View>
-        <View style={styles.dialogue_line}></View>
-        <View style={styles.dialogue_bar}></View>
-        <View style={styles.dialogue_line}></View>
-        <View style={styles.dialogue_bar}></View>
-        <View style={styles.dialogue_line}></View>
-        <View style={styles.dialogue_bar}></View>
-        </View>
-       
-        </>
-
-       
-       
-    )
-}
-const styles = StyleSheet.create({
-    dialogue_container:{
-        display:'flex',
-        flexDirection: 'row',
-        // gap: 45,
-        width: 195,
-        height:15,
-    },
-    dialogue_bar_1:{
-        height:15,
-        width:15,
-        borderRadius:50,
-       backgroundColor: '#005AB5',
-
-    },
-    dialogue_bar:{
-     height:15,
-     width:15,
-     borderRadius:50,
-    backgroundColor: '#EADBB4',
-   
-    },
-    dialogue_line:{
-        width:45,
-        height: 5,
-        backgroundColor: '#EADBB4',
-        marginTop: 5
-
+    const circles = []
+    for (var i = 0; i < num; i++) {
+        if (step > i) {
+            circles.push(<View key={i} style={{
+                ...styles.circle,
+                backgroundColor: colors.diaProgFill
+            }}></View>)
+        } else {
+            circles.push(<View key={i} style={{
+                ...styles.circle,
+                backgroundColor: colors.diaProgBG
+            }}></View>)
+        }
     }
-    })
+
+    return (
+        <View style={styles.circleContainer}>
+            {circles}
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    circleContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        gap: 20,
+        alignContent: 'center',
+        justifyContent: 'center'
+    },
+    circle: {
+        width: 15,
+        height: 15,
+        borderRadius: 10
+    }
+})

@@ -1,79 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, useColorScheme, Image, Pressable} from 'react-native';
+import { StyleSheet, View, Image, Pressable, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ProgressBar from '../components/Atoms/ProgressBar';
+
+import ProgressBar from '../components/Atoms/DialogueBar';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import DialogueBoxUpper from '../components/Atoms/DialogueBoxUpper';
 
-export default function Intro({navigation}) {
+import { Dialogue } from '../data/introDialogue';
 
-    const [begin, setBegin] = useState(true);
-    const [end, setEnd] = useState(false);
-    const [endthree, setEndThree] = useState(false);
-    const [number, setNumber] = useState(1);
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
 
+export default function Intro({ navigation }) {
+    const [line, setLine] = useState(Dialogue);
+    const [number, setNumber] = useState(0);
 
     const handleButtonPress = () => {
-        if (number === 1) {
-          setBegin(true);
-          setEnd(false);
-          setEndThree(false)
-        } else if (number === 2) {
-          setBegin(false);
-          setEnd(true);
-          setEndThree(false);
-        } else if (number === 3) {
-          setBegin(false);
-          setEnd(false);
-          setEndThree(true);
-        }else if (number === 4) {
+        if (number === line.length - 1) {
             navigation.push('Home');
         }
         setNumber(number + 1);
-      };
-
-    var colorScheme = useColorScheme();
-
-    useEffect(() => {
-      console.log(colorScheme);
-    }, [colorScheme])
+    };
 
     return (
-        <SafeAreaView style={{...styles.container,backgroundColor: colorScheme === 'light' ? '#FFFFFF': '#584b9d'}}>
-            <View style={styles.bigContainer}>
-                <View style={styles.progressStyle}>
-                    <ProgressBar step={number} num={4}/>
-                </View>
-                <View style={styles.imageLogo} >
-                    <Image source={require('../assets/Icons/wimmy.png')} style={styles.whale} />
-                    {
-                        begin && (
-                            <View style={styles.dialogueBox}>
-                        <DialogueBoxUpper interestingText= 'Hi There!'/>
-                    </View>
-                        )
-                    }
-                    {
-                        end && (
-                            <View style={styles.dialogueBox}>
-                        <DialogueBoxUpper interestingText= 'Im Wimmy the Whale.'/>
-                    </View>
-                        )
-                    }
-                      {
-                        endthree && (
-                            <View style={styles.dialogueBox}>
-                        <DialogueBoxUpper interestingText= 'I will be guiding you along as you learn.'/>
-                    </View>
-                        )
-                    }
-                    <Pressable onPress={handleButtonPress} style={styles.primaryButton}>
-                        <PrimaryButton name='Continue' colorBackground='#0C7BDC' shadow='#005AB5'/>
-                    </Pressable>
-                </View>
+        <SafeAreaView style={styles.container}>
+            <ProgressBar step={number + 1} num={line.length} />
+            <View style={styles.imageLogo} >
+                <Image source={require('../assets/Icons/wimmy.png')}/>
+                <DialogueBoxUpper interestingText={line[number]} />
             </View>
+            <Pressable onPress={handleButtonPress}>
+                <PrimaryButton name='Continue'/>
+            </Pressable>
         </SafeAreaView>
     );
 }
@@ -81,44 +41,21 @@ export default function Intro({navigation}) {
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
-    },
-    bigContainer: {
-        display: 'flex',
-        gap: 50,
-    },
-    progressStyle: {
-        marginTop: 100,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: screenHeight,
+        width: screenWidth,
+        paddingBottom: 100,
+        paddingTop: 120,
     },
     imageLogo: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    dialogueBox: {
-        marginBottom: 200
-    },
-    whale: {
-        display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
-    },
-
-    primaryButton: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    lightContainer: {
-      backgroundColor: '#FFFFFF',
-    },
-    darkContainer: {
-      backgroundColor: '#584b9d',
-    },
-    lightThemeText: {
-      color: '#FFFFFF',
-    },
-    darkThemeText: {
-      color: '#FFFFFF',
+        marginTop: -100,
+        position: 'absolute',
+        top: 300
     }
-  });
+});

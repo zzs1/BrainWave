@@ -1,15 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import { Image } from 'expo-image';
+import { useTheme } from '@react-navigation/native';
 
 import Lock from '../../../assets/Illustrations/Lock/Lock_white.png'
 import Island from '../../../assets/Illustrations/Island1.png'
 
 export default function LevelIsland({
-    color='',
-    shadow='',
     locked=true,
 }) {
+  const { colors } = useTheme();
+
   return (
     <View style={styles.container}>
         <Image source={Island} contentFit='contain' style={{
@@ -24,7 +25,7 @@ export default function LevelIsland({
             }}>
                 <View style={{
                     ...styles.circle,
-                    backgroundColor: color
+                    backgroundColor: colors.primaryBtnColor
                 }}>
                     <Image source={Lock} contentFit='contain' style={{
                         width: 65,
@@ -34,7 +35,7 @@ export default function LevelIsland({
                 </View>
                 <View style={{
                     ...styles.circleShadow,
-                    backgroundColor: shadow
+                    backgroundColor: colors.primaryBtnShadow
                 }}></View>
                 <View style={styles.circleShadow}></View>
             </View>: <></>

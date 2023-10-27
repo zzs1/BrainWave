@@ -1,20 +1,21 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button} from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
 export default function ProgressBar({
     fill=0,
-    theme='',
-    color=''
 }) {
+  const { colors } = useTheme();
+
   return (
     <View style={{
       ...styles.container,
-      
+      backgroundColor: colors.progBarBG
     }}>
         <View style={{
             width:`${fill}%`,
             height:'100%',
-            backgroundColor: theme === 'dark' ? '#CDDDEC' : color,
+            backgroundColor: colors.progBarFill,
             borderRadius: 10
         }}></View>
     </View>

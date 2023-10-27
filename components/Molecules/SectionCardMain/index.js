@@ -1,44 +1,43 @@
 import React from 'react'
 
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useTheme } from '@react-navigation/native';
 
 import ProgressBar from '../../Atoms/ProgressBar-level';
 
 export default function SectionCardMain({
-    color='',
-    border='',
-    theme='',
-    image='',
-    title='',
-    prog=0
+  image = '',
+  title = '',
+  prog = 0
 }) {
+  const { colors } = useTheme();
+
   return (
-    <View style={{
+    <LinearGradient colors={[colors.cardBGTwo, colors.cardBGOne]} style={{
       ...styles.container,
-      border: `3px solid ${border}`, 
-      backgroundColor: theme === 'dark' ? color : `linear-gradient(white, ${color})`,
+      borderColor: colors.cardBorder,
+      backgroundColor: colors.cardBGOne
     }}>
+      <Text style={{
+        ...styles.title,
+        color: colors.text
+      }}>{title}</Text>
+      <Image source={image} contentFit='contain' style={{
+        width: 150,
+        height: 150,
+      }} />
+      <View style={styles.progContainer}>
+        <ProgressBar
+          fill={prog}
+        />
         <Text style={{
-          ...styles.title,
-          color: theme === 'dark' ? 'white' : '#1E1E1E'
-        }}>{title}</Text>
-        <Image source={image} contentFit='contain' style={{
-          width: 150,
-          height: 150,
-        }}/>
-        <View style={styles.progContainer}>
-          <ProgressBar 
-            fill={prog}
-            color={border}
-            theme={theme}
-          />
-          <Text style={{
-            fontSize: 16,
-            color: theme === 'dark' ? '#CDDDEC' : '#343434'
-          }}>{prog}%</Text>
-        </View>
-    </View>
+          fontSize: 16,
+          color: colors.text
+        }}>{prog}%</Text>
+      </View>
+    </LinearGradient>
   )
 }
 
@@ -50,7 +49,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: 10
+    borderRadius: 10,
+    borderWidth: 3
   },
   title: {
     fontSize: 22,
