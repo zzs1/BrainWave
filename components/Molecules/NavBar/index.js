@@ -33,7 +33,7 @@ export default function NavBar({
         color: colors.navText
       }}>Progression</Text>
     </Pressable>
-    <Pressable style={styles.navItem} onPress={() => navigation.push('AccountStartPage')}>
+    <Pressable style={styles.navItem} onPress={() => navigation.push('AccountPages')}>
       <Image source={User} contentFit='contain' style={{width: 30, height: 30}}/>
       <Text style={{
         ...styles.navText,

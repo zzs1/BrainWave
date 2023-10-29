@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import InNav from './screens/InNav';
 import AccessibilityPrompt from './screens/AccessibilityPrompt';
 import Intro from './screens/Intro';
-import AccountStartPage from './screens/AccountStartPage';
+import AccountPages from './screens/AccountPages';
 import AccountStartName from './screens/AccountStartName';
 import AccountStartAvater from './screens/AccountStartAvater';
 import AccountStartTime from './screens/AccountStartTime';
@@ -56,12 +56,13 @@ export default function App() {
               <Stack.Screen name='Home' component={HomePage} options={{headerShown: false}}/>
               <Stack.Screen name='PuzzleMap' component={PuzzleMap} options={{headerShown: false}}/>
               
-              <Stack.Screen name='AccountStartPage' component={AccountStartPage} options={{headerShown: false}}/>
+              <Stack.Screen name='AccountPages' component={AccountPages} options={{headerShown: false}}/>
+              {/* <Stack.Screen name='AccountStartPage' component={AccountStartPage} options={{headerShown: false}}/>
               <Stack.Screen name='AccountStartName' component={AccountStartName} options={{headerShown: false}}/>
               <Stack.Screen name='AccountStartAvater' component={AccountStartAvater} options={{headerShown: false}}/>
               <Stack.Screen name='AccountStartTime' component={AccountStartTime} options={{headerShown: false}}/>
               <Stack.Screen name='AccountStartTime2' component={AccountStartTime2} options={{headerShown: false}}/>
-              <Stack.Screen name='AccountInterfaceStart' component={AccountInterfaceStart} options={{headerShown: false}}/>
+              <Stack.Screen name='AccountInterfaceStart' component={AccountInterfaceStart} options={{headerShown: false}}/> */}
 
               <Stack.Screen name='WordProblems' component={WordProblem} options={{headerShown: false}}/>
               <Stack.Screen name='WordProblemTwo' component={WordProblemTwo} options={{headerShown: false}}/>
