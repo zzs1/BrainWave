@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     containerBig: {
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: 70,
+        paddingTop: 100,
         paddingBottom: 100,
         height: screenHeight
     },
