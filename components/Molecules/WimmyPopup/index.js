@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 
-import { StyleSheet, View, Pressable} from 'react-native';
+import { StyleSheet, View, Pressable, Dimensions} from 'react-native';
 import { Image } from 'expo-image';
 
 import DialogueBoxLower from '../../Atoms/DialogueBoxLower';
 import Wimmy from '../../../assets/Illustrations/Wimmy/WimmyFront.png'
+
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
 
 export default function WimmyPopup({
     title='',
@@ -13,9 +16,9 @@ export default function WimmyPopup({
 }) {
     const [isActive, setIsActive] = useState(true);
   return (
-    <Pressable onPress={() => setIsActive(false)} style={styles.container}>
+    <>
       {
-        isActive ? <View>
+        isActive ? <Pressable onPress={() => setIsActive(false)} style={styles.container}>
           <View style={styles.bg}></View>
           <View style={styles.wimmyDialogue}>
             <DialogueBoxLower 
@@ -29,9 +32,9 @@ export default function WimmyPopup({
                 marginTop: 20
             }} source={Wimmy} />
           </View>
-        </View> : <></>
+        </Pressable> : <></>
       }
-    </Pressable>
+    </>
   )
 }
 
@@ -40,14 +43,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: '100%',
+    height: screenHeight,
     position: 'absolute',
     bottom: 0,
     zIndex: 2
   },
   bg: {
-    width: 400,
-    height: 845,
+    width: screenWidth,
+    height: 1000,
     backgroundColor: 'black',
     opacity: 0.6,
     marginBottom: -435,
