@@ -9,11 +9,6 @@ import InNav from './screens/InNav';
 import AccessibilityPrompt from './screens/AccessibilityPrompt';
 import Intro from './screens/Intro';
 import AccountPages from './screens/AccountPages';
-import AccountStartName from './screens/AccountStartName';
-import AccountStartAvater from './screens/AccountStartAvater';
-import AccountStartTime from './screens/AccountStartTime';
-import AccountStartTime2 from './screens/AccountStartTime2';
-
 import HomePage from './screens/homePage';
 import PuzzleMap from './screens/puzzleMap';
 import WordProblem from './screens/wordProblems';
@@ -21,7 +16,6 @@ import WordProblemTwo from './screens/wordProblemTwo';
 import WordProblemThree from './screens/wordProblemThree';
 import WordProblemFour from './screens/wordProblemFour';
 import Feedback from './screens/Feedback';
-import AccountInterfaceStart from './screens/AccountInterfaceStart';
 import Settings from './screens/settings';
 
 import DarkTheme from './theme/DarkTheme';
@@ -57,12 +51,6 @@ export default function App() {
               <Stack.Screen name='PuzzleMap' component={PuzzleMap} options={{headerShown: false}}/>
               
               <Stack.Screen name='AccountPages' component={AccountPages} options={{headerShown: false}}/>
-              {/* <Stack.Screen name='AccountStartPage' component={AccountStartPage} options={{headerShown: false}}/>
-              <Stack.Screen name='AccountStartName' component={AccountStartName} options={{headerShown: false}}/>
-              <Stack.Screen name='AccountStartAvater' component={AccountStartAvater} options={{headerShown: false}}/>
-              <Stack.Screen name='AccountStartTime' component={AccountStartTime} options={{headerShown: false}}/>
-              <Stack.Screen name='AccountStartTime2' component={AccountStartTime2} options={{headerShown: false}}/>
-              <Stack.Screen name='AccountInterfaceStart' component={AccountInterfaceStart} options={{headerShown: false}}/> */}
 
               <Stack.Screen name='WordProblems' component={WordProblem} options={{headerShown: false}}/>
               <Stack.Screen name='WordProblemTwo' component={WordProblemTwo} options={{headerShown: false}}/>
