@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Pressable, Text} from 'react-native';
+import { StyleSheet, View, Pressable, Animated} from 'react-native';
 import { Image } from 'expo-image';
 
-import { useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { useTheme } from '@react-navigation/native'
 
 import ArrowLeft from '../../../assets/Icons/arrowLeft.png'
@@ -14,32 +14,43 @@ export default function MoveButton ({
 }){
     const { colors } = useTheme ();
 
-    const [isPressed, setIsPressed] = useState(false);
+    const translateY = useRef(new Animated.Value(0)).current;
 
-    useEffect(() => {
-        if(isPressed) {
-            setTimeout(() => {
-                setIsPressed(false);
-            }, 500)
-        }
-    })
-    return(
-        <Pressable onPress={() => {
+    const handlePressIn = () => {
+        Animated.timing(translateY, {
+            toValue: 10,
+            duration: 150,
+            useNativeDriver: true,
+        }).start();
+    };
+
+    const handlePressOut = () => {
+        Animated.timing(translateY, {
+            toValue: 0,
+            duration: 150,
+            useNativeDriver: true,
+        }).start(() => {
             onPress();
-            setIsPressed(true);
-        }} style={styles.container}>
-            <View style={{
+        });
+    };
+
+    return(
+        <Pressable
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut} 
+            style={styles.container}
+        >
+            <Animated.View style={{
                 ...styles.btn,
-                backgroundColor: colors.primaryBtnColor
+                backgroundColor: colors.primaryBtnColor,
+                transform: [{ translateY }]
             }}>
                 <Image style={styles.arrow} source={direction === 'right' ? ArrowRight : ArrowLeft}/>
-            </View>
-            {
-                isPressed ? <></> : <View style={{
-                    ...styles.btnShadow,
-                    backgroundColor: colors.primaryBtnShadow
-                }}></View>
-            }
+            </Animated.View>
+            <View style={{
+                ...styles.btnShadow,
+                backgroundColor: colors.primaryBtnShadow
+            }}></View>
         </Pressable>
     );
 }
