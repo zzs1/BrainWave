@@ -14,7 +14,7 @@ export default function PrimaryButton({
     const handlePressIn = () => {
         Animated.timing(translateY, {
             toValue: 10,
-            duration: 200,
+            duration: 150,
             useNativeDriver: true,
         }).start();
     };
@@ -22,7 +22,7 @@ export default function PrimaryButton({
     const handlePressOut = () => {
         Animated.timing(translateY, {
             toValue: 0,
-            duration: 200,
+            duration: 150,
             useNativeDriver: true,
         }).start(() => {
             onPress();
