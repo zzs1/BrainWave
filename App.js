@@ -29,11 +29,14 @@ const screenHeight = Dimensions.get("window").height;
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isColorBlind, setIsColorBlind] = useState(false);
 
   const appContext = useMemo(() => {
     return {
       isDarkTheme,
-      setIsDarkTheme
+      setIsDarkTheme,
+      isColorBlind,
+      setIsColorBlind,
     }
   });
 
@@ -59,7 +62,7 @@ export default function App() {
 
               <Stack.Screen name='Feedback' component={Feedback} options={{headerShown: false}}/>
 
-              <Stack.Screen name='Settings' component={Settings}/>
+              <Stack.Screen name='Settings' component={Settings} options={{headerShown: false}}/>
           </Stack.Navigator>
         </AppContext.Provider>
       </NavigationContainer>
