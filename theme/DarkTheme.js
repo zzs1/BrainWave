@@ -29,7 +29,15 @@ const DarkTheme = {
         diaProgBG: '#005AB5',
         cardBGOne: '#0C7BDC',
         cardBGTwo: '#0C7BDC',
-        cardBorder: '#005AB5'
+        cardBorder: '#005AB5',
+        switchBG: '#343434',
+        switchThumb: '#CDDDEC',
+    },
+    colorBlindColors: {
+        primaryColor: '#584B9D',
+        primaryColorShadow: '#262262',
+        primaryColorFade: '#9893b8',
+        switchThumb: '#9893b8'
     }
 }
 

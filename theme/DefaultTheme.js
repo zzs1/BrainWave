@@ -29,7 +29,15 @@ const DefaultTheme = {
         diaProgBG: '#CDDDEC',
         cardBGOne: '#5d9cd4',
         cardBGTwo: 'white',
-        cardBorder: '#005AB5'
+        cardBorder: '#005AB5',
+        switchBG: '#CDDDEC',
+        switchThumb: '#3366FF',
+    },
+    colorBlindColors: {
+        primaryColor: '#584B9D',
+        primaryColorShadow: '#262262',
+        primaryColorFade: '#9893b8',
+        switchThumb: '#584B9D'
     }
 }
 
