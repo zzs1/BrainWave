@@ -16,10 +16,11 @@ import AccountStartTime2 from './screens/AccountStartTime2';
 
 import HomePage from './screens/homePage';
 import PuzzleMap from './screens/puzzleMap';
-import WordProblem from './screens/wordProblems';
-import WordProblemTwo from './screens/wordProblemTwo';
-import WordProblemThree from './screens/wordProblemThree';
-import WordProblemFour from './screens/wordProblemFour';
+// import WordProblem from './screens/wordProblems';
+// import WordProblemTwo from './screens/wordProblemTwo';
+// import WordProblemThree from './screens/wordProblemThree';
+// import WordProblemFour from './screens/wordProblemFour';
+import WordProblemsPage from './screens/wordProblemsPages';
 import Feedback from './screens/Feedback';
 import AccountInterfaceStart from './screens/AccountInterfaceStart';
 import Settings from './screens/settings';
@@ -63,10 +64,13 @@ export default function App() {
               <Stack.Screen name='AccountStartTime2' component={AccountStartTime2} options={{headerShown: false}}/>
               <Stack.Screen name='AccountInterfaceStart' component={AccountInterfaceStart} options={{headerShown: false}}/>
 
-              <Stack.Screen name='WordProblems' component={WordProblem} options={{headerShown: false}}/>
+
+              <Stack.Screen name='WordProblemsPage' component={WordProblemsPage} options={{headerShown: false}}/>
+              {/* <Stack.Screen name='WordProblems' component={WordProblem} options={{headerShown: false}}/>
               <Stack.Screen name='WordProblemTwo' component={WordProblemTwo} options={{headerShown: false}}/>
               <Stack.Screen name='WordProblemThree' component={WordProblemThree} options={{headerShown: false}}/>
-              <Stack.Screen name='WordProblemFour' component={WordProblemFour} options={{headerShown: false}}/>
+              <Stack.Screen name='WordProblemFour' component={WordProblemFour} options={{headerShown: false}}/> */}
+              
 
               <Stack.Screen name='Feedback' component={Feedback} options={{headerShown: false}}/>
 
