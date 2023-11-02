@@ -39,7 +39,7 @@ export default function PuzzleMap({ navigation }) {
           <LevelIsland locked={true} />
         </View>
         <View style={styles.islandRight}>
-          <Pressable onPress={() => navigation.push('WordProblems')}>
+          <Pressable onPress={() => navigation.push('WordProblemsPage')}>
             <LevelIsland locked={false} />
           </Pressable>
         </View>

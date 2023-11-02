@@ -1,26 +1,52 @@
 import { Pressable, TouchableOpacity, View, Text, Linking } from "react-native";
 import { StyleSheet } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+
+
+
+
 
 export default function OptionButton({
   title1='',
   title2='',
   title3='',
-  title4=''
+  title4='',
+  
 }) {
-   
+  
+  // const handlePress = () => {
+  //   navigation.navigate(targetScreen)
+  // }
+//   const navigation = useNavigation();
+//  const handlePress1 = () => {
+//   // navigation.navigate('WordProblem')
+//  }
+//  const handlePress2 = () => {
+//   // navigation.navigate('WordProblem')
+//  }
+//  const handlePress3 = () => {
+//   // navigation.navigate('WordProblem')
+//  }
+//  const handlePress4 = () => {
+//   navigation.navigate('WordProblem')
+//  }
+
+
+  
+  
     return(
         <>
         <View style={styles.option_button_container}>
-            <View style={styles.option_button}>
-        <Pressable>
+          
+        <Pressable style={styles.option_button}
+        >
             <Text style={styles.text_container}>{title1}</Text>
         </Pressable>
-        </View>
+        
         <Pressable  style={styles.option_button_three}>
-            <View>
+            
             <Text style={styles.text_container}>{title2}</Text>
-            </View>
+           
         </Pressable >
         </View>
         <View style={styles.option_button_container}>

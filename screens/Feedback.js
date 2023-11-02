@@ -11,7 +11,7 @@ export default function Feedback({navigation}) {
         <SafeAreaView style={styles.container}>
         <View style={styles.main_container}>
         <View style={styles.navbar_container}>
-        <NavBar />
+        {/* <NavBar /> */}
         </View>
         <View style={styles.image_box}>
             <Image source={require("../assets/wimmyFront/Wimmy.png")} height={187} width={270}/>

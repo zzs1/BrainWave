@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 20,
         alignContent: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        height: 10,
     },
     circle: {
         width: 15,
