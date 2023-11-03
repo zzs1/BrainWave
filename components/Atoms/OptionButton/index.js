@@ -60,20 +60,22 @@ export default function OptionBtn({
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
+        // flexDirection: 'row',
+        // justifyContent: 'flex-end',
     },
 
     primaryButton: {
-        width: 160,
-        height: 70,
+        width: 150,
+        height: 60,
         borderRadius: 10,
+        // display: 'flex',
+        // flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
     },
 
     btnShadow: {
-        width: 160,
+        width: 150,
         height: 70,
         borderRadius: 10,
         justifyContent: 'center',
