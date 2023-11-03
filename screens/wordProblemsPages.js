@@ -229,9 +229,8 @@ export default function WordProblemsPage({ navigation }) {
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 0 }} />
             </Pressable>
 
-            {
-                isActive ? <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={aiResponse} instuction="Tap to Continue..." /> : <></>
-            }
+            <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)}/>
+            
 
             <NavBar color='#0C7BDC' navigation={navigation} />
         </View>
