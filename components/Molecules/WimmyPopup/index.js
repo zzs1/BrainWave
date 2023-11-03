@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
-import axios from 'axios';
 
 import DialogueBoxLower from '../../Atoms/DialogueBoxLower';
 import Wimmy from '../../../assets/Illustrations/Wimmy/WimmyFront.png'
@@ -15,29 +14,8 @@ export default function WimmyPopup({
   desc = '',
   instuction = ''
 }) {
-  const API_KEY = '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';
-  const API_URL = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
-
-  const [data, setData] = useState([]);
-  const [textInput, setTextInput] = useState('');
   const [isActive, setIsActive] = useState(true);
 
-  const handleSend = async () =>{
-    const prompt = textInput;
-    const response = await axios.post(API_URL, {
-      prompt: prompt,
-      max_tokens: 1024,
-      temperature: 0.5
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${API_KEY}`
-      }
-    });
-    const text = response.data.choices[0].text;
-    setData([...data, {type: 'user', 'text': textInput}, {type: 'bot', 'text': text}]);
-    setTextInput('');
-  }
   return (
     <>
       {
@@ -73,10 +51,11 @@ const styles = StyleSheet.create({
   },
   bg: {
     width: screenWidth,
-    height: 1000,
+    height: screenHeight,
     backgroundColor: 'black',
     opacity: 0.6,
-    marginBottom: -435,
+    position: 'absolute',
+    bottom: 0
   },
   wimmyDialogue: {
     display: 'flex',
