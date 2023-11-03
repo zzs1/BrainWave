@@ -1,132 +1,89 @@
-import { Pressable, TouchableOpacity, View, Text, Linking } from "react-native";
-import { StyleSheet } from "react-native";
-import { useState, useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { useEffect, useRef } from 'react';
 
-
-
-
-
-export default function OptionButton({
-  title1='',
-  title2='',
-  title3='',
-  title4='',
-  
+export default function OptionBtn({
+    name = "",
+    onPress = {},
+    color,
+    shadow
 }) {
-  
-  // const handlePress = () => {
-  //   navigation.navigate(targetScreen)
-  // }
-//   const navigation = useNavigation();
-//  const handlePress1 = () => {
-//   // navigation.navigate('WordProblem')
-//  }
-//  const handlePress2 = () => {
-//   // navigation.navigate('WordProblem')
-//  }
-//  const handlePress3 = () => {
-//   // navigation.navigate('WordProblem')
-//  }
-//  const handlePress4 = () => {
-//   navigation.navigate('WordProblem')
-//  }
+    const { colors } = useTheme();
 
+    const translateY = useRef(new Animated.Value(0)).current;
 
-  
-  
-    return(
-        <>
-        <View style={styles.option_button_container}>
-          
-        <Pressable style={styles.option_button}
+    const handlePressIn = () => {
+        Animated.timing(translateY, {
+            toValue: 10,
+            duration: 150,
+            useNativeDriver: true,
+        }).start();
+    };
+
+    const handlePressOut = () => {
+        Animated.timing(translateY, {
+            toValue: 0,
+            duration: 150,
+            useNativeDriver: true,
+        }).start(() => {
+            onPress();
+        });
+    };
+
+    return (
+        <Pressable
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
+            style={styles.container}
         >
-            <Text style={styles.text_container}>{title1}</Text>
+            {/* <StatusBar style="auto" /> */}
+            <Animated.View
+                style={{
+                    ...styles.primaryButton,
+                    backgroundColor: color,
+                    transform: [{ translateY }],
+                }}
+            >
+                <Text style={styles.primaryButtonText}>{name}</Text>
+            </Animated.View>
+            <View
+                style={{
+                    ...styles.btnShadow,
+                    backgroundColor: shadow,
+                }}
+            ></View>
         </Pressable>
-        
-        <Pressable  style={styles.option_button_three}>
-            
-            <Text style={styles.text_container}>{title2}</Text>
-           
-        </Pressable >
-        </View>
-        <View style={styles.option_button_container}>
-        <Pressable style={styles.option_button_two}>
-            <Text style={styles.text_container}>{title3}</Text>
-        </Pressable >
-        <Pressable  style={styles.option_button_four}>
-            <Text style={styles.text_container}>{title4}</Text>
-        </Pressable >
-        </View>
-        </>
-    )
+    );
 }
-const styles =  StyleSheet.create({
-  option_button:{
-    height: 60,
-    width: 150,
-    borderRadius:10,
-    backgroundColor:'#E84A34',
-    marginTop:20,
-    color:'#FFFFFF',
 
-    fontSize: 15,
-    fontColor: 'white',
-    borderBottomWidth: 9,
-    borderBottomLeftRadius: 10,
-    borderBottomColor: "#C33C2A",
-  },
-  text_container:{
-   color:'#FFFFFF',
-   fontSize:20,
-   display:'flex',
-   justifyContent:'center',
-   alignItems:'center',
-   marginTop: 16,
-   marginLeft: 35,
-   fontWeight:'bold'
-  },
-  option_button_two:{
-    height: 60,
-    width: 150,
-    borderRadius:10,
-    backgroundColor:'#EFB00C',
-    marginTop:10,
-    borderBottomWidth: 9,
-    borderBottomLeftRadius: 10,
-    borderBottomColor: "#CD9300",
-  },
-  option_button_container:{
-    display: 'flex',
-    flexDirection:'row',
-    gap:5,
-    justifyContent: 'center',
-    alignItems:'center',
-    marginLeft: 40
-  },
-  option_button_three:{
-    height: 60,
-    width: 150,
-    borderRadius:10,
-    backgroundColor:'#10CA23',
-    marginTop:20,
-    borderBottomWidth: 9,
-    borderBottomLeftRadius: 10,
-    borderBottomColor: "#079515",
-  },
-  option_button_four:{
-    height: 60,
-    width: 150,
-    borderRadius:10,
-    backgroundColor:'#0C7BDC',
-    marginTop:10,
-    borderBottomWidth: 9,
-    borderBottomLeftRadius: 10,
-    borderBottomColor: "#005AB5",
-  },
-  option_button_container:{
-    display: 'flex',
-    flexDirection:'row',
-    gap:5,
-  }
+const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+    },
 
-}); 
+    primaryButton: {
+        width: 160,
+        height: 70,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    btnShadow: {
+        width: 160,
+        height: 70,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: -60,
+        zIndex: -1,
+    },
+
+    primaryButtonText: {
+        fontSize: 20,
+        color: '#FFFFFF',
+    },
+});

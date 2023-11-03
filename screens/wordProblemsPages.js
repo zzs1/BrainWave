@@ -1,177 +1,204 @@
 import { SafeAreaView } from "react-native-safe-area-context"
-import { StyleSheet, View, Linking,Text } from "react-native";
+import { StyleSheet, View, Linking, Text, Dimensions } from "react-native";
 import { Pressable, TouchableOpacity } from "react-native";
-import OptionButton from "../components/Atoms/OptionButton";
-import QuestionBox from "../components/Atoms/QuestionBox";
 import { useState } from "react";
-import WimmyPopup from "../components/Molecules/WimmyPopup";
+import { useTheme } from "@react-navigation/native";
 import { Image } from "expo-image";
-import WordProblem from "./wordProblems";
-import WordProblemTwo from "./wordProblemTwo";
-import WordProblemThree from "./wordProblemThree";
-import WordProblemFour from "./wordProblemFour";
-import Feedback from "./Feedback";
+
+import QuestionBox from "../components/Atoms/QuestionBox";
+import WimmyPopup from "../components/Molecules/WimmyPopup";
 import PuzzleDialogueBar from "../components/Atoms/PuzzleDialogueBar";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from "@react-navigation/native";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
-import { useNavigation } from "expo-router";
+import NavBar from "../components/Molecules/NavBar";
+import OptionBtn from "../components/Atoms/OptionButton";
+import ProgressBar from "../components/Atoms/DialogueBar";
 
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
 
-export default function WordProblemsPage() {
+export default function WordProblemsPage({ navigation }) {
+    const { colors } = useTheme();
     const [currentScreen, setCurrentScreen] = useState(1);
-    const navigation = useNavigation();
     const [isActive, setIsActive] = useState(false);
     const [lineColor, setLineColor] = useState('#EADBB4');
     const [circleColor, setCircleColor] = useState('#005AB5');
-  
+
     const handleColorChange = () => {
-      
-      setLineColor(lineColor === '#EADBB4' ? '#005AB5' : '#EADBB4');
-      setCircleColor(circleColor === '#005AB5' ? '#EADBB4' : '#005AB5');
+        setLineColor(lineColor === '#EADBB4' ? '#005AB5' : '#EADBB4');
+        setCircleColor(circleColor === '#005AB5' ? '#EADBB4' : '#005AB5');
     };
-    // const handleScreenChange = () => {
-        
-    //     if (currentScreen < 5) {
-    //         setCurrentScreen (currentScreen + 1)
-        
-    // }
-    // }
-    const handleNavigation = () => {
-        if (currentScreen === 1) {
-            navigation.navigate("WordProblemTwo");
-        } else if (currentScreen === 2) {
-            navigation.navigate("WordProblemThree");
-        } else if (currentScreen === 3) {
-            navigation.navigate("WordProblemFour");
-        } else if (currentScreen === 4) {
-            navigation.navigate("Feedback");
+
+
+    const handleScreenChange = () => {
+        if (currentScreen === 4) {
+            navigation.push("Feedback");
         }
+        setCurrentScreen(currentScreen + 1);
     }
 
-    return(
-        <View>
-            { currentScreen === 1 && (
-                <View>
-                <View style={styles.dialogue_bar_container}>
-             {/* <DialogueBar /> */}
-             <PuzzleDialogueBar 
-                lineColor={lineColor}
-                circleColor={circleColor}
-                onColorChange={handleColorChange}
-             />
-</View >
-            
+    return (
+        <View style={styles.container}>
+            <ProgressBar num={4} step={currentScreen} />
+            {currentScreen === 1 && (
+                <View style={styles.main_container}>
 
-            <View style={styles.main_container}>
-               
-                <View style={styles.image}>
-                    <Image source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    <View style={styles.image}>
+                        <Image source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
                     </View>
-            </View>
-
-            <View >
-                <View style={styles.question}>
-                    <QuestionBox style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?" />
-                </View>
-                <Pressable style={styles.option_buttons} onPress={handleNavigation} >
-
-                    <OptionButton onClick={handleScreenChange} title1="7" title2="15" title3="40" title4="1" />
-                </Pressable>
-            </View>
-
-            <Pressable onPress={() => setIsActive(true)}>
-                <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 60 }} />
-            </Pressable>
-            {
-                isActive ? <WimmyPopup style={styles.popup} /> : <></>
-            }
-
-            <NavBar color='#0C7BDC' navigation={navigation} /> 
-            </View>
-            ) }
-
-<View style={styles.dialogue_bar_container}>
-             {/* <DialogueBar /> */}
-             <PuzzleDialogueBar 
-                lineColor={lineColor}
-                circleColor={circleColor}
-                onColorChange={handleColorChange}
-             />
-</View >
-            
-            { currentScreen === 2 && (
-                <View>
-            <View style={styles.main_container}>
-               
-                <View style={styles.image}>
-                    <Image source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    <View style={styles.question}>
+                        <QuestionBox style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?" />
                     </View>
-            </View>
-
-            <View >
-                <View style={styles.question}>
-                    <QuestionBox style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?" />
+                    <View style={styles.btnContainer}>
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.blue}
+                            shadow={colors.optionBtn.blueShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.yellow}
+                            shadow={colors.optionBtn.yellowShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                    </View>
                 </View>
-                <Pressable style={styles.option_buttons} onPress={onPress={handleNavigation} } >
-
-                    <OptionButton navigation={navigation}  title1="7" title2="15" title3="40" title4="1" />
-                </Pressable>
-            </View>
-
-            <Pressable onPress={() => setIsActive(true)}>
-                <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 60 }} />
-            </Pressable>
-            {
-                isActive ? <WimmyPopup style={styles.popup} /> : <></>
-            }
-
-            <NavBar color='#0C7BDC' navigation={navigation} />
-            </View>
             )}
+
+            {currentScreen === 2 && (
+                <View style={styles.main_container}>
+
+                    <View style={styles.image}>
+                        <Image source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    </View>
+                    <View style={styles.question}>
+                        <QuestionBox style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?" />
+                    </View>
+                    <View style={styles.btnContainer}>
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.blue}
+                            shadow={colors.optionBtn.blueShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.yellow}
+                            shadow={colors.optionBtn.yellowShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                    </View>
+                </View>
+            )}
+
             {currentScreen === 3 && (
-                <View>
-                          <View style={styles.dialogue_bar_container}>
-             {/* <DialogueBar /> */}
-             <PuzzleDialogueBar 
-                lineColor={lineColor}
-                circleColor={circleColor}
-                onColorChange={handleColorChange}
-             />
-</View >
-            
+                <View style={styles.main_container}>
 
-            <View style={styles.main_container}>
-               
-                <View style={styles.image}>
-                    <Image source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    <View style={styles.image}>
+                        <Image source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
                     </View>
-            </View>
-
-            <View >
-                <View style={styles.question}>
-                    <QuestionBox style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?" />
+                    <View style={styles.question}>
+                        <QuestionBox style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?" />
+                    </View>
+                    <View style={styles.btnContainer}>
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.blue}
+                            shadow={colors.optionBtn.blueShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.yellow}
+                            shadow={colors.optionBtn.yellowShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                    </View>
                 </View>
-                <Pressable style={styles.option_buttons} onPress={onPress={handleNavigation} } >
+            )}
 
-                    <OptionButton  title1="7" title2="15" title3="40" title4="1" />
-                </Pressable>
-            </View>
+            {currentScreen === 4 && (
+                <View style={styles.main_container}>
+
+                    <View style={styles.image}>
+                        <Image source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    </View>
+                    <View style={styles.question}>
+                        <QuestionBox style={styles.text_container} text="I have seven candles lit. Two blew out. How many candles do I have left?" />
+                    </View>
+                    <View style={styles.btnContainer}>
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.blue}
+                            shadow={colors.optionBtn.blueShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.yellow}
+                            shadow={colors.optionBtn.yellowShadow}
+                        />
+                        <OptionBtn
+                            name="Option"
+                            onPress={() => setCurrentScreen(handleScreenChange)}
+                            color={colors.optionBtn.red}
+                            shadow={colors.optionBtn.redShadow}
+                        />
+                    </View>
+                </View>
+            )}
 
             <Pressable onPress={() => setIsActive(true)}>
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 60 }} />
             </Pressable>
+
             {
                 isActive ? <WimmyPopup style={styles.popup} /> : <></>
             }
 
             <NavBar color='#0C7BDC' navigation={navigation} />
-                </View>
-            )}
-
-
-
-
         </View>
     )
 }
@@ -180,16 +207,16 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: '100%'
+        height: screenHeight,
+        width: screenWidth
     },
-    // main_container:{
-    //     height: '100vh',
-    //     width: '309vw'
-    // },
+    main_container: {
+
+    },
     dialogue_bar_container: {
         display: 'flex',
         marginTop: 50,
-        height:25,
+        height: 25,
     },
     image: {
         marginTop: 30,
@@ -204,12 +231,12 @@ const styles = StyleSheet.create({
     text_container: {
         fontSize: 14
     },
-    option_buttons:{
+    option_buttons: {
         marginTop: 15,
-        height:100
+        height: 100
     },
-    popup:{
+    popup: {
         marginTop: 60,
-        
+
     }
 })
