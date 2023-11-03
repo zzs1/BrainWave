@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
 
     btnShadow: {
         width: 150,
-        height: 70,
+        height: 60,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: -60,
+        marginTop: -50,
         zIndex: -1,
     },
 
