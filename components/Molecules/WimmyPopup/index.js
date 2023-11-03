@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
@@ -12,14 +12,23 @@ const screenHeight = Dimensions.get("window").height;
 export default function WimmyPopup({
   title = '',
   desc = '',
-  instuction = ''
+  instuction = '',
+  active=true,
+  onPress=() => {}
 }) {
   const [isActive, setIsActive] = useState(true);
+
+  useEffect(() => {
+    setIsActive(active);
+  }, [active])
 
   return (
     <>
       {
-        isActive ? <Pressable onPress={() => setIsActive(false)} style={styles.container}>
+        isActive ? <Pressable onPress={() => {
+          onPress();
+          setIsActive(false)
+        }} style={styles.container}>
           <View style={styles.bg}></View>
           <View style={styles.wimmyDialogue}>
             <DialogueBoxLower
