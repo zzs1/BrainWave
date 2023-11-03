@@ -4,6 +4,7 @@ import { Pressable, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import { Image } from "expo-image";
+import axios from 'axios';
 
 import QuestionBox from "../components/Atoms/QuestionBox";
 import WimmyPopup from "../components/Molecules/WimmyPopup";
@@ -19,14 +20,37 @@ export default function WordProblemsPage({ navigation }) {
     const { colors } = useTheme();
     const [currentScreen, setCurrentScreen] = useState(1);
     const [isActive, setIsActive] = useState(false);
-    const [lineColor, setLineColor] = useState('#EADBB4');
-    const [circleColor, setCircleColor] = useState('#005AB5');
 
-    const handleColorChange = () => {
-        setLineColor(lineColor === '#EADBB4' ? '#005AB5' : '#EADBB4');
-        setCircleColor(circleColor === '#005AB5' ? '#EADBB4' : '#005AB5');
-    };
+    const API_KEY = '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';
+    const API_URL = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
+  
+    const [data, setData] = useState([]);
+    const [aiResponse, setAIresponse] = useState('');
+    const [textInput, setTextInput] = useState('Say your name is Wimmy');
+  
+    const handleSend = async () =>{
+      const prompt = textInput;
+      const response = await axios.post(API_URL, {
+        prompt: prompt,
+        max_tokens: 1024,
+        temperature: 0.5
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`
+        }
+      });
+      const text = response.data.choices[0].text;
+      setData([...data, {type: 'user', 'text': textInput}, {type: 'bot', 'text': text}]);
+      setAIresponse(text);
+      setTextInput('');
+    }
 
+    const handleTail = () => {
+        handleSend();
+        setIsActive(true);
+
+    }
 
     const handleScreenChange = () => {
         if (currentScreen === 4) {
@@ -190,12 +214,12 @@ export default function WordProblemsPage({ navigation }) {
                 </View>
             )}
 
-            <Pressable onPress={() => setIsActive(true)}>
+            <Pressable onPress={handleTail}>
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 60 }} />
             </Pressable>
 
             {
-                isActive ? <WimmyPopup style={styles.popup} /> : <></>
+                isActive ? <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={aiResponse}/> : <></>
             }
 
             <NavBar color='#0C7BDC' navigation={navigation} />
