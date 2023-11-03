@@ -41,10 +41,10 @@ export default function DialogueBoxLower({
         title: {
             fontSize: 22,
             fontWeight: 'bold',
+            margin: 0
         },
         desc: {
             fontSize: 18,
-            marginTop: 20
         },
         instuction: {
             fontSize: 16,
