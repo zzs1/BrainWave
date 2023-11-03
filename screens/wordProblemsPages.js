@@ -37,8 +37,6 @@ export default function WordProblemsPage({ navigation }) {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${process.env.EXPO_PUBLIC_API}`
             }
-        }, {
-
         });
         const text = response.data.choices[0].text;
         setChat([...chat, { type: 'user', text: textInput }, { type: 'bot', text: text }]);
