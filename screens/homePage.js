@@ -10,6 +10,7 @@ import SectionCardSide from '../components/Molecules/SectionCardSide';
 import CarouselButton from '../components/Atoms/CarouselButton';
 import MoveButton from '../components/Atoms/MoveButton';
 import NavBar from '../components/Molecules/NavBar';
+import TopBar from '../components/Molecules/TopBar/index.js';
 
 import Avatar from '../assets/Icons/Avatar.png'
 
@@ -42,14 +43,15 @@ export default function HomePage({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AccountCard
+      {/* <AccountCard
         name='Navid Memari'
         level={15}
         fontColor='#0C7BDC'
         prog={75}
         theme='light'
         avatarImg={Avatar}
-      />
+      /> */}
+       <TopBar navigation={navigation} />
       <View style={styles.cardContainer}>
         <View style={{
           marginRight: -100

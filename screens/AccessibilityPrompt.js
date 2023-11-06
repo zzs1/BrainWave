@@ -23,46 +23,52 @@ export default function AccessibilityPrompt({ navigation }) {
             {
                 hiddenInfo && (
                     <View style={styles.containerBig}>
+                      <View style={styles.containerInside}>
                         <View style={styles.text}>
-                            <Text style={{
+                            {/* <Text style={{
                                 ...styles.textStyleBold,
                                 color: colors.text
-                            }}>Accessibility Options</Text>
+                            }}>Accessibility Options</Text> */}
                             <Text style={{
                                 ...styles.textStyleBody,
-                                color: colors.text
+                                color: colors.text,
+                                paddingTop: 80,
                             }}>Would you like to explore accessibility options for visual impairment?</Text>
                             <Text style={{
                                 ...styles.textStyleNote,
                                 color: colors.fadedText
-                            }}>Note: You can edit your preferences at any time.</Text>
+                            }}>You can edit your preferences at any time</Text>
                         </View>
 
                         <View style={styles.textStyleYes}>
                             <PrimaryButton name='Yes' onPress={handleYesButtonPress} />
                             <PrimaryButton name='No' onPress={() => navigation.push('Intro')} />
                         </View>
+                      </View>
                     </View>
                 )
             }
             {
                 showSetting && (
                     <View style={styles.containerBig}>
+                      <View style={styles.containerInside}>
                         <Text style={{
                             ...styles.textStyleBoldSecond,
-                            color: colors.text
+                            color: colors.text,
+                            paddingTop: 80,
                         }}>Accessibility Options</Text>
-                        <Text style={{
+                        {/* <Text style={{
                             ...styles.textStyleBodySecond,
                             color: colors.text
-                        }}>Tap to toggle</Text>
-                        <View style={styles.textStyleYesSecond}>
+                        }}>Tap to toggle</Text> */}
+                        <View style={styles.textStyleYes}>
                             <PrimaryButton name='Screen Reader' />
                             <PrimaryButton name='Color Blind Mode' />
                             <PrimaryButton name='Dyslexia Font' />
-                            <PrimaryButton name='Explanation Label' />
+                            {/* <PrimaryButton name='Explanation Label' /> */}
                             <PrimaryButton name='Continue' onPress={() => navigation.push('Intro')} />
                         </View>
+                      </View>
                     </View>
                 )
             }
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     text: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     textStyleBold: {
         fontWeight: 'bold',
@@ -111,7 +117,8 @@ const styles = StyleSheet.create({
         width: 200
     },
     textStyleYes: {
-        gap: 14
+        gap: 14,
+        alignItems: 'center',
     },
     //After it is false
     containerBigSecond: {
@@ -142,4 +149,17 @@ const styles = StyleSheet.create({
         marginTop: 40,
         gap: 14
     },
+    containerInside: {
+        backgroundColor: '#CDDDEC',
+        borderTopLeftRadius: 80,
+        borderTopRightRadius: 80,
+        width: 400,
+        height: 650,
+        position: 'absolute',
+        bottom: 0,
+        justifyContent: 'space-between',
+        paddingBottom: 80,
+        borderColor: '#CDDDEC',
+        borderWidth: 1,
+    }
 });

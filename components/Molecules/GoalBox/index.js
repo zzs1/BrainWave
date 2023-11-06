@@ -23,20 +23,20 @@ export default function GoalBox({
           color: colors.text
         }}>Daily Goal</Text>
         <Text style={{
-          fontSize: 20,
+          fontSize: 16,
           color: colors.text
         }}>{level}</Text>
         <View style={styles.progContainer}>
           <ProgressBar fill={prog}/>
           <Text style={{
-            fontSize: 16,
+            fontSize: 12,
             color: colors.text
           }}>{time}/{goal} mins</Text>
         </View>
-        <Text style={{
-          fontSize: 20,
+        {/* <Text style={{
+          fontSize: 10,
           color: colors.text,
-        }}>{prog <= 50 ? "You're less than halfway there to your daily goal!" : "You're more than halfway there to you daily goal!"}</Text>
+        }}>{prog <= 50 ? "You're less than halfway there to your daily goal!" : "You're more than halfway there to you daily goal!"}</Text> */}
     </View>
   )
 }
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 15,
     borderBottomLeftRadius: 0,
-    width: 300,
-    height: 250,
+    width: 160,
+    height: 140,
     borderWidth: 3
   },
   header: {

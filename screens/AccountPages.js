@@ -1,16 +1,19 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { React, useState } from "react";
 import { useTheme } from "@react-navigation/native";
+import { ProgressChart } from "react-native-chart-kit";
 
 import GoalBox from "../components/Molecules/GoalBox";
 import NavBar from "../components/Molecules/NavBar";
 import PrimaryButton from "../components/Atoms/PrimaryButton";
 import WimmyPopup from "../components/Molecules/WimmyPopup";
 import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
+import TopBar from "../components/Molecules/TopBar";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
+  
 
 export default function AccountPages({ navigation }) {
 
@@ -21,6 +24,24 @@ export default function AccountPages({ navigation }) {
     const [userName, setUserName] = useState("");
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
+    const data = {
+        data: [0.4]
+      };
+
+    const currentDate = new Date();
+
+
+    const chartConfig = {
+        backgroundColor: "#fff",    
+        backgroundGradientFrom: "#fff",
+        backgroundGradientTo: "#fff",
+        decimalPlaces: 1, 
+        color: (opacity = 1) => `rgba(255, 99, 71, ${opacity})`,
+        labelColor: (opacity = 1) => `rgba(255, 99, 71, ${opacity})`,
+        strokeWidth: 2,
+        barPercentage: 0.5,
+        useShadowColorFromDataset: false
+        }
 
 
     function handleStartButton() {
@@ -174,13 +195,17 @@ export default function AccountPages({ navigation }) {
 
             {currentPage === 6 && (
                 <View>
-                    <View style={styles.accountStartPageBody}>
+                  <ScrollView>
+                    <View style={{
+                        ...styles.accountStartPageBody,
+                        }}>
+                          <TopBar navigation={navigation} />
+
                         <View style={styles.avartar} >
                             <Image
-                                source={require('../assets/Icons/userEdit.png')}
-                                style={styles.wimmyPic}
-                                width={210}
-                                height={210} />
+                                source={require('../assets/Icons/will.png')}
+                                width={95}
+                                height={95} />
                         </View>
 
                         <View style={styles.userNameSection}>
@@ -188,29 +213,140 @@ export default function AccountPages({ navigation }) {
                                 ...styles.userName,
                                 color: colors.text
                             }}>{userName}</Text>
-                            <Image
+                            {/* <Image
                                 source={require('../assets/Icons/editBlack.png')}
                                 style={styles.editIcon}
                                 width={20}
                                 height={20}
+                            /> */}
+                        </View>
+
+                <View style= {{
+                        flexDirection: 'row',
+                        gap: 14,
+                    }}>
+
+                    <View style= {{
+                        flexDirection: 'column',
+                        gap: 14,
+                    }}>
+                        <View style={{
+                            ...styles.box,
+                            height: 200,
+                        }}>
+                            <Text style = {styles.title}>LEVEL</Text>
+                          <View style={{
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            <ProgressChart
+                                data={data}
+                                width={150}
+                                height={150}
+                                strokeWidth={16}
+                                radius={32}
+                                chartConfig={chartConfig}
+                                hideLegend={false}
                             />
+                            </View>
                         </View>
 
-                        <GoalBox prog={60} level={level} goal={goalTime} time="8" />
+                        <View style={{
+                            ...styles.box,
+                            height: 166,
+                        }}>
+                            <Text style = {styles.title}>My Wimmy</Text>
+                            <Image 
+                                source={require('../assets/Icons/wimmySmall.png')}
+                                style={{
+                                    marginTop: 10,
+                                }}
+                                 />
+                        </View>
+                        </View>
 
-                        <View style={styles.wimmyTail}>
+               <View style= {{
+                        flexDirection: 'column',
+                        gap: 14,
+                    }}>       
+                      <GoalBox prog={60} level={level} goal={goalTime} time="8" />
+
+                        <View style={{
+                            ...styles.box,
+                            height: 115,
+                            }}>
+                            <Text style = {styles.title}>Streaks</Text>
+                            <Text style = {{
+                                fontSize: 16,
+                                textAlign: 'center',
+                                paddingTop: 5,
+                            }}>10 Days</Text>
+                            
+                            <View style = {{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between',
+                                    paddingLeft: 16,
+                                    paddingRight: 16,
+                                    paddingTop: 10,
+                                }}>
+                                <Text style = {styles.days}>{currentDate.getDate() - 2}</Text>
+                                <Text style = {styles.days}>{currentDate.getDate() - 1}</Text>
+                                <Text style = {styles.days}>{currentDate.getDate()}</Text>
+                                <Text style = {styles.days}>{currentDate.getDate() + 1}</Text>
+                                <Text style = {styles.days}>{currentDate.getDate() + 2}</Text>
+                            </View>
+                        </View>
+
+                        <View style={{
+                            ...styles.box,
+                            height: 96,
+                            }}>
+                            <Text style = {styles.title}>WIMS</Text>
+                            <View  style = {{
+                                display: 'flex',
+                                paddingTop: 15,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                paddingLeft: 30,
+                            }}>
+                            <Text style = {{
+                                fontSize: 30,
+                            }}>1500</Text>
+                            <Text style = {{
+                                fontSize: 16,
+                                paddingLeft: 5,
+                            }}>Wims</Text>
+                            </View>
+                        </View>
+
+                        {/* <View style={styles.wimmyTail}>
                             <Image source={require('../assets/Icons/wimmyTail.png')} />
-                        </View>
+                        </View> */}
                     </View>
-                    <View style={styles.nav}>
+                </View>      
+     
+                
+                 </View>
+                    {/* <View style={styles.nav}>
                         <NavBar navigation={navigation} />
-                    </View>
+                    </View> */}
+
+        <View style ={{
+            alignItems: 'center',
+            display: 'flex,'
+        }}>
+            <NavBar 
+               navigation={navigation}/>
+        </View>
                     <WimmyPopup
                         title='WIMMY SAYS...'
                         desc='Here is the interface for your account. You can keep track of you progress and make changes here!'
                         instuction='Tap to continue.'
                     />
-                </View>)}
+                 </ScrollView>
+                </View>
+                )}
         </SafeAreaView>
     )
 }
@@ -230,9 +366,10 @@ const styles = StyleSheet.create({
         paddingBottom: 100
     },
     title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        lineHeight: 30,
+        fontSize: 20,
+        fontWeight: '900',
+        paddingTop: 10,
+        paddingLeft : 10,
     },
     texts: {
         paddingTop: 5,
@@ -285,8 +422,19 @@ const styles = StyleSheet.create({
         fontSize: 28,
     },
     nav: {
-        position: 'absolute',
-        bottom: 20,
+        alignItems: 'center',
+        marginBottom: 50,
+    },
+    box: {
+        borderTopLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        borderTopRightRadius: 20,
+        borderWidth: 2,
+        borderColor: '#C8C8C8',
+    },
+    days: {
+        fontSize: 22,
     }
+
 });
 

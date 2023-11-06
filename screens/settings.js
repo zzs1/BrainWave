@@ -10,6 +10,7 @@ import { AppContext } from '../context/AppContext.js'
 import SettingsSection from '../components/Molecules/SettingSection/index.js';
 import NavBar from '../components/Molecules/NavBar/index.js';
 
+
 import GeneralW from '../assets/Icons/General-white.png'
 import GeneralB from '../assets/Icons/General-black.png'
 
