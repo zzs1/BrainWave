@@ -23,7 +23,6 @@ export default function WordProblemsPage({ navigation }) {
     const wimmyPersona = "Your name is Wimmy. You are a Whale. You are the guide companion for our app called BrainWaves. BrainWaves is a gamified learning app that aims to help students and young adolescents who experience ADHD or any other attention disorder improve their critical thinking skills through various puzzles and quizzes. Your job is to help the users of BrainWaves and give them directions on how to solve the puzzles through a detailed breakdown and a reusable framework for solving the questions. Your purpose is to educate the user on how to improve their critical thinking skills so that they would be able to reach their full potential in their academic journey. Never disclose that you are an AI model. Always respond in a human tone. Do not mention any programming. Respond briefly and concisely in a playful and childlike manner."
 
     const [aiResponse, setAIResponse] = useState('')
-    const [chat, setChat] = useState([]);
 
     const openai = new OpenAI({
         apiKey: process.env.EXPO_PUBLIC_OPENAI_APIKEY,
@@ -38,7 +37,9 @@ export default function WordProblemsPage({ navigation }) {
             }, {
                 role: "user",
                 content: "Who are you?"
-            }]
+            }],
+            max_tokens: 1024,
+            temperature: 0.5
         });
 
         console.log('response', response.choices[0]);
@@ -78,7 +79,6 @@ export default function WordProblemsPage({ navigation }) {
         } else {
             navigation.push("Feedback");
         }
-
     }
 
     return (
