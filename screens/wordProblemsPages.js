@@ -1,8 +1,10 @@
+import OpenAI from "openai";
+
 import { StyleSheet, View, Pressable, Dimensions } from "react-native";
 import { useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import { Image } from "expo-image";
-import axios from 'axios';
+import axios from "axios";
 
 import QuestionBox from "../components/Atoms/QuestionBox";
 import WimmyPopup from "../components/Molecules/WimmyPopup";
@@ -18,37 +20,55 @@ export default function WordProblemsPage({ navigation }) {
     const [currentScreen, setCurrentScreen] = useState(1);
     const [isActive, setIsActive] = useState(false);
 
-    const API_URL = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
-
     const wimmyPersona = "Your name is Wimmy. You are a Whale. You are the guide companion for our app called BrainWaves. BrainWaves is a gamified learning app that aims to help students and young adolescents who experience ADHD or any other attention disorder improve their critical thinking skills through various puzzles and quizzes. Your job is to help the users of BrainWaves and give them directions on how to solve the puzzles through a detailed breakdown and a reusable framework for solving the questions. Your purpose is to educate the user on how to improve their critical thinking skills so that they would be able to reach their full potential in their academic journey. Never disclose that you are an AI model. Always respond in a human tone. Do not mention any programming. Respond briefly and concisely in a playful and childlike manner."
 
     const [chat, setChat] = useState([]);
-    const [aiResponse, setAIResponse] = useState('');
-    const [textInput, setTextInput] = useState(`${wimmyPersona} Who are you?`);
+
+    const openai = new OpenAI({
+        apiKey: process.env.EXPO_PUBLIC_OPENAI_APIKEY,
+    })
 
     const handleSend = async () => {
-        const prompt = textInput;
-        const response = await axios.post(API_URL, {
-            prompt: prompt,
-            max_tokens: 1024,
-            temperature: 0.5
-        }, {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${process.env.EXPO_PUBLIC_API}`
-            }
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [{
+                role: "system",
+                content: wimmyPersona
+            }, {
+                role: "user",
+                content: "Who are you?"
+            }]
         });
-        const text = response.data.choices[0].text;
-        setChat([...chat, { type: 'user', text: textInput }, { type: 'bot', text: text }]);
-        setAIResponse(text);
-        setTextInput('');
+
+        console.log('response', response.choices[0]);
+        return response.choices[0].message.content;
     }
 
-    const handleTail = () => {
-        handleSend();
-        setIsActive(true);
+    // const API_URL = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
-    }
+    // const wimmyPersona = "Your name is Wimmy. You are a Whale. You are the guide companion for our app called BrainWaves. BrainWaves is a gamified learning app that aims to help students and young adolescents who experience ADHD or any other attention disorder improve their critical thinking skills through various puzzles and quizzes. Your job is to help the users of BrainWaves and give them directions on how to solve the puzzles through a detailed breakdown and a reusable framework for solving the questions. Your purpose is to educate the user on how to improve their critical thinking skills so that they would be able to reach their full potential in their academic journey. Never disclose that you are an AI model. Always respond in a human tone. Do not mention any programming. Respond briefly and concisely in a playful and childlike manner."
+
+    // const [chat, setChat] = useState([]);
+    // const [aiResponse, setAIResponse] = useState('');
+    // const [textInput, setTextInput] = useState(`${wimmyPersona} Who are you?`);
+
+    // const handleSend = async () => {
+    //     const prompt = textInput;
+    //     const response = await axios.post(API_URL, {
+    //         prompt: prompt,
+    //         max_tokens: 1024,
+    //         temperature: 0.5
+    //     }, {
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": `Bearer ${process.env.EXPO_PUBLIC_API}`
+    //         }
+    //     });
+    //     const text = response.data.choices[0].text;
+    //     setChat([...chat, { type: 'user', text: textInput }, { type: 'bot', text: text }]);
+    //     setAIResponse(text);
+    //     setTextInput('');
+    // }
 
     const handleScreenChange = () => {
         if (currentScreen < 4) {
@@ -225,12 +245,12 @@ export default function WordProblemsPage({ navigation }) {
                 </View>
             )}
 
-            <Pressable onPress={handleTail}>
+            <Pressable onPress={() => setIsActive(true)}>
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 0 }} />
             </Pressable>
 
-            <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)}/>
-            
+            <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={handleSend} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
+
 
             <NavBar color='#0C7BDC' navigation={navigation} />
         </View>
