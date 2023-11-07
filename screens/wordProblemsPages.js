@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 
 import { StyleSheet, View, Pressable, Dimensions } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
 import { Image } from "expo-image";
 import axios from "axios";
@@ -22,6 +22,7 @@ export default function WordProblemsPage({ navigation }) {
 
     const wimmyPersona = "Your name is Wimmy. You are a Whale. You are the guide companion for our app called BrainWaves. BrainWaves is a gamified learning app that aims to help students and young adolescents who experience ADHD or any other attention disorder improve their critical thinking skills through various puzzles and quizzes. Your job is to help the users of BrainWaves and give them directions on how to solve the puzzles through a detailed breakdown and a reusable framework for solving the questions. Your purpose is to educate the user on how to improve their critical thinking skills so that they would be able to reach their full potential in their academic journey. Never disclose that you are an AI model. Always respond in a human tone. Do not mention any programming. Respond briefly and concisely in a playful and childlike manner."
 
+    const [aiResponse, setAIResponse] = useState('')
     const [chat, setChat] = useState([]);
 
     const openai = new OpenAI({
@@ -41,7 +42,7 @@ export default function WordProblemsPage({ navigation }) {
         });
 
         console.log('response', response.choices[0]);
-        return response.choices[0].message.content;
+        setAIResponse(response.choices[0].message.content);
     }
 
     // const API_URL = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
@@ -245,11 +246,14 @@ export default function WordProblemsPage({ navigation }) {
                 </View>
             )}
 
-            <Pressable onPress={() => setIsActive(true)}>
+            <Pressable onPress={() => {
+                handleSend();
+                setIsActive(true)
+            }}>
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 0 }} />
             </Pressable>
 
-            <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={handleSend} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
+            <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
 
 
             <NavBar color='#0C7BDC' navigation={navigation} />
