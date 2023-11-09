@@ -23,7 +23,7 @@ box:{
     alignItems:'center',
     paddingTop: 10,
     paddingBottom:10,
-    fontSize: 20,
+    fontSize: 16,
     textAlign:'auto',
     paddingLeft: 10,
     paddingRight: 10

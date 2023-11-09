@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     },
 
     primaryButtonText: {
-        fontSize: 20,
+        fontSize: 18,
         color: '#FFFFFF',
     },
 });
