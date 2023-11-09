@@ -98,9 +98,8 @@ export default function WordProblemsPage({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.dialogue_bar_container}>
-                <ProgressBar num={4} step={currentScreen} />
-            </View>
+            <ProgressBar num={4} step={currentScreen} />
+            
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
@@ -265,7 +264,7 @@ export default function WordProblemsPage({ navigation }) {
                 </View>
             )}
 
-            <Pressable onPress={() => {
+            <Pressable style={styles.tail} onPress={() => {
                 handleSend();
                 setIsActive(true)
             }}>
@@ -285,20 +284,20 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        height: screenHeight,
+        height: screenHeight - 25,
         width: screenWidth,
-        paddingBottom: 60
+        paddingBottom: 60,
+        paddingTop: 60
     },
-    dialogue_bar_container: {
-        // display: 'flex',
-        marginTop: 60,
-        height: 25,
+    main_container: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        height: screenHeight - 100,
+        width: screenWidth,
     },
     image: {
         marginTop: 40,
-        marginLeft: 60
-
     },
     question: {
         marginTop: 25,
@@ -309,7 +308,6 @@ const styles = StyleSheet.create({
         gap: 10,
         // height: 50,
         marginTop: 20
-
     },
     btnRowOne: {
         display: 'flex',
@@ -321,11 +319,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 10
     },
-    option_buttons: {
-        marginTop: 15,
-        height: 100
-    },
     popup: {
         marginTop: 30, 
     },
+    tail: {
+        position: 'absolute',
+        bottom: 60
+    }
 })
