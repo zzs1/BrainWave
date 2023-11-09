@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 
     primaryButton: {
         width: 150,
-        height: 60,
+        minHeight: 60,
         borderRadius: 10,
         // display: 'flex',
         // flexDirection: 'row',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 
     btnShadow: {
         width: 150,
-        height: 60,
+        minHeight: 60,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
