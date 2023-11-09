@@ -31,6 +31,10 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isColorBlind, setIsColorBlind] = useState(false);
+  const [puzzleType, setPuzzleType] = useState('');
+  const [difficulty, setDifficulty] = useState('');
+  const [level, setLevel] = useState(1);
+  const [wimPoints, setWimPoints] = useState(0);
 
   const appContext = useMemo(() => {
     return {
@@ -38,6 +42,14 @@ export default function App() {
       setIsDarkTheme,
       isColorBlind,
       setIsColorBlind,
+      puzzleType,
+      setPuzzleType,
+      difficulty,
+      setDifficulty,
+      wimPoints,
+      setWimPoints,
+      level,
+      setLevel,
     }
   });
 
