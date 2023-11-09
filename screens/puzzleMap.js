@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
@@ -10,10 +11,16 @@ import PuzzleMapTitle from '../components/Atoms/PuzzleMapTitle';
 import NavBar from '../components/Molecules/NavBar';
 import WimmyPopup from '../components/Molecules/WimmyPopup';
 
+import { AppContext } from '../context/AppContext.js'
+
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function PuzzleMap({ navigation }) {
+  const { level } = React.useContext(AppContext);
+
+  const currLevel = 5
+
   const route = useRoute();
   const title = route.params.title;
 
@@ -27,19 +34,27 @@ export default function PuzzleMap({ navigation }) {
       </View>
       <View style={styles.islandCont}>
         <View style={styles.islandRight}>
-          <LevelIsland locked={true} />
+          <Pressable onPress={() => level >= 5 ? navigation.push('WordProblemsPage', { currLevel: 5 }) : null}>
+            <LevelIsland locked={level < 5 ? true : false} />
+          </Pressable>
         </View>
         <View style={styles.islandLeft}>
-          <LevelIsland locked={true} />
+          <Pressable onPress={() => level >= 4 ? navigation.push('WordProblemsPage', { currLevel: 4 }) : null}>
+            <LevelIsland locked={level < 4 ? true : false} />
+          </Pressable>
         </View>
         <View style={styles.islandRight}>
-          <LevelIsland locked={true} />
+          <Pressable onPress={() => level >= 3 ? navigation.push('WordProblemsPage', { currLevel: 3 }) : null}>
+            <LevelIsland locked={level < 3 ? true : false} />
+          </Pressable>
         </View>
         <View style={styles.islandLeft}>
-          <LevelIsland locked={true} />
+          <Pressable onPress={() => level >= 2 ? navigation.push('WordProblemsPage', { currLevel: 2 }) : null}>
+            <LevelIsland locked={level < 2 ? true : false} />
+          </Pressable>
         </View>
         <View style={styles.islandRight}>
-          <Pressable onPress={() => navigation.push('WordProblemsPage')}>
+          <Pressable onPress={() => navigation.push('WordProblemsPage', { currLevel: 1 })}>
             <LevelIsland locked={false} />
           </Pressable>
         </View>
