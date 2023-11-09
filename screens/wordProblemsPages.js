@@ -19,18 +19,20 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function WordProblemsPage({ navigation }) {
-    const { puzzleType, difficulty, level, setLevel } = React.useContext(AppContext);
+    const { puzzleType, level, setLevel } = React.useContext(AppContext);
 
     const route = useRoute();
     const currentLevel = route.params.currLevel;
 
     const { colors } = useTheme();
-    const [currentScreen, setCurrentScreen] = useState(1);
-    const [isActive, setIsActive] = useState(false);
-    const [aiResponse, setAIResponse] = useState('')
+
     const [data, setData] = useState(logicProblems);
     const [number, setNumber] = useState(0);
     const [attempt, setAttempt] = useState(3);
+
+    const [currentScreen, setCurrentScreen] = useState(1);
+    const [isActive, setIsActive] = useState(false);
+    const [aiResponse, setAIResponse] = useState('');
 
     const questionSet = () => {
         if(currentLevel === 1) {
@@ -50,13 +52,14 @@ export default function WordProblemsPage({ navigation }) {
         return arr.sort(() => Math.random() - 0.5);
     }
 
+    const [currentQuestion, setCurrentQuestion] = useState(0)
     const [quesIndex, setQuesIndex] = useState(questionSet());
     const [optIndex, setOptIndex] = useState(shuffle([0, 1, 2, 3]));
 
     const handleSend = async () => {
         console.log("Start ai test");
         const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
-            body: JSON.stringify({question: "Who are you?"}),
+            body: JSON.stringify({question: `Hey Wimmy. Give me a broken down hint of this question: "${data[quesIndex[currentQuestion]].description}". Keep the explanation to one short paragraph. This is the answer to the question: "${data[quesIndex[currentQuestion]].answer}".Don't give the answer. just hint to it.`}),
             method: "post"
         });
 
@@ -70,6 +73,8 @@ export default function WordProblemsPage({ navigation }) {
             console.log(number);
             if (currentScreen < 4) {
                 setAttempt(3);
+                setCurrentQuestion(currentQuestion + 1);
+                setAIResponse('');
                 setOptIndex(shuffle(optIndex));
                 setCurrentScreen(currentScreen + 1);
             } else {
@@ -80,6 +85,8 @@ export default function WordProblemsPage({ navigation }) {
             if (attempt === 1) {
                 if (currentScreen < 4) {
                     setAttempt(3);
+                    setCurrentQuestion(currentQuestion + 1);
+                    setAIResponse('');
                     setOptIndex(shuffle(optIndex));
                     setCurrentScreen(currentScreen + 1);
                 } else {
@@ -100,7 +107,7 @@ export default function WordProblemsPage({ navigation }) {
 
                     <View style={styles.question}>
                         <Text>Attempts: {attempt}</Text>
-                        <QuestionBox style={styles.text_container} text={data[quesIndex[0]].description} />
+                        <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
                         <View style={styles.btnRowOne}>
@@ -141,7 +148,7 @@ export default function WordProblemsPage({ navigation }) {
 
                     <View style={styles.question}>
                         <Text>Attempts: {attempt}</Text>
-                        <QuestionBox style={styles.text_container} text={data[quesIndex[1]].description} />
+                        <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
                         <View style={styles.btnRowOne}>
@@ -182,7 +189,7 @@ export default function WordProblemsPage({ navigation }) {
 
                     <View style={styles.question}>
                         <Text>Attempts: {attempt}</Text>
-                        <QuestionBox style={styles.text_container} text={data[quesIndex[2]].description} />
+                        <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
                         <View style={styles.btnRowOne}>
@@ -223,7 +230,7 @@ export default function WordProblemsPage({ navigation }) {
 
                     <View style={styles.question}>
                         <Text>Attempts: {attempt}</Text>
-                        <QuestionBox style={styles.text_container} text={data[quesIndex[3]].description} />
+                        <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
                         <View style={styles.btnRowOne}>
