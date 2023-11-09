@@ -15,9 +15,13 @@ import TopBar from '../components/Molecules/TopBar/index.js';
 import Avatar from '../assets/Icons/Avatar.png'
 
 import { sectionCard } from '../data/sectionCards.js';
+import { AppContext } from '../context/AppContext.js';
+
 import WimmyPopup from '../components/Molecules/WimmyPopup';
 
 export default function HomePage({ navigation }) {
+  const { puzzleType, setPuzzleType } = React.useContext(AppContext);
+
   const [data, setData] = useState(sectionCard);
   const [number, setNumber] = useState(0);
 
