@@ -20,7 +20,7 @@ export default function TopBar({ navigation, points=0 }) {
         <View style={styles.rightCont}>
           <View style={styles.wimPoints}>
             <Image
-              source={require('../../../assets/Icons/wimmyTopBar.png')}
+              source={require('../../../assets/Icons/wimmyCoin.png')}
               width={40}
               height={40}
             />
