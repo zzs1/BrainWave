@@ -13,7 +13,6 @@ import TopBar from "../components/Molecules/TopBar";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
-  
 
 export default function AccountPages({ navigation }) {
 
@@ -24,24 +23,24 @@ export default function AccountPages({ navigation }) {
     const [userName, setUserName] = useState("");
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
+    
     const data = {
         data: [0.4]
-      };
+    };
 
     const currentDate = new Date();
 
 
     const chartConfig = {
-        backgroundColor: "#fff",    
-        backgroundGradientFrom: "#fff",
-        backgroundGradientTo: "#fff",
-        decimalPlaces: 1, 
-        color: (opacity = 1) => `rgba(255, 99, 71, ${opacity})`,
-        labelColor: (opacity = 1) => `rgba(255, 99, 71, ${opacity})`,
+        backgroundColor: colors.dialogueBG,
+        backgroundGradientFrom: colors.dialogueBG,
+        backgroundGradientTo: colors.dialogueBG,
+        decimalPlaces: 1,
+        color: (opacity = 1) => `rgba(${colors.chartBarColor}, ${opacity})`,
+        labelColor: (opacity = 1) => colors.chartBarLabel,
         strokeWidth: 2,
         barPercentage: 0.5,
-        useShadowColorFromDataset: false
-        }
+    }
 
 
     function handleStartButton() {
@@ -194,98 +193,100 @@ export default function AccountPages({ navigation }) {
 
 
             {currentPage === 6 && (
-                <View>
-                  <ScrollView>
-                    <View style={{
-                        ...styles.accountStartPageBody,
-                        }}>
-                          <TopBar navigation={navigation} />
+                <View style={styles.accountPageBody}>
+                    <TopBar navigation={navigation} />
 
-                        <View style={styles.avartar} >
-                            <Image
-                                source={require('../assets/Icons/will.png')}
-                                width={95}
-                                height={95} />
-                        </View>
+                    <View style={styles.avartar} >
+                        <Image
+                            source={require('../assets/Icons/will.png')}
+                            width={95}
+                            height={95} />
+                    </View>
 
-                        <View style={styles.userNameSection}>
-                            <Text style={{
-                                ...styles.userName,
-                                color: colors.text
-                            }}>{userName}</Text>
-                            {/* <Image
+                    <View style={styles.userNameSection}>
+                        <Text style={{
+                            ...styles.userName,
+                            color: colors.text
+                        }}>{userName}</Text>
+                        {/* <Image
                                 source={require('../assets/Icons/editBlack.png')}
                                 style={styles.editIcon}
                                 width={20}
                                 height={20}
                             /> */}
-                        </View>
+                    </View>
 
-                <View style= {{
+                    <View style={{
+                        display: 'flex',
                         flexDirection: 'row',
                         gap: 14,
                     }}>
-
-                    <View style= {{
-                        flexDirection: 'column',
-                        gap: 14,
-                    }}>
                         <View style={{
-                            ...styles.box,
-                            height: 200,
-                            borderColor: colors.dialogueBorder,
+                            flexDirection: 'column',
+                            gap: 14,
                         }}>
-                            <Text style = {styles.title}>LEVEL</Text>
-                          <View style={{
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ProgressChart
-                                data={data}
-                                width={150}
-                                height={150}
-                                strokeWidth={16}
-                                radius={32}
-                                chartConfig={chartConfig}
-                                hideLegend={false}
-                            />
+                            <View style={{
+                                ...styles.box,
+                                height: 200,
+                                borderColor: colors.dialogueBorder,
+                            }}>
+                                <Text style={styles.title}>LEVEL</Text>
+                                <View style={{
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}>
+                                    <ProgressChart
+                                        data={data}
+                                        width={150}
+                                        height={150}
+                                        strokeWidth={16}
+                                        radius={32}
+                                        chartConfig={chartConfig}
+                                        hideLegend={true}
+                                        style={{
+                                            borderRadius: 20
+                                        }}
+                                    />
+                                </View>
+                            </View>
+
+                            <View style={{
+                                ...styles.box,
+                                height: 166,
+                                borderColor: colors.dialogueBorder,
+                            }}>
+                                <Text style={styles.title}>My Wimmy</Text>
+                                <Image
+                                    source={require('../assets/Icons/wimmySmall.png')}
+                                    style={{
+                                        marginTop: 10,
+                                        width: 130,
+                                        height: 110,
+                                        objectFit: 'contain'
+                                    }}
+                                />
                             </View>
                         </View>
 
                         <View style={{
-                            ...styles.box,
-                            height: 166,
-                            borderColor: colors.dialogueBorder,
+                            flexDirection: 'column',
+                            gap: 14,
                         }}>
-                            <Text style = {styles.title}>My Wimmy</Text>
-                            <Image 
-                                source={require('../assets/Icons/wimmySmall.png')}
-                                style={{
-                                    marginTop: 10,
-                                }}
-                                 />
-                        </View>
-                        </View>
+                            <GoalBox prog={60} level={level} goal={goalTime} time="8" />
 
-               <View style= {{
-                        flexDirection: 'column',
-                        gap: 14,
-                    }}>       
-                      <GoalBox prog={60} level={level} goal={goalTime} time="8" />
-
-                        <View style={{
-                            ...styles.box,
-                            height: 115,
-                            borderColor: colors.dialogueBorder,
+                            <View style={{
+                                ...styles.box,
+                                height: 115,
+                                borderColor: colors.dialogueBorder,
                             }}>
-                            <Text style = {styles.title}>Streaks</Text>
-                            <Text style = {{
-                                fontSize: 16,
-                                textAlign: 'center',
-                                paddingTop: 5,
-                            }}>10 Days</Text>
-                            
-                            <View style = {{
+                                <Text style={styles.title}>Streaks</Text>
+                                <Text style={{
+                                    fontSize: 16,
+                                    textAlign: 'center',
+                                    paddingTop: 5,
+                                }}>10 Days</Text>
+
+                                <View style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     justifyContent: 'space-between',
@@ -293,71 +294,59 @@ export default function AccountPages({ navigation }) {
                                     paddingRight: 16,
                                     paddingTop: 10,
                                 }}>
-                                <Text style = {styles.days}>{currentDate.getDate() - 2}</Text>
-                                <Text style = {styles.days}>{currentDate.getDate() - 1}</Text>
-                                <Text style = {styles.days}>{currentDate.getDate()}</Text>
-                                <Text style = {styles.days}>{currentDate.getDate() + 1}</Text>
-                                <Text style = {styles.days}>{currentDate.getDate() + 2}</Text>
+                                    <Text style={styles.days}>{currentDate.getDate() - 2}</Text>
+                                    <Text style={styles.days}>{currentDate.getDate() - 1}</Text>
+                                    <Text style={styles.days}>{currentDate.getDate()}</Text>
+                                    <Text style={styles.days}>{currentDate.getDate() + 1}</Text>
+                                    <Text style={styles.days}>{currentDate.getDate() + 2}</Text>
+                                </View>
                             </View>
-                        </View>
 
-                        <View style={{
-                            ...styles.box,
-                            height: 96,
-                            borderColor: colors.dialogueBorder,
+                            <View style={{
+                                ...styles.box,
+                                height: 96,
+                                borderColor: colors.dialogueBorder,
                             }}>
-                            <Text style = {styles.title}>WIMS</Text>
-                            <View  style = {{
-                                display: 'flex',
-                                paddingTop: 15,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                paddingLeft: 30,
-                            }}>
-                            <Text style = {{
-                                fontSize: 30,
-                            }}>1500</Text>
-                            <Text style = {{
-                                fontSize: 16,
-                                paddingLeft: 5,
-                            }}>Wims</Text>
+                                <Text style={styles.title}>WIMS</Text>
+                                <View style={{
+                                    display: 'flex',
+                                    paddingTop: 15,
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    paddingLeft: 30,
+                                }}>
+                                    <Text style={{
+                                        fontSize: 30,
+                                    }}>1500</Text>
+                                    <Text style={{
+                                        fontSize: 16,
+                                        paddingLeft: 5,
+                                    }}>Wims</Text>
+                                </View>
                             </View>
-                        </View>
 
-                        {/* <View style={styles.wimmyTail}>
-                            <Image source={require('../assets/Icons/wimmyTail.png')} />
-                        </View> */}
+                            {/* <View style={styles.wimmyTail}>
+                                <Image source={require('../assets/Icons/wimmyTail.png')} />
+                                </View> */}
+                        </View>
                     </View>
-                </View>      
-     
-                
-                 </View>
-                    {/* <View style={styles.nav}>
+                    <View style={styles.navCont}>
                         <NavBar navigation={navigation} />
-                    </View> */}
-
-        <View style ={{
-            alignItems: 'center',
-            display: 'flex,'
-        }}>
-            <NavBar 
-               navigation={navigation}/>
-        </View>
-                    <WimmyPopup
-                        title='WIMMY SAYS...'
-                        desc='Here is the interface for your account. You can keep track of you progress and make changes here!'
-                        instuction='Tap to continue.'
-                    />
-                 </ScrollView>
+                        <WimmyPopup
+                            title='WIMMY SAYS...'
+                            desc='Here is the interface for your account. You can keep track of you progress and make changes here!'
+                            instuction='Tap to continue.'
+                        />
+                    </View>
                 </View>
-                )}
+            )}
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        margin: 0
+        margin: 0,
     },
     accountStartPageBody: {
         display: 'flex',
@@ -369,11 +358,19 @@ const styles = StyleSheet.create({
         paddingTop: 80,
         paddingBottom: 100
     },
+    accountPageBody: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        height: screenHeight,
+        width: screenWidth,
+        paddingTop: 50,
+    },
     title: {
         fontSize: 20,
         fontWeight: '900',
         paddingTop: 10,
-        paddingLeft : 10,
+        paddingLeft: 10,
     },
     texts: {
         paddingTop: 5,
@@ -400,7 +397,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 20,
-        marginBottom: 20
     },
     editIcon: {
         marginLeft: 10,
@@ -409,9 +405,12 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         fontSize: 28,
     },
-    nav: {
+    navCont: {
+        display: "flex",
+        flexDirection: 'column',
         alignItems: 'center',
-        marginBottom: 50,
+        position: 'absolute',
+        bottom: 24
     },
     box: {
         borderTopLeftRadius: 20,

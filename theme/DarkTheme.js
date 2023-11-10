@@ -32,6 +32,9 @@ const DarkTheme = {
         cardBorder: '#005AB5',
         switchBG: '#343434',
         switchThumb: '#CDDDEC',
+        headerColour: '#393939',
+        chartBarLabel: '#CDDDEC',
+        chartBarColor: '205, 221, 236',
     },
     colorBlindColors: {
         primaryColor: '#584B9D',

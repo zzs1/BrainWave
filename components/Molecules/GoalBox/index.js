@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Button} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-import ProgressBar from '../../Atoms/ProgressBar-level';
+import ProgressBar from '../../Atoms/ProgressBar-small';
 
 export default function GoalBox({
   prog=0,
@@ -29,7 +29,7 @@ export default function GoalBox({
         <View style={styles.progContainer}>
           <ProgressBar fill={prog}/>
           <Text style={{
-            fontSize: 12,
+            fontSize: 14,
             color: colors.text
           }}>{time}/{goal} mins</Text>
         </View>
@@ -59,8 +59,9 @@ const styles = StyleSheet.create({
   },
   progContainer: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'flex-end',
+    gap: 5
   }
 })
