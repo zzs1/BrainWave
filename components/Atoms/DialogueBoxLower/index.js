@@ -36,7 +36,11 @@ export default function DialogueBoxLower({
             borderBottomRightRadius: 20,
             borderTopRightRadius: 20,
             borderWidth: 2,
-            padding: 15
+            padding: 15,
+            shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
         },
         title: {
             fontSize: 22,

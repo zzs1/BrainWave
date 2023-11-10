@@ -19,7 +19,7 @@ const DefaultTheme = {
             yellow: '#EFB00C',
             yellowShadow: '#CD9300'
         },
-        navBG: '#0C7BDC',
+        navBG: '#005AB5',
         navText: 'white',
         inputBG: '#E9E9E9',
         inputBorder: '#A4A4A4',

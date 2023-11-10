@@ -18,7 +18,7 @@ export default function NavBar({
   return (
    <View style={{
     ...styles.navBarBody,
-    backgroundColor: '#CDDDEC'
+    backgroundColor: 
    }}>
     <Pressable style={styles.navItem} onPress={() => navigation.push('Home')}>
       <Image source={Home} contentFit='contain' style={{width: 25, height: 25}}/>

@@ -16,6 +16,7 @@ import GeneralB from '../assets/Icons/General-black.png'
 
 import AccessibilityW from '../assets/Icons/Accessibility-white.png'
 import AccessibilityB from '../assets/Icons/Accessibility-black.png'
+import TopBar from '../components/Molecules/TopBar/index.js';
 
 export default function Settings({ navigation }) {
   const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind } = React.useContext(AppContext)
@@ -26,6 +27,7 @@ export default function Settings({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TopBar />
       <View style={styles.settingsSection}>
         <SettingsSection title='Appearance' image={dark ? GeneralW : GeneralB} />
         <View style={styles.settingItem}>
