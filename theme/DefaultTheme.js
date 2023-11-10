@@ -33,6 +33,8 @@ const DefaultTheme = {
         switchBG: '#CDDDEC',
         switchThumb: '#3366FF',
         headerColour: '#393939',
+        chartBarLabel: '#0C7BDC',
+        chartBarColor: '12, 123, 220',
     },
     colorBlindColors: {
         primaryColor: '#584B9D',

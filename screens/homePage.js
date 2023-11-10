@@ -55,7 +55,7 @@ export default function HomePage({ navigation }) {
         theme='light'
         avatarImg={Avatar}
       /> */}
-       <TopBar navigation={navigation} />
+      <TopBar navigation={navigation} />
       <View style={styles.cardContainer}>
         <View style={{
           marginRight: -100
