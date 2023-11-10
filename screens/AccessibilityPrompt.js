@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Dimensions, Switch } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import { useState, useEffect } from 'react';
@@ -8,7 +8,9 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function AccessibilityPrompt({ navigation }) {
+
     const { colors } = useTheme();
+
 
     const [hiddenInfo, setHiddenInfo] = useState(true);
     const [showSetting, setShowSetting] = useState(false);
@@ -17,6 +19,9 @@ export default function AccessibilityPrompt({ navigation }) {
         setHiddenInfo(false);
         setShowSetting(true);
     };
+
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -62,10 +67,54 @@ export default function AccessibilityPrompt({ navigation }) {
                             color: colors.text
                         }}>Tap to toggle</Text> */}
                         <View style={styles.textStyleYes}>
-                            <PrimaryButton name='Screen Reader' />
+                            {/* <PrimaryButton name='Screen Reader' />
                             <PrimaryButton name='Color Blind Mode' />
-                            <PrimaryButton name='Dyslexia Font' />
+                            <PrimaryButton name='Dyslexia Font' /> */}
                             {/* <PrimaryButton name='Explanation Label' /> */}
+
+                            <View style={{
+                                ...styles.box,
+                                backgroundColor: colors.progBarBG,
+                                borderColor: colors.switchThumb,
+                                }}>
+                                <Text style={styles.title}>Screen Reader</Text>
+                                <Switch
+                                    trackColor={{false: '#767577', true: '#81b0ff'}}
+                                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={toggleSwitch}
+                                    value={isEnabled}
+                                />
+                            </View>
+
+                            <View style={{
+                                ...styles.box,
+                                backgroundColor: colors.progBarBG,
+                                borderColor: colors.switchThumb,
+                                }}>
+                                <Text style={styles.title}>Color Blind Mode</Text>
+                                <Switch
+                                    trackColor={{false: '#767577', true: '#81b0ff'}}
+                                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={toggleSwitch}
+                                    value={isEnabled}
+                                />
+                            </View>
+
+                            <View style={{
+                                ...styles.box,
+                                backgroundColor: colors.progBarBG,
+                                borderColor: colors.switchThumb,}}>
+                                <Text style={styles.title}>Dyslexia Font</Text>
+                                <Switch
+                                    trackColor={{false: '#767577', true: '#81b0ff'}}
+                                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={toggleSwitch}
+                                    value={isEnabled}
+                                />
+                            </View>
                             <PrimaryButton name='Continue' onPress={() => navigation.push('Intro')} />
                         </View>
                       </View>
@@ -150,7 +199,7 @@ const styles = StyleSheet.create({
         gap: 14
     },
     containerInside: {
-        backgroundColor: '#CDDDEC',
+        // backgroundColor: '#CDDDEC',
         borderTopLeftRadius: 80,
         borderTopRightRadius: 80,
         width: 400,
@@ -161,5 +210,17 @@ const styles = StyleSheet.create({
         paddingBottom: 80,
         borderColor: '#CDDDEC',
         borderWidth: 1,
+    },
+    box: {
+        width: 320,
+        height: 70,
+        borderRadius: 10,
+        borderWidth: 1,
+        alignContent: 'center',
+        display: 'flex',
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
     }
 });

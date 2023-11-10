@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, Pressable, Dimensions, Image } from 'react-nati
 export default function TopBar({navigation}){
     return(
         <>
-        <View style={styles.container}>
-          <View  style={{
-            // justifyContent: 'center'
+        <View style={{
+          ...styles.container,
           }}>
+          <View>
             <Image
                 source={require('../../../assets/Icons/Topbar.png')}
                 width = {200}

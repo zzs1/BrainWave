@@ -32,7 +32,7 @@ export default function WordProblemsPage({ navigation }) {
     }
 
     const handleScreenChange = () => {
-        if (currentScreen < 4) {
+        if (currentScreen < 5) {
             setCurrentScreen(currentScreen + 1);
 
         } else {
@@ -205,10 +205,19 @@ export default function WordProblemsPage({ navigation }) {
                 </View>
             )}
 
+            {currentScreen === 5 && (
+                <View style={styles.main_container}>
+                    <WimmyPopup style={styles.popup} title="Lesson Completed!" desc={""} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
+                </View>
+            )}
+
+
             <Pressable onPress={() => {
                 handleSend();
                 setIsActive(true)
             }}>
+
+            
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} style={{ marginTop: 0 }} />
             </Pressable>
 

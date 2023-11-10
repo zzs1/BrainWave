@@ -29,9 +29,22 @@ export default function Intro({ navigation }) {
             <ProgressBar step={number + 1} num={line.length} />
             <View style={styles.imageLogo} >
                 <Image source={require('../assets/Icons/wimmy.png')}/>
-                <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
+                    <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
             </View>
             <PrimaryButton name='Continue' onPress={handleButtonPress}/>
+                        {/* <Image
+                           source={require('../assets/Icons/Clouds.png')}
+                           style={styles.cloudsOne}
+                           width={270}
+                           height={188} 
+                        />
+                        <Image
+                           source={require('../assets/Icons/Clouds.png')}
+                           style={styles.cloudsTwo}
+                           width={270}
+                           height={188} 
+                        /> */}
+
         </SafeAreaView>
     );
 }
@@ -55,5 +68,14 @@ const styles = StyleSheet.create({
         marginTop: -100,
         position: 'absolute',
         top: 300
+    }, cloudsOne: {
+        position: "absolute",
+        top: 0,
+    },
+    cloudsTwo: {
+        position: "absolute",
+        left: 270,
+        top: 50,
     }
+    
 });
