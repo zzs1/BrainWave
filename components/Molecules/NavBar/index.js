@@ -18,7 +18,7 @@ export default function NavBar({
   return (
    <View style={{
     ...styles.navBarBody,
-    backgroundColor: colors.navBG
+    backgroundColor: colors.switchBG,
    }}>
     <Pressable style={styles.navItem} onPress={() => navigation.push('Home')}>
       <Image source={Home} contentFit='contain' style={{width: 25, height: 25}}/>
@@ -34,8 +34,8 @@ export default function NavBar({
         color: colors.navText
       }}>Progression</Text> */}
     </Pressable>
-    <Pressable style={styles.navItem} onPress={() => navigation.push('Settings')}>
-      <Image source={Settings} contentFit='contain' style={{width: 25, height: 25}}/>
+    <Pressable style={styles.navItem} onPress={() => navigation.push('AccountPages')}>
+      <Image source={User} contentFit='contain' style={{width: 25, height: 25}}/>
       {/* <Text style={{
         ...styles.navText,cha
         color: colors.navText

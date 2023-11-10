@@ -32,6 +32,7 @@ const DefaultTheme = {
         cardBorder: '#005AB5',
         switchBG: '#CDDDEC',
         switchThumb: '#3366FF',
+        headerColour: '#393939',
     },
     colorBlindColors: {
         primaryColor: '#584B9D',

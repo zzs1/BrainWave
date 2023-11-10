@@ -4,31 +4,53 @@ export default function TopBar({navigation}){
     return(
         <>
         <View style={{
-          ...styles.container,
+             display: 'flex',
+             flexDirection: 'row',
           }}>
-          <View>
-            <Image
-                source={require('../../../assets/Icons/Topbar.png')}
+
+          <View style={{
+            marginRight: 180,
+          }}>
+            {/* <Image
+                source={require('../../../assets/Icons/logo_navBar.png')}
                 width = {200}
                 height = {100}
-                 />
+                 /> */}
           </View>
 
-            <Pressable onPress={() => navigation.push('AccountPages')} 
+        <View style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
+          <View style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
+            <Image 
+             source={require('../../../assets/Icons/wimmyTopBar.png')}
+             width = {40}
+             height = {40}
+            />
+            <Text styles={{
+               fontSize: 16
+            }}>1500</Text>
+          </View>
+
+            <Pressable onPress={() => navigation.push('Settings')} 
               style={{
                 gap: 10,
                 display: 'flex',
                 alignItems: 'center',
-            }}
-            >
+                paddingLeft: 40,
+            }}>
                 <Image
-                source={require('../../../assets/Icons/willsmall.png')}
+                source={require('../../../assets/Icons/settingBlack.png')}
                 width = {40}
                 height = {40} />
-                <Text style={{
-                    fontSize: 10,
-            }}>Will Smith</Text>
             </Pressable>
+          </View>
             
         </View>
         </>
@@ -36,16 +58,5 @@ export default function TopBar({navigation}){
 }
 
 const styles = StyleSheet.create({
-    container: {
-      display: 'flex',
-      flexDirection: 'row',
-      gap: 200,
-      justifyContent: 'center',
-      elevation: 5, // Add a drop shadow with an elevation value
-    shadowColor: 'black', // Customize the shadow color
-    shadowOffset: { width: 0, height: 5 }, // Adjust the shadow offset
-    shadowOpacity: 0.5, // Adjust the shadow opacity
-    shadowRadius: 5, // Adjus
-     },
-  });
   
+  });

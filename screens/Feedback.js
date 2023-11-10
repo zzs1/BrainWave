@@ -9,6 +9,7 @@ import { AppContext } from '../context/AppContext.js';
 import QuestionBox from "../components/Atoms/QuestionBox"
 import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function Feedback({ navigation }) {
     const { level, setLevel } = React.useContext(AppContext);
@@ -22,7 +23,8 @@ export default function Feedback({ navigation }) {
                 <View style={styles.image_box}>
                     <Image source={require("../assets/wimmyFront/Wimmy.png")} height={187} width={270} />
                 </View>
-                <Text style={styles.header}>Great Job</Text>
+                <Text style={{...styles.header,
+                color: Colors.headerColour}}>Great Job</Text>
                 <Text>Level: {level}</Text>
                 <Text>Points: {points}</Text>
                 <View style={styles.question_box} >

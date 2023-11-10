@@ -233,6 +233,7 @@ export default function AccountPages({ navigation }) {
                         <View style={{
                             ...styles.box,
                             height: 200,
+                            borderColor: colors.dialogueBorder,
                         }}>
                             <Text style = {styles.title}>LEVEL</Text>
                           <View style={{
@@ -254,6 +255,7 @@ export default function AccountPages({ navigation }) {
                         <View style={{
                             ...styles.box,
                             height: 166,
+                            borderColor: colors.dialogueBorder,
                         }}>
                             <Text style = {styles.title}>My Wimmy</Text>
                             <Image 
@@ -274,6 +276,7 @@ export default function AccountPages({ navigation }) {
                         <View style={{
                             ...styles.box,
                             height: 115,
+                            borderColor: colors.dialogueBorder,
                             }}>
                             <Text style = {styles.title}>Streaks</Text>
                             <Text style = {{
@@ -301,6 +304,7 @@ export default function AccountPages({ navigation }) {
                         <View style={{
                             ...styles.box,
                             height: 96,
+                            borderColor: colors.dialogueBorder,
                             }}>
                             <Text style = {styles.title}>WIMS</Text>
                             <View  style = {{
@@ -376,22 +380,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 30,
     },
-    accountStartTexts: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: 235,
-        width: 292,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
-        borderTopRightRadius: 20,
-        borderColor: '#C8C8C8',
-        borderWidth: 2,
-        backgroundColor: '#F9F9F9',
-        paddingLeft: 30,
-        paddingRight: 30,
-        paddingTop: 20,
-        marginTop: 10,
-    },
     userNameInput: {
         width: 280,
         height: 50,
@@ -430,7 +418,6 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 20,
         borderTopRightRadius: 20,
         borderWidth: 2,
-        borderColor: '#C8C8C8',
     },
     days: {
         fontSize: 22,

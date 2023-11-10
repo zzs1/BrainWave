@@ -3,13 +3,19 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import { useState, useEffect } from 'react';
 import { useTheme } from '@react-navigation/native'
+import { AppContext } from '../context/AppContext.js'
+import React from 'react';
+
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function AccessibilityPrompt({ navigation }) {
 
+    const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind } = React.useContext(AppContext)
     const { colors } = useTheme();
+    const { dark } = useTheme();
+    const { colorBlindColors } = useTheme();
 
 
     const [hiddenInfo, setHiddenInfo] = useState(true);
@@ -56,7 +62,10 @@ export default function AccessibilityPrompt({ navigation }) {
             {
                 showSetting && (
                     <View style={styles.containerBig}>
-                      <View style={styles.containerInside}>
+                      <View style={{
+                        ...styles.containerInside,
+                        // backgroundColor: colors.switchBG,
+                        }}>
                         <Text style={{
                             ...styles.textStyleBoldSecond,
                             color: colors.text,
@@ -79,11 +88,10 @@ export default function AccessibilityPrompt({ navigation }) {
                                 }}>
                                 <Text style={styles.title}>Screen Reader</Text>
                                 <Switch
-                                    trackColor={{false: '#767577', true: '#81b0ff'}}
-                                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={toggleSwitch}
-                                    value={isEnabled}
+                                    trackColor={{ false: colors.switchBG, true: colors.switchBG }}
+                                    thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
+                                    onValueChange={() => setIsDarkTheme(current => !current)}
+                                    value={isDarkTheme}
                                 />
                             </View>
 
@@ -94,11 +102,10 @@ export default function AccessibilityPrompt({ navigation }) {
                                 }}>
                                 <Text style={styles.title}>Color Blind Mode</Text>
                                 <Switch
-                                    trackColor={{false: '#767577', true: '#81b0ff'}}
-                                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={toggleSwitch}
-                                    value={isEnabled}
+                                    trackColor={{ false: colors.switchBG, true: colors.switchBG }}
+                                    thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
+                                    onValueChange={() => setIsColorBlind(current => !current)}
+                                    value={isColorBlind}
                                 />
                             </View>
 
@@ -108,11 +115,8 @@ export default function AccessibilityPrompt({ navigation }) {
                                 borderColor: colors.switchThumb,}}>
                                 <Text style={styles.title}>Dyslexia Font</Text>
                                 <Switch
-                                    trackColor={{false: '#767577', true: '#81b0ff'}}
-                                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={toggleSwitch}
-                                    value={isEnabled}
+                                    trackColor={{ false: colors.switchBG, true: colors.switchBG }}
+                                    thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
                                 />
                             </View>
                             <PrimaryButton name='Continue' onPress={() => navigation.push('Intro')} />
@@ -199,7 +203,6 @@ const styles = StyleSheet.create({
         gap: 14
     },
     containerInside: {
-        // backgroundColor: '#CDDDEC',
         borderTopLeftRadius: 80,
         borderTopRightRadius: 80,
         width: 400,
@@ -208,7 +211,6 @@ const styles = StyleSheet.create({
         bottom: 0,
         justifyContent: 'space-between',
         paddingBottom: 80,
-        borderColor: '#CDDDEC',
         borderWidth: 1,
     },
     box: {
