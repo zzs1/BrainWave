@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Image } from "expo-image"
 import { SafeAreaView, StyleSheet, Text, Pressable, View } from "react-native"
@@ -9,7 +9,6 @@ import { AppContext } from '../context/AppContext.js';
 import QuestionBox from "../components/Atoms/QuestionBox"
 import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function Feedback({ navigation }) {
     const { level, setLevel } = React.useContext(AppContext);
@@ -17,25 +16,90 @@ export default function Feedback({ navigation }) {
     const route = useRoute();
     const points = route.params.points;
 
+    const [currentScreen, setCurrentScreen] = useState(1);
+
+    function handleStartButton(){
+        if (currentScreen < 4){
+            setCurrentScreen(currentScreen + 1);
+        }
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.main_container}>
                 <View style={styles.image_box}>
                     <Image source={require("../assets/wimmyFront/Wimmy.png")} height={187} width={270} />
                 </View>
-                <Text style={{...styles.header,
-                color: Colors.headerColour}}>Great Job</Text>
-                <Text>Level: {level}</Text>
-                <Text>Points: {points}</Text>
+
+
+        { currentScreen === 1 && (
+            <View >
+                <Text style={styles.header}>Great Job</Text>
+
                 <View style={styles.question_box} >
                     <QuestionBox style={styles.text} text="This section contains a list of feedback. Break down the questions and the logic behind them, let users know what they need to work on as well as a list of resources that can also help " />
+                    <PrimaryButton name = "NEXT" onPress={handleStartButton}/>
                 </View>
-                <View style={styles.button}>
+
+            </View>
+        )}
+
+        { currentScreen === 2 && (
+         <View>
+            <View  style ={{
+                ...styles.box
+            }}>
+                <Text style ={{
+                    fontSize: 20,
+                }}>Lesson Complete!</Text>
+                <Text  style ={{
+                    fontSize: 20,
+                }}>Level: {level}</Text>
+                 <Image />
+            </View>
+            <PrimaryButton name = "NEXT" onPress={handleStartButton}/>
+         </View>
+        )}
+
+        { currentScreen === 3 && (
+         <View>
+          <View>
+            <View style ={{
+                ...styles.box
+            }}>
+            <Text style ={{
+                    fontSize: 20,
+                }}>1</Text>
+            <Text style ={{
+                    fontSize: 20,
+                }}>day streaks</Text>
+            </View>
+          </View>
+          <PrimaryButton name = "NEXT" onPress={handleStartButton}/>
+         </View>
+        )}
+
+        
+        { currentScreen === 4 && (
+        <View>
+            <View  style ={{
+                ...styles.box
+            }}>
+                <Text style ={{
+                    fontSize: 20,
+                }}>Points: {points}</Text>
+                <Text>wims earned!</Text>
+   
+            </View>
+            <View style={styles.button}>
                     <PrimaryButton name="NEXT" onPress={() => {
                         navigation.push('PuzzleMap', { title: 'NUMBER PROBLEMS' });
                         setLevel(level + 1);
                     }} />
                 </View>
+        </View>
+        )}
+
             </View>
             <NavBar color='#0C7BDC' navigation={navigation} />
         </SafeAreaView>
@@ -84,7 +148,23 @@ const styles = StyleSheet.create({
         // display:'flex',
         // justifyContent:'center',
         // alignItems:'center'
-
+    },
+    box: {
+        minHeight:67,
+        height: 'auto',
+        width: 315,
+        borderRadius: 20,
+        borderColor:'#C8C8C8',
+        borderWidth: 2,
+        backgroundColor: '#F9F9F9',
+        justifyContent: 'center',
+        alignItems:'center',
+        paddingTop: 10,
+        paddingBottom:10,
+        fontSize: 16,
+        textAlign:'auto',
+        paddingLeft: 10,
+        paddingRight: 10
     }
 
 })
