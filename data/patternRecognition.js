@@ -1,4 +1,4 @@
-const patternRecognition = [
+export const patternRecognition = [
     {
         title: "Question 1",
         question: "What comes next 7, 9, 11, ?",
@@ -80,11 +80,7 @@ const patternRecognition = [
         description: "What comes next?",
         id: "Level 3",
         image: require("../assets/patternRecognition/question_1.png"),
-        option1: require("../assets/patternRecognition/triangle.png"),
-        option2: require("../assets/patternRecognition/4-angle.png"),
-        option3: require("../assets/patternRecognition/5-angle.png"),
-        option4: require("../assets/patternRecognition/6-angle.png"),
-        answer: require("../assets/patternRecognition/6-angle.png"),
+        options: [require("../assets/patternRecognition/triangle.png"), require("../assets/patternRecognition/4-angle.png"), require("../assets/patternRecognition/5-angle.png"), require("../assets/patternRecognition/6-angle.png")],
         explanation: "The pattern in this sequence involves the number of angles in each shape. We start with a 3-angle shape, then move to a 4-angle shape, and then a 5-angle shape. To find the next shape, we need to continue the pattern by adding one more angle. So, the next shape will have 6 angles. Therefore, the correct answer is a 6-angle shape, as it follows the established pattern of increasing the number of angles by one with each step."
 
     },
@@ -93,10 +89,7 @@ const patternRecognition = [
         description: "What comes next?",
         id: "Level 3",
         image: require("../assets/patternRecognition/question_10.png"),
-        option1: require("../assets/patternRecognition/question_10_answer_1.png"),
-        option2: require("../assets/patternRecognition/question_10_answer_2.png"),
-        option3: require("../assets/patternRecognition/question_10_answer_3.png"),
-        option4: require("../assets/patternRecognition/question_10_answer_4.png"),
+        options: [require("../assets/patternRecognition/question_10_answer_1.png"), require("../assets/patternRecognition/question_10_answer_2.png"), require("../assets/patternRecognition/question_10_answer_3.png"), require("../assets/patternRecognition/question_10_answer_4.png")],
         answer: require("../assets/patternRecognition/question_10_answer_1.png"),
         explanation: "The pattern involves the rotation of the line, every second object has a cicrle on the line.By following the rotation of the line for 90 degrees and knowing that the 3rd object has a circle on the line, the correct answer is number 1."
 
@@ -106,10 +99,7 @@ const patternRecognition = [
         description: "What comes next?",
         id: "Level 3",
         image: require("../assets/patternRecognition/question_11.png"),
-        option1: require("../assets/patternRecognition/question_11_answer_1.png"),
-        option2: require("../assets/patternRecognition/question_11_answer_2.png"),
-        option3: require("../assets/patternRecognition/question_11_answer_3.png"),
-        option4: require("../assets/patternRecognition/question_11_answer_4.png"),
+        options: [require("../assets/patternRecognition/question_11_answer_1.png"), require("../assets/patternRecognition/question_11_answer_2.png"), require("../assets/patternRecognition/question_11_answer_3.png"), require("../assets/patternRecognition/question_11_answer_4.png"),],
         answer: require("../assets/patternRecognition/question_11_answer_4.png"),
         explanation: "The pattern involves two arrows, the secont arrow always rotates 90 degrees clock-wise, therefor the correct answer is number 4"
 
@@ -119,11 +109,7 @@ const patternRecognition = [
         description: "What comes next?",
         id: "Level 3",
         image: require("../assets/patternRecognition/question_12.png"),
-        options: [require("../assets/patternRecognition/question_12_answer_1.png"), 
-        require("../assets/patternRecognition/question_12_answer_2.png"),
-        require("../assets/patternRecognition/question_12_answer_3.png"),
-        require("../assets/patternRecognition/question_12_answer_4.png"),
-    ],
+        options: [require("../assets/patternRecognition/question_12_answer_1.png"), require("../assets/patternRecognition/question_12_answer_2.png"), require("../assets/patternRecognition/question_12_answer_3.png"), require("../assets/patternRecognition/question_12_answer_4.png"),],
         answer:require("../assets/patternRecognition/question_12_answer_3.png"),
         explanation:"The pattern involves a reflection of an object",
 
@@ -133,10 +119,7 @@ const patternRecognition = [
         description: "What comes next?",
         id: "Level 4",
         image: require("../assets/patternRecognition/question_12.png"),
-        option1: require("../assets/patternRecognition/question_12_answer_1.png"),
-        option2: require("../assets/patternRecognition/question_12_answer_2.png"),
-        option3: require("../assets/patternRecognition/question_12_answer_3.png"),
-        option4: require("../assets/patternRecognition/question_12_answer_4.png"),
+        options: [require("../assets/patternRecognition/question_12_answer_1.png"), require("../assets/patternRecognition/question_12_answer_2.png"), require("../assets/patternRecognition/question_12_answer_3.png"), require("../assets/patternRecognition/question_12_answer_4.png")],
         answer:require("../assets/patternRecognition/question_12_answer_3.png"),
         explanation:"The pattern involves a reflection of an object",
 

@@ -14,6 +14,7 @@ import ProgressBar from "../components/Atoms/DialogueBar";
 
 import { logicProblems } from "../data/wordProblems";
 import { numberPuzzles } from "../data/numberPuzzles.js";
+import { patternRecognition } from "../data/patternRecognition.js";
 import { AppContext } from '../context/AppContext.js';
 
 const screenWidth = Dimensions.get("window").width;
@@ -27,7 +28,7 @@ export default function WordProblemsPage({ navigation }) {
 
     const { colors } = useTheme();
 
-    const [data, setData] = useState(puzzleType.toLowerCase() === 'numbers problems' ? numberPuzzles : puzzleType.toLowerCase() === 'logic problems' ? logicProblems : logicProblems);
+    const [data, setData] = useState(puzzleType.toLowerCase() === 'numbers problems' ? numberPuzzles : puzzleType.toLowerCase() === 'logic problems' ? logicProblems : patternRecognition);
     const [number, setNumber] = useState(0);
     const [attempt, setAttempt] = useState(3);
 
