@@ -74,7 +74,7 @@ export default function WordProblemsPage({ navigation }) {
     }, [currentScreen])
 
     const handleSend = async () => {
-        console.log("Start ai test");
+        console.log("Start AI Response");
         const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
             body: JSON.stringify({question: `Hey Wimmy. Give me a broken down hint of this question: "${data[quesIndex[currentQuestion]].description}". Keep the explanation to one short paragraph. This is the answer to the question: "${data[quesIndex[currentQuestion]].answer}".Don't give the answer. just hint to it.`}),
             method: "post"
@@ -128,7 +128,7 @@ export default function WordProblemsPage({ navigation }) {
             
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={184} width={184} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
@@ -181,7 +181,7 @@ export default function WordProblemsPage({ navigation }) {
 
             {currentScreen === 2 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={120} width={120} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
@@ -233,7 +233,7 @@ export default function WordProblemsPage({ navigation }) {
 
             {currentScreen === 3 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={120} width={120} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
@@ -285,7 +285,7 @@ export default function WordProblemsPage({ navigation }) {
 
             {currentScreen === 4 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={120} width={120} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
