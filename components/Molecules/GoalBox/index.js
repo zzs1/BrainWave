@@ -19,12 +19,17 @@ export default function GoalBox({
       borderColor: colors.dialogueBorder
     }}>
         <Text style={{
-          ...styles.header,
-          color: colors.text
+          fontSize: 20,
+          fontWeight: '900',
+          color: colors.text,
+          position: 'absolute',
+          left: 10,
+          top: 10,
         }}>Daily Goal</Text>
         <Text style={{
           fontSize: 16,
-          color: colors.text
+          color: colors.text,
+          paddingTop: 20,
         }}>{level}</Text>
         <View style={styles.progContainer}>
           <ProgressBar fill={prog}/>
@@ -53,10 +58,7 @@ const styles = StyleSheet.create({
     height: 140,
     borderWidth: 3
   },
-  header: {
-    fontSize: 24,
-    fontWeight: '900',
-  },
+
   progContainer: {
     display: 'flex',
     flexDirection: 'column',

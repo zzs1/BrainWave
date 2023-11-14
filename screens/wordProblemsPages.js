@@ -105,7 +105,10 @@ export default function WordProblemsPage({ navigation }) {
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
 
                     <View style={styles.question}>
-                        <Text>Attempts: {attempt}</Text>
+                        <Text 
+                        style={{
+                            color: colors.textColour,
+                        }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
@@ -146,7 +149,9 @@ export default function WordProblemsPage({ navigation }) {
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
 
                     <View style={styles.question}>
-                        <Text>Attempts: {attempt}</Text>
+                        <Text style={{
+                            color: colors.textColour,
+                        }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
@@ -187,7 +192,9 @@ export default function WordProblemsPage({ navigation }) {
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
 
                     <View style={styles.question}>
-                        <Text>Attempts: {attempt}</Text>
+                        <Text style={{
+                            color: colors.textColour,
+                        }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
@@ -228,7 +235,9 @@ export default function WordProblemsPage({ navigation }) {
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
 
                     <View style={styles.question}>
-                        <Text>Attempts: {attempt}</Text>
+                        <Text style={{
+                            color: colors.textColour,
+                        }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>

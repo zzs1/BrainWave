@@ -10,6 +10,8 @@ import PrimaryButton from "../components/Atoms/PrimaryButton";
 import WimmyPopup from "../components/Molecules/WimmyPopup";
 import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
 import TopBar from "../components/Molecules/TopBar";
+import LevelBox from "../components/Atoms/LevelBox";
+
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -24,23 +26,9 @@ export default function AccountPages({ navigation }) {
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
     
-    const data = {
-        data: [0.4]
-    };
 
     const currentDate = new Date();
 
-
-    const chartConfig = {
-        backgroundColor: colors.dialogueBG,
-        backgroundGradientFrom: colors.dialogueBG,
-        backgroundGradientTo: colors.dialogueBG,
-        decimalPlaces: 1,
-        color: (opacity = 1) => `rgba(${colors.chartBarColor}, ${opacity})`,
-        labelColor: (opacity = 1) => colors.chartBarLabel,
-        strokeWidth: 2,
-        barPercentage: 0.5,
-    }
 
 
     function handleStartButton() {
@@ -225,37 +213,19 @@ export default function AccountPages({ navigation }) {
                             flexDirection: 'column',
                             gap: 14,
                         }}>
-                            <View style={{
-                                ...styles.box,
-                                height: 200,
-                                borderColor: colors.dialogueBorder,
-                            }}>
-                                <Text style={styles.title}>LEVEL</Text>
-                                <View style={{
-                                    display: 'flex',
-                                    alignItems: 'center'
-                                }}>
-                                    <ProgressChart
-                                        data={data}
-                                        width={150}
-                                        height={150}
-                                        strokeWidth={16}
-                                        radius={32}
-                                        chartConfig={chartConfig}
-                                        hideLegend={true}
-                                        style={{
-                                            borderRadius: 20
-                                        }}
-                                    />
-                                </View>
-                            </View>
+
+                 <LevelBox />
 
                             <View style={{
                                 ...styles.box,
                                 height: 166,
+                                backgroundColor: colors.dialogueBG,
                                 borderColor: colors.dialogueBorder,
+                                
                             }}>
-                                <Text style={styles.title}>My Wimmy</Text>
+                                <Text style={{
+                                    ...styles.title,
+                                    color: colors.text,}}>My Wimmy</Text>
                                 <Image
                                     source={require('../assets/Icons/wimmySmall.png')}
                                     style={{
@@ -276,14 +246,18 @@ export default function AccountPages({ navigation }) {
 
                             <View style={{
                                 ...styles.box,
-                                height: 115,
+                                backgroundColor: colors.dialogueBG,
                                 borderColor: colors.dialogueBorder,
+                                height: 115,
                             }}>
-                                <Text style={styles.title}>Streaks</Text>
+                                <Text style={{
+                                    ...styles.title,
+                                    color: colors.text,}}>Streaks</Text>
                                 <Text style={{
                                     fontSize: 16,
                                     textAlign: 'center',
                                     paddingTop: 5,
+                                    color: colors.text,
                                 }}>10 Days</Text>
 
                                 <View style={{
@@ -294,20 +268,33 @@ export default function AccountPages({ navigation }) {
                                     paddingRight: 16,
                                     paddingTop: 10,
                                 }}>
-                                    <Text style={styles.days}>{currentDate.getDate() - 2}</Text>
-                                    <Text style={styles.days}>{currentDate.getDate() - 1}</Text>
-                                    <Text style={styles.days}>{currentDate.getDate()}</Text>
-                                    <Text style={styles.days}>{currentDate.getDate() + 1}</Text>
-                                    <Text style={styles.days}>{currentDate.getDate() + 2}</Text>
+                                    <Text style={{
+                                        ...styles.days,
+                                        color: colors.text,}}>{currentDate.getDate() - 2}</Text>
+                                    <Text style={{
+                                        ...styles.days,
+                                        color: colors.text,}}>{currentDate.getDate() - 1}</Text>
+                                    <Text style={{
+                                        ...styles.days,
+                                        color: colors.text,}}>{currentDate.getDate()}</Text>
+                                    <Text style={{
+                                        ...styles.days,
+                                        color: colors.text,}}>{currentDate.getDate() + 1}</Text>
+                                    <Text style={{
+                                        ...styles.days,
+                                        color: colors.text,}}>{currentDate.getDate() + 2}</Text>
                                 </View>
                             </View>
 
                             <View style={{
                                 ...styles.box,
                                 height: 96,
+                                backgroundColor: colors.dialogueBG,
                                 borderColor: colors.dialogueBorder,
                             }}>
-                                <Text style={styles.title}>WIMS</Text>
+                                <Text style={{
+                                    ...styles.title,
+                                    color: colors.text,}}>WIMS</Text>
                                 <View style={{
                                     display: 'flex',
                                     paddingTop: 15,
@@ -317,10 +304,12 @@ export default function AccountPages({ navigation }) {
                                 }}>
                                     <Text style={{
                                         fontSize: 30,
+                                        color: colors.text,
                                     }}>1500</Text>
                                     <Text style={{
                                         fontSize: 16,
                                         paddingLeft: 5,
+                                        color: colors.text,
                                     }}>Wims</Text>
                                 </View>
                             </View>
@@ -417,9 +406,11 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 20,
         borderTopRightRadius: 20,
         borderWidth: 2,
+        width: 160,
     },
     days: {
-        fontSize: 22,
+        fontSize: 16,
+        paddingRight: 5,
     }
 
 });

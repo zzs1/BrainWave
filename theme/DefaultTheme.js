@@ -35,6 +35,7 @@ const DefaultTheme = {
         headerColour: '#393939',
         chartBarLabel: '#0C7BDC',
         chartBarColor: '12, 123, 220',
+        textColour: '#1E1E1E',
     },
     colorBlindColors: {
         primaryColor: '#584B9D',

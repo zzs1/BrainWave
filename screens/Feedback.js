@@ -2,15 +2,20 @@ import React, { useState } from "react";
 
 import { Image } from "expo-image"
 import { SafeAreaView, StyleSheet, Text, Pressable, View } from "react-native"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from "@react-navigation/native"
+import { useTheme } from "@react-navigation/native";
 
 import { AppContext } from '../context/AppContext.js';
 
 import QuestionBox from "../components/Atoms/QuestionBox"
 import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
+import { useStreak } from "use-streak";
 
 export default function Feedback({ navigation }) {
+
+    const { colors } = useTheme();
     const { level, setLevel } = React.useContext(AppContext);
 
     const route = useRoute();
@@ -24,6 +29,9 @@ export default function Feedback({ navigation }) {
         }
     }
 
+    // const today = new Date();
+    // const {currentCount} = useStreak(AsyncStorage, today);
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.main_container}>
@@ -33,8 +41,13 @@ export default function Feedback({ navigation }) {
 
 
         { currentScreen === 1 && (
-            <View >
-                <Text style={styles.header}>Great Job</Text>
+            <View style ={{
+                
+            }}>
+                <Text style={{
+                    ...styles.header,
+                        color: colors.navText,
+                    }}>Great Job</Text>
 
                 <View style={styles.question_box} >
                     <QuestionBox style={styles.text} text="This section contains a list of feedback. Break down the questions and the logic behind them, let users know what they need to work on as well as a list of resources that can also help " />
@@ -47,13 +60,16 @@ export default function Feedback({ navigation }) {
         { currentScreen === 2 && (
          <View>
             <View  style ={{
-                ...styles.box
+                ...styles.box,
+                backgroundColor: colors.dialogueBG,
             }}>
                 <Text style ={{
                     fontSize: 20,
+                    color: colors.navText,
                 }}>Lesson Complete!</Text>
-                <Text  style ={{
+                <Text style ={{
                     fontSize: 20,
+                    color: colors.navText,
                 }}>Level: {level}</Text>
                  <Image />
             </View>
@@ -65,14 +81,16 @@ export default function Feedback({ navigation }) {
          <View>
           <View>
             <View style ={{
-                ...styles.box
+                ...styles.box,
+                backgroundColor: colors.dialogueBG,
             }}>
+            <Text>🔥</Text>
+            {/* <Text style ={{
+                    fontSize: 20,
+                }}>{currentCount} day {currentCount > 1 ? "s" : ""}</Text>
             <Text style ={{
                     fontSize: 20,
-                }}>1</Text>
-            <Text style ={{
-                    fontSize: 20,
-                }}>day streaks</Text>
+                }}>day streaks</Text> */}
             </View>
           </View>
           <PrimaryButton name = "NEXT" onPress={handleStartButton}/>
@@ -83,12 +101,16 @@ export default function Feedback({ navigation }) {
         { currentScreen === 4 && (
         <View>
             <View  style ={{
-                ...styles.box
+                ...styles.box,
+                backgroundColor: colors.dialogueBG,
             }}>
                 <Text style ={{
                     fontSize: 20,
+                    color: colors.navText,
                 }}>Points: {points}</Text>
-                <Text>wims earned!</Text>
+                <Text style = {{
+                    color: colors.navText,
+                }}>wims earned!</Text>
    
             </View>
             <View style={styles.button}>

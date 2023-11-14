@@ -35,6 +35,7 @@ const DarkTheme = {
         headerColour: '#393939',
         chartBarLabel: '#CDDDEC',
         chartBarColor: '205, 221, 236',
+        textColour: 'white',
     },
     colorBlindColors: {
         primaryColor: '#584B9D',

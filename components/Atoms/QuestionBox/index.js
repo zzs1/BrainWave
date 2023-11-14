@@ -1,9 +1,17 @@
 import { StyleSheet, View, Text, TextInput} from 'react-native';
+import { useTheme } from "@react-navigation/native";
 
 export default function QuestionBox({ text}) {
+
+    const { colors } = useTheme();
+
+
     return(
         <View>
-            <TextInput style={styles.box}
+            <TextInput style={{
+                ...styles.box,
+                backgroundColor: colors.dialogueBG,
+                color:colors.text}}
             value={text}
             multiline={true}
             placeholder=''></TextInput>
