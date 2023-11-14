@@ -33,6 +33,9 @@ export default function App() {
   const [isColorBlind, setIsColorBlind] = useState(false);
   const [puzzleType, setPuzzleType] = useState('');
   const [level, setLevel] = useState(1);
+  const [logicLevel, setLogicLevel] = useState(1);
+  const [numberLevel, setNumberLevel] = useState(1);
+  const [patternLevel, setPatternLevel] = useState(1)
   const [wimPoints, setWimPoints] = useState(0);
 
   const appContext = useMemo(() => {
@@ -45,8 +48,14 @@ export default function App() {
       setPuzzleType,
       wimPoints,
       setWimPoints,
+      logicLevel,
+      setLogicLevel,
+      numberLevel,
+      setNumberLevel,
+      patternLevel,
+      setPatternLevel,
       level,
-      setLevel,
+      setLevel
     }
   });
 

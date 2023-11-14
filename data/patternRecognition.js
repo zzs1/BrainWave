@@ -1,7 +1,7 @@
 export const patternRecognition = [
     {
         title: "Question 1",
-        question: "What comes next 7, 9, 11, ?",
+        description: "What comes next 7, 9, 11, ?",
         id: "Level 1",
         options: ['15', '13', '18', '12'],
         answer: '13',
@@ -11,7 +11,7 @@ export const patternRecognition = [
 
     {
         title: "Question 2",
-        question: "What comes next? 3 6 9 12 ?",
+        description: "What comes next? 3 6 9 12 ?",
         id: "Level 1",
         options: ['14', '21', '15', '18'],
         answer: '15',
@@ -20,7 +20,7 @@ export const patternRecognition = [
     },
     {
         title: "Question 3",
-        question: "What comes next 72, 66, 60, 54, ?",
+        description: "What comes next 72, 66, 60, 54, ?",
         id: "Level 1",
         options: ['50', '48', '60', '46'],
         answer: '48',
@@ -29,7 +29,7 @@ export const patternRecognition = [
     },
     {
         title: "Question 4",
-        question: "What comes next 66, 64, 62, 60,?",
+        description: "What comes next 66, 64, 62, 60,?",
         id: "Level 1",
         options: ['62', '58', '56', '54'],
         answer: '58',
@@ -37,7 +37,7 @@ export const patternRecognition = [
     },
     {
         title: "Question 5",
-        question: "What comes next 1, 2, 4, 8, ?",
+        description: "What comes next 1, 2, 4, 8, ?",
         id: "Level 2",
         options: ['10', '12', '14', '16'],
         answer: '16',
@@ -46,7 +46,7 @@ export const patternRecognition = [
     },
     {
         title: "Question 6",
-        question: "What comes next 1, 5, 25, 125, ?",
+        description: "What comes next 1, 5, 25, 125, ?",
         id: "Level 2",
         options: ['250', '625', '375', '450'],
         answer: '625',
@@ -55,7 +55,7 @@ export const patternRecognition = [
     },
     {
         title: "Question 7",
-        question: "What comes next 243, 81, 27, 9, ?",
+        description: "What comes next 243, 81, 27, 9, ?",
         id: "Level 2",
         options: ['7', '6', '3', '5'],
         answer: '3',
