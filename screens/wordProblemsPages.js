@@ -35,6 +35,9 @@ export default function WordProblemsPage({ navigation }) {
     const [isActive, setIsActive] = useState(false);
     const [aiResponse, setAIResponse] = useState('');
 
+    const [showCorrectPopup, setShowCorrectPopup] = useState(false);
+    const [showIncorrectPopup, setShowIncorrectPopup] = useState(false);
+
     const questionSet = () => {
         if(currentLevel === 1) {
             return [0, 1, 2, 3]
@@ -72,6 +75,10 @@ export default function WordProblemsPage({ navigation }) {
         if(choice === answer) {
             setNumber(number + 1);
             console.log(number);
+            setShowCorrectPopup(true);
+            setTimeout(() => {
+                setShowCorrectPopup(false);
+
             if (currentScreen < 4) {
                 setAttempt(3);
                 setCurrentQuestion(currentQuestion + 1);
@@ -81,8 +88,12 @@ export default function WordProblemsPage({ navigation }) {
             } else {
                 navigation.push("Feedback", { points: number });
             }
+            }, 2000);
         } else {
             setAttempt(attempt - 1)
+            setShowIncorrectPopup(true);
+            setTimeout(() => {
+                setShowIncorrectPopup(false);
             if (attempt === 1) {
                 if (currentScreen < 4) {
                     setAttempt(3);
@@ -94,6 +105,7 @@ export default function WordProblemsPage({ navigation }) {
                     navigation.push("Feedback", { points: number });
                 }
             }
+            }, 2000);
         }
     }
 
@@ -104,7 +116,16 @@ export default function WordProblemsPage({ navigation }) {
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
-
+                    {showCorrectPopup && (
+                        <View style={styles.correctPopup}>
+                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        </View>
+                    )}
+                    {showIncorrectPopup && (
+                        <View style={styles.incorrectPopup}>
+                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        </View>
+                    )}  
                     <View style={styles.question}>
                         <Text 
                         style={{
@@ -148,7 +169,16 @@ export default function WordProblemsPage({ navigation }) {
             {currentScreen === 2 && (
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
-
+                    {showCorrectPopup && (
+                        <View style={styles.correctPopup}>
+                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        </View>
+                    )}
+                    {showIncorrectPopup && (
+                        <View style={styles.incorrectPopup}>
+                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        </View>
+                    )}  
                     <View style={styles.question}>
                         <Text style={{
                             color: colors.textColour,
@@ -191,7 +221,16 @@ export default function WordProblemsPage({ navigation }) {
             {currentScreen === 3 && (
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
-
+                    {showCorrectPopup && (
+                        <View style={styles.correctPopup}>
+                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        </View>
+                    )}
+                    {showIncorrectPopup && (
+                        <View style={styles.incorrectPopup}>
+                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        </View>
+                    )}  
                     <View style={styles.question}>
                         <Text style={{
                             color: colors.textColour,
@@ -234,7 +273,16 @@ export default function WordProblemsPage({ navigation }) {
             {currentScreen === 4 && (
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={require("../assets/placeHolder/Placeholder.png")} height={184} width={184} />
-
+                    {showCorrectPopup && (
+                        <View style={styles.correctPopup}>
+                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        </View>
+                    )}
+                    {showIncorrectPopup && (
+                        <View style={styles.incorrectPopup}>
+                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        </View>
+                    )}  
                     <View style={styles.question}>
                         <Text style={{
                             color: colors.textColour,
@@ -335,5 +383,25 @@ const styles = StyleSheet.create({
     tail: {
         position: 'absolute',
         bottom: 60
-    }
+    },
+    correctPopup: {
+        position: 'absolute',
+        top: 20,
+        left: 0,
+        right: 0,
+        backgroundColor: 'green',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    incorrectPopup: {
+        position: 'absolute',
+        top: 20,
+        left: 0,
+        right: 0,
+        backgroundColor: 'red', 
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
 })
