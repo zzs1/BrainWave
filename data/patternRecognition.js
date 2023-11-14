@@ -46,7 +46,6 @@ const patternRecognition = [
         option4: 54,
         answer: 58,
         explanation:"The numbers are going down by 2 each time. We start with 66, then subtract 2 to get 64, subtract 2 again to get 62, and so on. To find the next number, we subtract 2 from 60. So, the answer is 58 because 60 - 2 = 58 . That's how the pattern works in this sequence!"
-
     },
     {
         title: "Question 5",

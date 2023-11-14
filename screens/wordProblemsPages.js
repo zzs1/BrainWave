@@ -60,6 +60,18 @@ export default function WordProblemsPage({ navigation }) {
     const [quesIndex, setQuesIndex] = useState(questionSet());
     const [optIndex, setOptIndex] = useState(shuffle([0, 1, 2, 3]));
 
+    useEffect(() => {
+        if (currentScreen === 1) {
+            handleSend();
+        } else if(currentScreen === 2) {
+            handleSend();
+        } else if(currentScreen === 3) {
+            handleSend();
+        } else if(currentScreen === 4) {
+            handleSend();
+        }
+    }, [currentScreen])
+
     const handleSend = async () => {
         console.log("Start ai test");
         const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
@@ -323,7 +335,6 @@ export default function WordProblemsPage({ navigation }) {
             )}
 
             <Pressable style={styles.tail} onPress={() => {
-                handleSend();
                 setIsActive(true)
             }}>
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} />
