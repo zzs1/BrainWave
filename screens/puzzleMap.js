@@ -2,7 +2,6 @@ import React from 'react';
 
 import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@react-navigation/native';
 
@@ -17,12 +16,7 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function PuzzleMap({ navigation }) {
-  const { level } = React.useContext(AppContext);
-
-  const currLevel = 5
-
-  const route = useRoute();
-  const title = route.params.title;
+  const { level, puzzleType } = React.useContext(AppContext);
 
   const { colors } = useTheme();
 
@@ -30,7 +24,7 @@ export default function PuzzleMap({ navigation }) {
     <SafeAreaView style={styles.container}>
       <WimmyPopup title='WIMMY SAYS...' desc="Let's start solving some puzzles!" instuction='tap to continue' />
       <View style={styles.gradient}>
-        <PuzzleMapTitle title={title} />
+        <PuzzleMapTitle title={puzzleType} />
       </View>
       <View style={styles.islandCont}>
         <View style={styles.islandRight}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useState, useEffect } from 'react';
@@ -18,6 +18,9 @@ import { sectionCard } from '../data/sectionCards.js';
 import { AppContext } from '../context/AppContext.js';
 
 import WimmyPopup from '../components/Molecules/WimmyPopup';
+
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
 
 export default function HomePage({ navigation }) {
   const { puzzleType, setPuzzleType } = React.useContext(AppContext);
@@ -96,7 +99,10 @@ export default function HomePage({ navigation }) {
         />
         <CarouselButton
           btnText="Let's Go"
-          onPress={() => navigation.push('PuzzleMap', { title: data[number].title })}
+          onPress={() => {
+            setPuzzleType(data[number].title);
+            navigation.push('PuzzleMap');
+          }}
         />
         <MoveButton
           direction='right'

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Image } from "expo-image"
-import { SafeAreaView, StyleSheet, Text, Pressable, View } from "react-native"
+import { SafeAreaView, StyleSheet, Text, Pressable, View, Dimensions } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from "@react-navigation/native"
 import { useTheme } from "@react-navigation/native";
@@ -13,6 +13,9 @@ import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
 import { useStreak } from "use-streak";
 
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
+
 export default function Feedback({ navigation }) {
 
     const { colors } = useTheme();
@@ -23,8 +26,8 @@ export default function Feedback({ navigation }) {
 
     const [currentScreen, setCurrentScreen] = useState(1);
 
-    function handleStartButton(){
-        if (currentScreen < 4){
+    function handleStartButton() {
+        if (currentScreen < 4) {
             setCurrentScreen(currentScreen + 1);
         }
     }
@@ -34,159 +37,140 @@ export default function Feedback({ navigation }) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.main_container}>
-                <View style={styles.image_box}>
-                    <Image source={require("../assets/wimmyFront/Wimmy.png")} height={187} width={270} />
-                </View>
+            <View style={styles.image_box}>
+                <Image source={require("../assets/wimmyFront/Wimmy.png")} height={187} width={270} />
+            </View>
 
-
-        { currentScreen === 1 && (
-            <View style ={{
-                
-            }}>
-                <Text style={{
-                    ...styles.header,
+            {currentScreen === 1 && (
+                <View style={styles.main_container}>
+                    <Text style={{
+                        ...styles.header,
                         color: colors.navText,
                     }}>Great Job</Text>
 
-                <View style={styles.question_box} >
-                    <QuestionBox style={styles.text} text="This section contains a list of feedback. Break down the questions and the logic behind them, let users know what they need to work on as well as a list of resources that can also help " />
-                    <PrimaryButton name = "NEXT" onPress={handleStartButton}/>
+                    <QuestionBox text="This section contains a list of feedback. Break down the questions and the logic behind them, let users know what they need to work on as well as a list of resources that can also help " />
+                    <PrimaryButton name="NEXT" onPress={handleStartButton} />
                 </View>
+            )}
 
-            </View>
-        )}
+            {currentScreen === 2 && (
+                <View style={styles.main_container}>
+                    <View style={{
+                        ...styles.box,
+                        backgroundColor: colors.dialogueBG,
+                        borderColor: colors.dialogueBorder,
+                    }}>
+                        <Text style={{
+                            fontSize: 20,
+                            color: colors.navText,
+                        }}>Lesson Complete!</Text>
+                        <Text style={{
+                            fontSize: 20,
+                            color: colors.navText,
+                        }}>Level: {level}</Text>
+                        <Image />
+                    </View>
+                    <PrimaryButton name="NEXT" onPress={handleStartButton} />
+                </View>
+            )}
 
-        { currentScreen === 2 && (
-         <View>
-            <View  style ={{
-                ...styles.box,
-                backgroundColor: colors.dialogueBG,
-            }}>
-                <Text style ={{
-                    fontSize: 20,
-                    color: colors.navText,
-                }}>Lesson Complete!</Text>
-                <Text style ={{
-                    fontSize: 20,
-                    color: colors.navText,
-                }}>Level: {level}</Text>
-                 <Image />
-            </View>
-            <PrimaryButton name = "NEXT" onPress={handleStartButton}/>
-         </View>
-        )}
+            {currentScreen === 3 && (
+                <View style={styles.main_container}>
+                    <View >
+                        <View style={{
+                            ...styles.box,
+                            backgroundColor: colors.dialogueBG,
+                            borderColor: colors.dialogueBorder,
+                        }}>
+                            <Text>🔥</Text>
+                            {/* <Text style ={{
+                                        fontSize: 20,
+                                    }}>{currentCount} day {currentCount > 1 ? "s" : ""}</Text>
+                                <Text style ={{
+                                        fontSize: 20,
+                                    }}>day streaks</Text> */}
+                        </View>
+                    </View>
+                    <PrimaryButton name="NEXT" onPress={handleStartButton} />
+                </View>
+            )}
 
-        { currentScreen === 3 && (
-         <View>
-          <View>
-            <View style ={{
-                ...styles.box,
-                backgroundColor: colors.dialogueBG,
-            }}>
-            <Text>🔥</Text>
-            {/* <Text style ={{
-                    fontSize: 20,
-                }}>{currentCount} day {currentCount > 1 ? "s" : ""}</Text>
-            <Text style ={{
-                    fontSize: 20,
-                }}>day streaks</Text> */}
-            </View>
-          </View>
-          <PrimaryButton name = "NEXT" onPress={handleStartButton}/>
-         </View>
-        )}
 
-        
-        { currentScreen === 4 && (
-        <View>
-            <View  style ={{
-                ...styles.box,
-                backgroundColor: colors.dialogueBG,
-            }}>
-                <Text style ={{
-                    fontSize: 20,
-                    color: colors.navText,
-                }}>Points: {points}</Text>
-                <Text style = {{
-                    color: colors.navText,
-                }}>wims earned!</Text>
-   
-            </View>
-            <View style={styles.button}>
+            {currentScreen === 4 && (
+                <View style={styles.main_container}>
+                    <View style={{
+                        ...styles.box,
+                        backgroundColor: colors.dialogueBG,
+                        borderColor: colors.dialogueBorder,
+                    }}>
+                        <Text style={{
+                            fontSize: 20,
+                            color: colors.navText,
+                        }}>Points: {points}</Text>
+                        <Text style={{
+                            color: colors.navText,
+                        }}>wims earned!</Text>
+
+                    </View>
                     <PrimaryButton name="NEXT" onPress={() => {
-                        navigation.push('PuzzleMap', { title: 'NUMBER PROBLEMS' });
+                        navigation.push('PuzzleMap');
                         setLevel(level + 1);
                     }} />
                 </View>
-        </View>
-        )}
+            )}
 
-            </View>
-            <NavBar color='#0C7BDC' navigation={navigation} />
+            <NavBar navigation={navigation} />
         </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({
     container: {
+        paddingTop: 70,
         display: 'flex',
         flexDirection: "column",
         alignItems: "center",
-        height: '100%'
+        height: screenHeight - 25,
+        width: screenWidth,
     },
     main_container: {
-        height: '100vh',
-        width: '309vw',
-    },
-    navbar_container: {
-        marginTop: 24,
+        height: 370,
+        width: screenWidth,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     image_box: {
         width: '100vw',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 30
+        marginBottom: 30
     },
     question_box: {
         marginTop: 20,
         marginLeft: 20,
         fontSize: 20
-
     },
     button: {
-        paddingTop: 25,
-        paddingLeft: 15
+        margin: 20
     },
-    //  text:{
-    //     fontSize: 20
-    //  },
     header: {
         fontSize: 30,
         height: 35,
         fontWeight: 'bold',
-        color: '#393939',
-        marginLeft: 110,
-        marginTop: 10,
-        // display:'flex',
-        // justifyContent:'center',
-        // alignItems:'center'
     },
     box: {
-        minHeight:67,
+        minHeight: 70,
         height: 'auto',
         width: 315,
         borderRadius: 20,
-        borderColor:'#C8C8C8',
         borderWidth: 2,
-        backgroundColor: '#F9F9F9',
         justifyContent: 'center',
-        alignItems:'center',
-        paddingTop: 10,
-        paddingBottom:10,
+        alignItems: 'center',
+        padding: 10,
         fontSize: 16,
-        textAlign:'auto',
-        paddingLeft: 10,
-        paddingRight: 10
+        textAlign: 'auto',
+        margin: 20
     }
 
 })
