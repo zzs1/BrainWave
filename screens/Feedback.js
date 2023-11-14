@@ -62,11 +62,11 @@ export default function Feedback({ navigation }) {
                     }}>
                         <Text style={{
                             fontSize: 20,
-                            color: colors.navText,
+                            color: colors.text, 
                         }}>Lesson Complete!</Text>
                         <Text style={{
                             fontSize: 20,
-                            color: colors.navText,
+                            color: colors.text, 
                         }}>Level: {level}</Text>
                         <Image />
                     </View>
@@ -105,10 +105,10 @@ export default function Feedback({ navigation }) {
                     }}>
                         <Text style={{
                             fontSize: 20,
-                            color: colors.navText,
+                            color: colors.text, 
                         }}>Points: {points}</Text>
                         <Text style={{
-                            color: colors.navText,
+                                color: colors.text, 
                         }}>wims earned!</Text>
 
                     </View>
