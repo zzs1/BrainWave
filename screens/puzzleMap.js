@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,9 +16,10 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function PuzzleMap({ navigation }) {
-  const { level, puzzleType } = React.useContext(AppContext);
-
+  const { puzzleType, logicLevel, numberLevel, patternLevel } = React.useContext(AppContext);
   const { colors } = useTheme();
+
+  const [level, setLevel] = useState(puzzleType.toLowerCase() === 'numbers problems' ? numberLevel : puzzleType.toLowerCase() === 'logic problems' ? logicLevel : patternLevel);
 
   return (
     <SafeAreaView style={styles.container}>
