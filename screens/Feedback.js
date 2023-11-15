@@ -19,7 +19,7 @@ const screenHeight = Dimensions.get("window").height;
 export default function Feedback({ navigation }) {
 
     const { colors } = useTheme();
-    const { level, setLevel } = React.useContext(AppContext);
+    const { logicLevel, setLogicLevel, numberLevel, setNumberLevel, patternLevel, setPatternLevel, puzzleType } = React.useContext(AppContext);
 
     const route = useRoute();
     const points = route.params.points;
@@ -67,7 +67,7 @@ export default function Feedback({ navigation }) {
                         <Text style={{
                             fontSize: 20,
                             color: colors.text, 
-                        }}>Level: {level}</Text>
+                        }}>Level: {puzzleType.toLowerCase() === 'numbers problems' ? numberLevel : puzzleType.toLowerCase() === 'logic problems' ? logicLevel : patternLevel}</Text>
                         <Image />
                     </View>
                     <PrimaryButton name="NEXT" onPress={handleStartButton} />
@@ -113,8 +113,8 @@ export default function Feedback({ navigation }) {
 
                     </View>
                     <PrimaryButton name="NEXT" onPress={() => {
+                        puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : setPatternLevel(patternLevel + 1)
                         navigation.push('PuzzleMap');
-                        setLevel(level + 1);
                     }} />
                 </View>
             )}
