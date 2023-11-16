@@ -26,7 +26,8 @@ export default function TopBar({ navigation, points=0 }) {
             />
             <Text style={{
               fontSize: 16,
-              color: colors.text
+              color: colors.text,
+              marginLeft: 10
             }}>{points}</Text>
           </View>
 
