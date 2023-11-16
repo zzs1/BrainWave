@@ -32,10 +32,12 @@ export default function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isColorBlind, setIsColorBlind] = useState(false);
   const [puzzleType, setPuzzleType] = useState('');
-  const [level, setLevel] = useState(1);
   const [logicLevel, setLogicLevel] = useState(1);
   const [numberLevel, setNumberLevel] = useState(1);
-  const [patternLevel, setPatternLevel] = useState(1)
+  const [patternLevel, setPatternLevel] = useState(1);
+  const [numberProgress, setNumberProgress] = useState(0);
+  const [logicProgress, setLogicProgress] = useState(0);
+  const [patternProgress, setPatternProgress] = useState(0);
   const [wimPoints, setWimPoints] = useState(0);
 
   const appContext = useMemo(() => {
@@ -54,8 +56,12 @@ export default function App() {
       setNumberLevel,
       patternLevel,
       setPatternLevel,
-      level,
-      setLevel
+      numberProgress,
+      setNumberProgress,
+      logicProgress,
+      setLogicProgress,
+      patternProgress,
+      setPatternProgress
     }
   });
 
@@ -68,22 +74,11 @@ export default function App() {
               <Stack.Screen name='Landing' component={InNav} options={{headerShown: false}}/>
               <Stack.Screen name='AccessibilityPrompt' component={AccessibilityPrompt} options={{headerShown: false}}/>
               <Stack.Screen name="Intro" component={Intro} options={{headerShown: false}}/>
-              
               <Stack.Screen name='Home' component={HomePage} options={{headerShown: false}}/>
-              <Stack.Screen name='PuzzleMap' component={PuzzleMap} options={{headerShown: false}}/>
-              
+              <Stack.Screen name='PuzzleMap' component={PuzzleMap} options={{headerShown: false}}/>              
               <Stack.Screen name='AccountPages' component={AccountPages} options={{headerShown: false}}/>
-
-
               <Stack.Screen name='WordProblemsPage' component={WordProblemsPage} options={{headerShown: false}}/>
-              {/* <Stack.Screen name='WordProblems' component={WordProblem} options={{headerShown: false}}/>
-              <Stack.Screen name='WordProblemTwo' component={WordProblemTwo} options={{headerShown: false}}/>
-              <Stack.Screen name='WordProblemThree' component={WordProblemThree} options={{headerShown: false}}/>
-              <Stack.Screen name='WordProblemFour' component={WordProblemFour} options={{headerShown: false}}/> */}
-              
-
               <Stack.Screen name='Feedback' component={Feedback} options={{headerShown: false}}/>
-
               <Stack.Screen name='Settings' component={Settings} options={{headerShown: false}}/>
           </Stack.Navigator>
         </AppContext.Provider>

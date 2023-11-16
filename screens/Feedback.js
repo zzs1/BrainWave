@@ -19,7 +19,21 @@ const screenHeight = Dimensions.get("window").height;
 export default function Feedback({ navigation }) {
 
     const { colors } = useTheme();
-    const { logicLevel, setLogicLevel, numberLevel, setNumberLevel, patternLevel, setPatternLevel, puzzleType } = React.useContext(AppContext);
+    const { 
+        logicLevel, 
+        setLogicLevel, 
+        numberLevel, 
+        setNumberLevel, 
+        patternLevel, 
+        setPatternLevel, 
+        puzzleType,
+        logicProgress,
+        setLogicProgress,
+        numberProgress,
+        setNumberProgress,
+        patternProgress,
+        setPatternProgress
+    } = React.useContext(AppContext);
 
     const route = useRoute();
     const points = route.params.points;
@@ -113,7 +127,10 @@ export default function Feedback({ navigation }) {
 
                     </View>
                     <PrimaryButton name="NEXT" onPress={() => {
-                        puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : setPatternLevel(patternLevel + 1)
+                        if(points > 2) {
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : setPatternProgress(patternProgress + 20);
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : setPatternLevel(patternLevel + 1);
+                        }
                         navigation.push('PuzzleMap');
                     }} />
                 </View>
