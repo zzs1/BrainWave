@@ -23,7 +23,13 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function HomePage({ navigation }) {
-  const { puzzleType, setPuzzleType } = React.useContext(AppContext);
+  const { 
+    puzzleType, 
+    setPuzzleType,
+    numberProgress,
+    logicProgress,
+    patternProgress
+  } = React.useContext(AppContext);
 
   const [data, setData] = useState(sectionCard);
   const [number, setNumber] = useState(0);
@@ -50,14 +56,6 @@ export default function HomePage({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <AccountCard
-        name='Navid Memari'
-        level={15}
-        fontColor='#0C7BDC'
-        prog={75}
-        theme='light'
-        avatarImg={Avatar}
-      /> */}
       <TopBar navigation={navigation} />
       <View style={styles.cardContainer}>
         <View style={{
@@ -77,7 +75,7 @@ export default function HomePage({ navigation }) {
           theme='dark'
           image={data[number].image}
           title={data[number].title}
-          prog={65}
+          prog= {data[number].title.toLowerCase() === 'numbers problems' ? numberProgress : data[number].title.toLowerCase() === 'logic problems' ? logicProgress : patternProgress}
         />
         <View style={{
           marginLeft: -100,

@@ -21,7 +21,7 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function WordProblemsPage({ navigation }) {
-    const { puzzleType, level, setLevel } = React.useContext(AppContext);
+    const { puzzleType } = React.useContext(AppContext);
 
     const route = useRoute();
     const currentLevel = route.params.currLevel;
