@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import { ProgressChart } from "react-native-chart-kit";
 
@@ -12,12 +12,13 @@ import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
 import TopBar from "../components/Molecules/TopBar";
 import LevelBox from "../components/Atoms/LevelBox";
 
+import { AppContext } from '../context/AppContext.js';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function AccountPages({ navigation }) {
-
+    const { wimPoints } = React.useContext(AppContext);
     const { colors } = useTheme();
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -28,8 +29,6 @@ export default function AccountPages({ navigation }) {
     
 
     const currentDate = new Date();
-
-
 
     function handleStartButton() {
         if (currentPage < 6) {
@@ -182,7 +181,7 @@ export default function AccountPages({ navigation }) {
 
             {currentPage === 6 && (
                 <View style={styles.accountPageBody}>
-                    <TopBar navigation={navigation} />
+                    <TopBar navigation={navigation} points={wimPoints}/>
 
                     <View style={styles.avartar} >
                         <Image
@@ -305,12 +304,12 @@ export default function AccountPages({ navigation }) {
                                     <Text style={{
                                         fontSize: 30,
                                         color: colors.text,
-                                    }}>1500</Text>
+                                    }}>{wimPoints}</Text>
                                     <Text style={{
                                         fontSize: 16,
                                         paddingLeft: 5,
                                         color: colors.text,
-                                    }}>Wims</Text>
+                                    }}>Wim Coins</Text>
                                 </View>
                             </View>
 

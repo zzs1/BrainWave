@@ -32,7 +32,9 @@ export default function Feedback({ navigation }) {
         numberProgress,
         setNumberProgress,
         patternProgress,
-        setPatternProgress
+        setPatternProgress,
+        wimPoints,
+        setWimPoints
     } = React.useContext(AppContext);
 
     const route = useRoute();
@@ -43,6 +45,16 @@ export default function Feedback({ navigation }) {
     function handleStartButton() {
         if (currentScreen < 4) {
             setCurrentScreen(currentScreen + 1);
+        }
+    }
+
+    const handleWimCoins = () => {
+        if( points >= 3) {
+            setWimPoints( wimPoints + 100 );
+        } else if (points <= 2) {
+            setWimPoints( wimPoints + 50 );
+        } else if (points <= 1) {
+            setWimPoints( wimPoints + 25 );
         }
     }
 
@@ -63,7 +75,10 @@ export default function Feedback({ navigation }) {
                     }}>Great Job</Text>
 
                     <QuestionBox text="This section contains a list of feedback. Break down the questions and the logic behind them, let users know what they need to work on as well as a list of resources that can also help " />
-                    <PrimaryButton name="NEXT" onPress={handleStartButton} />
+                    <PrimaryButton name="NEXT" onPress={() => {
+                        handleWimCoins();
+                        handleStartButton();
+                    }} />
                 </View>
             )}
 
@@ -124,7 +139,6 @@ export default function Feedback({ navigation }) {
                         <Text style={{
                                 color: colors.text, 
                         }}>wims earned!</Text>
-
                     </View>
                     <PrimaryButton name="NEXT" onPress={() => {
                         if(points > 2) {

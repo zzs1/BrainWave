@@ -28,7 +28,8 @@ export default function HomePage({ navigation }) {
     setPuzzleType,
     numberProgress,
     logicProgress,
-    patternProgress
+    patternProgress,
+    wimPoints,
   } = React.useContext(AppContext);
 
   const [data, setData] = useState(sectionCard);
@@ -56,7 +57,7 @@ export default function HomePage({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopBar navigation={navigation} />
+      <TopBar navigation={navigation} points={wimPoints}/>
       <View style={styles.cardContainer}>
         <View style={{
           marginRight: -100
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    width: '100%',
+    width: screenWidth,
     paddingTop: 50
   },
   btnContainer: {
