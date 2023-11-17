@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import { Image } from "expo-image"
-import { SafeAreaView, StyleSheet, Text, Pressable, View, Dimensions } from "react-native"
+import { SafeAreaView, StyleSheet, Text, Pressable, View, Dimensions, TextInput, FlatList, ScrollView } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from "@react-navigation/native"
 import { useTheme } from "@react-navigation/native";
@@ -44,7 +45,7 @@ export default function Feedback({ navigation }) {
     const [addWim, setAddWim] = useState(0);
 
     function handleStartButton() {
-        if (currentScreen < 4) {
+        if (currentScreen < 5) {
             setCurrentScreen(currentScreen + 1);
         }
     }
@@ -61,6 +62,24 @@ export default function Feedback({ navigation }) {
             setWimPoints(wimPoints + 25);
         }
     }
+
+    const [data, setData] = useState([]);
+    const [textInput, setTextInput] = useState('');
+    const api = process.env.EXPO_PUBLIC_OPENAI_APIKEY;
+    const apiUrl = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
+
+    const handleSend = async () => {
+        const prompt = textInput
+        const response = await axios.post(apiUrl, {
+            prompt: prompt,
+            max_tokens: 1024,
+            temperature: 0.5
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${api}`
+            }
+        });
 
     // const today = new Date();
     // const {currentCount} = useStreak(AsyncStorage, today);
@@ -151,6 +170,53 @@ export default function Feedback({ navigation }) {
                             }}>{addWim} Wim Coins earned!</Text>
                         </View>
                     </View>
+                    <PrimaryButton name="NEXT" onPress={handleStartButton} />
+                </View>
+            )}
+
+            { currentScreen === 5 && (
+              <ScrollView>
+                <View style={styles.main_container}>
+                   <View style={{}}>
+                    <Text>Do you have any question for me?</Text>
+                    <FlatList 
+                        data={data}
+                        keyExtractor={(item, index) => index.toString()}
+                        style={{}}
+                        renderItem={({item}) => (
+                            <View>
+                                <Text style={{color: item.type === 'user' ? 'green' : 'red'}}>{item.type === 'user'? 'You:' : 'Wimmy: '}</Text>
+                                <Text>{item.text}</Text>
+                            </View>
+                        )}
+                    />
+
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row'
+                }}>
+                    <TextInput 
+                     style = {{
+                        ...styles.input,
+                        paddingLeft: 10,
+                     }}
+                     placeholder="type..."
+                     value={textInput}
+                     onChangeText={text => setTextInput(text)}/>
+
+                     <Pressable 
+                     onPress={handleSend}
+                     style={{
+                        ...styles.sendButton
+                     }}>
+                         <Text style={{
+                             fontSize: 16,
+                             textAlign: 'center',
+                             paddingTop: 7,
+                         }}>send</Text>
+                     </Pressable>
+                </View>   
+
                     <PrimaryButton name="NEXT" onPress={() => {
                         if (points > 2) {
                             puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : setPatternProgress(patternProgress + 20);
@@ -158,8 +224,13 @@ export default function Feedback({ navigation }) {
                         }
                         navigation.push('PuzzleMap');
                     }} />
+                    
+                   </View>
                 </View>
-            )}
+                </ScrollView>
+            )
+
+            }
 
             <NavBar navigation={navigation} />
         </SafeAreaView>
@@ -213,10 +284,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'auto',
         margin: 20
-    },
-    coin_container: {
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 5,
     }
 })
+
+}
