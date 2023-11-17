@@ -1,7 +1,10 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useEffect, useRef } from 'react';
+
+import { AppContext } from '../../../context/AppContext'
 
 export default function OptionBtn({
     name = "",
@@ -9,7 +12,8 @@ export default function OptionBtn({
     color,
     shadow
 }) {
-    const { colors } = useTheme();
+    const { isColorBlind } = React.useContext(AppContext);
+    const { colorBlindColors } = useTheme();
 
     const translateY = useRef(new Animated.Value(0)).current;
 
@@ -41,7 +45,7 @@ export default function OptionBtn({
             <Animated.View
                 style={{
                     ...styles.primaryButton,
-                    backgroundColor: color,
+                    backgroundColor: isColorBlind ? colorBlindColors.primaryColor : color,
                     transform: [{ translateY }],
                 }}
             >
@@ -50,7 +54,7 @@ export default function OptionBtn({
             <View
                 style={{
                     ...styles.btnShadow,
-                    backgroundColor: shadow,
+                    backgroundColor: isColorBlind ? colorBlindColors.primaryColorShadow : shadow,
                 }}
             ></View>
         </Pressable>

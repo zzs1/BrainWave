@@ -1,13 +1,19 @@
+import React from 'react';
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useEffect, useRef } from 'react';
 
+import { AppContext } from '../../../context/AppContext'
+
 export default function PrimaryButton({
     name = "",
     onPress = {}
 }) {
-    const { colors } = useTheme();
+    const { isColorBlind } = React.useContext(AppContext);
+
+    const { colors, colorBlindColors } = useTheme();
 
     const translateY = useRef(new Animated.Value(0)).current;
 
@@ -39,7 +45,7 @@ export default function PrimaryButton({
             <Animated.View
                 style={{
                     ...styles.primaryButton,
-                    backgroundColor: colors.primaryBtnColor,
+                    backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
                     transform: [{ translateY }],
                 }}
             >
@@ -48,7 +54,7 @@ export default function PrimaryButton({
             <View
                 style={{
                     ...styles.btnShadow,
-                    backgroundColor: colors.primaryBtnShadow,
+                    backgroundColor: isColorBlind ? colorBlindColors.primaryColorShadow :colors.primaryBtnShadow,
                 }}
             ></View>
         </Pressable>
