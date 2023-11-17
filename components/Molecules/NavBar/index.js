@@ -4,21 +4,22 @@ import { Image } from 'expo-image';
 import { useTheme } from '@react-navigation/native';
 
 import Home from '../../../assets/Icons/home.png'
-import Settings from '../../../assets/Icons/setting.png'
 import Map from '../../../assets/Icons/map.png'
 import User from '../../../assets/Icons/user.png'
 import Chat from '../../../assets/Icons/chatIcon.png'
 
+import { AppContext } from '../../../context/AppContext';
+
 export default function NavBar({
   navigation,
-  color=''
 }) {
-  const { colors } = useTheme();
+  const { isColorBlind } = React.useContext(AppContext);
+  const { colors, colorBlindColors } = useTheme();
 
   return (
    <View style={{
     ...styles.navBarBody,
-    backgroundColor: colors.switchBG,
+    backgroundColor: isColorBlind ? colorBlindColors.navBG : colors.navBG,
    }}>
     <Pressable style={styles.navItem} onPress={() => navigation.push('Home')}>
       <Image source={Home} contentFit='contain' style={{width: 25, height: 25}}/>

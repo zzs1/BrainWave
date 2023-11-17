@@ -5,17 +5,20 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@react-navigation/native';
 
+import { AppContext } from '../../../context/AppContext';
+
 export default function SectionCardSide({
     image='',
     title='',
 }) {
-  const { colors } = useTheme();
+  const { isColorBlind } = React.useContext(AppContext);
+  const { colors, colorBlindColors } = useTheme();
 
   return (
-    <LinearGradient colors={[colors.cardBGTwo, colors.cardBGOne]} style={{
+    <LinearGradient colors={isColorBlind ? [colorBlindColors.cardBGTwo, colorBlindColors.cardBGOne] : [colors.cardBGTwo, colors.cardBGOne]} style={{
       ...styles.container,
-      borderColor: colors.cardBorder, 
-      backgroundColor: colors.cardBorder
+      borderColor: isColorBlind ? colorBlindColors.cardBorder : colors.cardBorder,
+      backgroundColor: isColorBlind ? colorBlindColors.cardBGOne : colors.cardBGOne
     }}>
         <Text style={{
           fontSize: 16,

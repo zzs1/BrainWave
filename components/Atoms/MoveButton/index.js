@@ -1,3 +1,4 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Pressable, Animated} from 'react-native';
 import { Image } from 'expo-image';
@@ -8,11 +9,14 @@ import { useTheme } from '@react-navigation/native'
 import ArrowLeft from '../../../assets/Icons/arrowLeft.png'
 import ArrowRight from '../../../assets/Icons/arrowRight.png'
 
+import { AppContext } from '../../../context/AppContext'
+
 export default function MoveButton ({
     direction='',
     onPress={}
 }){
-    const { colors } = useTheme ();
+    const { isColorBlind } = React.useContext(AppContext);
+    const { colors, colorBlindColors } = useTheme();
 
     const translateY = useRef(new Animated.Value(0)).current;
 
@@ -42,14 +46,14 @@ export default function MoveButton ({
         >
             <Animated.View style={{
                 ...styles.btn,
-                backgroundColor: colors.primaryBtnColor,
+                backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
                 transform: [{ translateY }]
             }}>
                 <Image style={styles.arrow} source={direction === 'right' ? ArrowRight : ArrowLeft}/>
             </Animated.View>
             <View style={{
                 ...styles.btnShadow,
-                backgroundColor: colors.primaryBtnShadow
+                backgroundColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
             }}></View>
         </Pressable>
     );

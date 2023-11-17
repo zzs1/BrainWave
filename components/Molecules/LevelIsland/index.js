@@ -6,10 +6,13 @@ import { useTheme } from '@react-navigation/native';
 import Lock from '../../../assets/Illustrations/Lock/Lock_white.png'
 import Island from '../../../assets/Illustrations/Island1.png'
 
+import { AppContext } from '../../../context/AppContext'
+
 export default function LevelIsland({
     locked=true,
 }) {
-  const { colors } = useTheme();
+  const { isColorBlind } = React.useContext(AppContext);
+  const { colors, colorBlindColors } = useTheme();
 
   return (
     <View style={styles.container}>
@@ -25,7 +28,7 @@ export default function LevelIsland({
             }}>
                 <View style={{
                     ...styles.circle,
-                    backgroundColor: colors.primaryBtnColor
+                    backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor
                 }}>
                     <Image source={Lock} contentFit='contain' style={{
                         width: 65,
@@ -35,7 +38,7 @@ export default function LevelIsland({
                 </View>
                 <View style={{
                     ...styles.circleShadow,
-                    backgroundColor: colors.primaryBtnShadow
+                    backgroundColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
                 }}></View>
                 <View style={styles.circleShadow}></View>
             </View>: <></>

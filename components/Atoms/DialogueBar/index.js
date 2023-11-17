@@ -1,23 +1,27 @@
+import React from 'react';
 import { StyleSheet, View} from 'react-native'
 import { useTheme } from '@react-navigation/native';
+
+import { AppContext } from '../../../context/AppContext'
 
 export default function ProgressBar({
     num = 5,
     step = 1
 }) {
-    const { colors } = useTheme();
+    const { isColorBlind } = React.useContext(AppContext);
+    const { colors, colorBlindColors } = useTheme();
 
     const circles = []
     for (var i = 0; i < num; i++) {
         if (step > i) {
             circles.push(<View key={i} style={{
                 ...styles.circle,
-                backgroundColor: colors.diaProgFill
+                backgroundColor: isColorBlind ? colorBlindColors.progBarFill : colors.diaProgFill
             }}></View>)
         } else {
             circles.push(<View key={i} style={{
                 ...styles.circle,
-                backgroundColor: colors.diaProgBG
+                backgroundColor: isColorBlind ? colorBlindColors.progBarBG : colors.diaProgBG
             }}></View>)
         }
     }

@@ -44,6 +44,10 @@ const DefaultTheme = {
         switchThumb: '#584B9D',
         progBarFill: '#262262',
         progBarBG: '#9893b8',
+        cardBGOne: '#584B9D',
+        cardBGTwo: 'white',
+        cardBorder: '#262262',
+        navBG: '#584B9D',
     }
 }
 

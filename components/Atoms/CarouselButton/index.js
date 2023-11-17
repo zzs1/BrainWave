@@ -1,13 +1,16 @@
+import React from 'react';
 import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
 import { useRef } from 'react';
 import { useTheme } from '@react-navigation/native';
 
+import { AppContext } from '../../../context/AppContext'
 
 export default function CarouselButton({
     btnText = '',
     onPress = {}
 }) {
-    const { colors } = useTheme();
+    const { isColorBlind } = React.useContext(AppContext);
+    const { colors, colorBlindColors } = useTheme();
 
     const translateY = useRef(new Animated.Value(0)).current;
 
@@ -37,7 +40,7 @@ export default function CarouselButton({
         >
             <Animated.View style={{
                 ...styles.carouselButton,
-                backgroundColor: colors.primaryBtnColor,
+                backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
                 transform: [{ translateY }]
             }}>
                 <Text style={{
@@ -48,7 +51,7 @@ export default function CarouselButton({
 
             <View style={{
                 ...styles.btnShadow,
-                backgroundColor: colors.primaryBtnShadow
+                backgroundColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
             }}></View>
         </Pressable>
     );

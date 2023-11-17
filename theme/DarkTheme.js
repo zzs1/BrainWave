@@ -19,7 +19,7 @@ const DarkTheme = {
             yellow: '#EFB00C',
             yellowShadow: '#CD9300'
         },
-        navBG: '#0C7BDC',
+        navBG: '#343434',
         navText: 'white',
         inputBG: '#747474',
         inputBorder: '#444444',
@@ -44,6 +44,10 @@ const DarkTheme = {
         switchThumb: '#9893b8',
         progBarFill: '#9893b8',
         progBarBG: '#262262',
+        cardBGOne: '#584B9D',
+        cardBGTwo: '#584B9D',
+        cardBorder: '#262262',
+        navBG: '#343434',
     }
 }
 
