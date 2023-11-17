@@ -41,7 +41,9 @@ const DefaultTheme = {
         primaryColor: '#584B9D',
         primaryColorShadow: '#262262',
         primaryColorFade: '#9893b8',
-        switchThumb: '#584B9D'
+        switchThumb: '#584B9D',
+        progBarFill: '#262262',
+        progBarBG: '#9893b8',
     }
 }
 

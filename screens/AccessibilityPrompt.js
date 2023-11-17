@@ -86,7 +86,7 @@ export default function AccessibilityPrompt({ navigation }) {
                                 backgroundColor: colors.progBarBG,
                                 borderColor: colors.switchThumb,
                                 }}>
-                                <Text style={styles.title}>Screen Reader</Text>
+                                <Text style={styles.title}>Dark Mode</Text>
                                 <Switch
                                     trackColor={{ false: colors.switchBG, true: colors.switchBG }}
                                     thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }

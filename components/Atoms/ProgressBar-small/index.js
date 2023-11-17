@@ -2,20 +2,23 @@ import React from 'react'
 import { StyleSheet, Text, View, Button} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
+import { AppContext } from '../../../context/AppContext'
+
 export default function ProgressBar({
     fill=0,
 }) {
-  const { colors } = useTheme();
+  const { isColorBlind } = React.useContext(AppContext);
+  const { colors, colorBlindColors } = useTheme();
 
   return (
     <View style={{
       ...styles.container,
-      backgroundColor: colors.progBarBG
+      backgroundColor: isColorBlind ? colorBlindColors.progBarBG : colors.progBarBG
     }}>
         <View style={{
             width:`${fill}%`,
             height:'100%',
-            backgroundColor: colors.progBarFill,
+            backgroundColor: isColorBlind ? colorBlindColors.progBarFill : colors.progBarFill,
             borderRadius: 10
         }}></View>
     </View>

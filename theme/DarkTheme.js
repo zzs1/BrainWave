@@ -41,7 +41,9 @@ const DarkTheme = {
         primaryColor: '#584B9D',
         primaryColorShadow: '#262262',
         primaryColorFade: '#9893b8',
-        switchThumb: '#9893b8'
+        switchThumb: '#9893b8',
+        progBarFill: '#9893b8',
+        progBarBG: '#262262',
     }
 }
 
