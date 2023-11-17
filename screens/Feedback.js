@@ -19,13 +19,13 @@ const screenHeight = Dimensions.get("window").height;
 export default function Feedback({ navigation }) {
 
     const { colors } = useTheme();
-    const { 
-        logicLevel, 
-        setLogicLevel, 
-        numberLevel, 
-        setNumberLevel, 
-        patternLevel, 
-        setPatternLevel, 
+    const {
+        logicLevel,
+        setLogicLevel,
+        numberLevel,
+        setNumberLevel,
+        patternLevel,
+        setPatternLevel,
         puzzleType,
         logicProgress,
         setLogicProgress,
@@ -41,6 +41,7 @@ export default function Feedback({ navigation }) {
     const points = route.params.points;
 
     const [currentScreen, setCurrentScreen] = useState(1);
+    const [addWim, setAddWim] = useState(0);
 
     function handleStartButton() {
         if (currentScreen < 4) {
@@ -49,12 +50,15 @@ export default function Feedback({ navigation }) {
     }
 
     const handleWimCoins = () => {
-        if( points >= 3) {
-            setWimPoints( wimPoints + 100 );
+        if (points >= 3) {
+            setAddWim(100)
+            setWimPoints(wimPoints + 100);
         } else if (points <= 2) {
-            setWimPoints( wimPoints + 50 );
+            setAddWim(50)
+            setWimPoints(wimPoints + 50);
         } else if (points <= 1) {
-            setWimPoints( wimPoints + 25 );
+            setAddWim(25)
+            setWimPoints(wimPoints + 25);
         }
     }
 
@@ -91,11 +95,11 @@ export default function Feedback({ navigation }) {
                     }}>
                         <Text style={{
                             fontSize: 20,
-                            color: colors.text, 
+                            color: colors.text,
                         }}>Lesson Complete!</Text>
                         <Text style={{
                             fontSize: 20,
-                            color: colors.text, 
+                            color: colors.text,
                         }}>Level: {puzzleType.toLowerCase() === 'numbers problems' ? numberLevel : puzzleType.toLowerCase() === 'logic problems' ? logicLevel : patternLevel}</Text>
                         <Image />
                     </View>
@@ -134,14 +138,21 @@ export default function Feedback({ navigation }) {
                     }}>
                         <Text style={{
                             fontSize: 20,
-                            color: colors.text, 
+                            color: colors.text,
                         }}>Points: {points}</Text>
-                        <Text style={{
-                                color: colors.text, 
-                        }}>wims earned!</Text>
+                        <View style={styles.coin_container}>
+                            <Image
+                                source={require('../assets/Icons/wimmyCoin.png')}
+                                width={20}
+                                height={20}
+                            />
+                            <Text style={{
+                                color: colors.text,
+                            }}>{addWim} Wim Coins earned!</Text>
+                        </View>
                     </View>
                     <PrimaryButton name="NEXT" onPress={() => {
-                        if(points > 2) {
+                        if (points > 2) {
                             puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : setPatternProgress(patternProgress + 20);
                             puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : setPatternLevel(patternLevel + 1);
                         }
@@ -202,6 +213,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'auto',
         margin: 20
+    },
+    coin_container: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 5,
     }
-
 })
