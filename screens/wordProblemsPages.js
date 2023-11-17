@@ -43,9 +43,10 @@ export default function WordProblemsPage({ navigation }) {
     const [showCorrectPopup, setShowCorrectPopup] = useState(false);
     const [showIncorrectPopup, setShowIncorrectPopup] = useState(false);
 
+    const [questions, setQuestions] = useState([]);
 
     const questionSet = () => {
-        if(currentLevel === 1) {
+        if (currentLevel === 1) {
             return [0, 1, 2, 3]
         } else if (currentLevel === 2) {
             return [4, 5, 6, 7]
@@ -69,11 +70,11 @@ export default function WordProblemsPage({ navigation }) {
     useEffect(() => {
         if (currentScreen === 1) {
             handleSend();
-        } else if(currentScreen === 2) {
+        } else if (currentScreen === 2) {
             handleSend();
-        } else if(currentScreen === 3) {
+        } else if (currentScreen === 3) {
             handleSend();
-        } else if(currentScreen === 4) {
+        } else if (currentScreen === 4) {
             handleSend();
         }
     }, [currentScreen])
@@ -99,29 +100,14 @@ export default function WordProblemsPage({ navigation }) {
     }
 
     const handleAnswer = (choice, answer) => {
-        if(choice === answer) {
+        if (choice === answer) {
             setNumber(number + 1);
             console.log(number);
+            setQuestions([...questions, data[quesIndex[currentQuestion]].explanation])
             setShowCorrectPopup(true);
             setTimeout(() => {
                 setShowCorrectPopup(false);
 
-            if (currentScreen < 4) {
-                setAttempt(3);
-                setCurrentQuestion(currentQuestion + 1);
-                setAIResponse('');
-                setOptIndex(shuffle(optIndex));
-                setCurrentScreen(currentScreen + 1);
-            } else {
-                navigation.push("Feedback", { points: number });
-            }
-            }, 2000);
-        } else {
-            setAttempt(attempt - 1)
-            setShowIncorrectPopup(true);
-            setTimeout(() => {
-                setShowIncorrectPopup(false);
-            if (attempt === 1) {
                 if (currentScreen < 4) {
                     setAttempt(3);
                     setCurrentQuestion(currentQuestion + 1);
@@ -129,9 +115,33 @@ export default function WordProblemsPage({ navigation }) {
                     setOptIndex(shuffle(optIndex));
                     setCurrentScreen(currentScreen + 1);
                 } else {
-                    navigation.push("Feedback", { points: number });
+                    navigation.push("Feedback", {
+                        points: number,
+                        questions: questions
+                    });
+                    console.log(questions);
                 }
-            }
+            }, 2000);
+        } else {
+            setAttempt(attempt - 1);
+            setQuestions([...questions, data[quesIndex[currentQuestion]].description]);
+            setShowIncorrectPopup(true);
+            setTimeout(() => {
+                setShowIncorrectPopup(false);
+                if (attempt === 1) {
+                    if (currentScreen < 4) {
+                        setAttempt(3);
+                        setCurrentQuestion(currentQuestion + 1);
+                        setAIResponse('');
+                        setOptIndex(shuffle(optIndex));
+                        setCurrentScreen(currentScreen + 1);
+                    } else {
+                        navigation.push("Feedback", {
+                            points: number,
+                            questions: questions
+                        });
+                    }
+                }
             }, 2000);
         }
     }
@@ -139,7 +149,7 @@ export default function WordProblemsPage({ navigation }) {
     return (
         <View style={styles.container}>
             <ProgressBar num={4} step={currentScreen} />
-            
+
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
@@ -152,13 +162,13 @@ export default function WordProblemsPage({ navigation }) {
                         <View style={styles.incorrectPopup}>
                             <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
                         </View>
-                    )}  
+                    )}
                     <View style={styles.question}>
-                        <Text 
-                        style={{
-                            ...styles.attemptText,
-                            color: colors.textColour,
-                        }}>Attempts: {attempt}</Text>
+                        <Text
+                            style={{
+                                ...styles.attemptText,
+                                color: colors.textColour,
+                            }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
@@ -206,7 +216,7 @@ export default function WordProblemsPage({ navigation }) {
                         <View style={styles.incorrectPopup}>
                             <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
                         </View>
-                    )}  
+                    )}
                     <View style={styles.question}>
                         <Text style={{
                             color: colors.textColour,
@@ -258,7 +268,7 @@ export default function WordProblemsPage({ navigation }) {
                         <View style={styles.incorrectPopup}>
                             <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
                         </View>
-                    )}  
+                    )}
                     <View style={styles.question}>
                         <Text style={{
                             color: colors.textColour,
@@ -310,7 +320,7 @@ export default function WordProblemsPage({ navigation }) {
                         <View style={styles.incorrectPopup}>
                             <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
                         </View>
-                    )}  
+                    )}
                     <View style={styles.question}>
                         <Text style={{
                             color: colors.textColour,
@@ -409,7 +419,7 @@ const styles = StyleSheet.create({
         gap: 10
     },
     popup: {
-        marginTop: 30, 
+        marginTop: 30,
     },
     tail: {
         position: 'absolute',
@@ -433,7 +443,7 @@ const styles = StyleSheet.create({
         top: 20,
         left: 0,
         right: 0,
-        backgroundColor: 'red', 
+        backgroundColor: 'red',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',

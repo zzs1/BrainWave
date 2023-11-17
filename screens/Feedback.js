@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Image } from "expo-image"
@@ -14,7 +14,7 @@ import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
 import { useStreak } from "use-streak";
 
-import { getChat } from "../libs/getAPI.js";
+import { getChat, getFeedBack } from "../libs/getAPI.js";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -42,6 +42,25 @@ export default function Feedback({ navigation }) {
 
     const route = useRoute();
     const points = route.params.points;
+    const questions = route.params.questions;
+
+    // const [AIFeedback, setAIFeedback] = useState('')
+    // const [loading, setLoading] = useState(false);
+
+    // useEffect(async () => {
+    //     const getAIFeedback = async () => {
+    //         const feedback = await getFeedBack(questions[0], questions[1], questions[2]);
+    //         return feedback.choices[0].message.content
+    //     }
+    //     try {
+    //         setLoading(true);
+    //         setAIFeedback(getAIFeedback());
+    //     } catch {
+    //         throw new Error(error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // },[])
 
     const [currentScreen, setCurrentScreen] = useState(1);
     const [addWim, setAddWim] = useState(0);
@@ -79,6 +98,7 @@ export default function Feedback({ navigation }) {
 
         }
     }
+
     // const today = new Date();
     // const {currentCount} = useStreak(AsyncStorage, today);
 
@@ -95,7 +115,7 @@ export default function Feedback({ navigation }) {
                         color: colors.navText,
                     }}>Great Job</Text>
 
-                    <QuestionBox text="This section contains a list of feedback. Break down the questions and the logic behind them, let users know what they need to work on as well as a list of resources that can also help " />
+                    <QuestionBox text={`I'LL GIVE YOU AN EXPLANATION OF EACH QUESTION:\n\nQUESTION 1:${questions[0]}\n\nQUESTION 2:${questions[1]}\n\nQUESTION 3:${questions[2]}\n\nQUESTION 4:${questions[3]}`} />
                     <PrimaryButton name="NEXT" onPress={() => {
                         handleWimCoins();
                         handleStartButton();
