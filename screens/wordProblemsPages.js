@@ -17,6 +17,8 @@ import { numberPuzzles } from "../data/numberPuzzles.js";
 import { patternRecognition } from "../data/patternRecognition.js";
 import { AppContext } from '../context/AppContext.js';
 
+import { getHint } from "../libs/getAPI.js";
+
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
@@ -35,6 +37,7 @@ export default function WordProblemsPage({ navigation }) {
     const [currentScreen, setCurrentScreen] = useState(1);
     const [isActive, setIsActive] = useState(false);
     const [aiResponse, setAIResponse] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const [showCorrectPopup, setShowCorrectPopup] = useState(false);
     const [showIncorrectPopup, setShowIncorrectPopup] = useState(false);
@@ -75,13 +78,22 @@ export default function WordProblemsPage({ navigation }) {
 
     const handleSend = async () => {
         console.log("Start AI Response");
-        const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
-            body: JSON.stringify({question: `Hey Wimmy. Give me a broken down hint of this question: "${data[quesIndex[currentQuestion]].description}". Keep the explanation to one short paragraph. This is the answer to the question: "${data[quesIndex[currentQuestion]].answer}".Don't give the answer. just hint to it.`}),
-            method: "post"
-        });
+        try {
+            setLoading(true);
+            const completion = await getHint(data[quesIndex[currentQuestion]].description, data[quesIndex[currentQuestion]].answer);
+            setAIResponse(completion.choices[0].message.content);
+        } catch (error) {
+            throw new Error(error);
+        } finally {
+            setLoading(false);
+        }
+        // const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
+        //     body: JSON.stringify({question: `Hey Wimmy. Give me a broken down hint of this question: "${data[quesIndex[currentQuestion]].description}". Keep the explanation to one short paragraph. This is the answer to the question: "${data[quesIndex[currentQuestion]].answer}".Don't give the answer. just hint to it.`}),
+        //     method: "post"
+        // });
 
-        const completion = await response.json();
-        setAIResponse(completion.choices[0].message.content)
+        // const completion = await response.json();
+        // setAIResponse(completion.choices[0].message.content)
     }
 
     const handleAnswer = (choice, answer) => {
@@ -128,7 +140,7 @@ export default function WordProblemsPage({ navigation }) {
             
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={184} width={184} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
@@ -142,6 +154,7 @@ export default function WordProblemsPage({ navigation }) {
                     <View style={styles.question}>
                         <Text 
                         style={{
+                            ...styles.attemptText,
                             color: colors.textColour,
                         }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
@@ -181,7 +194,7 @@ export default function WordProblemsPage({ navigation }) {
 
             {currentScreen === 2 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={120} width={120} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
@@ -233,7 +246,7 @@ export default function WordProblemsPage({ navigation }) {
 
             {currentScreen === 3 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={120} width={120} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
@@ -285,7 +298,7 @@ export default function WordProblemsPage({ navigation }) {
 
             {currentScreen === 4 && (
                 <View style={styles.main_container}>
-                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={120} width={120} />
+                    <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
                         <View style={styles.correctPopup}>
                             <OptionBtn name="That is Correct!"></OptionBtn>
@@ -338,10 +351,14 @@ export default function WordProblemsPage({ navigation }) {
             <Pressable style={styles.tail} onPress={() => {
                 setIsActive(true)
             }}>
+                <Text style={{
+                    ...styles.hintText,
+                    color: colors.text
+                }}>Need a Hint?</Text>
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} />
             </Pressable>
 
-            <WimmyPopup style={styles.popup} title="WIMMY SAYS..." desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
+            <WimmyPopup style={styles.popup} title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
 
 
             <NavBar navigation={navigation} />
@@ -395,6 +412,9 @@ const styles = StyleSheet.create({
     tail: {
         position: 'absolute',
         bottom: 60
+    },
+    hintText: {
+        fontSize: 16
     },
     correctPopup: {
         position: 'absolute',
