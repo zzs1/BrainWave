@@ -14,6 +14,8 @@ import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
 import { useStreak } from "use-streak";
 
+import { getChat } from "../libs/getAPI.js";
+
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
@@ -65,22 +67,18 @@ export default function Feedback({ navigation }) {
 
     const [data, setData] = useState([]);
     const [textInput, setTextInput] = useState('');
-    const api = process.env.EXPO_PUBLIC_OPENAI_APIKEY;
-    const apiUrl = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
 
     const handleSend = async () => {
-        const prompt = textInput
-        const response = await axios.post(apiUrl, {
-            prompt: prompt,
-            max_tokens: 1024,
-            temperature: 0.5
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${api}`
-            }
-        });
+        console.log("Start AI Response");
+        try {
+            const text = await getChat(textInput);
+            setData([...data, { type: 'user', text: textInput }, { type: 'bot', text: text.choices[0].message.content }]);
+        } catch (error) {
+            throw new Error(error);
+        } finally {
 
+        }
+    }
     // const today = new Date();
     // const {currentCount} = useStreak(AsyncStorage, today);
 
@@ -174,48 +172,49 @@ export default function Feedback({ navigation }) {
                 </View>
             )}
 
-            { currentScreen === 5 && (
-              <ScrollView>
+            {currentScreen === 5 && (
                 <View style={styles.main_container}>
-                   <View style={{}}>
-                    <Text>Do you have any question for me?</Text>
-                    <FlatList 
-                        data={data}
-                        keyExtractor={(item, index) => index.toString()}
-                        style={{}}
-                        renderItem={({item}) => (
-                            <View>
-                                <Text style={{color: item.type === 'user' ? 'green' : 'red'}}>{item.type === 'user'? 'You:' : 'Wimmy: '}</Text>
-                                <Text>{item.text}</Text>
-                            </View>
-                        )}
-                    />
+                    <ScrollView>
+                        <Text>Do you have any question for me?</Text>
+                        <FlatList
+                            data={data}
+                            keyExtractor={(item, index) => index.toString()}
+                            style={{}}
+                            renderItem={({ item }) => (
+                                <View>
+                                    <Text style={{ color: item.type === 'user' ? 'green' : 'red' }}>{item.type === 'user' ? 'You:' : 'Wimmy: '}</Text>
+                                    <Text>{item.text}</Text>
+                                </View>
+                            )}
+                        />
+                    </ScrollView>
 
-                <View style={{
-                    display: 'flex',
-                    flexDirection: 'row'
-                }}>
-                    <TextInput 
-                     style = {{
-                        ...styles.input,
-                        paddingLeft: 10,
-                     }}
-                     placeholder="type..."
-                     value={textInput}
-                     onChangeText={text => setTextInput(text)}/>
 
-                     <Pressable 
-                     onPress={handleSend}
-                     style={{
-                        ...styles.sendButton
-                     }}>
-                         <Text style={{
-                             fontSize: 16,
-                             textAlign: 'center',
-                             paddingTop: 7,
-                         }}>send</Text>
-                     </Pressable>
-                </View>   
+                    <View style={{
+                        display: 'flex',
+                        flexDirection: 'row'
+                    }}>
+                        <TextInput
+                            style={{
+                                ...styles.input,
+                                paddingLeft: 10,
+                            }}
+                            placeholder="type..."
+                            value={textInput}
+                            onChangeText={text => setTextInput(text)} />
+
+                        <Pressable
+                            onPress={handleSend}
+                            style={{
+                                ...styles.sendButton
+                            }}>
+                            <Text style={{
+                                fontSize: 16,
+                                textAlign: 'center',
+                                paddingTop: 7,
+                            }}>send</Text>
+                        </Pressable>
+                    </View>
 
                     <PrimaryButton name="NEXT" onPress={() => {
                         if (points > 2) {
@@ -224,10 +223,7 @@ export default function Feedback({ navigation }) {
                         }
                         navigation.push('PuzzleMap');
                     }} />
-                    
-                   </View>
                 </View>
-                </ScrollView>
             )
 
             }
@@ -284,7 +280,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'auto',
         margin: 20
+    },
+    coin_container: {
+        display: "flex",
+        flexDirection: "row",
+        gap: 5
     }
 })
-
-}

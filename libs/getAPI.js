@@ -6,3 +6,12 @@ export async function getHint(prompt, answer) {
     
     return response.json();
 }
+
+export async function getChat(prompt) {
+    const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
+            body: JSON.stringify({question: prompt}),
+            method: "post"
+        });
+    
+    return response.json();
+}
