@@ -26,7 +26,7 @@ export default function AccountPages({ navigation }) {
     const [userName, setUserName] = useState("");
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
-    
+
 
     const currentDate = new Date();
 
@@ -181,7 +181,7 @@ export default function AccountPages({ navigation }) {
 
             {currentPage === 6 && (
                 <View style={styles.accountPageBody}>
-                    <TopBar navigation={navigation} points={wimPoints}/>
+                    <TopBar navigation={navigation} points={wimPoints} />
 
                     <View style={styles.avartar} >
                         <Image
@@ -213,18 +213,19 @@ export default function AccountPages({ navigation }) {
                             gap: 14,
                         }}>
 
-                 <LevelBox />
+                            <LevelBox />
 
                             <View style={{
                                 ...styles.box,
                                 height: 166,
                                 backgroundColor: colors.dialogueBG,
                                 borderColor: colors.dialogueBorder,
-                                
+
                             }}>
                                 <Text style={{
                                     ...styles.title,
-                                    color: colors.text,}}>My Wimmy</Text>
+                                    color: colors.text,
+                                }}>My Wimmy</Text>
                                 <Image
                                     source={require('../assets/Icons/wimmySmall.png')}
                                     style={{
@@ -251,7 +252,8 @@ export default function AccountPages({ navigation }) {
                             }}>
                                 <Text style={{
                                     ...styles.title,
-                                    color: colors.text,}}>Streaks</Text>
+                                    color: colors.text,
+                                }}>Streaks</Text>
                                 <Text style={{
                                     fontSize: 16,
                                     textAlign: 'center',
@@ -269,19 +271,24 @@ export default function AccountPages({ navigation }) {
                                 }}>
                                     <Text style={{
                                         ...styles.days,
-                                        color: colors.text,}}>{currentDate.getDate() - 2}</Text>
+                                        color: colors.text,
+                                    }}>{currentDate.getDate() - 2}</Text>
                                     <Text style={{
                                         ...styles.days,
-                                        color: colors.text,}}>{currentDate.getDate() - 1}</Text>
+                                        color: colors.text,
+                                    }}>{currentDate.getDate() - 1}</Text>
                                     <Text style={{
                                         ...styles.days,
-                                        color: colors.text,}}>{currentDate.getDate()}</Text>
+                                        color: colors.text,
+                                    }}>{currentDate.getDate()}</Text>
                                     <Text style={{
                                         ...styles.days,
-                                        color: colors.text,}}>{currentDate.getDate() + 1}</Text>
+                                        color: colors.text,
+                                    }}>{currentDate.getDate() + 1}</Text>
                                     <Text style={{
                                         ...styles.days,
-                                        color: colors.text,}}>{currentDate.getDate() + 2}</Text>
+                                        color: colors.text,
+                                    }}>{currentDate.getDate() + 2}</Text>
                                 </View>
                             </View>
 
@@ -293,23 +300,25 @@ export default function AccountPages({ navigation }) {
                             }}>
                                 <Text style={{
                                     ...styles.title,
-                                    color: colors.text,}}>WIMS</Text>
+                                    color: colors.text,
+                                }}>WIM COINS</Text>
                                 <View style={{
                                     display: 'flex',
                                     paddingTop: 15,
                                     flexDirection: 'row',
                                     alignItems: 'center',
+                                    gap: 10,
                                     paddingLeft: 30,
                                 }}>
+                                    <Image
+                                        source={require('../assets/Icons/wimmyCoin.png')}
+                                        width={30}
+                                        height={30}
+                                    />
                                     <Text style={{
                                         fontSize: 30,
                                         color: colors.text,
                                     }}>{wimPoints}</Text>
-                                    <Text style={{
-                                        fontSize: 16,
-                                        paddingLeft: 5,
-                                        color: colors.text,
-                                    }}>Wim Coins</Text>
                                 </View>
                             </View>
 
