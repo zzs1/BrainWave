@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import { StyleSheet, View, Pressable, Dimensions, Text } from "react-native";
 import { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
@@ -41,6 +42,7 @@ export default function WordProblemsPage({ navigation }) {
 
     const [showCorrectPopup, setShowCorrectPopup] = useState(false);
     const [showIncorrectPopup, setShowIncorrectPopup] = useState(false);
+
 
     const questionSet = () => {
         if(currentLevel === 1) {
