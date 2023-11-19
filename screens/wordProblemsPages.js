@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import { StyleSheet, View, Pressable, Dimensions, Text } from "react-native";
 import { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
@@ -29,7 +28,8 @@ export default function WordProblemsPage({ navigation }) {
     const route = useRoute();
     const currentLevel = route.params.currLevel;
 
-    const { colors } = useTheme();
+    const { isColorBlind } = React.useContext(AppContext);
+    const { colors, colorBlindColors } = useTheme();
 
     const [data, setData] = useState(puzzleType.toLowerCase() === 'numbers problems' ? numberPuzzles : puzzleType.toLowerCase() === 'logic problems' ? logicProblems : patternRecognition);
     const [number, setNumber] = useState(0);
@@ -67,36 +67,42 @@ export default function WordProblemsPage({ navigation }) {
     const [quesIndex, setQuesIndex] = useState(questionSet());
     const [optIndex, setOptIndex] = useState(shuffle([0, 1, 2, 3]));
 
-    useEffect(() => {
-        if (currentScreen === 1) {
-            handleSend();
-        } else if (currentScreen === 2) {
-            handleSend();
-        } else if (currentScreen === 3) {
-            handleSend();
-        } else if (currentScreen === 4) {
-            handleSend();
-        }
-    }, [currentScreen])
+    // useEffect(() => {
+    //     if (currentScreen === 1) {
+    //         handleSend();
+    //     } else if (currentScreen === 2) {
+    //         handleSend();
+    //     } else if (currentScreen === 3) {
+    //         handleSend();
+    //     } else if (currentScreen === 4) {
+    //         handleSend();
+    //     }
+    // }, [currentScreen])
 
     const handleSend = async () => {
-        console.log("Start AI Response");
         try {
+            console.log("Start AI Response");
             setLoading(true);
-            const completion = await getHint(data[quesIndex[currentQuestion]].description, data[quesIndex[currentQuestion]].answer);
+            const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
+                body: JSON.stringify({ question: `Hey Wimmy. Give me a broken down hint of this question: "${data[quesIndex[currentQuestion]].description}". Keep the explanation to one short paragraph. This is the answer to the question: "${data[quesIndex[currentQuestion]].answer}".Don't give the answer. just hint to it.` }),
+                method: "post"
+            });
+            const completion = await response.json();
             setAIResponse(completion.choices[0].message.content);
         } catch (error) {
             throw new Error(error);
         } finally {
             setLoading(false);
         }
-        // const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
-        //     body: JSON.stringify({question: `Hey Wimmy. Give me a broken down hint of this question: "${data[quesIndex[currentQuestion]].description}". Keep the explanation to one short paragraph. This is the answer to the question: "${data[quesIndex[currentQuestion]].answer}".Don't give the answer. just hint to it.`}),
-        //     method: "post"
-        // });
-
-        // const completion = await response.json();
-        // setAIResponse(completion.choices[0].message.content)
+        // try {
+        //     setLoading(true);
+        //     const completion = await getHint(data[quesIndex[currentQuestion]].description, data[quesIndex[currentQuestion]].answer);
+        //     setAIResponse(completion.choices[0].message.content);
+        // } catch (error) {
+        //     throw new Error(error);
+        // } finally {
+        //     setLoading(false);
+        // }
     }
 
     const handleAnswer = (choice, answer) => {
@@ -154,20 +160,29 @@ export default function WordProblemsPage({ navigation }) {
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
-                        <View style={styles.correctPopup}>
-                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        <View style={{
+                            ...styles.correctPopup,
+                            backgroundColor: colors.optionBtn.green,
+                            borderColor: colors.optionBtn.greenShadow
+                        }}>
+                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
-                        <View style={styles.incorrectPopup}>
-                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        <View style={{
+                            ...styles.incorrectPopup,
+                            backgroundColor: colors.optionBtn.red,
+                            borderColor: colors.optionBtn.redShadow
+                        }}>
+                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
                         </View>
                     )}
                     <View style={styles.question}>
                         <Text
                             style={{
                                 ...styles.attemptText,
-                                color: colors.textColour,
+                                backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -208,19 +223,30 @@ export default function WordProblemsPage({ navigation }) {
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
-                        <View style={styles.correctPopup}>
-                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        <View style={{
+                            ...styles.correctPopup,
+                            backgroundColor: colors.optionBtn.green,
+                            borderColor: colors.optionBtn.greenShadow
+                        }}>
+                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
-                        <View style={styles.incorrectPopup}>
-                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        <View style={{
+                            ...styles.incorrectPopup,
+                            backgroundColor: colors.optionBtn.red,
+                            borderColor: colors.optionBtn.redShadow
+                        }}>
+                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
                         </View>
                     )}
                     <View style={styles.question}>
-                        <Text style={{
-                            color: colors.textColour,
-                        }}>Attempts: {attempt}</Text>
+                        <Text
+                            style={{
+                                ...styles.attemptText,
+                                backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                            }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
@@ -260,19 +286,30 @@ export default function WordProblemsPage({ navigation }) {
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
-                        <View style={styles.correctPopup}>
-                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        <View style={{
+                            ...styles.correctPopup,
+                            backgroundColor: colors.optionBtn.green,
+                            borderColor: colors.optionBtn.greenShadow
+                        }}>
+                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
-                        <View style={styles.incorrectPopup}>
-                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        <View style={{
+                            ...styles.incorrectPopup,
+                            backgroundColor: colors.optionBtn.red,
+                            borderColor: colors.optionBtn.redShadow
+                        }}>
+                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
                         </View>
                     )}
                     <View style={styles.question}>
-                        <Text style={{
-                            color: colors.textColour,
-                        }}>Attempts: {attempt}</Text>
+                        <Text
+                            style={{
+                                ...styles.attemptText,
+                                backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                            }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
@@ -312,19 +349,30 @@ export default function WordProblemsPage({ navigation }) {
                 <View style={styles.main_container}>
                     <Image style={styles.image} source={data[quesIndex[currentQuestion]]?.image} height={50} width={50} />
                     {showCorrectPopup && (
-                        <View style={styles.correctPopup}>
-                            <OptionBtn name="That is Correct!"></OptionBtn>
+                        <View style={{
+                            ...styles.correctPopup,
+                            backgroundColor: colors.optionBtn.green,
+                            borderColor: colors.optionBtn.greenShadow
+                        }}>
+                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
-                        <View style={styles.incorrectPopup}>
-                            <OptionBtn name="That is Incorrect, Please Try Again"></OptionBtn>
+                        <View style={{
+                            ...styles.incorrectPopup,
+                            backgroundColor: colors.optionBtn.red,
+                            borderColor: colors.optionBtn.redShadow
+                        }}>
+                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
                         </View>
                     )}
                     <View style={styles.question}>
-                        <Text style={{
-                            color: colors.textColour,
-                        }}>Attempts: {attempt}</Text>
+                        <Text
+                            style={{
+                                ...styles.attemptText,
+                                backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                            }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
                     <View style={styles.btnContainer}>
@@ -361,7 +409,8 @@ export default function WordProblemsPage({ navigation }) {
             )}
 
             <Pressable style={styles.tail} onPress={() => {
-                setIsActive(true)
+                handleSend();
+                setIsActive(true);
             }}>
                 <Text style={{
                     ...styles.hintText,
@@ -371,8 +420,6 @@ export default function WordProblemsPage({ navigation }) {
             </Pressable>
 
             <WimmyPopup style={styles.popup} title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
-
-
             <NavBar navigation={navigation} />
         </View>
     )
@@ -383,7 +430,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: screenHeight - 25,
+        height: screenHeight - 24,
         width: screenWidth,
         paddingBottom: 60,
         paddingTop: 60
@@ -395,9 +442,6 @@ const styles = StyleSheet.create({
         height: screenHeight - 100,
         width: screenWidth,
     },
-    image: {
-        marginTop: 40,
-    },
     question: {
         marginTop: 25,
     },
@@ -405,7 +449,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         gap: 10,
-        // height: 50,
         marginTop: 20
     },
     btnRowOne: {
@@ -418,9 +461,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 10
     },
-    popup: {
-        marginTop: 30,
-    },
     tail: {
         position: 'absolute',
         bottom: 60
@@ -430,22 +470,44 @@ const styles = StyleSheet.create({
     },
     correctPopup: {
         position: 'absolute',
-        top: 20,
-        left: 0,
-        right: 0,
-        backgroundColor: 'green',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
+        top: 50,
+        width: 350,
+        height: 150,
+        padding: 20,
+        borderRadius: 10,
+        borderWidth: 3,
+        display: "flex",
+        justifyContent: 'center',
+        zIndex: 2
     },
     incorrectPopup: {
         position: 'absolute',
-        top: 20,
-        left: 0,
-        right: 0,
-        backgroundColor: 'red',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
+        top: 50,
+        width: 350,
+        height: 150,
+        padding: 20,
+        borderRadius: 10,
+        borderWidth: 3,
+        display: "flex",
+        justifyContent: 'center',
+        zIndex: 2
     },
+    feedText: {
+        color: 'white',
+        fontSize: 20
+    },
+    attemptText: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        fontSize: 20,
+        textAlign: 'center',
+        marginRight: 20,
+        marginBottom: 10,
+        borderRadius: 20,
+        padding: 5,
+        width: 315,
+        color: 'white',
+        borderWidth: 3
+    }
 })
