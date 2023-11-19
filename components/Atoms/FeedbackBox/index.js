@@ -1,11 +1,11 @@
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useTheme } from "@react-navigation/native";
 
-export default function QuestionBox({ text }) {
+export default function FeedbackBox({ text }) {
     const { colors } = useTheme();
 
     return (
-        <View style={{
+        <ScrollView style={{
             ...styles.box,
             backgroundColor: colors.dialogueBG,
             borderColor: colors.dialogueBorder,
@@ -13,16 +13,17 @@ export default function QuestionBox({ text }) {
             <Text style={{
                 color: colors.text,
                 fontSize: 18,
+                paddingBottom: 30
             }}>
                 {text}
             </Text>
-        </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
     box: {
         minHeight: 70,
-        maxHeight: 350,
+        maxHeight: 280,
         width: 315,
         borderRadius: 10,
         borderWidth: 3,

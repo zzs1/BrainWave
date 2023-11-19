@@ -12,6 +12,8 @@ import { AppContext } from '../context/AppContext.js';
 import QuestionBox from "../components/Atoms/QuestionBox"
 import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
+import FeedbackBox from "../components/Atoms/FeedbackBox/index.js";
+
 import { useStreak } from "use-streak";
 
 import { getChat, getFeedBack } from "../libs/getAPI.js";
@@ -112,10 +114,10 @@ export default function Feedback({ navigation }) {
                 <View style={styles.main_container}>
                     <Text style={{
                         ...styles.header,
-                        color: colors.navText,
+                        color: colors.text,
                     }}>Great Job</Text>
 
-                    <QuestionBox text={`I'LL GIVE YOU AN EXPLANATION OF EACH QUESTION:\n\nQUESTION 1:${questions[0]}\n\nQUESTION 2:${questions[1]}\n\nQUESTION 3:${questions[2]}\n\nQUESTION 4:${questions[3]}`} />
+                    <FeedbackBox text={`I'LL GIVE YOU AN EXPLANATION OF EACH QUESTION:\n\nQUESTION 1:${questions[0]}\n\nQUESTION 2:${questions[1]}\n\nQUESTION 3:${questions[2]}\n\nQUESTION 4:${questions[3]}`} />
                     <PrimaryButton name="NEXT" onPress={() => {
                         handleWimCoins();
                         handleStartButton();
@@ -254,15 +256,15 @@ export default function Feedback({ navigation }) {
 }
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 70,
+        paddingTop: 40,
         display: 'flex',
         flexDirection: "column",
         alignItems: "center",
-        height: screenHeight - 25,
+        height: screenHeight - 24,
         width: screenWidth,
     },
     main_container: {
-        height: 370,
+        height: 430,
         width: screenWidth,
         display: 'flex',
         flexDirection: 'column',
@@ -271,21 +273,10 @@ const styles = StyleSheet.create({
     },
     image_box: {
         width: '100vw',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 30
-    },
-    question_box: {
-        marginTop: 20,
-        marginLeft: 20,
-        fontSize: 20
-    },
-    button: {
-        margin: 20
+        marginBottom: 10
     },
     header: {
         fontSize: 30,
-        height: 35,
         fontWeight: 'bold',
     },
     box: {
