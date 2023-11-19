@@ -174,7 +174,7 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
+                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -237,7 +237,7 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
+                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -300,7 +300,7 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
+                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -363,7 +363,7 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That is Incorrect, Please Try Again</Text>
+                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
