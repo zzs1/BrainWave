@@ -13,9 +13,8 @@ const screenHeight = Dimensions.get("window").height;
 export default function AccessibilityPrompt({ navigation }) {
 
     const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind } = React.useContext(AppContext)
-    const { colors } = useTheme();
+    const { colors, colorBlindColors } = useTheme();
     const { dark } = useTheme();
-    const { colorBlindColors } = useTheme();
 
 
     const [hiddenInfo, setHiddenInfo] = useState(true);
@@ -83,10 +82,13 @@ export default function AccessibilityPrompt({ navigation }) {
 
                             <View style={{
                                 ...styles.box,
-                                backgroundColor: colors.progBarBG,
-                                borderColor: colors.switchThumb,
+                                backgroundColor: isColorBlind ? (dark ? colorBlindColors.primaryColor : colorBlindColors.primaryColorFade) : colors.toggleBoxColor,
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
                                 }}>
-                                <Text style={styles.title}>Dark Mode</Text>
+                                <Text style={{
+                                    ...styles.title,
+                                    color: colors.text
+                                }}>Dark Mode</Text>
                                 <Switch
                                     trackColor={{ false: colors.switchBG, true: colors.switchBG }}
                                     thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
@@ -97,10 +99,13 @@ export default function AccessibilityPrompt({ navigation }) {
 
                             <View style={{
                                 ...styles.box,
-                                backgroundColor: colors.progBarBG,
-                                borderColor: colors.switchThumb,
+                                backgroundColor: isColorBlind ? (dark ? colorBlindColors.primaryColor : colorBlindColors.primaryColorFade) : colors.toggleBoxColor,
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
                                 }}>
-                                <Text style={styles.title}>Color Blind Mode</Text>
+                                <Text style={{
+                                    ...styles.title,
+                                    color: colors.text
+                                }}>Color Blind Mode</Text>
                                 <Switch
                                     trackColor={{ false: colors.switchBG, true: colors.switchBG }}
                                     thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
@@ -111,9 +116,13 @@ export default function AccessibilityPrompt({ navigation }) {
 
                             <View style={{
                                 ...styles.box,
-                                backgroundColor: colors.progBarBG,
-                                borderColor: colors.switchThumb,}}>
-                                <Text style={styles.title}>Dyslexia Font</Text>
+                                backgroundColor: isColorBlind ? (dark ? colorBlindColors.primaryColor : colorBlindColors.primaryColorFade) : colors.toggleBoxColor,
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                            }}>
+                                <Text style={{
+                                    ...styles.title,
+                                    color: colors.text
+                                }}>Dyslexia Font</Text>
                                 <Switch
                                     trackColor={{ false: colors.switchBG, true: colors.switchBG }}
                                     thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
@@ -217,12 +226,17 @@ const styles = StyleSheet.create({
         width: 320,
         height: 70,
         borderRadius: 10,
-        borderWidth: 1,
-        alignContent: 'center',
+        borderWidth: 3,
         display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignContent: 'center',
+        paddingRight: 20,
+        paddingLeft: 20
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
+        alignSelf: 'center'
     }
 });

@@ -42,26 +42,16 @@ export default function App() {
 
   const appContext = useMemo(() => {
     return {
-      isDarkTheme,
-      setIsDarkTheme,
-      isColorBlind,
-      setIsColorBlind,
-      puzzleType,
-      setPuzzleType,
-      wimPoints,
-      setWimPoints,
-      logicLevel,
-      setLogicLevel,
-      numberLevel,
-      setNumberLevel,
-      patternLevel,
-      setPatternLevel,
-      numberProgress,
-      setNumberProgress,
-      logicProgress,
-      setLogicProgress,
-      patternProgress,
-      setPatternProgress
+      isDarkTheme, setIsDarkTheme,
+      isColorBlind, setIsColorBlind,
+      puzzleType, setPuzzleType,
+      wimPoints, setWimPoints,
+      logicLevel, setLogicLevel,
+      numberLevel, setNumberLevel,
+      patternLevel, setPatternLevel,
+      numberProgress, setNumberProgress,
+      logicProgress, setLogicProgress,
+      patternProgress, setPatternProgress
     }
   });
 

@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useState, useEffect } from 'react';
 
-import AccountCard from '../components/Molecules/AccountCard';
 import SectionCardMain from '../components/Molecules/SectionCardMain';
 import SectionCardSide from '../components/Molecules/SectionCardSide';
 import CarouselButton from '../components/Atoms/CarouselButton';

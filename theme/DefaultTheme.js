@@ -36,6 +36,7 @@ const DefaultTheme = {
         chartBarLabel: '#0C7BDC',
         chartBarColor: '12, 123, 220',
         textColour: '#1E1E1E',
+        toggleBoxColor: '#CDDDEC'
     },
     colorBlindColors: {
         primaryColor: '#584B9D',
