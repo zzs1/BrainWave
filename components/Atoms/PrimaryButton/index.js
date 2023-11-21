@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
 
     primaryButtonText: {
         fontSize: 25,
+        fontWeight: 'bold',
         color: '#FFFFFF',
     },
 });
