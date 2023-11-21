@@ -11,6 +11,7 @@ import WimmyPopup from "../components/Molecules/WimmyPopup";
 import NavBar from "../components/Molecules/NavBar";
 import OptionBtn from "../components/Atoms/OptionButton";
 import ProgressBar from "../components/Atoms/DialogueBar";
+import WavingTail from "../components/Atoms/WavingTail";
 
 import { logicProblems } from "../data/wordProblems";
 import { numberPuzzles } from "../data/numberPuzzles.js";
@@ -416,7 +417,8 @@ export default function WordProblemsPage({ navigation }) {
                     ...styles.hintText,
                     color: colors.text
                 }}>Need a Hint?</Text>
-                <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} />
+                {/* <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} /> */}
+                <WavingTail />
             </Pressable>
 
             <WimmyPopup style={styles.popup} title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />

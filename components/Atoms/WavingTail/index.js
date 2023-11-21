@@ -16,8 +16,8 @@ export default function WimmyAnimated(){
           autoPlay
           ref={(animationRef) => animationRef && animationRef.play()}
           style={{
-            width: 200,
-            height: 200,
+            width: 150,
+            height: 150,
           }}
           source={animationData}
         />
