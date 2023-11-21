@@ -12,10 +12,9 @@ const screenHeight = Dimensions.get("window").height;
 
 export default function AccessibilityPrompt({ navigation }) {
 
-    const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind } = React.useContext(AppContext)
+    const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind, isDyslexic, setIsDyslexic } = React.useContext(AppContext)
     const { colors, colorBlindColors } = useTheme();
     const { dark } = useTheme();
-
 
     const [hiddenInfo, setHiddenInfo] = useState(true);
     const [showSetting, setShowSetting] = useState(false);
@@ -43,10 +42,12 @@ export default function AccessibilityPrompt({ navigation }) {
                                 ...styles.textStyleBody,
                                 color: colors.text,
                                 paddingTop: 80,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                             }}>Would you like to explore accessibility options for visual impairment?</Text>
                             <Text style={{
                                 ...styles.textStyleNote,
-                                color: colors.fadedText
+                                color: colors.fadedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                             }}>You can edit your preferences at any time</Text>
                         </View>
 
@@ -69,6 +70,7 @@ export default function AccessibilityPrompt({ navigation }) {
                             ...styles.textStyleBoldSecond,
                             color: colors.text,
                             paddingTop: 80,
+                            fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                         }}>Accessibility Options</Text>
                         {/* <Text style={{
                             ...styles.textStyleBodySecond,
@@ -87,7 +89,8 @@ export default function AccessibilityPrompt({ navigation }) {
                                 }}>
                                 <Text style={{
                                     ...styles.title,
-                                    color: colors.text
+                                    color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                 }}>Dark Mode</Text>
                                 <Switch
                                     trackColor={{ false: colors.switchBG, true: colors.switchBG }}
@@ -104,7 +107,8 @@ export default function AccessibilityPrompt({ navigation }) {
                                 }}>
                                 <Text style={{
                                     ...styles.title,
-                                    color: colors.text
+                                    color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                 }}>Color Blind Mode</Text>
                                 <Switch
                                     trackColor={{ false: colors.switchBG, true: colors.switchBG }}
@@ -121,11 +125,14 @@ export default function AccessibilityPrompt({ navigation }) {
                             }}>
                                 <Text style={{
                                     ...styles.title,
-                                    color: colors.text
+                                    color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                 }}>Dyslexia Font</Text>
                                 <Switch
                                     trackColor={{ false: colors.switchBG, true: colors.switchBG }}
                                     thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
+                                    onValueChange={() => setIsDyslexic(current => !current)}
+                                    value={isDyslexic}
                                 />
                             </View>
                             <PrimaryButton name='Continue' onPress={() => navigation.push('Intro')} />
@@ -190,7 +197,6 @@ const styles = StyleSheet.create({
         position: 'absolute'
     },
     textStyleBoldSecond: {
-        fontWeight: 'bold',
         fontSize: 24,
         textAlign: 'center',
         marginBottom: 25,
@@ -236,7 +242,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
         alignSelf: 'center'
     }
 });

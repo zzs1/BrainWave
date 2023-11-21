@@ -10,7 +10,7 @@ import PrimaryButton from "../components/Atoms/PrimaryButton";
 import WimmyPopup from "../components/Molecules/WimmyPopup";
 import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
 import TopBar from "../components/Molecules/TopBar";
-import LevelBox from "../components/Atoms/LevelBox";
+import LevelBox from "../components/Molecules/LevelBox/index.js";
 
 import { AppContext } from '../context/AppContext.js';
 
@@ -18,7 +18,7 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function AccountPages({ navigation }) {
-    const { wimPoints } = React.useContext(AppContext);
+    const { wimPoints, isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -94,7 +94,8 @@ export default function AccountPages({ navigation }) {
                         style={{
                             ...styles.userNameInput,
                             borderColor: colors.inputBorder,
-                            backgroundColor: colors.inputBG
+                            backgroundColor: colors.inputBG,
+                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                         }}
                         placeholder="Type your name..."
                         onChangeText={handleNameChange}
@@ -193,7 +194,8 @@ export default function AccountPages({ navigation }) {
                     <View style={styles.userNameSection}>
                         <Text style={{
                             ...styles.userName,
-                            color: colors.text
+                            color: colors.text,
+                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                         }}>{userName}</Text>
                         {/* <Image
                                 source={require('../assets/Icons/editBlack.png')}
@@ -225,6 +227,7 @@ export default function AccountPages({ navigation }) {
                                 <Text style={{
                                     ...styles.title,
                                     color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                                 }}>My Wimmy</Text>
                                 <Image
                                     source={require('../assets/Icons/wimmySmall.png')}
@@ -253,12 +256,14 @@ export default function AccountPages({ navigation }) {
                                 <Text style={{
                                     ...styles.title,
                                     color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                                 }}>Streaks</Text>
                                 <Text style={{
                                     fontSize: 16,
                                     textAlign: 'center',
                                     paddingTop: 5,
                                     color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                 }}>10 Days</Text>
 
                                 <View style={{
@@ -272,22 +277,27 @@ export default function AccountPages({ navigation }) {
                                     <Text style={{
                                         ...styles.days,
                                         color: colors.text,
+                                        fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                     }}>{currentDate.getDate() - 2}</Text>
                                     <Text style={{
                                         ...styles.days,
                                         color: colors.text,
+                                        fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                     }}>{currentDate.getDate() - 1}</Text>
                                     <Text style={{
                                         ...styles.days,
                                         color: colors.text,
+                                        fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                     }}>{currentDate.getDate()}</Text>
                                     <Text style={{
                                         ...styles.days,
                                         color: colors.text,
+                                        fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                     }}>{currentDate.getDate() + 1}</Text>
                                     <Text style={{
                                         ...styles.days,
                                         color: colors.text,
+                                        fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                                     }}>{currentDate.getDate() + 2}</Text>
                                 </View>
                             </View>
@@ -301,10 +311,11 @@ export default function AccountPages({ navigation }) {
                                 <Text style={{
                                     ...styles.title,
                                     color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                                 }}>WIM COINS</Text>
                                 <View style={{
                                     display: 'flex',
-                                    paddingTop: 15,
+                                    paddingTop: 5,
                                     flexDirection: 'row',
                                     alignItems: 'center',
                                     gap: 10,
@@ -365,7 +376,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: '900',
         paddingTop: 10,
         paddingLeft: 10,
     },

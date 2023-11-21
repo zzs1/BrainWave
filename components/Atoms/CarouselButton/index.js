@@ -9,7 +9,7 @@ export default function CarouselButton({
     btnText = '',
     onPress = {}
 }) {
-    const { isColorBlind } = React.useContext(AppContext);
+    const { isColorBlind, isDyslexic } = React.useContext(AppContext);
     const { colors, colorBlindColors } = useTheme();
 
     const translateY = useRef(new Animated.Value(0)).current;
@@ -45,7 +45,8 @@ export default function CarouselButton({
             }}>
                 <Text style={{
                     ...styles.carouselButtonText,
-                    color: colors.btnText
+                    color: colors.btnText,
+                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                 }}>{btnText}</Text>
             </Animated.View>
 
@@ -79,7 +80,6 @@ const styles = StyleSheet.create({
         zIndex: -1
     },
     carouselButtonText: {
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 20
     },
 }); 

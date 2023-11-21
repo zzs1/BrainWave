@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import { ProgressChart } from "react-native-chart-kit";
 
+import { AppContext } from '../../../context/AppContext.js';
 
 export default function LevelBox(){
-
+    const { isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
     const data = {
@@ -45,10 +46,10 @@ export default function LevelBox(){
             }}>
                 <Text style={{   
                     fontSize: 20,
-                    fontWeight: '900',
                     paddingTop: 10,
                     paddingLeft: 10, 
-                    color: colors.text,          
+                    color: colors.text,  
+                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'        
                    }}>LEVEL</Text>
                 <ProgressChart
                     data={data}

@@ -4,12 +4,15 @@ import { useTheme } from '@react-navigation/native';
 
 import ProgressBar from '../../Atoms/ProgressBar-small';
 
+import { AppContext } from '../../../context/AppContext.js';
+
 export default function GoalBox({
   prog=0,
   time='',
   goal='',
   level='',
 }) {
+  const { isDyslexic } = React.useContext(AppContext);
   const { colors } = useTheme();
 
   return (
@@ -20,22 +23,24 @@ export default function GoalBox({
     }}>
         <Text style={{
           fontSize: 20,
-          fontWeight: '900',
           color: colors.text,
           position: 'absolute',
           left: 10,
           top: 10,
+          fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
         }}>Daily Goal</Text>
         <Text style={{
           fontSize: 16,
           color: colors.text,
           paddingTop: 20,
+          fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
         }}>{level}</Text>
         <View style={styles.progContainer}>
           <ProgressBar fill={prog}/>
           <Text style={{
             fontSize: 14,
-            color: colors.text
+            color: colors.text,
+            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
           }}>{time}/{goal} mins</Text>
         </View>
         {/* <Text style={{

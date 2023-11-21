@@ -14,7 +14,7 @@ export default function SectionCardMain({
   title = '',
   prog = 0
 }) {
-  const { isColorBlind } = React.useContext(AppContext);
+  const { isColorBlind, isDyslexic } = React.useContext(AppContext);
   const { colors, colorBlindColors } = useTheme();
 
   return (
@@ -25,7 +25,8 @@ export default function SectionCardMain({
     }}>
       <Text style={{
         ...styles.title,
-        color: colors.text
+        color: colors.text,
+        fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
       }}>{title}</Text>
       <Image source={image} contentFit='contain' style={{
         width: 150,
@@ -37,7 +38,8 @@ export default function SectionCardMain({
         />
         <Text style={{
           fontSize: 16,
-          color: colors.text
+          color: colors.text,
+          fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
         }}>{prog}%</Text>
       </View>
     </LinearGradient>
@@ -56,8 +58,7 @@ const styles = StyleSheet.create({
     borderWidth: 3
   },
   title: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 20,
     marginTop: 15
   },
   progContainer: {

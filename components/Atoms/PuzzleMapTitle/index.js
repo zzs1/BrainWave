@@ -3,9 +3,12 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@react-navigation/native';
 
+import { AppContext } from '../../../context/AppContext.js'
+
 export default function PuzzleMapTitle({
     title='',
 }) {
+    const { isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
   return (
@@ -14,7 +17,8 @@ export default function PuzzleMapTitle({
     }}>
         <Text style={{
             ...styles.title,
-            color: colors.text
+            color: colors.text,
+            fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
         }}>{title.toUpperCase()}</Text>
     </LinearGradient>
   )
@@ -27,7 +31,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 28,
-        fontWeight: 'bold',
         marginLeft: 30
     }
 })

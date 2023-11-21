@@ -2,10 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native'
 
+import { AppContext } from '../../../context/AppContext.js';
+
 export default function SettingsSection({
     title='',
     image=''
 }) {
+  const { isDyslexic } = React.useContext(AppContext);
   const { colors } = useTheme(); 
 
   return (
@@ -18,7 +21,8 @@ export default function SettingsSection({
             }}/>
             <Text style={{
                 ...styles.title,
-                color: colors.text
+                color: colors.text,
+                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>{title}</Text>
         </View>
         <Text style={{

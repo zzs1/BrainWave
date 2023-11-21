@@ -1,7 +1,12 @@
+import React from 'react';
+
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useTheme } from "@react-navigation/native";
 
+import { AppContext } from '../../../context/AppContext.js'
+
 export default function FeedbackBox({ text }) {
+    const { isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
     return (
@@ -13,7 +18,8 @@ export default function FeedbackBox({ text }) {
             <Text style={{
                 color: colors.text,
                 fontSize: 18,
-                paddingBottom: 30
+                paddingBottom: 30,
+                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>
                 {text}
             </Text>

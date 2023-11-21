@@ -28,7 +28,7 @@ export default function WordProblemsPage({ navigation }) {
     const route = useRoute();
     const currentLevel = route.params.currLevel;
 
-    const { isColorBlind } = React.useContext(AppContext);
+    const { isColorBlind, isDyslexic } = React.useContext(AppContext);
     const { colors, colorBlindColors } = useTheme();
 
     const [data, setData] = useState(puzzleType.toLowerCase() === 'numbers problems' ? numberPuzzles : puzzleType.toLowerCase() === 'logic problems' ? logicProblems : patternRecognition);
@@ -165,7 +165,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.green,
                             borderColor: colors.optionBtn.greenShadow
                         }}>
-                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
@@ -174,7 +177,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -182,7 +188,8 @@ export default function WordProblemsPage({ navigation }) {
                             style={{
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
-                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -228,7 +235,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.green,
                             borderColor: colors.optionBtn.greenShadow
                         }}>
-                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
@@ -237,7 +247,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -245,7 +258,8 @@ export default function WordProblemsPage({ navigation }) {
                             style={{
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
-                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -291,7 +305,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.green,
                             borderColor: colors.optionBtn.greenShadow
                         }}>
-                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
@@ -300,7 +317,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -308,7 +328,8 @@ export default function WordProblemsPage({ navigation }) {
                             style={{
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
-                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -354,7 +375,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.green,
                             borderColor: colors.optionBtn.greenShadow
                         }}>
-                            <Text style={styles.feedText}>That's Correct, Good Job!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
                     {showIncorrectPopup && (
@@ -363,7 +387,10 @@ export default function WordProblemsPage({ navigation }) {
                             backgroundColor: colors.optionBtn.red,
                             borderColor: colors.optionBtn.redShadow
                         }}>
-                            <Text style={styles.feedText}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            <Text style={{
+                                ...styles.feedText,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -371,7 +398,8 @@ export default function WordProblemsPage({ navigation }) {
                             style={{
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
-                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow
+                                borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -414,7 +442,8 @@ export default function WordProblemsPage({ navigation }) {
             }}>
                 <Text style={{
                     ...styles.hintText,
-                    color: colors.text
+                    color: colors.text,
+                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                 }}>Need a Hint?</Text>
                 <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} />
             </Pressable>
@@ -507,6 +536,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 5,
         width: 315,
+        height: 40,
         color: 'white',
         borderWidth: 3
     }

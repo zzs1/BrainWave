@@ -11,7 +11,7 @@ export default function SectionCardSide({
     image='',
     title='',
 }) {
-  const { isColorBlind } = React.useContext(AppContext);
+  const { isColorBlind, isDyslexic } = React.useContext(AppContext);
   const { colors, colorBlindColors } = useTheme();
 
   return (
@@ -21,9 +21,9 @@ export default function SectionCardSide({
       backgroundColor: isColorBlind ? colorBlindColors.cardBGOne : colors.cardBGOne
     }}>
         <Text style={{
-          fontSize: 16,
-          fontWeight: 'bold',
-          color: colors.text
+          fontSize: 14,
+          color: colors.text,
+          fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
         }}>{title}</Text>
         <Image source={image} contentFit='contain' style={{
           width: 100,
