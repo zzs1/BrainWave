@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { Image } from "expo-image";
+import { Audio } from 'expo-av';
 
 import QuestionBox from "../components/Atoms/QuestionBox";
 import WimmyPopup from "../components/Molecules/WimmyPopup";
@@ -19,6 +20,7 @@ import { patternRecognition } from "../data/patternRecognition.js";
 import { AppContext } from '../context/AppContext.js';
 
 import { getHint } from "../libs/getAPI.js";
+
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -108,6 +110,7 @@ export default function WordProblemsPage({ navigation }) {
 
     const handleAnswer = (choice, answer) => {
         if (choice === answer) {
+            answerCorrectSound();
             setNumber(number + 1);
             console.log(number);
             setQuestions([...questions, data[quesIndex[currentQuestion]].explanation])
@@ -130,6 +133,7 @@ export default function WordProblemsPage({ navigation }) {
                 }
             }, 2000);
         } else {
+            answerIncorrectSound();
             setAttempt(attempt - 1);
             setQuestions([...questions, data[quesIndex[currentQuestion]].description]);
             setShowIncorrectPopup(true);
@@ -152,6 +156,32 @@ export default function WordProblemsPage({ navigation }) {
             }, 2000);
         }
     }
+
+    const [sound, setSound] = React.useState();
+
+    async function answerCorrectSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync( require('../assets/sound/answer-correct.wav')
+        );
+        setSound(sound);
+        console.log('Playing Sound');
+        await sound.playAsync();
+    }
+
+    async function answerIncorrectSound() {
+        const { sound } = await Audio.Sound.createAsync( require('../assets/sound/answer-incorrect.wav')
+        );
+        setSound(sound);
+        await sound.playAsync();
+    }
+
+    React.useEffect(() => {
+        return sound
+        ? () => {
+            sound.unloadAsync();
+            }
+        : undefined;
+    }, [sound]);
 
     return (
         <View style={styles.container}>
