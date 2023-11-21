@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Pressable, Text, Animated } from 'react-native';
 import { useRef } from 'react';
 import { useTheme } from '@react-navigation/native';
+import { Audio } from 'expo-av';
 
 import { AppContext } from '../../../context/AppContext'
 
@@ -32,8 +33,26 @@ export default function CarouselButton({
         });
     };
 
+    const [sound, setSound] = React.useState();
+
+    async function playSound() {
+        const { sound } = await Audio.Sound.createAsync( require('../../../assets/sound/button-click.mp3')
+        );
+        setSound(sound);
+        await sound.playAsync();
+    }
+
+    React.useEffect(() => {
+        return sound
+        ? () => {
+            sound.unloadAsync();
+            }
+        : undefined;
+    }, [sound]);
+
     return (
         <Pressable
+            onPress={playSound}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
             style={styles.container}

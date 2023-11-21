@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ProgressBar from '../components/Atoms/DialogueBar';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import DialogueBoxUpper from '../components/Atoms/DialogueBoxUpper';
+import WimmyAnimated from '../components/Atoms/WimmyAnimated';
 
 import { Dialogue } from '../data/introDialogue';
 
@@ -28,8 +29,8 @@ export default function Intro({ navigation }) {
         <SafeAreaView style={styles.container}>
             <ProgressBar step={number + 1} num={line.length} />
             <View style={styles.imageLogo} >
-                <Image source={require('../assets/Icons/wimmy.png')}/>
-                    <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
+                <WimmyAnimated />
+                <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
             </View>
             <PrimaryButton name='Continue' onPress={handleButtonPress}/>
                         {/* <Image

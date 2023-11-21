@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Pressable, Animated} from 'react-native';
 import { Image } from 'expo-image';
+import { Audio } from 'expo-av';
 
 import { useRef } from 'react';
 import { useTheme } from '@react-navigation/native'
@@ -38,8 +39,26 @@ export default function MoveButton ({
         });
     };
 
+    const [sound, setSound] = React.useState();
+
+    async function playSound() {
+        const { sound } = await Audio.Sound.createAsync( require('../../../assets/sound/button-click.mp3')
+        );
+        setSound(sound);
+        await sound.playAsync();
+    }
+
+    React.useEffect(() => {
+        return sound
+        ? () => {
+            sound.unloadAsync();
+            }
+        : undefined;
+    }, [sound]);
+
     return(
         <Pressable
+            onPress={playSound}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut} 
             style={styles.container}
