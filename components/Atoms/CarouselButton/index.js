@@ -65,7 +65,7 @@ export default function CarouselButton({
                 <Text style={{
                     ...styles.carouselButtonText,
                     color: colors.btnText,
-                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                 }}>{btnText}</Text>
             </Animated.View>
 

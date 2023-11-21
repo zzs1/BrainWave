@@ -71,7 +71,7 @@ export default function OptionBtn({
             >
                 <Text style={{
                     ...styles.primaryButtonText,
-                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                 }}>{name}</Text>
             </Animated.View>
             <View
