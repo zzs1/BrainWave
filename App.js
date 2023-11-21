@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { StyleSheet, Dimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen'
 
 import InNav from './screens/InNav';
 import AccessibilityPrompt from './screens/AccessibilityPrompt';
@@ -11,10 +13,6 @@ import Intro from './screens/Intro';
 import AccountPages from './screens/AccountPages';
 import HomePage from './screens/homePage';
 import PuzzleMap from './screens/puzzleMap';
-// import WordProblem from './screens/wordProblems';
-// import WordProblemTwo from './screens/wordProblemTwo';
-// import WordProblemThree from './screens/wordProblemThree';
-// import WordProblemFour from './screens/wordProblemFour';
 import WordProblemsPage from './screens/wordProblemsPages';
 import Feedback from './screens/Feedback';
 import Settings from './screens/settings';
@@ -27,10 +25,14 @@ import { AppContext } from './context/AppContext.js'
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isColorBlind, setIsColorBlind] = useState(false);
+  const [isDyslexic, setIsDyslexic] = useState(false);
+  const [font, setFont] = useState([]);
   const [puzzleType, setPuzzleType] = useState('');
   const [logicLevel, setLogicLevel] = useState(1);
   const [numberLevel, setNumberLevel] = useState(1);
@@ -51,12 +53,30 @@ export default function App() {
       patternLevel, setPatternLevel,
       numberProgress, setNumberProgress,
       logicProgress, setLogicProgress,
-      patternProgress, setPatternProgress
+      patternProgress, setPatternProgress,
+      isDyslexic, setIsDyslexic,
     }
   });
 
+  const [fontsLoaded] = useFonts({
+    'Poppins-Regular': require('./assets/Fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('./assets/Fonts/Poppins-Bold.ttf'),
+    'Lexend-Regular' : require('./assets/Fonts/Lexend-Regular.ttf'),
+    'Lexend-Bold': require('./assets/Fonts/Lexend-Bold.ttf'),
+  })
+
+  const onLayoutRootView = useCallback(async () => {
+    if(fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded])
+
+  if(!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
       <StatusBar style={isDarkTheme ? 'light' : 'dark'}/>
       <NavigationContainer theme={isDarkTheme ? DarkTheme : DefaultTheme}>
         <AppContext.Provider value={appContext}>
@@ -81,6 +101,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: screenWidth,
-    height: screenHeight
+    height: screenHeight,
+    fontFamily: 'Poppins-Regular'
   }
 });

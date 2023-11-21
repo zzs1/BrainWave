@@ -39,7 +39,8 @@ export default function Feedback({ navigation }) {
         patternProgress,
         setPatternProgress,
         wimPoints,
-        setWimPoints
+        setWimPoints,
+        isDyslexic
     } = React.useContext(AppContext);
 
     const route = useRoute();
@@ -115,9 +116,10 @@ export default function Feedback({ navigation }) {
                     <Text style={{
                         ...styles.header,
                         color: colors.text,
+                        fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                     }}>Great Job</Text>
 
-                    <FeedbackBox text={`I'LL GIVE YOU AN EXPLANATION OF EACH QUESTION:\n\nQUESTION 1:${questions[0]}\n\nQUESTION 2:${questions[1]}\n\nQUESTION 3:${questions[2]}\n\nQUESTION 4:${questions[3]}`} />
+                    <FeedbackBox text={`I'LL GIVE YOU AN EXPLANATION OF EACH QUESTION:\n\nQUESTION 1: ${questions[0]}\n\nQUESTION 2: ${questions[1]}\n\nQUESTION 3: ${questions[2]}\n\nQUESTION 4: ${questions[3]}`} />
                     <PrimaryButton name="NEXT" onPress={() => {
                         handleWimCoins();
                         handleStartButton();
@@ -135,10 +137,12 @@ export default function Feedback({ navigation }) {
                         <Text style={{
                             fontSize: 20,
                             color: colors.text,
+                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                         }}>Lesson Complete!</Text>
                         <Text style={{
                             fontSize: 20,
                             color: colors.text,
+                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                         }}>Level: {puzzleType.toLowerCase() === 'numbers problems' ? numberLevel : puzzleType.toLowerCase() === 'logic problems' ? logicLevel : patternLevel}</Text>
                         <Image />
                     </View>
@@ -178,6 +182,7 @@ export default function Feedback({ navigation }) {
                         <Text style={{
                             fontSize: 20,
                             color: colors.text,
+                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                         }}>Points: {points}</Text>
                         <View style={styles.coin_container}>
                             <Image
@@ -187,6 +192,7 @@ export default function Feedback({ navigation }) {
                             />
                             <Text style={{
                                 color: colors.text,
+                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                             }}>{addWim} Wim Coins earned!</Text>
                         </View>
                     </View>

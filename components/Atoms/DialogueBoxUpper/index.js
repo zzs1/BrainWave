@@ -1,11 +1,15 @@
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+
+import { AppContext } from '../../../context/AppContext.js'
 
 export default function DialogueBoxUpper({
     hasTitle={},
     title='',
     interestingText=''
 }) {
+    const { isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
     return(
@@ -18,12 +22,14 @@ export default function DialogueBoxUpper({
                 {
                     hasTitle ?  <Text style={{
                         ...styles.title,
-                        color: colors.text
+                        color: colors.text,
+                        fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                     }}>{title}</Text> : <></>
                 }
                 <Text style={{
                     ...styles.text,
-                    color: colors.text
+                    color: colors.text,
+                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                 }}>{interestingText}</Text>
             </View>
         </View>
@@ -49,7 +55,6 @@ export default function DialogueBoxUpper({
         },
         title: {
             fontSize: 22,
-            fontWeight: 'bold',
             marginBottom: 20
         }
         })

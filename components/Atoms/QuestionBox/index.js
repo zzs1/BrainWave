@@ -1,7 +1,12 @@
+import React from 'react';
+
 import { StyleSheet, View, Text} from 'react-native';
 import { useTheme } from "@react-navigation/native";
 
+import { AppContext } from '../../../context/AppContext.js'
+
 export default function QuestionBox({ text }) {
+    const { isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
     return (
@@ -12,7 +17,8 @@ export default function QuestionBox({ text }) {
         }}>
             <Text style={{
                 color: colors.text,
-                fontSize: 18,
+                fontSize: 16,
+                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>
                 {text}
             </Text>

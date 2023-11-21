@@ -13,7 +13,7 @@ export default function OptionBtn({
     color,
     shadow
 }) {
-    const { isColorBlind } = React.useContext(AppContext);
+    const { isColorBlind, isDyslexic } = React.useContext(AppContext);
     const { colorBlindColors } = useTheme();
 
     const translateY = useRef(new Animated.Value(0)).current;
@@ -69,7 +69,10 @@ export default function OptionBtn({
                     transform: [{ translateY }],
                 }}
             >
-                <Text style={styles.primaryButtonText}>{name}</Text>
+                <Text style={{
+                    ...styles.primaryButtonText,
+                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                }}>{name}</Text>
             </Animated.View>
             <View
                 style={{

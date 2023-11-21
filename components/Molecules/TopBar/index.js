@@ -1,12 +1,16 @@
+import React from 'react';
+
 import { StyleSheet, Text, View, Pressable, Image, Dimensions } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
+import { AppContext } from '../../../context/AppContext';
+
 export default function TopBar({ navigation, points=0 }) {
-  const { colors } = useTheme();
-  const { dark } = useTheme();
+  const { isDyslexic } = React.useContext(AppContext);
+  const { colors, dark } = useTheme();
 
   return (
     <>
@@ -27,7 +31,8 @@ export default function TopBar({ navigation, points=0 }) {
             <Text style={{
               fontSize: 16,
               color: colors.text,
-              marginLeft: 10
+              marginLeft: 10,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>{points}</Text>
           </View>
 

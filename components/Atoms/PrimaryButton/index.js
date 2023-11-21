@@ -12,7 +12,7 @@ export default function PrimaryButton({
     name = "",
     onPress = {}
 }) {
-    const { isColorBlind } = React.useContext(AppContext);
+    const { isColorBlind, isDyslexic } = React.useContext(AppContext);
 
     const { colors, colorBlindColors } = useTheme();
 
@@ -68,7 +68,10 @@ export default function PrimaryButton({
                     transform: [{ translateY }],
                 }}
             >
-                <Text style={styles.primaryButtonText}>{name}</Text>
+                <Text style={{
+                    ...styles.primaryButtonText,
+                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                }}>{name}</Text>
             </Animated.View>
             <View
                 style={{

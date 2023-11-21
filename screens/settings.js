@@ -19,7 +19,7 @@ import AccessibilityB from '../assets/Icons/Accessibility-black.png'
 import TopBar from '../components/Molecules/TopBar/index.js';
 
 export default function Settings({ navigation }) {
-  const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind } = React.useContext(AppContext)
+  const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind, isDyslexic, setIsDyslexic } = React.useContext(AppContext)
 
   const { dark } = useTheme();
   const { colors } = useTheme();
@@ -33,11 +33,13 @@ export default function Settings({ navigation }) {
         <View style={styles.settingItem}>
           <Text style={{
             ...styles.settingTitle,
-            color: colors.text
+            color: colors.text,
+            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
           }}>Theme</Text>
           <View style={styles.settingSwitch}>
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>Light</Text>
             <Switch
               trackColor={{ false: colors.switchBG, true: colors.switchBG }}
@@ -46,7 +48,8 @@ export default function Settings({ navigation }) {
               value={isDarkTheme}
             />
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>Dark</Text>
           </View>
         </View>
@@ -57,18 +60,21 @@ export default function Settings({ navigation }) {
         <View style={styles.settingItem}>
           <Text style={{
             ...styles.settingTitle,
-            color: colors.text
+            color: colors.text,
+            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
           }}>Screen Reader</Text>
           <View style={styles.settingSwitch}>
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>Off</Text>
             <Switch
               trackColor={{ false: colors.switchBG, true: colors.switchBG }}
               thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
             />
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>On</Text>
           </View>
         </View>
@@ -76,11 +82,13 @@ export default function Settings({ navigation }) {
         <View style={styles.settingItem}>
           <Text style={{
             ...styles.settingTitle,
-            color: colors.text
+            color: colors.text,
+            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
           }}>Color Blind Mode</Text>
           <View style={styles.settingSwitch}>
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>Off</Text>
             <Switch
               trackColor={{ false: colors.switchBG, true: colors.switchBG }}
@@ -89,7 +97,8 @@ export default function Settings({ navigation }) {
               value={isColorBlind}
             />
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>On</Text>
           </View>
         </View>
@@ -97,18 +106,23 @@ export default function Settings({ navigation }) {
         <View style={styles.settingItem}>
           <Text style={{
             ...styles.settingTitle,
-            color: colors.text
+            color: colors.text,
+            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
           }}>Dyslexia Font</Text>
           <View style={styles.settingSwitch}>
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>Off</Text>
             <Switch
               trackColor={{ false: colors.switchBG, true: colors.switchBG }}
               thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
+              onValueChange={() => setIsDyslexic(current => !current)}
+              value={isDyslexic}
             />
             <Text style={{
-              color: colors.text
+              color: colors.text,
+              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
             }}>On</Text>
           </View>
         </View>
