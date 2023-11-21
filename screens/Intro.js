@@ -28,10 +28,6 @@ export default function Intro({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <ProgressBar step={number + 1} num={line.length} />
-            {/* <View style={styles.imageLogo} >
-                <Image source={require('../assets/Icons/wimmy.png')}/>
-                    <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
-            </View> */}
             <View style={styles.imageLogo} >
                 <WimmyAnimated />
                 <DialogueBoxUpper interestingText={line[number]} hasTitle={false}/>
