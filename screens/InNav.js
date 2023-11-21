@@ -1,8 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useTheme } from '@react-navigation/native';
-import { StyleSheet, View, Image, Pressable, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, Pressable, Dimensions, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import LottieView from 'lottie-react-native';
+import animationData from "../assets/Animations/loading-animation.json";
 
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 
@@ -13,29 +15,42 @@ export default function InNav({ navigation }) {
   const { colors } = useTheme();
   const { dark } = useTheme();
 
-  const [animationWhale, setAnimationWhale] = useState(false);
-  const [waves, setWaves] = useState(true);
+  const [animationVisible, setAnimationVisible] = useState(true);
+  const fadeAnim = new Animated.Value(0);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setAnimationWhale(true);
-      setWaves(false);
-    }, 1000);
+      setAnimationVisible(false);
+    }, 7000);
 
     return () => clearTimeout(timeoutId);
   }, []);
 
+  useEffect(() => {
+    // Use a separate useEffect for fading in the content
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
     <SafeAreaView style={styles.container}>
-      {
-        waves && (
-          <View>
-            <Image source={require('../assets/Waves/wavesNav.png')} style={styles.waves} />
-          </View>
-        )
-      }
-      {
-        animationWhale && (
+      {animationVisible && (
+      <View style={styles.animationContainer}>
+        <LottieView
+          autoPlay
+          ref={(animationRef) => animationRef && animationRef.play()}
+          style={{
+            width: screenWidth,
+            height: screenHeight,
+          }}
+          source={animationData}
+        />
+      </View>
+      )}
+      <Animated.View style={{ opacity: fadeAnim }}>
           <View style={styles.containerImage}>
             <View style={styles.imgs}>
               <Image source={dark ? require('../assets/Logo/logo-white.png') : require('../assets/Logo/logo-blue.png')} style={styles.imageLogo} />
@@ -45,8 +60,7 @@ export default function InNav({ navigation }) {
               <PrimaryButton name='Get Started' onPress={() => navigation.push('AccessibilityPrompt')} />
             </View>
           </View>
-        )
-      }
+        </Animated.View>
     </SafeAreaView>
   );
 }
