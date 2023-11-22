@@ -226,7 +226,8 @@ const styles = StyleSheet.create({
         bottom: 0,
         justifyContent: 'space-between',
         paddingBottom: 80,
-        borderWidth: 1,
+        borderWidth: 2,
+        borderColor: 'rgba(0, 0, 0, 0.2)',
     },
     box: {
         width: 320,
