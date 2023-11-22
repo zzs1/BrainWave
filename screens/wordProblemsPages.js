@@ -160,11 +160,9 @@ export default function WordProblemsPage({ navigation }) {
     const [sound, setSound] = React.useState();
 
     async function answerCorrectSound() {
-        console.log('Loading Sound');
         const { sound } = await Audio.Sound.createAsync( require('../assets/sound/answer-correct.wav')
         );
         setSound(sound);
-        console.log('Playing Sound');
         await sound.playAsync();
     }
 
