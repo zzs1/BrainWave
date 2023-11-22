@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Image } from "expo-image"
-import { SafeAreaView, StyleSheet, Text, Pressable, View, Dimensions, TextInput, FlatList, ScrollView } from "react-native"
+import { SafeAreaView, StyleSheet, Text, Pressable, View, Dimensions, TextInput, FlatList, ScrollView, KeyboardAvoidingView } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from "@react-navigation/native"
 import { useTheme } from "@react-navigation/native";
@@ -100,6 +100,7 @@ export default function Feedback({ navigation }) {
         } finally {
 
         }
+        setTextInput('');
     }
 
     // const today = new Date();
@@ -202,20 +203,27 @@ export default function Feedback({ navigation }) {
 
             {currentScreen === 5 && (
                 <View style={styles.main_container}>
+                 <KeyboardAvoidingView style={{ flex: 1}}  behavior="padding">
                     <ScrollView>
-                        <Text>Do you have any question for me?</Text>
                         <FlatList
                             data={data}
                             keyExtractor={(item, index) => index.toString()}
                             style={{}}
                             renderItem={({ item }) => (
                                 <View>
-                                    <Text style={{ color: item.type === 'user' ? 'green' : 'red' }}>{item.type === 'user' ? 'You:' : 'Wimmy: '}</Text>
-                                    <Text>{item.text}</Text>
+                                    {/* <Text style={{ color: item.type === 'user' ? 'green' : 'red' }}>{item.type === 'user' ? 'You:' : 'Wimmy: '}</Text> */}
+                                    <Text style={{
+                                        ...styles.chatBox,
+                                        backgroundColor: item.type === 'user' ? '#CDDDEC' : 'white' ,
+                                        borderBottomRightRadius: item.type === 'user' ? 0 : 10,
+                                        borderTopLeftRadius: item.type === 'user' ? 10: 0,
+                                        textAlign: item.type === 'user' ? 'right' : 'left',
+                                    }}>{item.text}</Text>
                                 </View>
                             )}
                         />
                     </ScrollView>
+                    </KeyboardAvoidingView> 
 
 
                     <View style={{
@@ -227,7 +235,7 @@ export default function Feedback({ navigation }) {
                                 ...styles.input,
                                 paddingLeft: 10,
                             }}
-                            placeholder="type..."
+                            placeholder="Ask me anything"
                             value={textInput}
                             onChangeText={text => setTextInput(text)} />
 
@@ -302,5 +310,32 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         gap: 5
+    },
+    input: {
+        width: 165,
+        height: 35,
+        borderWidth: 1,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+    },
+    sendButton: {
+        width: 72,
+        height: 35,
+        borderWidth: 1,
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        marginLeft: -1,
+    },
+    chatBox: {
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 5,
+        fontSize: 14,
+        maxWidth: 280,
+        width: 'auto',
+        height: 'auto',
+        padding: 10,
+        minWidth: 1,
+        marginTop: 15,
     }
 })
