@@ -70,42 +70,24 @@ export default function WordProblemsPage({ navigation }) {
     const [quesIndex, setQuesIndex] = useState(questionSet());
     const [optIndex, setOptIndex] = useState(shuffle([0, 1, 2, 3]));
 
-    // useEffect(() => {
-    //     if (currentScreen === 1) {
-    //         handleSend();
-    //     } else if (currentScreen === 2) {
-    //         handleSend();
-    //     } else if (currentScreen === 3) {
-    //         handleSend();
-    //     } else if (currentScreen === 4) {
-    //         handleSend();
-    //     }
-    // }, [currentScreen])
+    useEffect(() => {
+        if (currentScreen === 1) {
+            handleSend();
+        } 
+    }, [currentScreen])
 
     const handleSend = async () => {
         try {
             console.log("Start AI Response");
             setLoading(true);
-            const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
-                body: JSON.stringify({ question: `Hey Wimmy. Give me a broken down hint of this question: "${data[quesIndex[currentQuestion]].description}". Keep the explanation to one short paragraph. This is the answer to the question: "${data[quesIndex[currentQuestion]].answer}".Don't give the answer. just hint to it.` }),
-                method: "post"
-            });
-            const completion = await response.json();
+            const completion = await getHint(data[quesIndex[currentQuestion]].description, data[quesIndex[currentQuestion]].answer);
             setAIResponse(completion.choices[0].message.content);
+            console.log("AI Response Completed");
         } catch (error) {
             throw new Error(error);
         } finally {
             setLoading(false);
         }
-        // try {
-        //     setLoading(true);
-        //     const completion = await getHint(data[quesIndex[currentQuestion]].description, data[quesIndex[currentQuestion]].answer);
-        //     setAIResponse(completion.choices[0].message.content);
-        // } catch (error) {
-        //     throw new Error(error);
-        // } finally {
-        //     setLoading(false);
-        // }
     }
 
     const handleAnswer = (choice, answer) => {
@@ -466,7 +448,9 @@ export default function WordProblemsPage({ navigation }) {
             )}
 
             <Pressable style={styles.tail} onPress={() => {
-                handleSend();
+                if (currentScreen > 1) {
+                    handleSend();
+                }
                 setIsActive(true);
             }}>
                 <Text style={{
