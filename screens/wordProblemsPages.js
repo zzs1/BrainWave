@@ -173,8 +173,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showCorrectPopup && (
                         <View style={{
                             ...styles.correctPopup,
-                            backgroundColor: colors.optionBtn.green,
-                            borderColor: colors.optionBtn.greenShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.green,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.greenShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
@@ -185,8 +185,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showIncorrectPopup && (
                         <View style={{
                             ...styles.incorrectPopup,
-                            backgroundColor: colors.optionBtn.red,
-                            borderColor: colors.optionBtn.redShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.red,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.redShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
@@ -243,8 +243,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showCorrectPopup && (
                         <View style={{
                             ...styles.correctPopup,
-                            backgroundColor: colors.optionBtn.green,
-                            borderColor: colors.optionBtn.greenShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.green,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.greenShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
@@ -255,8 +255,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showIncorrectPopup && (
                         <View style={{
                             ...styles.incorrectPopup,
-                            backgroundColor: colors.optionBtn.red,
-                            borderColor: colors.optionBtn.redShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.red,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.redShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
@@ -313,8 +313,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showCorrectPopup && (
                         <View style={{
                             ...styles.correctPopup,
-                            backgroundColor: colors.optionBtn.green,
-                            borderColor: colors.optionBtn.greenShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.green,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.greenShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
@@ -325,8 +325,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showIncorrectPopup && (
                         <View style={{
                             ...styles.incorrectPopup,
-                            backgroundColor: colors.optionBtn.red,
-                            borderColor: colors.optionBtn.redShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.red,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.redShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
@@ -383,8 +383,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showCorrectPopup && (
                         <View style={{
                             ...styles.correctPopup,
-                            backgroundColor: colors.optionBtn.green,
-                            borderColor: colors.optionBtn.greenShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.green,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.greenShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
@@ -395,8 +395,8 @@ export default function WordProblemsPage({ navigation }) {
                     {showIncorrectPopup && (
                         <View style={{
                             ...styles.incorrectPopup,
-                            backgroundColor: colors.optionBtn.red,
-                            borderColor: colors.optionBtn.redShadow
+                            backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.optionBtn.red,
+                            borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.optionBtn.redShadow
                         }}>
                             <Text style={{
                                 ...styles.feedText,
