@@ -3,9 +3,14 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useTheme } from "@react-navigation/native";
 
+import WimmyThinking from '../WimmyThinking/index.js';
+
 import { AppContext } from '../../../context/AppContext.js'
 
-export default function FeedbackBox({ text }) {
+export default function FeedbackBox({
+    text,
+    loading = false
+}) {
     const { isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
@@ -15,14 +20,17 @@ export default function FeedbackBox({ text }) {
             backgroundColor: colors.dialogueBG,
             borderColor: colors.dialogueBorder,
         }}>
-            <Text style={{
-                color: colors.text,
-                fontSize: 18,
-                paddingBottom: 30,
-                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
-            }}>
-                {text}
-            </Text>
+            {
+                loading ? <WimmyThinking /> :
+                    <Text style={{
+                        color: colors.text,
+                        fontSize: 18,
+                        paddingBottom: 30,
+                        fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                    }}>
+                        {text}
+                    </Text>
+            }
         </ScrollView>
     )
 }
