@@ -5,6 +5,8 @@ import { useTheme } from '@react-navigation/native';
 
 import { AppContext } from '../../../context/AppContext.js'
 
+import WimmyThinking from '../WimmyThinking/index.js';
+
 export default function DialogueBoxLower({
     title = '',
     desc = '',
@@ -26,7 +28,7 @@ export default function DialogueBoxLower({
                 fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold'
             }}>{title}</Text>
             {
-                loading ? <Text>...</Text> :
+                loading ? <WimmyThinking /> :
                     <Text style={{
                         ...styles.desc,
                         color: colors.text,
