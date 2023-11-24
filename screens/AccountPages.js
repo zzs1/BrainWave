@@ -11,6 +11,7 @@ import WimmyPopup from "../components/Molecules/WimmyPopup";
 import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
 import TopBar from "../components/Molecules/TopBar";
 import LevelBox from "../components/Molecules/LevelBox/index.js";
+import WimmyAnimated from "../components/Atoms/WimmyAnimated/index.js";
 
 import { AppContext } from '../context/AppContext.js';
 
@@ -57,11 +58,7 @@ export default function AccountPages({ navigation }) {
 
                     <View>
                         {
-                            wimmyPic && <Image
-                                source={require('../assets/Icons/wimmy.png')}
-                                style={styles.wimmyPic}
-                                width={270}
-                                height={188} />
+                            wimmyPic && <WimmyAnimated/>
                         }
                         <DialogueBoxUpper
                             hasTitle={true}
@@ -81,11 +78,7 @@ export default function AccountPages({ navigation }) {
                 <View style={styles.accountStartPageBody}>
                     <View>
                         {
-                            wimmyPic && <Image
-                                source={require('../assets/Icons/wimmy.png')}
-                                style={styles.wimmyPic}
-                                width={270}
-                                height={188} />
+                            wimmyPic && <WimmyAnimated/>
                         }
                         <DialogueBoxUpper hasTitle={false} interestingText='What is your name?' />
                     </View>
@@ -110,11 +103,7 @@ export default function AccountPages({ navigation }) {
                 <View style={styles.accountStartPageBody}>
                     <View>
                         {
-                            wimmyPic && <Image
-                                source={require('../assets/Icons/wimmy.png')}
-                                style={styles.wimmyPic}
-                                width={270}
-                                height={188} />
+                            wimmyPic && <WimmyAnimated/>
                         }
                         <DialogueBoxUpper hasTitle={false} interestingText='Select an avatar!' />
                     </View>
@@ -140,11 +129,7 @@ export default function AccountPages({ navigation }) {
                 <View style={styles.accountStartPageBody}>
                     <View>
                         {
-                            wimmyPic && <Image
-                                source={require('../assets/Icons/wimmy.png')}
-                                style={styles.wimmyPic}
-                                width={270}
-                                height={188} />
+                            wimmyPic && <WimmyAnimated/>
                         }
                         <DialogueBoxUpper
                             hasTitle={true}
@@ -164,11 +149,7 @@ export default function AccountPages({ navigation }) {
                 <View style={styles.accountStartPageBody}>
                     <View>
                         {
-                            wimmyPic && <Image
-                                source={require('../assets/Icons/wimmy.png')}
-                                style={styles.wimmyPic}
-                                width={270}
-                                height={188} />
+                            wimmyPic && <WimmyAnimated/>
                         }
                         <DialogueBoxUpper
                             hasTitle={true}
@@ -222,7 +203,6 @@ export default function AccountPages({ navigation }) {
                                 height: 166,
                                 backgroundColor: colors.dialogueBG,
                                 borderColor: colors.dialogueBorder,
-
                             }}>
                                 <Text style={{
                                     ...styles.title,
@@ -425,6 +405,9 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         borderWidth: 2,
         width: 160,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     days: {
         fontSize: 16,
