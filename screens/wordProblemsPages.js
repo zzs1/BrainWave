@@ -46,7 +46,7 @@ export default function WordProblemsPage({ navigation }) {
     const [showCorrectPopup, setShowCorrectPopup] = useState(false);
     const [showIncorrectPopup, setShowIncorrectPopup] = useState(false);
 
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState();
 
     const questionSet = () => {
         if (currentLevel === 1) {
@@ -95,7 +95,6 @@ export default function WordProblemsPage({ navigation }) {
             answerCorrectSound();
             setNumber(number + 1);
             console.log(number);
-            setQuestions([...questions, data[quesIndex[currentQuestion]].explanation])
             setShowCorrectPopup(true);
             setTimeout(() => {
                 setShowCorrectPopup(false);
@@ -109,15 +108,13 @@ export default function WordProblemsPage({ navigation }) {
                 } else {
                     navigation.push("Feedback", {
                         points: number,
-                        questions: questions
+                        questions: [data[quesIndex[0]].description, data[quesIndex[1]].description, data[quesIndex[2]].description, data[quesIndex[3]].description]
                     });
-                    console.log(questions);
                 }
             }, 2000);
         } else {
             answerIncorrectSound();
             setAttempt(attempt - 1);
-            setQuestions([...questions, data[quesIndex[currentQuestion]].description]);
             setShowIncorrectPopup(true);
             setTimeout(() => {
                 setShowIncorrectPopup(false);
@@ -131,7 +128,7 @@ export default function WordProblemsPage({ navigation }) {
                     } else {
                         navigation.push("Feedback", {
                             points: number,
-                            questions: questions
+                            questions: [data[quesIndex[0]].description, data[quesIndex[1]].description, data[quesIndex[2]].description, data[quesIndex[3]].description]
                         });
                     }
                 }
@@ -463,7 +460,6 @@ export default function WordProblemsPage({ navigation }) {
             </Pressable>
 
             <WimmyPopup 
-                style={styles.popup} 
                 title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} 
                 desc={aiResponse} instuction="Tap to Continue..." 
                 active={isActive} onPress={() => setIsActive(false)} 
@@ -479,7 +475,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: screenHeight - 24,
+        height: screenHeight,
         width: screenWidth,
         paddingBottom: 60,
         paddingTop: 60
