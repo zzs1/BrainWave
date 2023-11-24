@@ -14,6 +14,7 @@ export default function WimmyThinking(){
     <View style={styles.animationContainer}>
         <LottieView
           autoPlay
+          loop
           ref={(animationRef) => animationRef && animationRef.play()}
           style={{
             width: 100,
