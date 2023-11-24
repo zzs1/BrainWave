@@ -36,7 +36,11 @@ const DarkTheme = {
         chartBarLabel: '#CDDDEC',
         chartBarColor: '205, 221, 236',
         textColour: 'white',
-        toggleBoxColor: '#0C7BDC'
+        toggleBoxColor: '#0C7BDC',
+        chatBoxUser: '#0C7BDC',
+        chatBorderUser: '#005AB5',
+        chatBoxAI: '#444444',
+        chatBorderAI: '#747474'
     },
     colorBlindColors: {
         primaryColor: '#584B9D',
