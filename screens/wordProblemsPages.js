@@ -462,7 +462,13 @@ export default function WordProblemsPage({ navigation }) {
                 <WavingTail />
             </Pressable>
 
-            <WimmyPopup style={styles.popup} title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} desc={aiResponse} instuction="Tap to Continue..." active={isActive} onPress={() => setIsActive(false)} />
+            <WimmyPopup 
+                style={styles.popup} 
+                title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} 
+                desc={aiResponse} instuction="Tap to Continue..." 
+                active={isActive} onPress={() => setIsActive(false)} 
+                loading={loading}
+            />
             <NavBar navigation={navigation} />
         </View>
     )

@@ -36,7 +36,11 @@ const DefaultTheme = {
         chartBarLabel: '#0C7BDC',
         chartBarColor: '12, 123, 220',
         textColour: '#1E1E1E',
-        toggleBoxColor: '#CDDDEC'
+        toggleBoxColor: '#CDDDEC',
+        chatBoxUser: '#CDDDEC',
+        chatBorderUser: '#0C7BDC',
+        chatBoxAI: 'white',
+        chatBorderAI: '#1E1E1E'
     },
     colorBlindColors: {
         primaryColor: '#584B9D',
