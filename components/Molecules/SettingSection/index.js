@@ -28,7 +28,7 @@ export default function SettingsSection({
         <Text style={{
             color: colors.fadedText,
             fontWeight: 'bold'
-        }}>___________________________________________</Text>
+        }}>________________________________________</Text>
     </View>
   )
 }
