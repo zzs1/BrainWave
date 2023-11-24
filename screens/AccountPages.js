@@ -47,10 +47,6 @@ export default function AccountPages({ navigation }) {
         setCurrentPage(currentPage + 1);
     }
 
-    function handleNameChange(text) {
-        setUserName(text);
-    }
-
     return (
         <SafeAreaView style={styles.container}>
             {currentPage === 1 && (
@@ -88,10 +84,11 @@ export default function AccountPages({ navigation }) {
                             ...styles.userNameInput,
                             borderColor: colors.inputBorder,
                             backgroundColor: colors.inputBG,
+                            color: colors.text,
                             fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                         }}
                         placeholder="Type your name..."
-                        onChangeText={handleNameChange}
+                        onChangeText={(text) => setUserName(text)}
                         value={userName}
                     />
 
@@ -143,7 +140,8 @@ export default function AccountPages({ navigation }) {
                         <PrimaryButton name="Intermediate (10mins/day)" value="Intermediate" onPress={handleLevelButton('Intermediate', 10)} />
                         <PrimaryButton name="Advanced 20mins/day)" value="Advanced" onPress={handleLevelButton('Advanced', 20)} />
                     </View>
-                </View>)}
+                </View>
+            )}
 
             {currentPage === 5 && (
                 <View style={styles.accountStartPageBody}>
