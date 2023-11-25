@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
+import { StyleSheet, View, Pressable, Dimensions, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useTheme } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 
 import SectionCardMain from '../components/Molecules/SectionCardMain';
@@ -31,7 +32,11 @@ export default function HomePage({ navigation }) {
     wimPoints,
     firstHomeVisit,
     setFirstHomeVisit,
+    userName,
+    isDyslexic
   } = React.useContext(AppContext);
+
+  const { colors } = useTheme();
 
   const [data, setData] = useState(sectionCard);
   const [number, setNumber] = useState(0);
@@ -59,6 +64,14 @@ export default function HomePage({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <TopBar navigation={navigation} points={wimPoints}/>
+      {
+        userName && <Text style={{
+          fontSize: 20,
+          fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold',
+          color: colors.text,
+          marginTop: 30,
+        }}>Welcome, {userName}</Text>
+      }
       <View style={styles.cardContainer}>
         <View style={{
           marginRight: -100
@@ -122,8 +135,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'space-between',
     width: screenWidth,
-    paddingTop: 50
+    height: screenHeight,
+    paddingTop: 50,
+    paddingBottom: 120
   },
   btnContainer: {
     display: 'flex',
