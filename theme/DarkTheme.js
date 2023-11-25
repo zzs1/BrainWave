@@ -21,6 +21,7 @@ const DarkTheme = {
         },
         navBG: '#343434',
         navText: 'white',
+        subNavBG: '#E9E9E9',
         inputBG: '#747474',
         inputBorder: '#444444',
         progBarFill: '#CDDDEC',
@@ -53,6 +54,7 @@ const DarkTheme = {
         cardBGTwo: '#584B9D',
         cardBorder: '#262262',
         navBG: '#343434',
+        subNavBG: '#E9E9E9',
     }
 }
 

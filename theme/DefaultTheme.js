@@ -21,6 +21,7 @@ const DefaultTheme = {
         },
         navBG: '#005AB5',
         navText: 'white',
+        subNavBG: '#CDDDEC',
         inputBG: '#E9E9E9',
         inputBorder: '#A4A4A4',
         progBarFill: '#0C7BDC',
@@ -45,14 +46,16 @@ const DefaultTheme = {
     colorBlindColors: {
         primaryColor: '#584B9D',
         primaryColorShadow: '#262262',
-        primaryColorFade: '#9893b8',
+        primaryColorFade: '#c8c5de',
         switchThumb: '#584B9D',
+        switchBG: '#c8c5de',
         progBarFill: '#262262',
-        progBarBG: '#9893b8',
+        progBarBG: '#c8c5de',
         cardBGOne: '#584B9D',
         cardBGTwo: 'white',
         cardBorder: '#262262',
         navBG: '#584B9D',
+        subNavBG: '#c8c5de',
     }
 }
 
