@@ -19,7 +19,7 @@ import AccessibilityB from '../assets/Icons/Accessibility-black.png'
 import TopBar from '../components/Molecules/TopBar/index.js';
 
 export default function Settings({ navigation }) {
-  const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind, isDyslexic, setIsDyslexic } = React.useContext(AppContext)
+  const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind, isDyslexic, setIsDyslexic, wimPoints } = React.useContext(AppContext)
 
   const { dark } = useTheme();
   const { colors } = useTheme();
@@ -27,7 +27,7 @@ export default function Settings({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopBar />
+      <TopBar navigation={navigation} points={wimPoints}/>
       <View style={styles.settingsSection}>
         <SettingsSection title='Appearance' image={dark ? GeneralW : GeneralB} />
         <View style={styles.settingItem}>
