@@ -29,6 +29,8 @@ export default function HomePage({ navigation }) {
     logicProgress,
     patternProgress,
     wimPoints,
+    firstHomeVisit,
+    setFirstHomeVisit,
   } = React.useContext(AppContext);
 
   const [data, setData] = useState(sectionCard);
@@ -99,6 +101,7 @@ export default function HomePage({ navigation }) {
           btnText="Let's Go"
           onPress={() => {
             setPuzzleType(data[number].title);
+            setFirstHomeVisit(false);
             navigation.push('PuzzleMap');
           }}
         />
@@ -108,7 +111,9 @@ export default function HomePage({ navigation }) {
         />
       </View>
       <NavBar color='#0C7BDC' navigation={navigation} />
-      <WimmyPopup title='WIMMY SAYS...' desc='Select a puzzle catagory that you want to explore!' instuction='Tap to continue.' />
+      {
+        firstHomeVisit ? <WimmyPopup title='WIMMY SAYS...' desc='Select a puzzle catagory that you want to explore!' instuction='Tap to continue.' /> : <></>
+      }
     </SafeAreaView>
   );
 }

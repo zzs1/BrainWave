@@ -29,6 +29,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isColorBlind, setIsColorBlind] = useState(false);
   const [isDyslexic, setIsDyslexic] = useState(false);
@@ -41,6 +42,10 @@ export default function App() {
   const [logicProgress, setLogicProgress] = useState(0);
   const [patternProgress, setPatternProgress] = useState(0);
   const [wimPoints, setWimPoints] = useState(0);
+  const [userName, setUserName] = useState("");
+  const [accountSet, setAccountSet] = useState(true);
+  const [firstHomeVisit, setFirstHomeVisit] = useState(true);
+  const [firstMapVisit, setFirstMapVisit] = useState(true);
 
   const appContext = useMemo(() => {
     return {
@@ -55,6 +60,10 @@ export default function App() {
       logicProgress, setLogicProgress,
       patternProgress, setPatternProgress,
       isDyslexic, setIsDyslexic,
+      accountSet, setAccountSet,
+      firstHomeVisit, setFirstHomeVisit,
+      firstMapVisit, setFirstMapVisit,
+      userName, setUserName,
     }
   });
 
