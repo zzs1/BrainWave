@@ -554,6 +554,7 @@ const styles = StyleSheet.create({
         width: 315,
         height: 40,
         color: 'white',
-        borderWidth: 3
+        borderWidth: 3,
+        overflow: 'hidden',
     }
 })

@@ -365,6 +365,7 @@ const styles = StyleSheet.create({
         padding: 10,
         minWidth: 1,
         marginTop: 15,
+        overflow: 'hidden',
     },
     chatHead: {
         fontSize: 16,

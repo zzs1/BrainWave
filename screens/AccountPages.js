@@ -49,7 +49,7 @@ export default function AccountPages({ navigation }) {
                                     <DialogueBoxUpper
                                         hasTitle={true}
                                         title="Let's set up your account!"
-                                        interestingText="An account will allow you to track your progress and shar with friends!"
+                                        interestingText="An account will allow you to track your progress and share it with friends!"
                                     />
                                 </View>
 
