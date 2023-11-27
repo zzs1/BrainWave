@@ -16,8 +16,8 @@ export default function Island(){
           autoPlay
           ref={(animationRef) => animationRef && animationRef.play()}
           style={{
-            width: 200,
-            height: 200,
+            width: 'auto',
+            height: 130,
           }}
           source={animationData}
         />
