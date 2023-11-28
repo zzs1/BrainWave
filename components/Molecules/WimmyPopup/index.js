@@ -39,6 +39,7 @@ export default function WimmyPopup({
               instuction={instuction}
               loading={loading}
             />
+            
             <WimmyAnimated />
           </View>
         </Pressable> : <></>
