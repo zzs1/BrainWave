@@ -13,6 +13,9 @@ import QuestionBox from "../components/Atoms/QuestionBox"
 import NavBar from "../components/Molecules/NavBar"
 import PrimaryButton from "../components/Atoms/PrimaryButton"
 import FeedbackBox from "../components/Atoms/FeedbackBox/index.js";
+import SendBtn from "../components/Atoms/sendBtn/index.js";
+import WimmyAnimated from "../components/Atoms/WimmyAnimated/index.js";
+import WimmyThinking from "../components/Atoms/WimmyThinking/index.js";
 
 import { useStreak } from "use-streak";
 
@@ -22,7 +25,6 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function Feedback({ navigation }) {
-
     const { colors } = useTheme();
     const {
         logicLevel,
@@ -47,23 +49,27 @@ export default function Feedback({ navigation }) {
     const points = route.params.points;
     const questions = route.params.questions;
 
-    // const [AIFeedback, setAIFeedback] = useState('')
-    // const [loading, setLoading] = useState(false);
+    const [AIFeedback, setAIFeedback] = useState('')
+    const [feedLoading, setFeedLoading] = useState(false);
 
-    // useEffect(async () => {
-    //     const getAIFeedback = async () => {
-    //         const feedback = await getFeedBack(questions[0], questions[1], questions[2]);
-    //         return feedback.choices[0].message.content
-    //     }
-    //     try {
-    //         setLoading(true);
-    //         setAIFeedback(getAIFeedback());
-    //     } catch {
-    //         throw new Error(error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // },[])
+    const getAIFeedback = async () => {
+        try {
+            console.log(questions);
+            console.log("Start AI Response");
+            setFeedLoading(true);
+            const feedback = await getFeedBack(questions[0], questions[1], questions[2], questions[3]);
+            setAIFeedback(feedback.choices[0].message.content);
+        } catch {
+            throw new Error(error);
+        } finally {
+            setFeedLoading(false);
+            console.log("AI Response Completed");
+        }
+    }
+
+    useEffect(() => {
+        getAIFeedback();
+    }, [])
 
     const [currentScreen, setCurrentScreen] = useState(1);
     const [addWim, setAddWim] = useState(0);
@@ -91,14 +97,14 @@ export default function Feedback({ navigation }) {
     const [textInput, setTextInput] = useState('');
 
     const handleSend = async () => {
-        console.log("Start AI Response");
         try {
+            console.log("Start AI Response");
             const text = await getChat(textInput);
             setData([...data, { type: 'user', text: textInput }, { type: 'bot', text: text.choices[0].message.content }]);
         } catch (error) {
             throw new Error(error);
         } finally {
-
+            console.log("AI Response Completed");
         }
         setTextInput('');
     }
@@ -109,7 +115,7 @@ export default function Feedback({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.image_box}>
-                <Image source={require("../assets/wimmyFront/Wimmy.png")} height={187} width={270} />
+                <WimmyAnimated />
             </View>
 
             {currentScreen === 1 && (
@@ -117,10 +123,10 @@ export default function Feedback({ navigation }) {
                     <Text style={{
                         ...styles.header,
                         color: colors.text,
-                        fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                        fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                     }}>Great Job</Text>
 
-                    <FeedbackBox text={`I'LL GIVE YOU AN EXPLANATION OF EACH QUESTION:\n\nQUESTION 1: ${questions[0]}\n\nQUESTION 2: ${questions[1]}\n\nQUESTION 3: ${questions[2]}\n\nQUESTION 4: ${questions[3]}`} />
+                    <FeedbackBox text={AIFeedback} loading={feedLoading} />
                     <PrimaryButton name="NEXT" onPress={() => {
                         handleWimCoins();
                         handleStartButton();
@@ -138,12 +144,12 @@ export default function Feedback({ navigation }) {
                         <Text style={{
                             fontSize: 20,
                             color: colors.text,
-                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                         }}>Lesson Complete!</Text>
                         <Text style={{
                             fontSize: 20,
                             color: colors.text,
-                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                         }}>Level: {puzzleType.toLowerCase() === 'numbers problems' ? numberLevel : puzzleType.toLowerCase() === 'logic problems' ? logicLevel : patternLevel}</Text>
                         <Image />
                     </View>
@@ -183,7 +189,7 @@ export default function Feedback({ navigation }) {
                         <Text style={{
                             fontSize: 20,
                             color: colors.text,
-                            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                         }}>Points: {points}</Text>
                         <View style={styles.coin_container}>
                             <Image
@@ -193,7 +199,7 @@ export default function Feedback({ navigation }) {
                             />
                             <Text style={{
                                 color: colors.text,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>{addWim} Wim Coins earned!</Text>
                         </View>
                     </View>
@@ -203,54 +209,76 @@ export default function Feedback({ navigation }) {
 
             {currentScreen === 5 && (
                 <View style={styles.main_container}>
-                 <KeyboardAvoidingView style={{ flex: 1}}  behavior="padding">
-                    <ScrollView>
+                    <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+                        <View style={{
+                            ...styles.box,
+                            backgroundColor: colors.dialogueBG,
+                            borderColor: colors.dialogueBorder,
+                        }}>
+                            <Text style={{
+                                ...styles.chatHead,
+                                color: colors.text
+                            }}>Do you have any questions for me?</Text>
+                        </View>
                         <FlatList
+                            scrollEnabled={true}
                             data={data}
                             keyExtractor={(item, index) => index.toString()}
-                            style={{}}
+                            style={{
+                                paddingLeft: 20,
+                            }}
                             renderItem={({ item }) => (
-                                <View>
+                                <View key={item}>
                                     {/* <Text style={{ color: item.type === 'user' ? 'green' : 'red' }}>{item.type === 'user' ? 'You:' : 'Wimmy: '}</Text> */}
                                     <Text style={{
                                         ...styles.chatBox,
-                                        backgroundColor: item.type === 'user' ? '#CDDDEC' : 'white' ,
+                                        backgroundColor: item.type === 'user' ? colors.chatBoxUser : colors.chatBoxAI,
+                                        borderColor: item.type === 'user' ? colors.chatBorderUser : colors.chatBorderAI,
                                         borderBottomRightRadius: item.type === 'user' ? 0 : 10,
-                                        borderTopLeftRadius: item.type === 'user' ? 10: 0,
+                                        borderTopLeftRadius: item.type === 'user' ? 10 : 0,
                                         textAlign: item.type === 'user' ? 'right' : 'left',
+                                        color: colors.text
                                     }}>{item.text}</Text>
                                 </View>
                             )}
                         />
-                    </ScrollView>
-                    </KeyboardAvoidingView> 
 
+                        <View style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            marginTop: 10,
+                            marginBottom: 20
+                        }}>
+                            <TextInput
+                                style={{
+                                    ...styles.input,
+                                    paddingLeft: 10,
+                                    borderColor: colors.inputBorder,
+                                    backgroundColor: colors.inputBG,
+                                }}
+                                placeholder="Ask me anything"
+                                value={textInput}
+                                onChangeText={text => setTextInput(text)}
+                            />
 
-                    <View style={{
-                        display: 'flex',
-                        flexDirection: 'row'
-                    }}>
-                        <TextInput
-                            style={{
-                                ...styles.input,
-                                paddingLeft: 10,
-                            }}
-                            placeholder="Ask me anything"
-                            value={textInput}
-                            onChangeText={text => setTextInput(text)} />
+                            <SendBtn
+                                name="Send"
+                                onPress={handleSend}
+                            />
 
-                        <Pressable
-                            onPress={handleSend}
-                            style={{
-                                ...styles.sendButton
-                            }}>
-                            <Text style={{
-                                fontSize: 16,
-                                textAlign: 'center',
-                                paddingTop: 7,
-                            }}>send</Text>
-                        </Pressable>
-                    </View>
+                            {/* <Pressable
+                                onPress={handleSend}
+                                style={{
+                                    ...styles.sendButton
+                                }}>
+                                <Text style={{
+                                    fontSize: 16,
+                                    textAlign: 'center',
+                                    paddingTop: 7,
+                                }}>send</Text>
+                            </Pressable> */}
+                        </View>
+                    </KeyboardAvoidingView>
 
                     <PrimaryButton name="NEXT" onPress={() => {
                         if (points > 2) {
@@ -261,7 +289,6 @@ export default function Feedback({ navigation }) {
                     }} />
                 </View>
             )
-
             }
 
             <NavBar navigation={navigation} />
@@ -274,7 +301,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: "column",
         alignItems: "center",
-        height: screenHeight - 24,
+        height: screenHeight,
         width: screenWidth,
     },
     main_container: {
@@ -298,13 +325,13 @@ const styles = StyleSheet.create({
         height: 'auto',
         width: 315,
         borderRadius: 20,
-        borderWidth: 2,
+        borderWidth: 3,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
         fontSize: 16,
         textAlign: 'auto',
-        margin: 20
+        margin: 10
     },
     coin_container: {
         display: "flex",
@@ -312,11 +339,12 @@ const styles = StyleSheet.create({
         gap: 5
     },
     input: {
-        width: 165,
-        height: 35,
-        borderWidth: 1,
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
+        width: 230,
+        height: 50,
+        borderWidth: 3,
+        borderRadius: 10,
+        marginRight: 10,
+        marginLeft: 10
     },
     sendButton: {
         width: 72,
@@ -327,7 +355,7 @@ const styles = StyleSheet.create({
         marginLeft: -1,
     },
     chatBox: {
-        borderWidth: 1,
+        borderWidth: 2,
         borderRadius: 10,
         padding: 5,
         fontSize: 14,
@@ -337,5 +365,10 @@ const styles = StyleSheet.create({
         padding: 10,
         minWidth: 1,
         marginTop: 15,
+        overflow: 'hidden',
+    },
+    chatHead: {
+        fontSize: 16,
+        marginBottom: 10
     }
 })

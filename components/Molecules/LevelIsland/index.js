@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import { useTheme } from '@react-navigation/native';
 
 import Lock from '../../../assets/Illustrations/Lock/Lock_white.png'
-import Island from '../../../assets/Illustrations/Island1.png'
+import Island from '../../../components/Atoms/Island'
 
 import { AppContext } from '../../../context/AppContext'
 
@@ -16,11 +16,12 @@ export default function LevelIsland({
 
   return (
     <View style={styles.container}>
-        <Image source={Island} contentFit='contain' style={{
+        {/* <Image source={Island} contentFit='contain' style={{
             width: 200,
             height: 130,
             zIndex: 0
-        }}/>
+        }}/> */}
+        <Island />
 
         {
             locked ? <View style={{

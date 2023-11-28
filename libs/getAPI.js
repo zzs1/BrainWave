@@ -18,7 +18,7 @@ export async function getChat(prompt) {
 
 export async function getFeedBack(quesOne, quesTwo, quesThree, quesFour) {
     const response = await fetch("https://b3vmv6dbufxgvnuvte7lrouzka0umflk.lambda-url.ca-central-1.on.aws/", {
-        body: JSON.stringify({ question: `Hey Wimmy. give me a detailed breakdown of these questions listed:\n${quesOne}\n${quesTwo}\n${quesThree}\n${quesFour}` }),
+        body: JSON.stringify({ question: `Hey Wimmy. give me a detailed breakdown of these questions listed:\n1. ${quesOne}\n2. ${quesTwo}\n3. ${quesThree}\n4. ${quesFour}\n be brief and concise in your response. Answer all the questions listed.` }),
         method: "post"
     });
 

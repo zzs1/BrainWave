@@ -21,6 +21,7 @@ const DarkTheme = {
         },
         navBG: '#343434',
         navText: 'white',
+        subNavBG: '#E9E9E9',
         inputBG: '#747474',
         inputBorder: '#444444',
         progBarFill: '#CDDDEC',
@@ -36,7 +37,11 @@ const DarkTheme = {
         chartBarLabel: '#CDDDEC',
         chartBarColor: '205, 221, 236',
         textColour: 'white',
-        toggleBoxColor: '#0C7BDC'
+        toggleBoxColor: '#0C7BDC',
+        chatBoxUser: '#0C7BDC',
+        chatBorderUser: '#005AB5',
+        chatBoxAI: '#444444',
+        chatBorderAI: '#747474'
     },
     colorBlindColors: {
         primaryColor: '#584B9D',
@@ -49,6 +54,7 @@ const DarkTheme = {
         cardBGTwo: '#584B9D',
         cardBorder: '#262262',
         navBG: '#343434',
+        subNavBG: '#E9E9E9',
     }
 }
 

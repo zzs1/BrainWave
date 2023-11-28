@@ -31,10 +31,10 @@ export const logicProblems = [
         title: "Question 4",
         id: "Level 1",
         type: "M/Q",
-        description: "A boy has 53 socks in his drawer: 21 identical blue, 15 identical black and 17 identical red. The lights are out and he is completely in the dark. How many socks must he take out to make 100 percent certain he has at least one pair of black socks?",
-        answer: "40",
-        explanation: "If he takes out 38 socks (adding the two biggest amounts, 21 and 17), although it is very unlikely, it is possible they could all be blue and red. To make 100 percent certain that he also has a pair of black socks he must take out a further two socks.",
-        options: ['53', '40', '21','17']
+        description: "I have keys but no locks. I have space but no room. You can enter, but you can't go inside. What am I?",
+        answer: "Piano",
+        explanation: "A keyboard has keys for typing but doesn't have physical locks like doors or padlocks.",
+        options: ['Piano', 'Keyboard', 'Map','Computer']
     },
     {
         title: "Question 5",
@@ -49,16 +49,16 @@ export const logicProblems = [
         title: "Question 6",
         id: "Level 2",
         type: "M/Q",
-        description: "You're at a fork in the road in which one direction leads to the City of Lies (where everyone always lies) and the other to the City of Truth (where everyone always tells the truth). There's a person at the fork who lives in one of the cities, but you're not sure which one. What question could you ask the person to find out which road leads to the City of Truth?",
-        answer: "Which direction do you live?",
-        explanation: "The “day before tomorrow” is today; “the day before two days after” is really one day after. So if “one day after today is Saturday,” then it must be Friday.",
-        options: ['Is this the road to the City of Truth?', 'Which direction do you live?', 'Will you lead me to the City of Truth?', 'Are you from the City of Truth?'] 
+        description: "I'm light as a feather, yet the strongest person can't hold me for much longer than a minute. What am I?",
+        answer: "Breath",
+        explanation: "Is is very difficult to hold your breath longer than a minute",
+        options: ['Breath', 'Hope', 'Laughter', 'a Whisper'] 
     },
     {
         title: "Question 7",
         id: "Level 2",
         type: "M/Q",
-        description: "A girl meets a lion and unicorn in the forest. The lion lies every Monday, Tuesday and Wednesday and the other days he speaks the truth. The unicorn lies on Thursdays, Fridays and Saturdays, and the other days of the week he speaks the truth. “Yesterday I was lying,” the lion told the girl. “So was I,” said the unicorn. What day is it?",
+        description: "A lion lies every Monday, Tuesday and Wednesday and the other days he speaks the truth. A unicorn lies on Thursdays, Fridays and Saturdays, and the other days of the week he speaks the truth. “Yesterday I was lying,” the lion said. “So was I,” said the unicorn. What day is it?",
         answer: "Thursday",
         explanation: "The only day they both tell the truth is Sunday; but today can't be Sunday because the lion also tells the truth on Saturday (yesterday). Going day by day, the only day one of them is lying and one of them is telling the truth with those two statements is Thursday.",
         options: ['Monday', 'Thursday', 'Friday', 'Saturday']
@@ -67,19 +67,19 @@ export const logicProblems = [
         title: "Question 8",
         id: "Level 2",
         type: "M/Q",
-        description: "You have three light switches in a room, and in the next room, there are three light bulbs. You can only make one trip to the room with the light bulbs. How can you determine which switch goes to which bulb?",
-        answer: "Turn on one switch and wait a few minutes",
-        explanation: "The only day they both tell the truth is Sunday; but today can't be Sunday because the lion also tells the truth on Saturday (yesterday). Going day by day, the only day one of them is lying and one of them is telling the truth with those two statements is Thursday.",
-        options: ['Turn on all three switches and quickly go to the other room', 'Turn on one switch and wait a few minutes', 'Turn on one switch, turn it off, and then turn on a different switch.', 'Turn on all three switches, wait a few minutes, and then turn off two of them',]
+        description: "The more you take, the more you leave behind. What am I?",
+        answer: "Footsteps",
+        explanation: "Walking",
+        options: ['Memories', 'Time', 'Love', 'Footsteps',]
     },
     {
         title: "Question 9",
         id: "Level 3",
         type: "M/Q",
-        description: "Three friends go to a restaurant, and the bill is $30. They each contribute $10. The waiter realizes there was a special, and the bill should have been $25. He gives $5 to the waiter to return to them. However, the waiter decides to keep $2 as a tip and gives $1 back to each of the friends. Now, each friend has paid $9, totaling $27. The waiter kept $2, which makes $29. Where is the missing dollar?",
-        answer: "The friends didn't lose any money; it's a trick question",
-        explanation: "There is no missing dollar. The calculation is misleading, as the $27 is the total amount paid by the friends, and the $2 kept by the waiter is included in that amount.",
-        options: ["The missing dollar is with the waiter", "The friends didn't lose any money; it's a trick question", "The total cost was $27, not $30", "The missing dollar is in the friends' pockets"]
+        description: "I fly without wings. I cry without eyes. Whenever I go, darkness follows me. What am I?",
+        answer: "Cloud",
+        explanation: "Clouds",
+        options: ["Cloud", "Moon", "Wind", "Bat"]
     },
     {
         title: "Question 10",
@@ -94,90 +94,90 @@ export const logicProblems = [
         title: "Question 11",
         id: "Level 3",
         type: "M/Q",
-        description: "You are given two pills, one red and one blue. You need to take one of them, but you don't know which one is which. If you take the red pill, you gain superpowers, and if you take the blue pill, you become invisible. Which pill should you choose?",
-        answer: "There is no such thing as superpowers or invisibility from pills",
-        explanation: "Both pills are fictional, and neither grants superpowers nor invisibility. The scenario is designed to be a trick question.",
-        options: ["Take the red pill", "There is no such thing as superpowers or invisibility from pills", "It doesn't matter which one you choose; they both have the same effect", "Take the blue pill"]
+        description: "What has cities but no houses, forests but no trees, and rivers but no water",
+        answer: "Map",
+        explanation: "Map",
+        options: ["Map", "Magazine", "Book", "Globe"]
     },
     {
         title: "Question 12",
         id: "Level 3",
         type: "M/Q",
-        description: "There are three boxes, each labeled as 'Apples,' 'Oranges,' and 'Apples and Oranges.' However, each box is incorrectly labeled. You are allowed to pick one fruit from one box. How can you determine the correct labeling of all three boxes?",
-        answer: "Pick a fruit from the box labeled 'Apples and Oranges.'",
-        explanation: "Since all labels are incorrect, the box labeled 'Apples and Oranges' must contain only one type of fruit. By picking a fruit from this box, you can determine the correct label for that box and consequently the other two.",
-        options: ["Pick a fruit from the box labeled 'Oranges.'", "Pick a fruit from the box labeled 'Apples and Oranges.'", "Pick a fruit from the box labeled 'Apples.'", "Shake the boxes to guess the contents."]
+        description: "I have a tail and a head but no body. What am I?",
+        answer: "Snake",
+        explanation: "Coins have face and tail",
+        options: ["Coin'", "Fish", "Caterpillar", "Snake"]
     },
     {
         title: "Question 13",
         id: "Level 4",
         type: "M/Q",
-        description: "In a room with just 23 people, what is the probability that at least two of them share the same birthday?",
-        answer: "The probability is approximately 50%",
-        explanation: "This is known as the Birthday Paradox. The probability is surprisingly high due to the number of possible pairs of people with shared birthdays. When you have 23 people, there are 253 possible pairs, increasing the chances of a shared birthday.",
-        options: ["The probability is close to 0%.", "The probability is approximately 50%", "The probability is 75% or higher.", "The probability depends on the specific birthdays of the people in the room."]
+        description: "I can be cracked, made, told, and played. What am I?",
+        answer: "Joke",
+        explanation: "A Joke fits all those descriptions",
+        options: ["Egg", "Joke", "Whip", "Dolphin"]
     },
     {
         title: "Question 14",
         id: "Level 4",
         type: "M/Q",
-        description: "Three friends (Alex, Bob, and Charlie) are suspects in the theft of a wallet. The detective asks each of them for an alibi. Alex says, 'I was at the library.' Bob says, 'I was at the movies.' Charlie says, 'I was at the gym.' The detective knows that one of them is lying. Who stole the wallet?",
-        answer: "Bob stole the wallet.",
-        explanation: "The detective notices that one of them is lying. Bob cannot be at the movies because he would need a wallet to buy a ticket. Alex and Charlie's alibis do not require a wallet. Therefore, Bob is the thief.",
-        options: ["Alex stole the wallet.", "Bob stole the wallet.", "It's impossible to determine who stole the wallet with the given information.", "Charlie is lying about being at the gym."]
+        description: "I start with P and end with E but have thousands of letters. What am I in sports?",
+        answer: "Practice",
+        explanation: "Practice has a ton of effort and determination",
+        options: ["Practice", "Pitcher", "Championship", "Practice"]
     },
     {
         title: "Question 15",
         id: "Level 4",
         type: "M/Q",
-        description: "A man lives on the 10th floor of a building. Every day, he takes the elevator down to the ground floor to go to work. When he returns, he takes the elevator to the 7th floor and walks up the stairs to reach his apartment on the 10th floor. Why does he do this?",
-        answer: "He's short and can only reach the button for the 7th floor in the elevator.",
-        explanation: "The man is too short to reach the button for the 10th floor in the elevator, so he takes the elevator to the 7th floor, which is the highest button he can reach, and then climbs the stairs for the last three floors.",
-        options: ["He is avoiding using the elevator for exercise.", "He's short and can only reach the button for the 7th floor in the elevator.", "The elevator only goes up to the 7th floor, so he has to use the stairs for the last three floors.", "He wants to save energy by not using the elevator for the whole journey."]
+        description: "I am green on the outside, red on the inside, and have many seeds. What am I?",
+        answer: "Watermelon",
+        explanation: "Watermelon has all those characteristics",
+        options: ["Kiwi", "Pomegranate", "Dragonfruit", "Watermelon"]
     },
     {
         title: "Question 16",
         id: "Level 4",
         type: "M/Q",
-        description: "Three friends go to a restaurant and order food that costs $25. They decide to split the bill equally, so each person contributes $10. The waiter, however, gives them a $5 discount and returns $5 in cash. The friends take back $1 each and leave $2 as a tip. Now, each friend has contributed $9, totaling $27, and the waiter has $2. What happened to the missing dollar?",
-        answer: "There is no missing dollar; the math adds up correctly.",
-        explanation: "The $27 paid by the friends includes the $25 for the food and the $2 tip. There is no missing dollar; the math adds up correctly.",
-        options: ["The waiter made an error in giving them a $5 discount.", "There is no missing dollar; the math adds up correctly.", "The friends forgot to account for the tax in their calculation.", "The missing dollar was stolen by someone at the restaurant."]
+        description: "I'm yellow on the outside, white on the inside, and have black seeds. What am I",
+        answer: "Papaya",
+        explanation: "Papaya adds up correctly.",
+        options: ["Banana", "Pear", "Pineapple", "Papaya"]
     },
     {
         title: "Question 17",
         id: "Level 5",
         type: "M/Q",
-        description: "Samantha borrowed a library book, but it's now overdue. The librarian calls Samantha and asks her to return the book. Samantha tells the librarian that she will return the book tomorrow. The librarian agrees. Why does the librarian allow this?",
-        answer: "The library is closed tomorrow, so it doesn't matter.",
-        explanation: "The librarian knows the library will be closed tomorrow, so there's no expectation for the book to be returned on that day.",
-        options: ["The librarian trusts Samantha to return the book.", "The library is closed tomorrow, so it doesn't matter.", "The librarian doesn't want to charge Samantha a fine.", "The librarian made a mistake and didn't mean to agree."]
+        description: "I can be dark or white, but never black. I fall from the sky but never get hurt. What am I?",
+        answer: "Snow",
+        explanation: "It is snow",
+        options: ["Cloud", "Snow", "Rain", "Hail"]
     },
     {
         title: "Question 18",
         id: "Level 5",
         type: "M/Q",
-        description: "Solve this equation by adding just one line: 5 + 5 + 5 = 550.",
-        answer: "Add a line to make the equation true: 545 + 5 = 550.",
-        explanation: "To make the equation true, add a vertical line to the plus sign, converting it into a 4. This results in 545 + 5 = 550.",
-        options: ["There is no solution.", "Add a line to make the equation true.", "Change the equation to make it true.", "The equation is already true."] 
+        description: "I can fly without wings. I can cry without eyes. Whenever I go, darkness follows me. What am I among birds?",
+        answer: "Owl",
+        explanation: "Owls",
+        options: ["Nightingale.", "Bat", "Penguin", "Owl"] 
     },
     {
         title: "Question 19",
         id: "Level 5",
         type: "M/Q",
-        description: "You come across a sealed box with a note attached. The note says, 'This box contains exactly one lie and one truth. Open it to reveal your fate.' What is in the box?",
-        answer: "The box is empty.",
-        explanation: "If the box contains one lie and one truth, the box itself can be considered both the lie and the truth, making it empty.",
-        options: ["The box contains a lie.", "The box is empty.", "The box contains the truth.", "It's impossible to determine what's in the box based on the note."]
+        description: "I'm tall when I'm young and short when I'm old. What am I am?",
+        answer: "Candle",
+        explanation: "It is a Candle",
+        options: ["Branch", "Onion", "Candle", "Noodles"]
     },
     {
         title: "Question 20",
         id: "Level 5",
         type: "M/Q",
-        description: "A farmer has three hens: one red, one blue, and one yellow. Every morning, the hens lay eggs of the same color. One day, the farmer finds a green egg in the coop. How is this possible?",
-        answer: "A different bird laid a green egg in the coop.",
-        explanation: "The only logical explanation for finding a green egg in the coop is that a different bird, not one of the three hens, laid the green egg.",
-        options: ["The farmer painted one of the eggs green.", "A different bird laid a green egg in the coop.", "The hens somehow produced a green egg naturally.", "The farmer is colorblind and mistook the egg's color."]
+        description: "I have keys but can't open locks. I have a soft surface but don't cushion your feet. What am I am?",
+        answer: "Fork",
+        explanation: "Focusing on the fork's resemblance to keys and its soft surface ",
+        options: ["Knife", "Spoon", "Fork", "Chopsticks"]
     }
 ]

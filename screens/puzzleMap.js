@@ -16,14 +16,13 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function PuzzleMap({ navigation }) {
-  const { puzzleType, logicLevel, numberLevel, patternLevel } = React.useContext(AppContext);
+  const { puzzleType, logicLevel, numberLevel, patternLevel, firstMapVisit, setFirstMapVisit } = React.useContext(AppContext);
   const { colors } = useTheme();
 
   const [level, setLevel] = useState(puzzleType.toLowerCase() === 'numbers problems' ? numberLevel : puzzleType.toLowerCase() === 'logic problems' ? logicLevel : patternLevel);
 
   return (
     <SafeAreaView style={styles.container}>
-      <WimmyPopup title='WIMMY SAYS...' desc="Let's start solving some puzzles!" instuction='tap to continue' />
       <View style={styles.gradient}>
         <PuzzleMapTitle title={puzzleType} />
       </View>
@@ -49,12 +48,18 @@ export default function PuzzleMap({ navigation }) {
           </Pressable>
         </View>
         <View style={styles.islandRight}>
-          <Pressable onPress={() => navigation.push('WordProblemsPage', { currLevel: 1 })}>
+          <Pressable onPress={() => {
+            setFirstMapVisit(false);
+            navigation.push('WordProblemsPage', { currLevel: 1 });
+          }}>
             <LevelIsland locked={false} />
           </Pressable>
         </View>
       </View>
       <LinearGradient colors={['transparent', colors.primaryBtnColor]} style={styles.bottomGrad}></LinearGradient>
+      {
+        firstMapVisit ? <WimmyPopup title='WIMMY SAYS...' desc="Let's start solving some puzzles!" instuction='tap to continue' /> : <></>
+      }
       <NavBar navigation={navigation} />
     </SafeAreaView>
   );

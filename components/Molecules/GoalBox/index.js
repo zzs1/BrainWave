@@ -22,7 +22,7 @@ export default function GoalBox({
       borderColor: colors.dialogueBorder
     }}>
         <Text style={{
-          fontSize: 20,
+          fontSize: 18,
           color: colors.text,
           position: 'absolute',
           left: 10,

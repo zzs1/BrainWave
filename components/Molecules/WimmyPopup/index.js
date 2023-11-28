@@ -4,7 +4,8 @@ import { StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 
 import DialogueBoxLower from '../../Atoms/DialogueBoxLower';
-import Wimmy from '../../../assets/Illustrations/Wimmy/WimmyFront.png'
+import Wimmy from '../../../assets/Illustrations/Wimmy/WimmyFront.png';
+import WimmyAnimated from '../../Atoms/WimmyAnimated';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -14,7 +15,8 @@ export default function WimmyPopup({
   desc = '',
   instuction = '',
   active=true,
-  onPress=() => {}
+  onPress=() => {},
+  loading=false
 }) {
   const [isActive, setIsActive] = useState(true);
 
@@ -35,12 +37,9 @@ export default function WimmyPopup({
               title={title}
               desc={desc}
               instuction={instuction}
+              loading={loading}
             />
-            <Image style={{
-              width: 270,
-              height: 185,
-              marginTop: 20
-            }} source={Wimmy} />
+            <WimmyAnimated />
           </View>
         </Pressable> : <></>
       }
