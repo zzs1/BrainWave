@@ -16,11 +16,13 @@ import PuzzleMap from './screens/puzzleMap';
 import WordProblemsPage from './screens/wordProblemsPages';
 import Feedback from './screens/Feedback';
 import Settings from './screens/settings';
+import WimmyCostume from './screens/wimmyCostume.js';
 
 import DarkTheme from './theme/DarkTheme';
 import DefaultTheme from './theme/DefaultTheme';
 
 import { AppContext } from './context/AppContext.js'
+
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -103,6 +105,7 @@ export default function App() {
               <Stack.Screen name='WordProblemsPage' component={WordProblemsPage} options={{headerShown: false}}/>
               <Stack.Screen name='Feedback' component={Feedback} options={{headerShown: false}}/>
               <Stack.Screen name='Settings' component={Settings} options={{headerShown: false}}/>
+              <Stack.Screen name='WimmyCostume' component={WimmyCostume} options={{headerShown: false}}/>
           </Stack.Navigator>
         </AppContext.Provider>
       </NavigationContainer>
