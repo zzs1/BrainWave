@@ -2,10 +2,11 @@ import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, Scroll
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@react-navigation/native";
-
+import { ProgressChart } from "react-native-chart-kit";
 import * as ImagePicker from 'expo-image-picker'
 import Constants from 'expo-constants'
 
+import ModalComp from "../components/Molecules/Modal/index.js";
 import GoalBox from "../components/Molecules/GoalBox";
 import NavBar from "../components/Molecules/NavBar";
 import PrimaryButton from "../components/Atoms/PrimaryButton";
@@ -43,6 +44,7 @@ export default function AccountPages({ navigation }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
+    // const [isActive, setIsActive] = useState(false);
 
     const [pfp, setPfp] = useState(null);
 
@@ -304,34 +306,37 @@ export default function AccountPages({ navigation }) {
                             flexDirection: 'row',
                             gap: 14,
                         }}>
-                            <View style={{
-                                flexDirection: 'column',
-                                gap: 14,
+                            <LevelBox />
+
+                            <View
+                                style={{
+                                ...styles.box,
+                                height: 166,
+                                backgroundColor: colors.dialogueBG,
+                                borderColor: colors.dialogueBorder,
+
                             }}>
+                                <Text 
+                                onPress={() => navigation.push('')}
+                                style={{
+                                    ...styles.title,
+                                    color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
+                                }}>My Wimmy</Text>
+                                        < ModalComp />
+                                <Image
+                                    source={require('../assets/Icons/wimmySmall.png')}
+                                    style={{
+                                        marginTop: 10,
+                                        width: 130,
+                                        height: 110,
+                                        objectFit: 'contain'
+                                    }}
+                                />
+        
 
-                                <LevelBox />
-
-                                <View style={{
-                                    ...styles.box,
-                                    height: 166,
-                                    backgroundColor: colors.dialogueBG,
-                                    borderColor: colors.dialogueBorder,
-                                }}>
-                                    <Text style={{
-                                        ...styles.title,
-                                        color: colors.text,
-                                        fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold'
-                                    }}>My Wimmy</Text>
-                                    <Image
-                                        source={require('../assets/Icons/wimmySmall.png')}
-                                        style={{
-                                            width: 130,
-                                            height: 110,
-                                            objectFit: 'contain'
-                                        }}
-                                    />
-                                </View>
                             </View>
+                        </View>
 
                             <View style={{
                                 flexDirection: 'column',
