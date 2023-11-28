@@ -21,7 +21,7 @@ import { patternRecognition } from "../data/patternRecognition.js";
 import { AppContext } from '../context/AppContext.js';
 
 import { getHint } from "../libs/getAPI.js";
-import * as  Speech  from 'expo-speech';
+import * as  Speech from 'expo-speech';
 
 
 const screenWidth = Dimensions.get("window").width;
@@ -75,7 +75,7 @@ export default function WordProblemsPage({ navigation }) {
     useEffect(() => {
         if (currentScreen === 1) {
             handleSend();
-        } 
+        }
     }, [currentScreen])
 
     const handleSend = async () => {
@@ -141,14 +141,14 @@ export default function WordProblemsPage({ navigation }) {
     const [sound, setSound] = React.useState();
 
     async function answerCorrectSound() {
-        const { sound } = await Audio.Sound.createAsync( require('../assets/sound/answer-correct.wav')
+        const { sound } = await Audio.Sound.createAsync(require('../assets/sound/answer-correct.wav')
         );
         setSound(sound);
         await sound.playAsync();
     }
 
     async function answerIncorrectSound() {
-        const { sound } = await Audio.Sound.createAsync( require('../assets/sound/answer-incorrect.wav')
+        const { sound } = await Audio.Sound.createAsync(require('../assets/sound/answer-incorrect.wav')
         );
         setSound(sound);
         await sound.playAsync();
@@ -156,10 +156,10 @@ export default function WordProblemsPage({ navigation }) {
 
     React.useEffect(() => {
         return sound
-        ? () => {
-            sound.unloadAsync();
+            ? () => {
+                sound.unloadAsync();
             }
-        : undefined;
+            : undefined;
     }, [sound]);
     const [speech, setSpeech] = React.useState("");
     const listAvailableVoices = async () => {
@@ -167,21 +167,18 @@ export default function WordProblemsPage({ navigation }) {
         console.log(voice)
     }
     React.useEffect(() => listAvailableVoices)
-    const WimmySpeak = () => {
-      const speaking = `${aiResponse}`;
-      options= {
-        voice: "com.apple.speech.synthesis.voice.Fred"
-      }
-      Speech.speak(speaking)
+    const WimmySpeak = (text) => {
+        const speaking = `${text}`;
+        options = {
+            voice: "com.apple.speech.synthesis.voice.Fred"
+        }
+        Speech.speak(speaking)
 
     }
 
     return (
         <View style={styles.container}>
             <ProgressBar num={4} step={currentScreen} />
-            <Pressable style={styles.speech_button} title="speech" onPress={WimmySpeak}>
-                    <Image source={require("../assets/Icons/VolumeBlack.png")} height={40} width={50}/>
-                </Pressable>
 
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
@@ -194,7 +191,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
@@ -206,7 +203,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
@@ -216,7 +213,7 @@ export default function WordProblemsPage({ navigation }) {
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
                                 borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -250,7 +247,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
-                
+
                 </View>
             )}
 
@@ -265,7 +262,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
@@ -277,7 +274,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
@@ -287,7 +284,7 @@ export default function WordProblemsPage({ navigation }) {
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
                                 borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -321,7 +318,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
-                
+
                 </View>
             )}
 
@@ -336,7 +333,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
@@ -348,7 +345,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
@@ -358,7 +355,7 @@ export default function WordProblemsPage({ navigation }) {
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
                                 borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -392,7 +389,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
-                
+
                 </View>
             )}
 
@@ -407,7 +404,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Correct, Good Job!</Text>
                         </View>
                     )}
@@ -419,7 +416,7 @@ export default function WordProblemsPage({ navigation }) {
                         }}>
                             <Text style={{
                                 ...styles.feedText,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
@@ -429,7 +426,7 @@ export default function WordProblemsPage({ navigation }) {
                                 ...styles.attemptText,
                                 backgroundColor: isColorBlind ? colorBlindColors.primaryColor : colors.primaryBtnColor,
                                 borderColor: isColorBlind ? colorBlindColors.primaryColorShadow : colors.primaryBtnShadow,
-                                fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                             }}>Attempts: {attempt}</Text>
                         <QuestionBox style={styles.text_container} text={data[quesIndex[currentQuestion]].description} />
                     </View>
@@ -463,7 +460,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
-                 
+
                 </View>
             )}
 
@@ -476,20 +473,17 @@ export default function WordProblemsPage({ navigation }) {
                 <Text style={{
                     ...styles.hintText,
                     color: colors.text,
-                    fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
+                    fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                 }}>Need a Hint?</Text>
                 {/* <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} /> */}
-               
+
                 <WavingTail />
             </Pressable>
-            
-               
-           
 
-            <WimmyPopup 
-                title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} 
-                desc={aiResponse} instuction="Tap to Continue..." 
-                active={isActive} onPress={() => setIsActive(false)} 
+            <WimmyPopup
+                title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."}
+                desc={aiResponse} instuction="Tap to Continue..."
+                active={isActive} onPress={() => setIsActive(false)}
                 loading={loading}
             />
             <NavBar navigation={navigation} />
@@ -584,8 +578,8 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         overflow: 'hidden',
     },
-    speech_button:{
-        height:40,
+    speech_button: {
+        height: 40,
         width: 50,
         marginLeft: 250,
         marginBottom: 20

@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { StyleSheet, Text, View, Button, useColorScheme } from 'react-native';
+import { StyleSheet, Text, View, Button, useColorScheme, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import * as Speech from 'expo-speech';
 
 import { AppContext } from '../../../context/AppContext.js'
 
@@ -16,6 +17,22 @@ export default function DialogueBoxLower({
     const { isDyslexic } = React.useContext(AppContext);
     const { colors } = useTheme();
 
+    const listAvailableVoices = async () => {
+        let voice = await Speech.getAvailableVoicesAsync()
+        console.log(voice)
+    }
+
+    React.useEffect(() => {
+        listAvailableVoices();
+    }, []);
+
+    const WimmySpeak = () => {
+        const speaking = `${desc}`;
+        options = {
+            voice: "com.apple.speech.synthesis.voice.Fred"
+        }
+        Speech.speak(speaking)
+    }
     return (
         <View style={{
             ...styles.dialogue_box,
@@ -35,11 +52,22 @@ export default function DialogueBoxLower({
                         fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                     }}>{desc}</Text>
             }
-            <Text style={{
-                ...styles.instuction,
-                color: colors.fadedText,
-                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-            }}>{instuction}</Text>
+            <View style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingRight: 20
+            }}>
+                <Text style={{
+                    ...styles.instuction,
+                    color: colors.fadedText,
+                    fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                }}>{instuction}</Text>
+                <Pressable onPress={WimmySpeak}>
+                    <Text>Listen</Text>
+                </Pressable>
+            </View>
         </View>
     )
 }
