@@ -64,28 +64,6 @@ export default function Settings({ navigation }) {
             ...styles.settingTitle,
             color: colors.text,
             fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
-          }}>Screen Reader</Text>
-          <View style={styles.settingSwitch}>
-            <Text style={{
-              color: colors.text,
-              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
-            }}>Off</Text>
-            <Switch
-              trackColor={{ false: colors.switchBG, true: colors.switchBG }}
-              thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
-            />
-            <Text style={{
-              color: colors.text,
-              fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
-            }}>On</Text>
-          </View>
-        </View>
-
-        <View style={styles.settingItem}>
-          <Text style={{
-            ...styles.settingTitle,
-            color: colors.text,
-            fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
           }}>Color Blind Mode</Text>
           <View style={styles.settingSwitch}>
             <Text style={{
@@ -97,7 +75,6 @@ export default function Settings({ navigation }) {
               thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
               onValueChange={() => setIsColorBlind(current => !current)}
               value={isColorBlind}
-              onToggle={WimmySpeak}
             />
             <Text style={{
               color: colors.text,
