@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, ScrollView, Platform, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@react-navigation/native";
-import { ProgressChart } from "react-native-chart-kit";
+
+import * as ImagePicker from 'expo-image-picker'
+import Constants from 'expo-constants'
 
 import GoalBox from "../components/Molecules/GoalBox";
 import NavBar from "../components/Molecules/NavBar";
@@ -15,17 +17,60 @@ import WimmyAnimated from "../components/Atoms/WimmyAnimated/index.js";
 
 import { AppContext } from '../context/AppContext.js';
 
+import AvatarBlue from '../assets/Icons/avatar-blue.svg'
+import AvatarPurple from '../assets/Icons/avatar-purple.svg'
+import AvatarWhite from '../assets/Icons/avatar-white.svg'
+
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function AccountPages({ navigation }) {
-    const { wimPoints, isDyslexic, accountSet, setAccountSet, userName, setUserName } = React.useContext(AppContext);
+    const { 
+        wimPoints, 
+        isDyslexic, 
+        accountSet, 
+        setAccountSet, 
+        userName, 
+        setUserName,
+        email,
+        setEmail,
+        password,
+        setPassword
+    } = React.useContext(AppContext);
+
     const { colors } = useTheme();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
 
+    const [pfp, setPfp] = useState(null);
+
+    const permission = async () => {
+        if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+                alert("Permission Denied")
+            }
+        }
+    }
+
+    useEffect(() => {
+        permission();
+    }, [])
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1
+        })
+        console.log(result);
+        if (!result.canceled) {
+            setPfp(result.uri)
+        }
+    }
 
     const currentDate = new Date();
 
@@ -63,55 +108,137 @@ export default function AccountPages({ navigation }) {
                             <View style={styles.accountStartPageBody}>
                                 <View>
                                     <WimmyAnimated />
-                                    
-                                    <DialogueBoxUpper hasTitle={false} interestingText='What is your name?' />
+
+                                    <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
+                                </View>
+                                {/* once firebase is set up make these into components (follow monika's method) */}
+                                <View style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: 10
+                                }}>
+                                    <View>
+                                        <Text style={{
+                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
+                                            fontSize: 18,
+                                            color: colors.text
+                                        }}>Email</Text>
+                                        <TextInput
+                                            style={{
+                                                ...styles.userNameInput,
+                                                borderColor: colors.inputBorder,
+                                                backgroundColor: colors.inputBG,
+                                                color: colors.text,
+                                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                                            }}
+                                            placeholder="Enter your Email..."
+                                            onChangeText={(text) => setEmail(text)}
+                                            value={email}
+                                        />
+                                    </View>
+
+                                    <View>
+                                        <Text style={{
+                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
+                                            fontSize: 18,
+                                            color: colors.text
+                                        }}>Create Password</Text>
+                                        <TextInput
+                                            style={{
+                                                ...styles.userNameInput,
+                                                borderColor: colors.inputBorder,
+                                                backgroundColor: colors.inputBG,
+                                                color: colors.text,
+                                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                                            }}
+                                            placeholder="Type your Password..."
+                                            onChangeText={(text) => setPassword(text)}
+                                            value={password}
+                                        />
+                                    </View>
                                 </View>
 
-                                <TextInput
-                                    style={{
-                                        ...styles.userNameInput,
-                                        borderColor: colors.inputBorder,
-                                        backgroundColor: colors.inputBG,
-                                        color: colors.text,
-                                        fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                    }}
-                                    placeholder="Type your name..."
-                                    onChangeText={(text) => setUserName(text)}
-                                    value={userName}
-                                />
-
-                                <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
+                                {/* change once firebase is set up */}
+                                <PrimaryButton name="SET NAME" onPress={() => null } />
+                                <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
+                                    <Text style={{
+                                        fontSize: 18
+                                    }}>SKIP FOR NOW</Text>
+                                </TouchableOpacity>
                             </View>)}
 
                         {currentPage === 3 && (
                             <View style={styles.accountStartPageBody}>
                                 <View>
                                     <WimmyAnimated />
-                                    
-                                    <DialogueBoxUpper hasTitle={false} interestingText='Select an avatar!' />
+
+                                    <DialogueBoxUpper hasTitle={false} interestingText='What is your name?' />
                                 </View>
 
-                                {/* <Pressable onPress={pickImage}> */}
-                                <View style={styles.avatarIconView}>
-                                    <Image
-                                        source={require('../assets/accountPages/imageUpload.png')}
-                                        style={styles.avatarIcon}
-                                        width={150}
-                                        height={150}
+                                <View>
+                                    <Text style={{
+                                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
+                                                fontSize: 18,
+                                                color: colors.text
+                                            }}>Select a Username</Text>
+                                    <TextInput
+                                        style={{
+                                            ...styles.userNameInput,
+                                            borderColor: colors.inputBorder,
+                                            backgroundColor: colors.inputBG,
+                                            color: colors.text,
+                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                                        }}
+                                        placeholder="Type your name..."
+                                        onChangeText={(text) => setUserName(text)}
+                                        value={userName}
                                     />
                                 </View>
 
-                                {/* {image && <Image source={{ uri: image }} style={{ width: 190, height: 190 }} />} */}
-                                {/* </Pressable> */}
-
-                                <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
+                                <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
                             </View>)}
 
                         {currentPage === 4 && (
                             <View style={styles.accountStartPageBody}>
                                 <View>
                                     <WimmyAnimated />
-                                    
+
+                                    <DialogueBoxUpper hasTitle={false} interestingText='Select an avatar!' />
+                                </View>
+
+                                <View style={{
+                                    ...styles.avatarIconView,
+                                    borderColor: colors.dialogueBorder
+                                }}>
+                                    {
+                                        pfp && <Image
+                                            source={{
+                                                uri: pfp
+                                            }}
+                                            style={{
+                                                ...styles.avatarIcon,
+                                                width: 190,
+                                                height: 190,
+                                                borderRadius: 10,
+                                            }}
+                                        />
+                                    }
+                                </View>
+                                <View style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: 5
+                                }}>
+                                    <PrimaryButton name="UPLOAD IMAGE" onPress={pickImage} />
+                                    <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
+                                </View>
+                            </View>)}
+
+                        {currentPage === 5 && (
+                            <View style={styles.accountStartPageBody}>
+                                <View>
+                                    <WimmyAnimated />
+
                                     <DialogueBoxUpper
                                         hasTitle={true}
                                         title="Let's set your goals!"
@@ -127,11 +254,11 @@ export default function AccountPages({ navigation }) {
                             </View>
                         )}
 
-                        {currentPage === 5 && (
+                        {currentPage === 6 && (
                             <View style={styles.accountStartPageBody}>
                                 <View>
                                     <WimmyAnimated />
-                                    
+
                                     <DialogueBoxUpper
                                         hasTitle={true}
                                         title="You're all set!"
@@ -145,12 +272,18 @@ export default function AccountPages({ navigation }) {
                     <View style={styles.accountPageBody}>
                         <TopBar navigation={navigation} points={wimPoints} />
 
-                        <View style={styles.avartar} >
+                        <Pressable style={styles.avartar} onPress={pickImage}>
                             <Image
-                                source={require('../assets/Icons/will.png')}
-                                width={95}
-                                height={95} />
-                        </View>
+                                source={{ uri: pfp }}
+                                width={150}
+                                height={150}
+                                style={{
+                                    borderRadius: 10,
+                                    borderColor: colors.dialogueBorder,
+                                    borderWidth: 3
+                                }}
+                            />
+                        </Pressable>
 
                         <View style={styles.userNameSection}>
                             <Text style={{
@@ -388,6 +521,16 @@ const styles = StyleSheet.create({
     days: {
         fontSize: 16,
         paddingRight: 5,
+    },
+    avatarIconView: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: "center",
+        justifyContent: 'center',
+        borderWidth: 3,
+        width: 200,
+        height: 200,
+        borderRadius: 10,
     }
 
 });

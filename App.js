@@ -42,6 +42,8 @@ export default function App() {
   const [logicProgress, setLogicProgress] = useState(0);
   const [patternProgress, setPatternProgress] = useState(0);
   const [wimPoints, setWimPoints] = useState(0);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [accountSet, setAccountSet] = useState(true);
   const [firstHomeVisit, setFirstHomeVisit] = useState(true);
@@ -63,6 +65,8 @@ export default function App() {
       accountSet, setAccountSet,
       firstHomeVisit, setFirstHomeVisit,
       firstMapVisit, setFirstMapVisit,
+      email, setEmail,
+      password, setPassword,
       userName, setUserName,
     }
   });
