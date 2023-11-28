@@ -42,7 +42,7 @@ export const logicProblems = [
         type: "M/Q",
         description: "The day before two days after the day before tomorrow is Saturday. What day is it today?",
         answer: "Friday",
-        explanation: "The “day before tomorrow” is today; “the day before two days after” is really one day after. So if “one day after today is Saturday,” then it must be Friday.",
+        explanation: "The “day before tomorrow” is today; then it must be Friday.",
         options: ['Monday', 'Friday', 'Wednesday', 'Sunday']
     },
     {
@@ -58,10 +58,10 @@ export const logicProblems = [
         title: "Question 7",
         id: "Level 2",
         type: "M/Q",
-        description: "A lion lies every Monday, Tuesday and Wednesday and the other days he speaks the truth. A unicorn lies on Thursdays, Fridays and Saturdays, and the other days of the week he speaks the truth. “Yesterday I was lying,” the lion said. “So was I,” said the unicorn. What day is it?",
-        answer: "Thursday",
-        explanation: "The only day they both tell the truth is Sunday; but today can't be Sunday because the lion also tells the truth on Saturday (yesterday). Going day by day, the only day one of them is lying and one of them is telling the truth with those two statements is Thursday.",
-        options: ['Monday', 'Thursday', 'Friday', 'Saturday']
+        description: "I am a creature that can be as big as a bus, yet I don't breathe air. What am I among sea creatures?",
+        answer: "Whale Shark",
+        explanation: "The whale shark is not a whale but a type of fish.",
+        options: ['Octopus', 'Whale Shark', 'Blue Whale', 'Dolphin']
     },
     {
         title: "Question 8",
@@ -85,10 +85,10 @@ export const logicProblems = [
         title: "Question 10",
         id: "Level 3",
         type: "M/Q",
-        description: "Four people need to cross a rickety bridge at night. They only have one flashlight, and the bridge can only hold two people at a time. The four people walk at different speeds: one can cross the bridge in 1 minute, another in 2 minutes, another in 5 minutes, and the slowest in 10 minutes. When two people cross the bridge together, they must go at the slower person's pace. What is the fastest time they can all get to the other side?",
-        answer: "15 minutes",
-        explanation: "To minimize the time, the two fastest people (1 and 2 minutes) cross first. The fastest returns (1 additional minute), and then the two slowest (5 and 10 minutes) cross together (10 minutes). The second-fastest person returns (2 minutes), and the two fastest (1 and 2 minutes) cross again (2 minutes). The total is 15 minutes.",
-        options: ["17 minutes", "15 minutes", "19 minutes", "12 minutes"]
+        description: "I'm the seventh planet from the sun and known for rotating on my side. What am I?",
+        answer: "Uranus",
+        explanation: "Uranus is the seventh planet from the sun in our solar system.",
+        options: ["Mars", "Uranus", "Venus", "Neptune"]
     },
     {
         title: "Question 11",
