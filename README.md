@@ -21,3 +21,4 @@ Brainwaves is a gamified Learning App that takes the user on a journey of puzzle
 * npm install react-native-chart-kit
 * npx expo install expo-image-picker
 * npx expo install expo-constants
+* npm install expo-speech
