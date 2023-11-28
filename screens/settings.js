@@ -18,12 +18,14 @@ import AccessibilityW from '../assets/Icons/Accessibility-white.png'
 import AccessibilityB from '../assets/Icons/Accessibility-black.png'
 import TopBar from '../components/Molecules/TopBar/index.js';
 
+
 export default function Settings({ navigation }) {
   const { isDarkTheme, setIsDarkTheme, isColorBlind, setIsColorBlind, isDyslexic, setIsDyslexic, wimPoints } = React.useContext(AppContext)
 
   const { dark } = useTheme();
   const { colors } = useTheme();
   const { colorBlindColors } = useTheme();
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -95,6 +97,7 @@ export default function Settings({ navigation }) {
               thumbColor={ isColorBlind ? colorBlindColors.switchThumb : colors.switchThumb }
               onValueChange={() => setIsColorBlind(current => !current)}
               value={isColorBlind}
+              onToggle={WimmySpeak}
             />
             <Text style={{
               color: colors.text,

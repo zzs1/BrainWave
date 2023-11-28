@@ -20,6 +20,7 @@ import WimmyThinking from "../components/Atoms/WimmyThinking/index.js";
 import { useStreak } from "use-streak";
 
 import { getChat, getFeedBack } from "../libs/getAPI.js";
+import * as  Speech  from 'expo-speech';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -107,6 +108,20 @@ export default function Feedback({ navigation }) {
             console.log("AI Response Completed");
         }
         setTextInput('');
+    };
+    const [speech, setSpeech] = React.useState("");
+    const listAvailableVoices = async () => {
+        let voice = await Speech.getAvailableVoicesAsync()
+        console.log(voice)
+    }
+    React.useEffect(() => listAvailableVoices)
+    const WimmySpeak = () => {
+      const speaking = `${AIFeedback}`;
+      options= {
+        voice: "com.apple.speech.synthesis.voice.Fred"
+      }
+      Speech.speak(speaking)
+
     }
 
     // const today = new Date();
@@ -117,6 +132,9 @@ export default function Feedback({ navigation }) {
             <View style={styles.image_box}>
                 <WimmyAnimated />
             </View>
+            <Pressable style={styles.speech_button} title="speech" onPress={WimmySpeak}>
+                    <Image source={require("../assets/Icons/VolumeBlack.png")} height={40} width={50}/>
+                </Pressable>
 
             {currentScreen === 1 && (
                 <View style={styles.main_container}>

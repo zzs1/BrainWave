@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyleSheet, View, Pressable, Dimensions, Text } from "react-native";
+import { StyleSheet, View, Pressable, Dimensions, Text, Button } from "react-native";
 import { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
@@ -14,12 +14,14 @@ import OptionBtn from "../components/Atoms/OptionButton";
 import ProgressBar from "../components/Atoms/DialogueBar";
 import WavingTail from "../components/Atoms/WavingTail";
 
+
 import { logicProblems } from "../data/wordProblems";
 import { numberPuzzles } from "../data/numberPuzzles.js";
 import { patternRecognition } from "../data/patternRecognition.js";
 import { AppContext } from '../context/AppContext.js';
 
 import { getHint } from "../libs/getAPI.js";
+import * as  Speech  from 'expo-speech';
 
 
 const screenWidth = Dimensions.get("window").width;
@@ -159,10 +161,27 @@ export default function WordProblemsPage({ navigation }) {
             }
         : undefined;
     }, [sound]);
+    const [speech, setSpeech] = React.useState("");
+    const listAvailableVoices = async () => {
+        let voice = await Speech.getAvailableVoicesAsync()
+        console.log(voice)
+    }
+    React.useEffect(() => listAvailableVoices)
+    const WimmySpeak = () => {
+      const speaking = `${aiResponse}`;
+      options= {
+        voice: "com.apple.speech.synthesis.voice.Fred"
+      }
+      Speech.speak(speaking)
+
+    }
 
     return (
         <View style={styles.container}>
             <ProgressBar num={4} step={currentScreen} />
+            <Pressable style={styles.speech_button} title="speech" onPress={WimmySpeak}>
+                    <Image source={require("../assets/Icons/VolumeBlack.png")} height={40} width={50}/>
+                </Pressable>
 
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
@@ -231,6 +250,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
+                
                 </View>
             )}
 
@@ -301,6 +321,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
+                
                 </View>
             )}
 
@@ -371,6 +392,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
+                
                 </View>
             )}
 
@@ -441,6 +463,7 @@ export default function WordProblemsPage({ navigation }) {
                             />
                         </View>
                     </View>
+                 
                 </View>
             )}
 
@@ -456,8 +479,12 @@ export default function WordProblemsPage({ navigation }) {
                     fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
                 }}>Need a Hint?</Text>
                 {/* <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} /> */}
+               
                 <WavingTail />
             </Pressable>
+            
+               
+           
 
             <WimmyPopup 
                 title={loading ? "WIMMY IS THINKING..." : "WIMMY SAYS..."} 
@@ -556,5 +583,11 @@ const styles = StyleSheet.create({
         color: 'white',
         borderWidth: 3,
         overflow: 'hidden',
+    },
+    speech_button:{
+        height:40,
+        width: 50,
+        marginLeft: 250,
+        marginBottom: 20
     }
 })
