@@ -18,6 +18,7 @@ export default function Island(){
           style={{
             width: 'auto',
             height: 130,
+            transform: [{ scale: 1.1 }]
           }}
           source={animationData}
         />
