@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import { ProgressChart } from "react-native-chart-kit";
+import ModalComp from "../components/Molecules/Modal/index.js";
 
 import GoalBox from "../components/Molecules/GoalBox";
 import NavBar from "../components/Molecules/NavBar";
@@ -26,6 +27,7 @@ export default function AccountPages({ navigation }) {
     const [userName, setUserName] = useState("");
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
+    // const [isActive, setIsActive] = useState(false);
 
 
     const currentDate = new Date();
@@ -217,18 +219,22 @@ export default function AccountPages({ navigation }) {
 
                             <LevelBox />
 
-                            <View style={{
+                            <View
+                                style={{
                                 ...styles.box,
                                 height: 166,
                                 backgroundColor: colors.dialogueBG,
                                 borderColor: colors.dialogueBorder,
 
                             }}>
-                                <Text style={{
+                                <Text 
+                                onPress={() => navigation.push('')}
+                                style={{
                                     ...styles.title,
                                     color: colors.text,
                                     fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
                                 }}>My Wimmy</Text>
+                                        < ModalComp />
                                 <Image
                                     source={require('../assets/Icons/wimmySmall.png')}
                                     style={{
@@ -238,6 +244,8 @@ export default function AccountPages({ navigation }) {
                                         objectFit: 'contain'
                                     }}
                                 />
+        
+
                             </View>
                         </View>
 
@@ -333,9 +341,7 @@ export default function AccountPages({ navigation }) {
                                 </View>
                             </View>
 
-                            {/* <View style={styles.wimmyTail}>
-                                <Image source={require('../assets/Icons/wimmyTail.png')} />
-                                </View> */}
+        
                         </View>
                     </View>
                     <View style={styles.navCont}>
