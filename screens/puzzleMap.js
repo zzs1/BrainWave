@@ -9,6 +9,7 @@ import LevelIsland from '../components/Molecules/LevelIsland';
 import PuzzleMapTitle from '../components/Atoms/PuzzleMapTitle';
 import NavBar from '../components/Molecules/NavBar';
 import WimmyPopup from '../components/Molecules/WimmyPopup';
+import OceanAnimated from '../components/Atoms/OceanAnimated';
 
 import { AppContext } from '../context/AppContext.js'
 
@@ -56,7 +57,9 @@ export default function PuzzleMap({ navigation }) {
           </Pressable>
         </View>
       </View>
-      <LinearGradient colors={['transparent', colors.primaryBtnColor]} style={styles.bottomGrad}></LinearGradient>
+      <View style={{zIndex: -999, width: screenWidth, height: screenHeight, overflow: 'hidden', marginTop: 10}}>
+        <OceanAnimated />
+      </View>
       {
         firstMapVisit ? <WimmyPopup title='WIMMY SAYS...' desc="Let's start solving some puzzles!" instuction='tap to continue' /> : <></>
       }
