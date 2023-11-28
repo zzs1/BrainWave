@@ -8,82 +8,80 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-export default function ModalComp (){
+export default function ModalComp() {
 
     const { wimPoints, isDyslexic } = React.useContext(AppContext);
     const [modelVisible, setModelVisible] = useState(false);
 
-    return(
-        <>
-        <View style={{
-        }}>
-            <Modal 
-                transparemt={true} 
+    return (
+
+        <View>
+            <Modal
+                transparemt={true}
                 visible={modelVisible}>
                 <View style={{
-                   marginTop: 100
+                    width: screenWidth,
+                    height: screenHeight
                 }}>
-                    <Text 
-                        style={{
-                            fontSize: 20,
+                    <View style={{
+                        marginTop: 100
+                    }}>
+                        <Text
+                            style={{
+                                fontSize: 20,
+                                textAlign: 'center',
+                            }}>Would you like to change Wimmy's costume?</Text>
+
+                        <View style={{
+                            ...styles.costumeImage,
+                            marginTop: 10
+                        }}>
+                            <Image
+                                source={require('../../../assets/Icons/wimmyCostume.png')}
+                                width={270}
+                                height={188} />
+
+                        </View>
+
+
+                        <Text style={{
                             textAlign: 'center',
-                        }}>Would you like to change Wimmy's costume?</Text>
-                
-                <View style={{
-                    ...styles.costumeImage,
-                    marginTop: 10}}>
-                    <Image 
-                        source={require('../../../assets/Icons/wimmyCostume.png')}
-                        width={270}
-                        height={188} /> 
-
-                </View>
-
-                
-                 <Text style={{
-                        textAlign: 'center',
-                        fontSize: 20,
-                        marginTop: 30,
-                 }}> -30 coins </Text>
-                    <Text 
-                        style={{
                             fontSize: 20,
-                            textAlign: 'center',
-                            borderRadius: 10,
-                            backgroundColor: '#CDDDEC',
-                            marginRight: 150,
-                            marginLeft: 150,
-                            marginTop: 100,
-                        }}
-                        onPress={() => setModelVisible(!modelVisible)}>
-                        Yes
-                    </Text>
+                            marginTop: 30,
+                        }}> 30 coins </Text>
+                        <Text
+                            style={{
+                                fontSize: 20,
+                                textAlign: 'center',
+                                borderRadius: 10,
+                                backgroundColor: '#CDDDEC',
+                                marginRight: 150,
+                                marginLeft: 150,
+                                marginTop: 100,
+                            }}
+                            onPress={() => setModelVisible(!modelVisible)}>
+                            Yes
+                        </Text>
+                    </View>
                 </View>
-
-                <WimmyPopup
-                            title='WIMMY SAYS...'
-                            desc='buy me some cosyimes with your wim coins!'
-                            instuction='Tap to continue.'
-                        />
-
             </Modal>
 
-                <Pressable 
-                    style={{
-                            backgroundColor: '#CDDDEC',
-                            width: 100,
-                            padding: 5,
-                            borderRadius: 10,
-                            display: 'flex',
-                            justifyContent: 'center'
-                    }}
-                    onPress={() => setModelVisible(true)}>
-                    <Text style={{
-                        textAlign: 'center'
-                    }}>go to shop</Text>
-                </Pressable>
+            <Pressable
+                style={{
+                    backgroundColor: '#CDDDEC',
+                    width: 100,
+                    padding: 5,
+                    borderRadius: 10,
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+                onPress={() => setModelVisible(true)}>
+                <Text style={{
+                    textAlign: 'center'
+                }}>go to shop</Text>
+            </Pressable>
         </View>
-        </>
+
     )
 }
 

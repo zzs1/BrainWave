@@ -26,12 +26,12 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function AccountPages({ navigation }) {
-    const { 
-        wimPoints, 
-        isDyslexic, 
-        accountSet, 
-        setAccountSet, 
-        userName, 
+    const {
+        wimPoints,
+        isDyslexic,
+        accountSet,
+        setAccountSet,
+        userName,
         setUserName,
         email,
         setEmail,
@@ -161,7 +161,7 @@ export default function AccountPages({ navigation }) {
                                 </View>
 
                                 {/* change once firebase is set up */}
-                                <PrimaryButton name="SET NAME" onPress={() => null } />
+                                <PrimaryButton name="SET NAME" onPress={() => null} />
                                 <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
                                     <Text style={{
                                         fontSize: 18
@@ -179,10 +179,10 @@ export default function AccountPages({ navigation }) {
 
                                 <View>
                                     <Text style={{
-                                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
-                                                fontSize: 18,
-                                                color: colors.text
-                                            }}>Select a Username</Text>
+                                        fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
+                                        fontSize: 18,
+                                        color: colors.text
+                                    }}>Select a Username</Text>
                                     <TextInput
                                         style={{
                                             ...styles.userNameInput,
@@ -300,43 +300,47 @@ export default function AccountPages({ navigation }) {
                                 height={20}
                             /> */}
                         </View>
-
                         <View style={{
                             display: 'flex',
                             flexDirection: 'row',
-                            gap: 14,
+                            gap: 14
                         }}>
-                            <LevelBox />
-
-                            <View
-                                style={{
-                                ...styles.box,
-                                height: 166,
-                                backgroundColor: colors.dialogueBG,
-                                borderColor: colors.dialogueBorder,
-
+                            <View style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 14,
                             }}>
-                                <Text 
-                                onPress={() => navigation.push('')}
-                                style={{
-                                    ...styles.title,
-                                    color: colors.text,
-                                    fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
-                                }}>My Wimmy</Text>
-                                        < ModalComp />
-                                <Image
-                                    source={require('../assets/Icons/wimmySmall.png')}
-                                    style={{
-                                        marginTop: 10,
-                                        width: 130,
-                                        height: 110,
-                                        objectFit: 'contain'
-                                    }}
-                                />
-        
+                                <LevelBox />
 
+                                <View
+                                    style={{
+                                        ...styles.box,
+                                        height: 200,
+                                        backgroundColor: colors.dialogueBG,
+                                        borderColor: colors.dialogueBorder,
+
+                                    }}>
+                                    <Text
+                                        onPress={() => navigation.push('')}
+                                        style={{
+                                            ...styles.title,
+                                            color: colors.text,
+                                            fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold'
+                                        }}>My Wimmy</Text>
+                                    < ModalComp />
+                                    <Image
+                                        source={require('../assets/Icons/wimmySmall.png')}
+                                        style={{
+                                            marginTop: 10,
+                                            width: 130,
+                                            height: 110,
+                                            objectFit: 'contain'
+                                        }}
+                                    />
+
+
+                                </View>
                             </View>
-                        </View>
 
                             <View style={{
                                 flexDirection: 'column',
@@ -442,7 +446,7 @@ export default function AccountPages({ navigation }) {
                         </View>
                     </View>
             }
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 
