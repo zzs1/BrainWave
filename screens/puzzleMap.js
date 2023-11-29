@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   gradient: {
     position: 'absolute',
-    top: 50,
+    top: 0,
     left: 0,
     zIndex: 0
   },

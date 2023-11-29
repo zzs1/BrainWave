@@ -1,9 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@react-navigation/native';
 
 import { AppContext } from '../../../context/AppContext.js'
+
+const screenWidth = Dimensions.get("window").width;
 
 export default function PuzzleMapTitle({
     title='',
@@ -26,8 +28,10 @@ export default function PuzzleMapTitle({
 
 const styles = StyleSheet.create({
     container: {
-        width: 400,
-        height: 350
+        width: screenWidth,
+        height: 200,
+        paddingTop: 30,
+
     },
     title: {
         fontSize: 28,
