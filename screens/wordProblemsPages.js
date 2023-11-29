@@ -204,7 +204,7 @@ export default function WordProblemsPage({ navigation }) {
                             <Text style={{
                                 ...styles.feedText,
                                 fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            }}>That's Incorrect, Please try again. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -275,7 +275,7 @@ export default function WordProblemsPage({ navigation }) {
                             <Text style={{
                                 ...styles.feedText,
                                 fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            }}>That's Incorrect, Please try again. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -346,7 +346,7 @@ export default function WordProblemsPage({ navigation }) {
                             <Text style={{
                                 ...styles.feedText,
                                 fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            }}>That's Incorrect, Please try again. If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -417,7 +417,7 @@ export default function WordProblemsPage({ navigation }) {
                             <Text style={{
                                 ...styles.feedText,
                                 fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                            }}>That's Incorrect, Try Again!. If you need extra help, just press my tail!</Text>
+                            }}>That's Incorrect, Please try again! If you need extra help, just press my tail!</Text>
                         </View>
                     )}
                     <View style={styles.question}>
@@ -470,13 +470,14 @@ export default function WordProblemsPage({ navigation }) {
                 }
                 setIsActive(true);
             }}>
-                <Text style={{
-                    ...styles.hintText,
-                    color: colors.text,
-                    fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                }}>Need a Hint?</Text>
-                {/* <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} /> */}
-
+                <View style={styles.hintContainer}>
+                    <Text style={{
+                        ...styles.hintText,
+                        color: colors.text,
+                        fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                    }}>Need a Hint?</Text>
+                    {/* <Image source={require("../assets/wimmyFront/WimmyFront.png")} height={94} width={88} /> */}
+                    </View>
                 <WavingTail />
             </Pressable>
 
@@ -531,14 +532,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 60
     },
+    hintContainer: {
+        top: 20,
+    },
     hintText: {
-        fontSize: 16
+        fontSize: 16,
     },
     correctPopup: {
         position: 'absolute',
-        top: 50,
+        top: 250,
         width: 350,
-        height: 150,
+        height: 200,
         padding: 20,
         borderRadius: 10,
         borderWidth: 3,
@@ -548,9 +552,9 @@ const styles = StyleSheet.create({
     },
     incorrectPopup: {
         position: 'absolute',
-        top: 50,
+        top: 250,
         width: 350,
-        height: 150,
+        height: 200,
         padding: 20,
         borderRadius: 10,
         borderWidth: 3,
@@ -560,7 +564,8 @@ const styles = StyleSheet.create({
     },
     feedText: {
         color: 'white',
-        fontSize: 20
+        fontSize: 20,
+        textAlign: 'center',
     },
     attemptText: {
         display: 'flex',
