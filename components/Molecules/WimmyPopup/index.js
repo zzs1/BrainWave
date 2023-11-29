@@ -39,7 +39,6 @@ export default function WimmyPopup({
               instuction={instuction}
               loading={loading}
             />
-
             <WimmyAnimated />
           </View>
         </Pressable> : <></>
@@ -56,7 +55,8 @@ const styles = StyleSheet.create({
     height: screenHeight,
     position: 'absolute',
     bottom: 0,
-    zIndex: 2
+    zIndex: 2,
+    paddingBottom: 30
   },
   bg: {
     width: screenWidth,
