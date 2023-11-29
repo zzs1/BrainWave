@@ -36,7 +36,9 @@ export default function AccountPages({ navigation }) {
         email,
         setEmail,
         password,
-        setPassword
+        setPassword,
+        pfp,
+        setPfp
     } = React.useContext(AppContext);
 
     const { colors } = useTheme();
@@ -45,8 +47,6 @@ export default function AccountPages({ navigation }) {
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
     // const [isActive, setIsActive] = useState(false);
-
-    const [pfp, setPfp] = useState(null);
 
     const permission = async () => {
         if (Platform.OS !== 'web') {

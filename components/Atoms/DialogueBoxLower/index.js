@@ -1,12 +1,15 @@
 import React from 'react';
 
-import { StyleSheet, Text, View, Button, useColorScheme, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Button, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import * as Speech from 'expo-speech';
+import { Image } from 'expo-image';
 
 import { AppContext } from '../../../context/AppContext.js'
 
 import WimmyThinking from '../WimmyThinking/index.js';
+import SoundBlack from '../../../assets/Icons/sound-black.svg'
+import SoundWhite from '../../../assets/Icons/sound-white.svg'
 
 export default function DialogueBoxLower({
     title = '',
@@ -15,7 +18,7 @@ export default function DialogueBoxLower({
     loading = false
 }) {
     const { isDyslexic } = React.useContext(AppContext);
-    const { colors } = useTheme();
+    const { colors, dark } = useTheme();
 
     const listAvailableVoices = async () => {
         let voice = await Speech.getAvailableVoicesAsync()
@@ -57,6 +60,7 @@ export default function DialogueBoxLower({
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                marginTop: 10,
                 paddingRight: 20
             }}>
                 <Text style={{
@@ -65,7 +69,14 @@ export default function DialogueBoxLower({
                     fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                 }}>{instuction}</Text>
                 <Pressable onPress={WimmySpeak}>
-                    <Text>Listen</Text>
+                    <Image 
+                        source={dark ? SoundWhite : SoundBlack}
+                        contentFit='contain'
+                        style={{
+                            width: 40,
+                            height: 40,
+                        }}
+                    />
                 </Pressable>
             </View>
         </View>
