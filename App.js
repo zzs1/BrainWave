@@ -50,7 +50,7 @@ export default function App() {
   const [accountSet, setAccountSet] = useState(true);
   const [firstHomeVisit, setFirstHomeVisit] = useState(true);
   const [firstMapVisit, setFirstMapVisit] = useState(true);
-  const [pfp, setPfp] = useState(null);
+  const [pfp, setPfp] = useState("");
 
   const appContext = useMemo(() => {
     return {

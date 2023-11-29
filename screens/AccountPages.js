@@ -21,6 +21,7 @@ import { AppContext } from '../context/AppContext.js';
 import AvatarBlue from '../assets/Icons/avatar-blue.svg'
 import AvatarPurple from '../assets/Icons/avatar-purple.svg'
 import AvatarWhite from '../assets/Icons/avatar-white.svg'
+import UserRegister from "../firebase/UserRegister.js";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -114,54 +115,10 @@ export default function AccountPages({ navigation }) {
                                     <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
                                 </View>
                                 {/* once firebase is set up make these into components (follow monika's method) */}
-                                <View style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: 10
-                                }}>
-                                    <View>
-                                        <Text style={{
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
-                                            fontSize: 18,
-                                            color: colors.text
-                                        }}>Email</Text>
-                                        <TextInput
-                                            style={{
-                                                ...styles.userNameInput,
-                                                borderColor: colors.inputBorder,
-                                                backgroundColor: colors.inputBG,
-                                                color: colors.text,
-                                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                            }}
-                                            placeholder="Enter your Email..."
-                                            onChangeText={(text) => setEmail(text)}
-                                            value={email}
-                                        />
-                                    </View>
-
-                                    <View>
-                                        <Text style={{
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
-                                            fontSize: 18,
-                                            color: colors.text
-                                        }}>Create Password</Text>
-                                        <TextInput
-                                            style={{
-                                                ...styles.userNameInput,
-                                                borderColor: colors.inputBorder,
-                                                backgroundColor: colors.inputBG,
-                                                color: colors.text,
-                                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                            }}
-                                            placeholder="Type your Password..."
-                                            onChangeText={(text) => setPassword(text)}
-                                            value={password}
-                                        />
-                                    </View>
-                                </View>
+                                
+                                <UserRegister />
 
                                 {/* change once firebase is set up */}
-                                <PrimaryButton name="SET NAME" onPress={() => null} />
                                 <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
                                     <Text style={{
                                         fontSize: 18
