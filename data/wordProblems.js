@@ -23,9 +23,9 @@ export const logicProblems = [
         id: "Level 1",
         type: "M/Q",
         description: "If five cats can catch five mice in five minutes, how long will it take one cat to catch one mouse?",
-        answer: "Five Minutes",
+        answer: "5 minutes",
         explanation: "Using the information we know, it would take one cat 25 minutes to catch all five mice (5x5=25). Then working backward and dividing 25 by five, we get five minutes for one cat to catch each mouse.",
-        options: ['Twenty minutes', 'Five minutes', 'Ten minutes', 'Three minutes']
+        options: ['20 minutes', '5 minutes', '10 minutes', '3 minutes']
     },
     {
         title: "Question 4",
@@ -106,7 +106,7 @@ export const logicProblems = [
         description: "I have a tail and a head but no body. What am I?",
         answer: "Snake",
         explanation: "Coins have face and tail",
-        options: ["Coin'", "Fish", "Caterpillar", "Snake"]
+        options: ["Coin'", "Fish", "Spider", "Snake"]
     },
     {
         title: "Question 13",
@@ -160,7 +160,7 @@ export const logicProblems = [
         description: "I can fly without wings. I can cry without eyes. Whenever I go, darkness follows me. What am I among birds?",
         answer: "Owl",
         explanation: "Owls",
-        options: ["Nightingale.", "Bat", "Penguin", "Owl"] 
+        options: ["Bird", "Bat", "Penguin", "Owl"] 
     },
     {
         title: "Question 19",
