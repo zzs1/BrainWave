@@ -118,11 +118,42 @@ export const patternRecognition = [
         title: "Question 13",
         description: "What comes next?",
         id: "Level 4",
-        image: require("../assets/patternRecognition/question_12.png"),
-        options: [require("../assets/patternRecognition/question_12_answer_1.png"), require("../assets/patternRecognition/question_12_answer_2.png"), require("../assets/patternRecognition/question_12_answer_3.png"), require("../assets/patternRecognition/question_12_answer_4.png")],
-        answer:require("../assets/patternRecognition/question_12_answer_3.png"),
-        explanation:"The pattern involves a reflection of an object",
+        image: require("../assets/patternRecognition/question_13.png"),
+        options: [require("../assets/patternRecognition/question_13_answer_1.png"), require("../assets/patternRecognition/question_13_answer_2.png"), require("../assets/patternRecognition/question_13_answer_3.png"), require("../assets/patternRecognition/question_13_answer_4.png")],
+        answer:require("../assets/patternRecognition/question_13_answer_1.png"),
+        explanation:"The pattern involves uniting the shapes. Each column exibits a distrinct pattern of rotation",
 
     },
+    {
+        title: "Question 14",
+        description: "What comes next?",
+        id: "Level 4",
+        image: require("../assets/patternRecognition/question_14.png"),
+        options: [require("../assets/patternRecognition/question_14_answer_1.png"), require("../assets/patternRecognition/question_14_answer_2.png"), require("../assets/patternRecognition/question_14_answer_3.png"), require("../assets/patternRecognition/question_14_answer_4.png")],
+        answer:require("../assets/patternRecognition/question_14_answer_2.png"),
+        explanation:"The pattern involves uniting the shapes",
+
+    },
+    {
+        title: "Question 15",
+        description: "What comes next?",
+        id: "Level 4",
+        image: require("../assets/patternRecognition/question_15.png"),
+        options: [require("../assets/patternRecognition/question_15_answer_1.png"), require("../assets/patternRecognition/question_15_answer_2.png"), require("../assets/patternRecognition/question_15_answer_3.png"), require("../assets/patternRecognition/question_15_answer_4.png")],
+        answer:require("../assets/patternRecognition/question_15_answer_3.png"),
+        explanation:"The pattern involves uniting the shapes",
+
+    },
+    // {
+    //     title: "Question 16",
+    //     description: "What comes next?",
+    //     id: "Level 5",
+    //     image: require("../assets/patternRecognition/question_16.png"),
+    //     options: [require("../assets/patternRecognition/question_16_answer_1.png"), require("../assets/patternRecognition/question_16_answer_2.png"), require("../assets/patternRecognition/question_16_answer_3.png"), require("../assets/patternRecognition/question_16_answer_4.png")],
+    //     answer:require("../assets/patternRecognition/question_14_answer_2.png"),
+    //     explanation:"The pattern involves uniting the shapes",
+
+    // },
+
  
 ]
