@@ -14,15 +14,14 @@ export default function PuzzleMapTitle({
     const { colors } = useTheme();
 
   return (
-    <LinearGradient colors={[colors.background,'transparent']} style={{
-        ...styles.container,
-    }}>
         <Text style={{
             ...styles.title,
             color: colors.text,
+            backgroundColor: colors.background,
+            paddingTop: 50,
+            width: screenWidth,
             fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
         }}>{title.toUpperCase()}</Text>
-    </LinearGradient>
   )
 }
 
@@ -30,11 +29,10 @@ const styles = StyleSheet.create({
     container: {
         width: screenWidth,
         height: 200,
-        paddingTop: 30,
-
     },
     title: {
         fontSize: 28,
-        marginLeft: 30
+        paddingLeft: 30,
+        paddingBottom: 10,
     }
 })

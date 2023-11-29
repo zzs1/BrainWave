@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: screenWidth,
-    height: screenHeight
+    height: screenHeight,
   },
   gradient: {
     position: 'absolute',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     position: 'absolute',
-    top: 80,
+    top: 120,
     zIndex: -1
   },
   islandLeft: {
