@@ -62,11 +62,8 @@ export default function App() {
       logicProgress, setLogicProgress,
       patternProgress, setPatternProgress,
       isDyslexic, setIsDyslexic,
-      accountSet, setAccountSet,
       firstHomeVisit, setFirstHomeVisit,
       firstMapVisit, setFirstMapVisit,
-      email, setEmail,
-      password, setPassword,
       userName, setUserName,
       pfp, setPfp
     }

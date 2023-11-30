@@ -16,6 +16,7 @@ import { AppContext } from '../context/AppContext.js';
 
 import UserRegister from "../firebase/UserRegister.js";
 import UserLogin from "../firebase/UserLogin.js";
+import AccountStatPopup from "../components/Molecules/AccountStatPopup/index.js";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -42,8 +43,6 @@ export default function AccountPages({ navigation }) {
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
     // const [isActive, setIsActive] = useState(false);
-
-    const [isRegister, setIsRegister] = useState(true);
 
     const permission = async () => {
         if (Platform.OS !== 'web') {
@@ -77,184 +76,176 @@ export default function AccountPages({ navigation }) {
         setCurrentPage(currentPage + 1);
     }
 
-    const setUpUser = () => {
-        const userCreds = getAuth();
-        
-        if(!userCreds.currentUser) {
-            return null;
-        }
-
-        const userRef = doc(db, "users", userCreds.currentUser.uid);
-        setDoc(
-            userRef,
-            {
-                userName: userName,
-                avatar: pfp,
-                wimPoints: wimPoints,
-                numberProg: numberProgress,
-                numberLvl: numberLevel,
-                logicProg: logicProgress,
-                logicLvl: logicLevel,
-                patternProg: patternProgress,
-                patternLvl: patternLevel
-            },
-            { merge: true }
-        )
-        console.log("User Set UP")
-    }
-
     return (
         <SafeAreaView style={styles.container}>
-                {currentPage === 1 && (
-                    <View style={styles.accountStartPageBody}>
+            {currentPage === 1 && (
+                <View style={styles.accountStartPageBody}>
 
-                        <View>
-                            <WimmyAnimated />
+                    <View>
+                        <WimmyAnimated />
 
-                            <DialogueBoxUpper
-                                hasTitle={true}
-                                title="Let's set up your account!"
-                                interestingText="An account will allow you to track your progress and share it with friends!"
-                            />
-                        </View>
-
-                        <PrimaryButton
-                            onPress={() => setCurrentPage(currentPage + 1)}
-                            name="START" />
-
-                    </View>)}
-
-                {currentPage === 2 && (
-                    <View style={styles.accountStartPageBody}>
-                        <View>
-                            <WimmyAnimated />
-
-                            <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
-                        </View>
-                        {/* once firebase is set up make these into components (follow monika's method) */}
-
-                        {
-                            isRegister ? <UserRegister /> : <UserLogin navigation={navigation}/>
-                        }
-
-                        <TouchableOpacity onPress={() => setIsRegister(!isRegister)}>
-                            <Text style={{
-                                fontSize: 18
-                            }}>{
-                                    isRegister ? 'Already have an Accout? LOG IN' : "Don't have an account? REGISTER"
-                                }</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
-                            <Text style={{
-                                fontSize: 18
-                            }}>SKIP FOR NOW</Text>
-                        </TouchableOpacity>
-                    </View>)}
-
-                {currentPage === 3 && (
-                    <View style={styles.accountStartPageBody}>
-                        <View>
-                            <WimmyAnimated />
-
-                            <DialogueBoxUpper hasTitle={false} interestingText='What is your name?' />
-                        </View>
-
-                        <View>
-                            <Text style={{
-                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
-                                fontSize: 18,
-                                color: colors.text
-                            }}>Select a Username</Text>
-                            <TextInput
-                                style={{
-                                    ...styles.userNameInput,
-                                    borderColor: colors.inputBorder,
-                                    backgroundColor: colors.inputBG,
-                                    color: colors.text,
-                                    fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                }}
-                                placeholder="Type your name..."
-                                onChangeText={(text) => setUserName(text)}
-                                value={userName}
-                            />
-                        </View>
-
-                        <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
-                    </View>)}
-
-                {currentPage === 4 && (
-                    <View style={styles.accountStartPageBody}>
-                        <View>
-                            <WimmyAnimated />
-
-                            <DialogueBoxUpper hasTitle={false} interestingText='Select an avatar!' />
-                        </View>
-
-                        <View style={{
-                            ...styles.avatarIconView,
-                            borderColor: colors.dialogueBorder
-                        }}>
-                            {
-                                pfp && <Image
-                                    source={{
-                                        uri: pfp
-                                    }}
-                                    style={{
-                                        ...styles.avatarIcon,
-                                        width: 190,
-                                        height: 190,
-                                        borderRadius: 10,
-                                    }}
-                                />
-                            }
-                        </View>
-                        <View style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: 5
-                        }}>
-                            <PrimaryButton name="UPLOAD IMAGE" onPress={pickImage} />
-                            <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
-                        </View>
-                    </View>)}
-
-                {currentPage === 5 && (
-                    <View style={styles.accountStartPageBody}>
-                        <View>
-                            <WimmyAnimated />
-
-                            <DialogueBoxUpper
-                                hasTitle={true}
-                                title="Let's set your goals!"
-                                interestingText="How long would you like to practice in a day?"
-                            />
-                        </View>
-
-                        <View style={styles.buttons}>
-                            <PrimaryButton name="Beginner (5mins/day)" value="Beginner" onPress={handleLevelButton('Beginner', 5)} />
-                            <PrimaryButton name="Intermediate (10mins/day)" value="Intermediate" onPress={handleLevelButton('Intermediate', 10)} />
-                            <PrimaryButton name="Advanced 20mins/day)" value="Advanced" onPress={handleLevelButton('Advanced', 20)} />
-                        </View>
+                        <DialogueBoxUpper
+                            hasTitle={true}
+                            title="Let's set up your account!"
+                            interestingText="An account will allow you to track your progress and share it with friends!"
+                        />
                     </View>
-                )}
 
-                {currentPage === 6 && (
-                    <View style={styles.accountStartPageBody}>
-                        <View>
-                            <WimmyAnimated />
+                    <PrimaryButton
+                        onPress={() => setCurrentPage(currentPage + 1)}
+                        name="START" />
+                        
+                    <TouchableOpacity onPress={() => setCurrentPage(7)}>
+                        <Text style={{
+                            fontSize: 18
+                        }}>
+                            Already have an Accout? LOG IN
+                        </Text>
+                    </TouchableOpacity>
 
-                            <DialogueBoxUpper
-                                hasTitle={true}
-                                title="You're all set!"
-                                interestingText="Time to improve your critical thinking! Enjoy your stay!"
+                </View>)}
+
+            {currentPage === 2 && (
+                <View style={styles.accountStartPageBody}>
+                    <View>
+                        <WimmyAnimated />
+
+                        <DialogueBoxUpper hasTitle={false} interestingText='What is your name?' />
+                    </View>
+
+                    <View>
+                        <Text style={{
+                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
+                            fontSize: 18,
+                            color: colors.text
+                        }}>Select a Username</Text>
+                        <TextInput
+                            style={{
+                                ...styles.userNameInput,
+                                borderColor: colors.inputBorder,
+                                backgroundColor: colors.inputBG,
+                                color: colors.text,
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                            }}
+                            placeholder="Type your name..."
+                            onChangeText={(text) => setUserName(text)}
+                            value={userName}
+                        />
+                    </View>
+
+                    <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
+                </View>)}
+
+            {currentPage === 3 && (
+                <View style={styles.accountStartPageBody}>
+                    <View>
+                        <WimmyAnimated />
+
+                        <DialogueBoxUpper hasTitle={false} interestingText='Select an avatar!' />
+                    </View>
+
+                    <View style={{
+                        ...styles.avatarIconView,
+                        borderColor: colors.dialogueBorder
+                    }}>
+                        {
+                            pfp && <Image
+                                source={{
+                                    uri: pfp
+                                }}
+                                style={{
+                                    ...styles.avatarIcon,
+                                    width: 190,
+                                    height: 190,
+                                    borderRadius: 10,
+                                }}
                             />
-                        </View>
-                        <PrimaryButton name="CONTINUE!" onPress={() => {
-                            isRegister ? setUpUser() : null;
-                            navigation.push("AccountProfile");
-                        }} />
-                    </View>)}
+                        }
+                    </View>
+                    <View style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 5
+                    }}>
+                        <PrimaryButton name="UPLOAD IMAGE" onPress={pickImage} />
+                        <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
+                    </View>
+                </View>)}
+
+            {currentPage === 4 && (
+                <View style={styles.accountStartPageBody}>
+                    <View>
+                        <WimmyAnimated />
+
+                        <DialogueBoxUpper
+                            hasTitle={true}
+                            title="Let's set your goals!"
+                            interestingText="How long would you like to practice in a day?"
+                        />
+                    </View>
+
+                    <View style={styles.buttons}>
+                        <PrimaryButton name="Beginner (5mins/day)" value="Beginner" onPress={handleLevelButton('Beginner', 5)} />
+                        <PrimaryButton name="Intermediate (10mins/day)" value="Intermediate" onPress={handleLevelButton('Intermediate', 10)} />
+                        <PrimaryButton name="Advanced 20mins/day)" value="Advanced" onPress={handleLevelButton('Advanced', 20)} />
+                    </View>
+                </View>
+            )}
+
+            {currentPage === 5 && (
+                <View style={styles.accountStartPageBody}>
+                    <View>
+                        <WimmyAnimated />
+
+                        <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
+                    </View>
+
+                    <UserRegister navigation={navigation} />
+
+                    <TouchableOpacity onPress={() => setCurrentPage(7)}>
+                        <Text style={{
+                            fontSize: 18
+                        }}>
+                            Already have an Accout? LOG IN
+                        </Text>
+                    </TouchableOpacity>
+                </View>)}
+
+            {currentPage === 6 && (
+                <View style={styles.accountStartPageBody}>
+                    <View>
+                        <WimmyAnimated />
+
+                        <DialogueBoxUpper
+                            hasTitle={true}
+                            title="You're all set!"
+                            interestingText="Time to improve your critical thinking! Enjoy your stay!"
+                        />
+                    </View>
+                    <PrimaryButton name="CONTINUE!" onPress={() => {
+                        navigation.push("AccountProfile");
+                    }} />
+                </View>)}
+
+            {currentPage === 7 && (
+                <View style={styles.accountStartPageBody}>
+                    <View>
+                        <WimmyAnimated />
+
+                        <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
+                    </View>
+                    {/* once firebase is set up make these into components (follow monika's method) */}
+
+                    <UserLogin navigation={navigation} />
+
+                    <TouchableOpacity onPress={() => setCurrentPage(1)}>
+                        <Text style={{
+                            fontSize: 18
+                        }}>
+                            Don't have an account? REGISTER
+                        </Text>
+                    </TouchableOpacity>
+                </View>)}
         </SafeAreaView >
     )
 }

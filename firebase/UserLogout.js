@@ -8,13 +8,12 @@ import { AppContext } from '../context/AppContext';
 
 export default function UserLogOut() {
     const {
-        userName, setUserName,
-        wimPoints, setWimPoints,
-        pfp, setPfp,
+        setUserName,
+        setWimPoints,
+        setPfp,
         setNumberProgress, setNumberLevel,
         setLogicProgress, setLogicLevel,
         setPatternProgress, setPatternLevel,
-        isDyslexic
     } = React.useContext(AppContext);
 
     const logout = async () => {
