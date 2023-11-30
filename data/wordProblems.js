@@ -32,7 +32,7 @@ export const logicProblems = [
         id: "Level 1",
         type: "M/Q",
         description: "I have keys but no locks. I have space but no room. You can enter, but you can't go inside. What am I?",
-        answer: "Piano",
+        answer: "Keyboard",
         explanation: "A keyboard has keys for typing but doesn't have physical locks like doors or padlocks.",
         options: ['Piano', 'Keyboard', 'Map','Computer']
     },
