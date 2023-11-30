@@ -14,12 +14,12 @@ import { useTheme } from '@react-navigation/native';
 
 export default function UserRegister() {
     const {
-        userName, setUserName,
-        wimPoints, setWimPoints,
-        pfp, setPfp,
-        numberProgress, setNumberProgress,
-        logicProgress, setLogicProgress,
-        patternProgress, setPatternProgress,
+        userName, 
+        wimPoints, 
+        pfp, 
+        numberProgress, numberLevel,
+        logicProgress, logicLevel,
+        patternProgress, patternLevel,
         isDyslexic
     } = React.useContext(AppContext);
 
@@ -43,7 +43,11 @@ export default function UserRegister() {
                     wimPoints: wimPoints,
                     numberProg: numberProgress,
                     logicProg: logicProgress,
-                    patternProg: patternProgress
+                    numberLvl: numberLevel,
+                    patternProg: patternProgress,
+                    logicLvl: logicLevel,
+                    patternProg: patternProgress,
+                    patternLvl: patternLevel,
                 },
                 { merge: true }
             )

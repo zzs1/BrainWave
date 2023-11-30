@@ -12,7 +12,7 @@ import { db } from './firebaseConfig';
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 import { useTheme } from '@react-navigation/native';
 
-export default function UserRegister() {
+export default function UserLogin({ navigation }) {
     const {
         userName, setUserName,
         wimPoints, setWimPoints,
@@ -31,6 +31,7 @@ export default function UserRegister() {
     const signInUser = async () => {
         const auth = getAuth();
         const result = await signInWithEmailAndPassword(auth, email, password)
+        console.log(result.user);
     }
 
     return (
@@ -74,8 +75,9 @@ export default function UserRegister() {
                     value={password}
                 />
             </View>
-            <PrimaryButton name='REGISTER' onPress={() => {
+            <PrimaryButton name='LOG IN' onPress={() => {
                 signInUser();
+                navigation.push("AccountProfile");
             }}/>
         </View>
     )

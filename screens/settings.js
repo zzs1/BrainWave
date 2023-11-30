@@ -17,6 +17,7 @@ import GeneralB from '../assets/Icons/General-black.png'
 import AccessibilityW from '../assets/Icons/Accessibility-white.png'
 import AccessibilityB from '../assets/Icons/Accessibility-black.png'
 import TopBar from '../components/Molecules/TopBar/index.js';
+import UserLogOut from '../firebase/UserLogout.js';
 
 
 export default function Settings({ navigation }) {
@@ -107,6 +108,7 @@ export default function Settings({ navigation }) {
           </View>
         </View>
       </View>
+      <UserLogOut />
       <NavBar navigation={navigation} />
     </SafeAreaView>
   );

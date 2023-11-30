@@ -6,6 +6,10 @@ import { ProgressChart } from "react-native-chart-kit";
 import * as ImagePicker from 'expo-image-picker'
 import Constants from 'expo-constants'
 
+import { collection, addDoc, getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { db } from "../firebase/firebaseConfig.js";
+
 import ModalComp from "../components/Molecules/Modal/index.js";
 import GoalBox from "../components/Molecules/GoalBox";
 import NavBar from "../components/Molecules/NavBar";
@@ -18,10 +22,8 @@ import WimmyAnimated from "../components/Atoms/WimmyAnimated/index.js";
 
 import { AppContext } from '../context/AppContext.js';
 
-import AvatarBlue from '../assets/Icons/avatar-blue.svg'
-import AvatarPurple from '../assets/Icons/avatar-purple.svg'
-import AvatarWhite from '../assets/Icons/avatar-white.svg'
 import UserRegister from "../firebase/UserRegister.js";
+import UserLogin from "../firebase/UserLogin.js";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -34,12 +36,14 @@ export default function AccountPages({ navigation }) {
         setAccountSet,
         userName,
         setUserName,
-        email,
-        setEmail,
-        password,
-        setPassword,
         pfp,
-        setPfp
+        setPfp,
+        numberProgress,
+        logicProgress,
+        patternProgress,
+        logicLevel,
+        numberLevel,
+        patternLevel
     } = React.useContext(AppContext);
 
     const { colors } = useTheme();
@@ -48,6 +52,8 @@ export default function AccountPages({ navigation }) {
     const [level, setLevel] = useState('');
     const [goalTime, setGoalTime] = useState(0);
     // const [isActive, setIsActive] = useState(false);
+
+    const [isRegister, setIsRegister] = useState(true);
 
     const permission = async () => {
         if (Platform.OS !== 'web') {
@@ -83,326 +89,184 @@ export default function AccountPages({ navigation }) {
         setCurrentPage(currentPage + 1);
     }
 
+    const setUpUser = () => {
+        const userCreds = getAuth();
+        
+        if(!userCreds.currentUser) {
+            return null;
+        }
+
+        const userRef = doc(db, "users", userCreds.currentUser.uid);
+        setDoc(
+            userRef,
+            {
+                userName: userName,
+                avatar: pfp,
+                wimPoints: wimPoints,
+                numberProg: numberProgress,
+                numberLvl: numberLevel,
+                logicProg: logicProgress,
+                logicLvl: logicLevel,
+                patternProg: patternProgress,
+                patternLvl: patternLevel
+            },
+            { merge: true }
+        )
+        console.log("User Set UP")
+    }
+
     return (
         <SafeAreaView style={styles.container}>
-            {
-                accountSet ?
-                    <View>
-                        {currentPage === 1 && (
-                            <View style={styles.accountStartPageBody}>
+                {currentPage === 1 && (
+                    <View style={styles.accountStartPageBody}>
 
-                                <View>
-                                    <WimmyAnimated />
+                        <View>
+                            <WimmyAnimated />
 
-                                    <DialogueBoxUpper
-                                        hasTitle={true}
-                                        title="Let's set up your account!"
-                                        interestingText="An account will allow you to track your progress and share it with friends!"
-                                    />
-                                </View>
-
-                                <PrimaryButton
-                                    onPress={() => setCurrentPage(currentPage + 1)}
-                                    name="START" />
-
-                            </View>)}
-
-                        {currentPage === 2 && (
-                            <View style={styles.accountStartPageBody}>
-                                <View>
-                                    <WimmyAnimated />
-
-                                    <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
-                                </View>
-                                {/* once firebase is set up make these into components (follow monika's method) */}
-                                
-                                <UserRegister />
-
-                                {/* change once firebase is set up */}
-                                <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
-                                    <Text style={{
-                                        fontSize: 18
-                                    }}>SKIP FOR NOW</Text>
-                                </TouchableOpacity>
-                            </View>)}
-
-                        {currentPage === 3 && (
-                            <View style={styles.accountStartPageBody}>
-                                <View>
-                                    <WimmyAnimated />
-
-                                    <DialogueBoxUpper hasTitle={false} interestingText='What is your name?' />
-                                </View>
-
-                                <View>
-                                    <Text style={{
-                                        fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
-                                        fontSize: 18,
-                                        color: colors.text
-                                    }}>Select a Username</Text>
-                                    <TextInput
-                                        style={{
-                                            ...styles.userNameInput,
-                                            borderColor: colors.inputBorder,
-                                            backgroundColor: colors.inputBG,
-                                            color: colors.text,
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                        }}
-                                        placeholder="Type your name..."
-                                        onChangeText={(text) => setUserName(text)}
-                                        value={userName}
-                                    />
-                                </View>
-
-                                <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
-                            </View>)}
-
-                        {currentPage === 4 && (
-                            <View style={styles.accountStartPageBody}>
-                                <View>
-                                    <WimmyAnimated />
-
-                                    <DialogueBoxUpper hasTitle={false} interestingText='Select an avatar!' />
-                                </View>
-
-                                <View style={{
-                                    ...styles.avatarIconView,
-                                    borderColor: colors.dialogueBorder
-                                }}>
-                                    {
-                                        pfp && <Image
-                                            source={{
-                                                uri: pfp
-                                            }}
-                                            style={{
-                                                ...styles.avatarIcon,
-                                                width: 190,
-                                                height: 190,
-                                                borderRadius: 10,
-                                            }}
-                                        />
-                                    }
-                                </View>
-                                <View style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: 5
-                                }}>
-                                    <PrimaryButton name="UPLOAD IMAGE" onPress={pickImage} />
-                                    <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
-                                </View>
-                            </View>)}
-
-                        {currentPage === 5 && (
-                            <View style={styles.accountStartPageBody}>
-                                <View>
-                                    <WimmyAnimated />
-
-                                    <DialogueBoxUpper
-                                        hasTitle={true}
-                                        title="Let's set your goals!"
-                                        interestingText="How long would you like to practice in a day?"
-                                    />
-                                </View>
-
-                                <View style={styles.buttons}>
-                                    <PrimaryButton name="Beginner (5mins/day)" value="Beginner" onPress={handleLevelButton('Beginner', 5)} />
-                                    <PrimaryButton name="Intermediate (10mins/day)" value="Intermediate" onPress={handleLevelButton('Intermediate', 10)} />
-                                    <PrimaryButton name="Advanced 20mins/day)" value="Advanced" onPress={handleLevelButton('Advanced', 20)} />
-                                </View>
-                            </View>
-                        )}
-
-                        {currentPage === 6 && (
-                            <View style={styles.accountStartPageBody}>
-                                <View>
-                                    <WimmyAnimated />
-
-                                    <DialogueBoxUpper
-                                        hasTitle={true}
-                                        title="You're all set!"
-                                        interestingText="Time to improve your critical thinking! Enjoy your stay!"
-                                    />
-                                </View>
-                                <PrimaryButton name="CONTINUE!" onPress={() => setAccountSet(false)} />
-                            </View>)}
-                    </View> :
-
-                    <View style={styles.accountPageBody}>
-                        <TopBar navigation={navigation} points={wimPoints} />
-
-                        <Pressable style={styles.avartar} onPress={pickImage}>
-                            <Image
-                                source={{ uri: pfp }}
-                                width={150}
-                                height={150}
-                                style={{
-                                    borderRadius: 10,
-                                    borderColor: colors.dialogueBorder,
-                                    borderWidth: 3
-                                }}
+                            <DialogueBoxUpper
+                                hasTitle={true}
+                                title="Let's set up your account!"
+                                interestingText="An account will allow you to track your progress and share it with friends!"
                             />
-                        </Pressable>
+                        </View>
 
-                        <View style={styles.userNameSection}>
+                        <PrimaryButton
+                            onPress={() => setCurrentPage(currentPage + 1)}
+                            name="START" />
+
+                    </View>)}
+
+                {currentPage === 2 && (
+                    <View style={styles.accountStartPageBody}>
+                        <View>
+                            <WimmyAnimated />
+
+                            <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
+                        </View>
+                        {/* once firebase is set up make these into components (follow monika's method) */}
+
+                        {
+                            isRegister ? <UserRegister /> : <UserLogin navigation={navigation}/>
+                        }
+
+                        <TouchableOpacity onPress={() => setIsRegister(!isRegister)}>
                             <Text style={{
-                                ...styles.userName,
-                                color: colors.text,
-                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                            }}>{userName}</Text>
-                            {/* <Image
-                                source={require('../assets/Icons/editBlack.png')}
-                                style={styles.editIcon}
-                                width={20}
-                                height={20}
-                            /> */}
+                                fontSize: 18
+                            }}>{
+                                    isRegister ? 'Already have an Accout? LOG IN' : "Don't have an account? REGISTER"
+                                }</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
+                            <Text style={{
+                                fontSize: 18
+                            }}>SKIP FOR NOW</Text>
+                        </TouchableOpacity>
+                    </View>)}
+
+                {currentPage === 3 && (
+                    <View style={styles.accountStartPageBody}>
+                        <View>
+                            <WimmyAnimated />
+
+                            <DialogueBoxUpper hasTitle={false} interestingText='What is your name?' />
+                        </View>
+
+                        <View>
+                            <Text style={{
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
+                                fontSize: 18,
+                                color: colors.text
+                            }}>Select a Username</Text>
+                            <TextInput
+                                style={{
+                                    ...styles.userNameInput,
+                                    borderColor: colors.inputBorder,
+                                    backgroundColor: colors.inputBG,
+                                    color: colors.text,
+                                    fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                                }}
+                                placeholder="Type your name..."
+                                onChangeText={(text) => setUserName(text)}
+                                value={userName}
+                            />
+                        </View>
+
+                        <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
+                    </View>)}
+
+                {currentPage === 4 && (
+                    <View style={styles.accountStartPageBody}>
+                        <View>
+                            <WimmyAnimated />
+
+                            <DialogueBoxUpper hasTitle={false} interestingText='Select an avatar!' />
+                        </View>
+
+                        <View style={{
+                            ...styles.avatarIconView,
+                            borderColor: colors.dialogueBorder
+                        }}>
+                            {
+                                pfp && <Image
+                                    source={{
+                                        uri: pfp
+                                    }}
+                                    style={{
+                                        ...styles.avatarIcon,
+                                        width: 190,
+                                        height: 190,
+                                        borderRadius: 10,
+                                    }}
+                                />
+                            }
                         </View>
                         <View style={{
                             display: 'flex',
-                            flexDirection: 'row',
-                            gap: 14
+                            flexDirection: 'column',
+                            gap: 5
                         }}>
-                            <View style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: 14,
-                            }}>
-                                <LevelBox />
-
-                                <View
-                                    style={{
-                                        ...styles.box,
-                                        height: 200,
-                                        backgroundColor: colors.dialogueBG,
-                                        borderColor: colors.dialogueBorder,
-
-                                    }}>
-                                    <Text
-                                        onPress={() => navigation.push('')}
-                                        style={{
-                                            ...styles.title,
-                                            color: colors.text,
-                                            fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold'
-                                        }}>My Wimmy</Text>
-                                    < ModalComp />
-                                    <Image
-                                        source={require('../assets/Icons/wimmySmall.png')}
-                                        style={{
-                                            marginTop: 10,
-                                            width: 130,
-                                            height: 110,
-                                            objectFit: 'contain'
-                                        }}
-                                    />
-
-
-                                </View>
-                            </View>
-
-                            <View style={{
-                                flexDirection: 'column',
-                                gap: 14,
-                            }}>
-                                <GoalBox prog={60} level={level} goal={goalTime} time="8" />
-
-                                <View style={{
-                                    ...styles.box,
-                                    backgroundColor: colors.dialogueBG,
-                                    borderColor: colors.dialogueBorder,
-                                    height: 115,
-                                }}>
-                                    <Text style={{
-                                        ...styles.title,
-                                        color: colors.text,
-                                        fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold'
-                                    }}>Streaks</Text>
-                                    <Text style={{
-                                        fontSize: 16,
-                                        textAlign: 'center',
-                                        color: colors.text,
-                                        fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                    }}>10 Days</Text>
-
-                                    <View style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        justifyContent: 'space-between',
-                                        paddingLeft: 16,
-                                        paddingRight: 16,
-                                    }}>
-                                        <Text style={{
-                                            ...styles.days,
-                                            color: colors.text,
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                        }}>{currentDate.getDate() - 2}</Text>
-                                        <Text style={{
-                                            ...styles.days,
-                                            color: colors.text,
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                        }}>{currentDate.getDate() - 1}</Text>
-                                        <Text style={{
-                                            ...styles.days,
-                                            color: colors.text,
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                        }}>{currentDate.getDate()}</Text>
-                                        <Text style={{
-                                            ...styles.days,
-                                            color: colors.text,
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                        }}>{currentDate.getDate() + 1}</Text>
-                                        <Text style={{
-                                            ...styles.days,
-                                            color: colors.text,
-                                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                                        }}>{currentDate.getDate() + 2}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={{
-                                    ...styles.box,
-                                    height: 96,
-                                    backgroundColor: colors.dialogueBG,
-                                    borderColor: colors.dialogueBorder,
-                                }}>
-                                    <Text style={{
-                                        ...styles.title,
-                                        color: colors.text,
-                                        fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold'
-                                    }}>WIM COINS</Text>
-                                    <View style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        alignItems: 'center',
-                                        gap: 10,
-                                        paddingLeft: 30,
-                                    }}>
-                                        <Image
-                                            source={require('../assets/Icons/wimmyCoin.png')}
-                                            width={30}
-                                            height={30}
-                                        />
-                                        <Text style={{
-                                            fontSize: 30,
-                                            color: colors.text,
-                                        }}>{wimPoints}</Text>
-                                    </View>
-                                </View>
-
-                                {/* <View style={styles.wimmyTail}>
-                                <Image source={require('../assets/Icons/wimmyTail.png')} />
-                                </View> */}
-                            </View>
+                            <PrimaryButton name="UPLOAD IMAGE" onPress={pickImage} />
+                            <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
                         </View>
-                        <View style={styles.navCont}>
-                            <NavBar navigation={navigation} />
-                            <WimmyPopup
-                                title='WIMMY SAYS...'
-                                desc='Here is the interface for your account. You can keep track of you progress and make changes here!'
-                                instuction='Tap to continue.'
+                    </View>)}
+
+                {currentPage === 5 && (
+                    <View style={styles.accountStartPageBody}>
+                        <View>
+                            <WimmyAnimated />
+
+                            <DialogueBoxUpper
+                                hasTitle={true}
+                                title="Let's set your goals!"
+                                interestingText="How long would you like to practice in a day?"
                             />
                         </View>
+
+                        <View style={styles.buttons}>
+                            <PrimaryButton name="Beginner (5mins/day)" value="Beginner" onPress={handleLevelButton('Beginner', 5)} />
+                            <PrimaryButton name="Intermediate (10mins/day)" value="Intermediate" onPress={handleLevelButton('Intermediate', 10)} />
+                            <PrimaryButton name="Advanced 20mins/day)" value="Advanced" onPress={handleLevelButton('Advanced', 20)} />
+                        </View>
                     </View>
-            }
+                )}
+
+                {currentPage === 6 && (
+                    <View style={styles.accountStartPageBody}>
+                        <View>
+                            <WimmyAnimated />
+
+                            <DialogueBoxUpper
+                                hasTitle={true}
+                                title="You're all set!"
+                                interestingText="Time to improve your critical thinking! Enjoy your stay!"
+                            />
+                        </View>
+                        <PrimaryButton name="CONTINUE!" onPress={() => {
+                            isRegister ? setUpUser() : null;
+                            navigation.push("AccountProfile");
+                        }} />
+                    </View>)}
         </SafeAreaView >
     )
 }
@@ -420,14 +284,6 @@ const styles = StyleSheet.create({
         width: screenWidth,
         paddingTop: 80,
         paddingBottom: 100
-    },
-    accountPageBody: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        height: screenHeight,
-        width: screenWidth,
-        paddingTop: 50,
     },
     title: {
         fontSize: 20,
@@ -459,34 +315,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 20,
-    },
-    editIcon: {
-        marginLeft: 10,
-    },
-    userName: {
-        textDecorationLine: 'underline',
-        fontSize: 28,
-    },
-    navCont: {
-        display: "flex",
-        flexDirection: 'column',
-        alignItems: 'center',
-        position: 'absolute',
-        bottom: 0
-    },
-    box: {
-        borderTopLeftRadius: 20,
-        borderBottomRightRadius: 20,
-        borderTopRightRadius: 20,
-        borderWidth: 2,
-        width: 160,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    days: {
-        fontSize: 16,
-        paddingRight: 5,
     },
     avatarIconView: {
         display: 'flex',

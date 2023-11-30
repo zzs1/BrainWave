@@ -11,6 +11,7 @@ import InNav from './screens/InNav';
 import AccessibilityPrompt from './screens/AccessibilityPrompt';
 import Intro from './screens/Intro';
 import AccountPages from './screens/AccountPages';
+import AccountProfile from './screens/AccountProfile.js';
 import HomePage from './screens/homePage';
 import PuzzleMap from './screens/puzzleMap';
 import WordProblemsPage from './screens/wordProblemsPages';
@@ -104,6 +105,7 @@ export default function App() {
               <Stack.Screen name='Home' component={HomePage} options={{headerShown: false}}/>
               <Stack.Screen name='PuzzleMap' component={PuzzleMap} options={{headerShown: false}}/>              
               <Stack.Screen name='AccountPages' component={AccountPages} options={{headerShown: false}}/>
+              <Stack.Screen name='AccountProfile' component={AccountProfile} options={{headerShown: false}}/>
               <Stack.Screen name='WordProblemsPage' component={WordProblemsPage} options={{headerShown: false}}/>
               <Stack.Screen name='Feedback' component={Feedback} options={{headerShown: false}}/>
               <Stack.Screen name='Settings' component={Settings} options={{headerShown: false}}/>

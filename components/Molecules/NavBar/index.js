@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, Pressable } from 'react-native';
 import { Image } from 'expo-image';
 import { useTheme } from '@react-navigation/native';
+
+import { collection, addDoc, getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { db } from '../../../firebase/firebaseConfig';
 
 import Home from '../../../assets/Icons/home.png'
 import Map from '../../../assets/Icons/map.png'
@@ -27,6 +31,23 @@ export default function NavBar({
   const { isColorBlind, setPuzzleType } = React.useContext(AppContext);
   const { dark, colors, colorBlindColors } = useTheme();
 
+  const sendUser = async () => {
+    const userProfile = getAuth();
+    if(!userProfile.currentUser) {
+      navigation.push("AccountPages")
+      return null;
+    }
+
+    const docRef = doc(db, "users", userProfile.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document Data: ", docSnap.data());
+      navigation.push("AccountProfile")
+    } else {
+      console.log("No such document!");
+    }
+}
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -66,7 +87,7 @@ export default function NavBar({
         <Pressable style={styles.navItem} onPress={() => setIsActive(!isActive)}>
           <Image source={Map} contentFit='contain' style={{ width: 25, height: 25 }} />
         </Pressable>
-        <Pressable style={styles.navItem} onPress={() => navigation.push('AccountPages')}>
+        <Pressable style={styles.navItem} onPress={() => sendUser()}>
           <Image source={User} contentFit='contain' style={{ width: 25, height: 25 }} />
         </Pressable>
       </View>
