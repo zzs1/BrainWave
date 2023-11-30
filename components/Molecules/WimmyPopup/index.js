@@ -5,6 +5,7 @@ import { Image } from 'expo-image';
 
 import DialogueBoxLower from '../../Atoms/DialogueBoxLower';
 import Wimmy from '../../../assets/Illustrations/Wimmy/WimmyFront.png';
+import Splash from '../../../assets/Illustrations/Splash.png';
 import WimmyAnimated from '../../Atoms/WimmyAnimated';
 
 const screenWidth = Dimensions.get("window").width;
@@ -40,6 +41,7 @@ export default function WimmyPopup({
               loading={loading}
             />
             <WimmyAnimated />
+            {/* <Image source={Splash} style={{ width: 400, height: 200, position: 'absolute', zIndex: -1, bottom: -125}} /> */}
           </View>
         </Pressable> : <></>
       }
