@@ -15,12 +15,6 @@ import AccountStatPopup from '../components/Molecules/AccountStatPopup';
 
 export default function UserLogin({ navigation }) {
     const {
-        userName, setUserName,
-        wimPoints, setWimPoints,
-        pfp, setPfp,
-        numberProgress, setNumberProgress,
-        logicProgress, setLogicProgress,
-        patternProgress, setPatternProgress,
         isDyslexic
     } = React.useContext(AppContext);
 

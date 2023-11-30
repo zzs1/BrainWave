@@ -4,10 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import * as ImagePicker from 'expo-image-picker'
 
-import { collection, addDoc, getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { db } from "../firebase/firebaseConfig.js";
-
 import PrimaryButton from "../components/Atoms/PrimaryButton";
 import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
 import WimmyAnimated from "../components/Atoms/WimmyAnimated/index.js";
@@ -16,25 +12,17 @@ import { AppContext } from '../context/AppContext.js';
 
 import UserRegister from "../firebase/UserRegister.js";
 import UserLogin from "../firebase/UserLogin.js";
-import AccountStatPopup from "../components/Molecules/AccountStatPopup/index.js";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function AccountPages({ navigation }) {
     const {
-        wimPoints,
         isDyslexic,
         userName,
         setUserName,
         pfp,
         setPfp,
-        numberProgress,
-        logicProgress,
-        patternProgress,
-        logicLevel,
-        numberLevel,
-        patternLevel
     } = React.useContext(AppContext);
 
     const { colors } = useTheme();
