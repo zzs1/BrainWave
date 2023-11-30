@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import { Image } from "expo-image"
 import { SafeAreaView, StyleSheet, Text, Pressable, View, Dimensions, TextInput, FlatList, ScrollView, KeyboardAvoidingView } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from "@react-navigation/native"
 import { useTheme } from "@react-navigation/native";
+
+import { collection, addDoc, getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
+import { db } from "../firebase/firebaseConfig.js";
 
 import { AppContext } from '../context/AppContext.js';
 
@@ -20,7 +23,7 @@ import WimmyThinking from "../components/Atoms/WimmyThinking/index.js";
 import { useStreak } from "use-streak";
 
 import { getChat, getFeedBack } from "../libs/getAPI.js";
-import * as  Speech  from 'expo-speech';
+import * as  Speech from 'expo-speech';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -28,21 +31,14 @@ const screenHeight = Dimensions.get("window").height;
 export default function Feedback({ navigation }) {
     const { colors } = useTheme();
     const {
-        logicLevel,
-        setLogicLevel,
-        numberLevel,
-        setNumberLevel,
-        patternLevel,
-        setPatternLevel,
+        logicLevel, setLogicLevel,
+        numberLevel, setNumberLevel,
+        patternLevel, setPatternLevel,
         puzzleType,
-        logicProgress,
-        setLogicProgress,
-        numberProgress,
-        setNumberProgress,
-        patternProgress,
-        setPatternProgress,
-        wimPoints,
-        setWimPoints,
+        logicProgress, setLogicProgress,
+        numberProgress, setNumberProgress,
+        patternProgress, setPatternProgress,
+        wimPoints, setWimPoints,
         isDyslexic
     } = React.useContext(AppContext);
 
@@ -116,16 +112,38 @@ export default function Feedback({ navigation }) {
     }
     React.useEffect(() => listAvailableVoices)
     const WimmySpeak = () => {
-      const speaking = `${AIFeedback}`;
-      options= {
-        voice: "com.apple.speech.synthesis.voice.Fred"
-      }
-      Speech.speak(speaking)
+        const speaking = `${AIFeedback}`;
+        options = {
+            voice: "com.apple.speech.synthesis.voice.Fred"
+        }
+        Speech.speak(speaking)
 
     }
 
-    // const today = new Date();
-    // const {currentCount} = useStreak(AsyncStorage, today);
+    const updateUser = async () => {
+        const userCreds = getAuth();
+        
+        if(!userCreds.currentUser) {
+            return null;
+        }
+
+        const userRef = doc(db, "users", userCreds.currentUser.uid)
+        setDoc(
+            userRef,
+            {
+                wimPoints: wimPoints,
+                numberProg: numberProgress,
+                logicProg: logicProgress,
+                numberLvl: numberLevel,
+                patternProg: patternProgress,
+                logicLvl: logicLevel,
+                patternProg: patternProgress,
+                patternLvl: patternLevel,
+            },
+            { merge: true }
+        )
+        console.log("Changes saved");
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -133,8 +151,8 @@ export default function Feedback({ navigation }) {
                 <WimmyAnimated />
             </View>
             <Pressable style={styles.speech_button} title="speech" onPress={WimmySpeak}>
-                    <Image source={require("../assets/Icons/VolumeBlack.png")} height={40} width={50}/>
-                </Pressable>
+                <Image source={require("../assets/Icons/VolumeBlack.png")} height={40} width={50} />
+            </Pressable>
 
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
@@ -146,6 +164,10 @@ export default function Feedback({ navigation }) {
 
                     <FeedbackBox text={AIFeedback} loading={feedLoading} />
                     <PrimaryButton name="NEXT" onPress={() => {
+                        if (points > 2) {
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : setPatternProgress(patternProgress + 20);
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : setPatternLevel(patternLevel + 1);
+                        };
                         handleWimCoins();
                         handleStartButton();
                     }} />
@@ -184,10 +206,10 @@ export default function Feedback({ navigation }) {
                             borderColor: colors.dialogueBorder,
                         }}>
                             <Text style={{
-                            fontSize: 20,
-                            color: colors.text,
-                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
-                        }}> Day 1 🔥Streaks</Text>
+                                fontSize: 20,
+                                color: colors.text,
+                                fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                            }}> Day 1 🔥Streaks</Text>
                             {/* <Text style ={{
                                         fontSize: 20,
                                     }}>{currentCount} day {currentCount > 1 ? "s" : ""}</Text>
@@ -303,10 +325,7 @@ export default function Feedback({ navigation }) {
                     </KeyboardAvoidingView>
 
                     <PrimaryButton name="NEXT" onPress={() => {
-                        if (points > 2) {
-                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : setPatternProgress(patternProgress + 20);
-                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : setPatternLevel(patternLevel + 1);
-                        }
+                        updateUser();
                         navigation.push('PuzzleMap');
                     }} />
                 </View>
