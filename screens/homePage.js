@@ -63,7 +63,7 @@ export default function HomePage({ navigation }) {
       setWimPoints(user.wimPoints);
       setNumberProgress(user.numberProg);
       setLogicProgress(user.logicProg);
-      setPatternProgress(user.patterProg);
+      setPatternProgress(user.patternProg);
       setLogicLevel(user.logicLvl);
       setNumberLevel(user.numberLvl);
       setPatternLevel(user.patternLvl);
@@ -128,7 +128,7 @@ export default function HomePage({ navigation }) {
           theme='dark'
           image={data[number].image}
           title={data[number].title}
-          prog={data[number].title.toLowerCase() === 'numbers problems' ? numberProgress : data[number].title.toLowerCase() === 'logic problems' ? logicProgress : patternProgress}
+          prog={data[number].title.toLowerCase() === 'numbers problems' ? numberProgress : data[number].title.toLowerCase() === 'logic problems' ? logicProgress : data[number].title.toLowerCase() === 'pattern recognition' ? patternProgress : null}
         />
         <View style={{
           marginLeft: -100,

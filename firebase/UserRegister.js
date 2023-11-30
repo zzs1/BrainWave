@@ -47,7 +47,6 @@ export default function UserRegister({navigation}) {
                     numberProg: numberProgress,
                     logicProg: logicProgress,
                     numberLvl: numberLevel,
-                    patternProg: patternProgress,
                     logicLvl: logicLevel,
                     patternProg: patternProgress,
                     patternLvl: patternLevel,

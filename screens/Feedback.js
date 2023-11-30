@@ -133,9 +133,8 @@ export default function Feedback({ navigation }) {
             {
                 wimPoints: wimPoints,
                 numberProg: numberProgress,
-                logicProg: logicProgress,
                 numberLvl: numberLevel,
-                patternProg: patternProgress,
+                logicProg: logicProgress,
                 logicLvl: logicLevel,
                 patternProg: patternProgress,
                 patternLvl: patternLevel,
@@ -165,8 +164,8 @@ export default function Feedback({ navigation }) {
                     <FeedbackBox text={AIFeedback} loading={feedLoading} />
                     <PrimaryButton name="NEXT" onPress={() => {
                         if (points > 2) {
-                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : setPatternProgress(patternProgress + 20);
-                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : setPatternLevel(patternLevel + 1);
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : puzzleType.toLowerCase() === 'pattern recognition' ? setPatternProgress(patternProgress + 20) : null;
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : puzzleType.toLowerCase() === 'pattern recognition' ? setPatternLevel(patternLevel + 1) : null;
                         };
                         handleWimCoins();
                         handleStartButton();
