@@ -30,9 +30,9 @@ export default function GoalBox({
           fontFamily: isDyslexic ? 'Lexend-Bold': 'Poppins-Bold'
         }}>Daily Goal</Text>
         <Text style={{
-          fontSize: 16,
+          fontSize: 14,
           color: colors.text,
-          paddingTop: 20,
+          paddingTop: 30,
           fontFamily: isDyslexic ? 'Lexend-Regular': 'Poppins-Regular'
         }}>{level}</Text>
         <View style={styles.progContainer}>
