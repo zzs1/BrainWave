@@ -19,6 +19,7 @@ export default function UserLogOut() {
     const logout = async () => {
         const auth = getAuth();
         await signOut(auth);
+
         setUserName("");
         setWimPoints(0);
         setPfp("");
@@ -28,7 +29,9 @@ export default function UserLogOut() {
         setLogicLevel(0);
         setPatternProgress(0);
         setPatternLevel(0);
+        
         console.log("User Logged Out");
+        alert("You've Successfully Logged Out!");
     }
 
   return (
