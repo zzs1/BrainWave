@@ -2,22 +2,14 @@ import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, Scroll
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@react-navigation/native";
-import { ProgressChart } from "react-native-chart-kit";
 import * as ImagePicker from 'expo-image-picker'
-import Constants from 'expo-constants'
 
 import { collection, addDoc, getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase/firebaseConfig.js";
 
-import ModalComp from "../components/Molecules/Modal/index.js";
-import GoalBox from "../components/Molecules/GoalBox";
-import NavBar from "../components/Molecules/NavBar";
 import PrimaryButton from "../components/Atoms/PrimaryButton";
-import WimmyPopup from "../components/Molecules/WimmyPopup";
 import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
-import TopBar from "../components/Molecules/TopBar";
-import LevelBox from "../components/Molecules/LevelBox/index.js";
 import WimmyAnimated from "../components/Atoms/WimmyAnimated/index.js";
 
 import { AppContext } from '../context/AppContext.js';
@@ -32,8 +24,6 @@ export default function AccountPages({ navigation }) {
     const {
         wimPoints,
         isDyslexic,
-        accountSet,
-        setAccountSet,
         userName,
         setUserName,
         pfp,
@@ -80,8 +70,6 @@ export default function AccountPages({ navigation }) {
             setPfp(result.uri)
         }
     }
-
-    const currentDate = new Date();
 
     function handleLevelButton(level, goal) {
         setLevel(level);
@@ -285,16 +273,6 @@ const styles = StyleSheet.create({
         paddingTop: 80,
         paddingBottom: 100
     },
-    title: {
-        fontSize: 20,
-        paddingTop: 10,
-        paddingLeft: 10,
-    },
-    texts: {
-        paddingTop: 5,
-        fontSize: 20,
-        lineHeight: 30,
-    },
     userNameInput: {
         width: 280,
         height: 50,
@@ -308,13 +286,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginTop: 10,
         gap: 10
-    },
-    userNameSection: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 20,
     },
     avatarIconView: {
         display: 'flex',

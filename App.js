@@ -36,7 +36,6 @@ export default function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isColorBlind, setIsColorBlind] = useState(false);
   const [isDyslexic, setIsDyslexic] = useState(false);
-  const [font, setFont] = useState([]);
   const [puzzleType, setPuzzleType] = useState('');
   const [logicLevel, setLogicLevel] = useState(1);
   const [numberLevel, setNumberLevel] = useState(1);
@@ -45,10 +44,7 @@ export default function App() {
   const [logicProgress, setLogicProgress] = useState(0);
   const [patternProgress, setPatternProgress] = useState(0);
   const [wimPoints, setWimPoints] = useState(0);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const [accountSet, setAccountSet] = useState(true);
   const [firstHomeVisit, setFirstHomeVisit] = useState(true);
   const [firstMapVisit, setFirstMapVisit] = useState(true);
   const [pfp, setPfp] = useState("");

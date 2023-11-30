@@ -2,9 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, Scroll
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@react-navigation/native";
-import { ProgressChart } from "react-native-chart-kit";
 import * as ImagePicker from 'expo-image-picker'
-import Constants from 'expo-constants'
 
 import { collection, addDoc, getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -13,17 +11,11 @@ import { db } from "../firebase/firebaseConfig.js";
 import ModalComp from "../components/Molecules/Modal/index.js";
 import GoalBox from "../components/Molecules/GoalBox";
 import NavBar from "../components/Molecules/NavBar";
-import PrimaryButton from "../components/Atoms/PrimaryButton";
 import WimmyPopup from "../components/Molecules/WimmyPopup";
-import DialogueBoxUpper from "../components/Atoms/DialogueBoxUpper";
 import TopBar from "../components/Molecules/TopBar";
 import LevelBox from "../components/Molecules/LevelBox/index.js";
-import WimmyAnimated from "../components/Atoms/WimmyAnimated/index.js";
 
 import { AppContext } from '../context/AppContext.js';
-
-import UserRegister from "../firebase/UserRegister.js";
-import UserLogin from "../firebase/UserLogin.js";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -33,24 +25,14 @@ export default function AccountProfile({ navigation }) {
         wimPoints,
         setWimPoints,
         isDyslexic,
-        accountSet,
-        setAccountSet,
         userName,
         setUserName,
         pfp,
         setPfp,
-        numberProgress,
-        logicProgress,
-        patternProgress,
-        logicLevel,
-        numberLevel,
-        patternLevel
     } = React.useContext(AppContext);
 
     const { colors } = useTheme();
     // const [isActive, setIsActive] = useState(false);
-
-    const [isRegister, setIsRegister] = useState(true);
 
     const permission = async () => {
         if (Platform.OS !== 'web') {
@@ -128,12 +110,6 @@ export default function AccountProfile({ navigation }) {
                         color: colors.text,
                         fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                     }}>{userName}</Text>
-                    {/* <Image
-                                source={require('../assets/Icons/editBlack.png')}
-                                style={styles.editIcon}
-                                width={20}
-                                height={20}
-                            /> */}
                 </View>
                 <View style={{
                     display: 'flex',
@@ -265,10 +241,6 @@ export default function AccountProfile({ navigation }) {
                                 }}>{wimPoints}</Text>
                             </View>
                         </View>
-
-                        {/* <View style={styles.wimmyTail}>
-                                <Image source={require('../assets/Icons/wimmyTail.png')} />
-                                </View> */}
                     </View>
                 </View>
                 <View style={styles.navCont}>
