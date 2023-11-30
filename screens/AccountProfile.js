@@ -16,6 +16,7 @@ import TopBar from "../components/Molecules/TopBar";
 import LevelBox from "../components/Molecules/LevelBox/index.js";
 
 import { AppContext } from '../context/AppContext.js';
+import EditPopup from "../components/Molecules/EditPopup/index.js";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -32,7 +33,8 @@ export default function AccountProfile({ navigation }) {
     } = React.useContext(AppContext);
 
     const { colors } = useTheme();
-    // const [isActive, setIsActive] = useState(false);
+
+    const [isActive, setIsActive] = useState(false);
 
     const permission = async () => {
         if (Platform.OS !== 'web') {
@@ -111,6 +113,15 @@ export default function AccountProfile({ navigation }) {
                         fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                     }}>{userName}</Text>
                 </View>
+
+                <TouchableOpacity onPress={() => setIsActive(true)}>
+                    <Text style={{
+                        marginBottom: 10,
+                        fontSize: 20,
+                        color: colors.text
+                    }}>Edit Profile</Text>
+                </TouchableOpacity>    
+
                 <View style={{
                     display: 'flex',
                     flexDirection: 'row',
@@ -252,6 +263,7 @@ export default function AccountProfile({ navigation }) {
                     />
                 </View>
             </View>
+            <EditPopup active={isActive} onPress={() => setIsActive(false)}/>
         </SafeAreaView >
     )
 }
@@ -259,6 +271,9 @@ export default function AccountProfile({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         margin: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: "center"
     },
     accountPageBody: {
         display: 'flex',
@@ -278,11 +293,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 20,
     },
     userName: {
         textDecorationLine: 'underline',
-        fontSize: 28,
+        fontSize: 25,
     },
     navCont: {
         display: "flex",

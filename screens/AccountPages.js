@@ -80,7 +80,6 @@ export default function AccountPages({ navigation }) {
         <SafeAreaView style={styles.container}>
             {currentPage === 1 && (
                 <View style={styles.accountStartPageBody}>
-
                     <View>
                         <WimmyAnimated />
 
@@ -97,7 +96,8 @@ export default function AccountPages({ navigation }) {
 
                         <TouchableOpacity onPress={() => setCurrentPage(7)}>
                             <Text style={{
-                                fontSize: 18
+                                fontSize: 18,
+                                color: colors.text
                             }}>
                                 Already have an Accout? LOG IN
                             </Text>
@@ -137,7 +137,8 @@ export default function AccountPages({ navigation }) {
                         <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
                         <TouchableOpacity onPress={() => setCurrentPage(7)}>
                             <Text style={{
-                                fontSize: 18
+                                fontSize: 18,
+                                color: colors.text
                             }}>
                                 Already have an Accout? LOG IN
                             </Text>
@@ -182,7 +183,8 @@ export default function AccountPages({ navigation }) {
                         <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
                         <TouchableOpacity onPress={() => setCurrentPage(7)}>
                             <Text style={{
-                                fontSize: 18
+                                fontSize: 18,
+                                color: colors.text
                             }}>
                                 Already have an Accout? LOG IN
                             </Text>
@@ -222,7 +224,8 @@ export default function AccountPages({ navigation }) {
 
                     <TouchableOpacity onPress={() => setCurrentPage(7)}>
                         <Text style={{
-                            fontSize: 18
+                            fontSize: 18,
+                            color: colors.text
                         }}>
                             Already have an Accout? LOG IN
                         </Text>
@@ -258,7 +261,8 @@ export default function AccountPages({ navigation }) {
 
                     <TouchableOpacity onPress={() => setCurrentPage(1)}>
                         <Text style={{
-                            fontSize: 18
+                            fontSize: 18,
+                            color: colors.text
                         }}>
                             Don't have an account? REGISTER
                         </Text>
