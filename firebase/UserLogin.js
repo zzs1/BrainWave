@@ -95,6 +95,15 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         gap: 10
-    }
+    },
+    userNameInput: {
+        width: 280,
+        height: 50,
+        borderRadius: 6,
+        borderWidth: 1.5,
+        fontSize: 20,
+        textAlign: 'center',
+    },
 })

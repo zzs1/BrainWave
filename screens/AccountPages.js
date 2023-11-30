@@ -90,19 +90,19 @@ export default function AccountPages({ navigation }) {
                             interestingText="An account will allow you to track your progress and share it with friends!"
                         />
                     </View>
+                    <View style={styles.btnCont}>
+                        <PrimaryButton
+                            onPress={() => setCurrentPage(currentPage + 1)}
+                            name="START" />
 
-                    <PrimaryButton
-                        onPress={() => setCurrentPage(currentPage + 1)}
-                        name="START" />
-                        
-                    <TouchableOpacity onPress={() => setCurrentPage(7)}>
-                        <Text style={{
-                            fontSize: 18
-                        }}>
-                            Already have an Accout? LOG IN
-                        </Text>
-                    </TouchableOpacity>
-
+                        <TouchableOpacity onPress={() => setCurrentPage(7)}>
+                            <Text style={{
+                                fontSize: 18
+                            }}>
+                                Already have an Accout? LOG IN
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>)}
 
             {currentPage === 2 && (
@@ -118,7 +118,7 @@ export default function AccountPages({ navigation }) {
                             fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular',
                             fontSize: 18,
                             color: colors.text
-                        }}>Select a Username</Text>
+                        }}>Enter a Username</Text>
                         <TextInput
                             style={{
                                 ...styles.userNameInput,
@@ -133,7 +133,16 @@ export default function AccountPages({ navigation }) {
                         />
                     </View>
 
-                    <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
+                    <View style={styles.btnCont}>
+                        <PrimaryButton name="SET NAME" onPress={() => setCurrentPage(currentPage + 1)} />
+                        <TouchableOpacity onPress={() => setCurrentPage(7)}>
+                            <Text style={{
+                                fontSize: 18
+                            }}>
+                                Already have an Accout? LOG IN
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>)}
 
             {currentPage === 3 && (
@@ -165,10 +174,19 @@ export default function AccountPages({ navigation }) {
                     <View style={{
                         display: 'flex',
                         flexDirection: 'column',
+                        alignItems: 'center',
+                        marginTop: 10,
                         gap: 5
                     }}>
                         <PrimaryButton name="UPLOAD IMAGE" onPress={pickImage} />
                         <PrimaryButton name="SET AVATAR" onPress={() => setCurrentPage(currentPage + 1)} />
+                        <TouchableOpacity onPress={() => setCurrentPage(7)}>
+                            <Text style={{
+                                fontSize: 18
+                            }}>
+                                Already have an Accout? LOG IN
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>)}
 
@@ -197,7 +215,7 @@ export default function AccountPages({ navigation }) {
                     <View>
                         <WimmyAnimated />
 
-                        <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
+                        <DialogueBoxUpper hasTitle={false} interestingText="Now you can enter your account credentials" />
                     </View>
 
                     <UserRegister navigation={navigation} />
@@ -232,7 +250,7 @@ export default function AccountPages({ navigation }) {
                     <View>
                         <WimmyAnimated />
 
-                        <DialogueBoxUpper hasTitle={false} interestingText="Let's start with your account credentials" />
+                        <DialogueBoxUpper hasTitle={false} interestingText="Please enter your account credentials" />
                     </View>
                     {/* once firebase is set up make these into components (follow monika's method) */}
 
@@ -287,7 +305,13 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         borderRadius: 10,
+        marginTop: 10,
+    },
+    btnCont: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 15
     }
-
 });
 
