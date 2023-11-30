@@ -500,7 +500,7 @@ const styles = StyleSheet.create({
         height: screenHeight,
         width: screenWidth,
         paddingBottom: 60,
-        paddingTop: 60
+        paddingTop: 60,
     },
     main_container: {
         display: 'flex',
@@ -508,6 +508,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: screenHeight - 100,
         width: screenWidth,
+        paddingLeft: 16
     },
     question: {
         marginTop: 25,
@@ -516,7 +517,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         gap: 10,
-        marginTop: 20
+        marginTop: 20,
+        paddingRight: 16,
+        textAlign: "center"
     },
     btnRowOne: {
         display: 'flex',
@@ -534,6 +537,8 @@ const styles = StyleSheet.create({
     },
     hintContainer: {
         top: 20,
+        display: 'flex',
+        alignItems: 'center'
     },
     hintText: {
         fontSize: 16,
