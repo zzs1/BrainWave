@@ -5,6 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 
+import { collection, addDoc, getFirestore, setDoc, doc,getDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { db } from '../firebase/firebaseConfig.js';
+
 import SectionCardMain from '../components/Molecules/SectionCardMain';
 import SectionCardSide from '../components/Molecules/SectionCardSide';
 import CarouselButton from '../components/Atoms/CarouselButton';
@@ -23,20 +27,54 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function HomePage({ navigation }) {
-  const { 
-    puzzleType, 
+  const {
+    puzzleType,
     setPuzzleType,
-    numberProgress,
-    logicProgress,
-    patternProgress,
-    wimPoints,
     firstHomeVisit,
     setFirstHomeVisit,
-    userName,
+    userName, setUserName,
+    pfp, setPfp,
+    numberProgress, setNumberProgress,
+    logicProgress, setLogicProgress,
+    patternProgress, setPatternProgress,
+    logicLevel, setLogicLevel,
+    numberLevel, setNumberLevel,
+    patternLevel, setPatternLevel,
+    wimPoints, setWimPoints,
     isDyslexic
   } = React.useContext(AppContext);
 
   const { colors } = useTheme();
+
+  const getUser = async () => {
+    const userProfile = getAuth();
+    if(!userProfile.currentUser) {
+      return null;
+    }
+
+    const docRef = doc(db, "users", userProfile.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document Data: ", docSnap.data());
+      const user = docSnap.data();
+      setUserName(user.userName);
+      setPfp(user.avatar);
+      setWimPoints(user.wimPoints);
+      setNumberProgress(user.numberProg);
+      setLogicProgress(user.logicProg);
+      setPatternProgress(user.patterProg);
+      setLogicLevel(user.logicLvl);
+      setNumberLevel(user.numberLvl);
+      setPatternLevel(user.patternLvl);
+    } else {
+      console.log("No such document!");
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [])
 
   const [data, setData] = useState(sectionCard);
   const [number, setNumber] = useState(0);
@@ -63,7 +101,7 @@ export default function HomePage({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopBar navigation={navigation} points={wimPoints}/>
+      <TopBar navigation={navigation} points={wimPoints} />
       {
         userName && <Text style={{
           fontSize: 20,
@@ -90,7 +128,7 @@ export default function HomePage({ navigation }) {
           theme='dark'
           image={data[number].image}
           title={data[number].title}
-          prog= {data[number].title.toLowerCase() === 'numbers problems' ? numberProgress : data[number].title.toLowerCase() === 'logic problems' ? logicProgress : patternProgress}
+          prog={data[number].title.toLowerCase() === 'numbers problems' ? numberProgress : data[number].title.toLowerCase() === 'logic problems' ? logicProgress : patternProgress}
         />
         <View style={{
           marginLeft: -100,
