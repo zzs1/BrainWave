@@ -104,9 +104,9 @@ export const logicProblems = [
         id: "Level 3",
         type: "M/Q",
         description: "I have a tail and a head but no body. What am I?",
-        answer: "Snake",
+        answer: "Coin",
         explanation: "Coins have face and tail",
-        options: ["Coin'", "Fish", "Spider", "Snake"]
+        options: ["Coin", "Fish", "Spider", "Snake"]
     },
     {
         title: "Question 13",

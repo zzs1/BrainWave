@@ -183,7 +183,11 @@ export default function Feedback({ navigation }) {
                             backgroundColor: colors.dialogueBG,
                             borderColor: colors.dialogueBorder,
                         }}>
-                            <Text>🔥</Text>
+                            <Text style={{
+                            fontSize: 20,
+                            color: colors.text,
+                            fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
+                        }}> Day 1 🔥Streaks</Text>
                             {/* <Text style ={{
                                         fontSize: 20,
                                     }}>{currentCount} day {currentCount > 1 ? "s" : ""}</Text>
