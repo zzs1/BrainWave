@@ -66,21 +66,21 @@ export default function AccountProfile({ navigation }) {
 
     const getUser = async () => {
         const userProfile = getAuth();
-        if(!userProfile.currentUser) {
-          return null;
+        if (!userProfile.currentUser) {
+            return null;
         }
-    
+
         const docRef = doc(db, "users", userProfile.currentUser.uid);
         const docSnap = await getDoc(docRef);
-    
+
         if (docSnap.exists()) {
-          console.log("Document Data: ", docSnap.data());
-          const user = docSnap.data();
-          setUserName(user.userName);
-          setPfp(user.avatar);
-          setWimPoints(user.wimPoints);
+            console.log("Document Data: ", docSnap.data());
+            const user = docSnap.data();
+            setUserName(user.userName);
+            setPfp(user.avatar);
+            setWimPoints(user.wimPoints);
         } else {
-          console.log("No such document!");
+            console.log("No such document!");
         }
     }
 
@@ -93,18 +93,16 @@ export default function AccountProfile({ navigation }) {
             <View style={styles.accountPageBody}>
                 <TopBar navigation={navigation} points={wimPoints} />
 
-                <Pressable style={styles.avartar} onPress={pickImage}>
-                    <Image
-                        source={{ uri: pfp }}
-                        width={150}
-                        height={150}
-                        style={{
-                            borderRadius: 10,
-                            borderColor: colors.dialogueBorder,
-                            borderWidth: 3
-                        }}
-                    />
-                </Pressable>
+                <Image
+                    source={{ uri: pfp }}
+                    width={150}
+                    height={150}
+                    style={{
+                        borderRadius: 10,
+                        borderColor: colors.dialogueBorder,
+                        borderWidth: 3
+                    }}
+                />
 
                 <View style={styles.userNameSection}>
                     <Text style={{
@@ -120,7 +118,7 @@ export default function AccountProfile({ navigation }) {
                         fontSize: 20,
                         color: colors.text
                     }}>Edit Profile</Text>
-                </TouchableOpacity>    
+                </TouchableOpacity>
 
                 <View style={{
                     display: 'flex',
@@ -263,7 +261,7 @@ export default function AccountProfile({ navigation }) {
                     />
                 </View>
             </View>
-            <EditPopup active={isActive} onPress={() => setIsActive(false)}/>
+            <EditPopup active={isActive} onPress={() => setIsActive(false)} />
         </SafeAreaView >
     )
 }
