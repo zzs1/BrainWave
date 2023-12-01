@@ -6,6 +6,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import LottieView from 'lottie-react-native';
 import animationData from "../assets/Animations/loading-animation.json";
 
+import { auth } from '../firebase/firebaseConfig';
+import { getAuth } from 'firebase/auth';
+
 import PrimaryButton from '../components/Atoms/PrimaryButton';
 
 const screenWidth = Dimensions.get("window").width;
@@ -35,32 +38,45 @@ export default function InNav({ navigation }) {
     }).start();
   }, [fadeAnim]);
 
+  const getUser = async () => {
+    const userProfile = getAuth()
+    if (!userProfile.currentUser) {
+      return null;
+    } else {
+      navigation.push('Home')
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [])
+  
   return (
     <SafeAreaView style={styles.container}>
       {animationVisible && (
-      <View style={styles.animationContainer}>
-        <LottieView
-          autoPlay
-          ref={(animationRef) => animationRef && animationRef.play()}
-          style={{
-            width: screenWidth,
-            height: screenHeight,
-          }}
-          source={animationData}
-        />
-      </View>
+        <View style={styles.animationContainer}>
+          <LottieView
+            autoPlay
+            ref={(animationRef) => animationRef && animationRef.play()}
+            style={{
+              width: screenWidth,
+              height: screenHeight,
+            }}
+            source={animationData}
+          />
+        </View>
       )}
       <Animated.View style={{ opacity: fadeAnim }}>
-          <View style={styles.containerImage}>
-            <View style={styles.imgs}>
-              <Image source={dark ? require('../assets/Logo/logo-white.png') : require('../assets/Logo/logo-blue.png')} style={styles.imageLogo} />
-              <Image source={dark ? require('../assets/Logo/type-white.png') : require('../assets/Logo/type-blue.png')} style={styles.imageType} />
-            </View>
-            <View style={styles.containerButton}>
-              <PrimaryButton name='Get Started' onPress={() => navigation.push('AccessibilityPrompt')} />
-            </View>
+        <View style={styles.containerImage}>
+          <View style={styles.imgs}>
+            <Image source={dark ? require('../assets/Logo/logo-white.png') : require('../assets/Logo/logo-blue.png')} style={styles.imageLogo} />
+            <Image source={dark ? require('../assets/Logo/type-white.png') : require('../assets/Logo/type-blue.png')} style={styles.imageType} />
           </View>
-        </Animated.View>
+          <View style={styles.containerButton}>
+            <PrimaryButton name='Get Started' onPress={() => navigation.push('AccessibilityPrompt')} />
+          </View>
+        </View>
+      </Animated.View>
     </SafeAreaView>
   );
 }

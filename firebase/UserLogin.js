@@ -4,6 +4,7 @@ import { useTheme } from '@react-navigation/native';
 
 import { collection, addDoc, getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebaseConfig';
 
 import { useState, useEffect } from 'react';
 
@@ -26,7 +27,6 @@ export default function UserLogin({ navigation }) {
     const [password, setPassword] = useState("");
 
     const signInUser = async () => {
-        const auth = getAuth();
         const result = await signInWithEmailAndPassword(auth, email, password)
         console.log(result.user);
         setActive(true);
