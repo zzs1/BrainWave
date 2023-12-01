@@ -87,7 +87,7 @@ export default function AccountPages({ navigation }) {
                                 fontSize: 18,
                                 color: colors.text
                             }}>
-                                Already have an Accout? LOG IN
+                                Already have an account? LOG IN
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -128,7 +128,7 @@ export default function AccountPages({ navigation }) {
                                 fontSize: 18,
                                 color: colors.text
                             }}>
-                                Already have an Accout? LOG IN
+                                Already have an account? LOG IN
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -174,7 +174,7 @@ export default function AccountPages({ navigation }) {
                                 fontSize: 18,
                                 color: colors.text
                             }}>
-                                Already have an Accout? LOG IN
+                                Already have an account? LOG IN
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -215,7 +215,7 @@ export default function AccountPages({ navigation }) {
                             fontSize: 18,
                             color: colors.text
                         }}>
-                            Already have an Accout? LOG IN
+                            Already have an account? LOG IN
                         </Text>
                     </TouchableOpacity>
                 </View>)}
