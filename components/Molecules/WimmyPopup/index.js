@@ -15,9 +15,9 @@ export default function WimmyPopup({
   title = '',
   desc = '',
   instuction = '',
-  active=true,
-  onPress=() => {},
-  loading=false
+  active = true,
+  onPress = () => { },
+  loading = false
 }) {
   const [isActive, setIsActive] = useState(true);
 
@@ -28,11 +28,11 @@ export default function WimmyPopup({
   return (
     <>
       {
-        isActive ? <Pressable onPress={() => {
-          onPress();
-          setIsActive(false)
-        }} style={styles.container}>
-          <View style={styles.bg}></View>
+        isActive ? <View style={styles.container}>
+          <Pressable onPress={() => {
+            onPress();
+            setIsActive(false)
+          }} style={styles.bg}></Pressable>
           <View style={styles.wimmyDialogue}>
             <DialogueBoxLower
               title={title}
@@ -40,10 +40,15 @@ export default function WimmyPopup({
               instuction={instuction}
               loading={loading}
             />
-            <WimmyAnimated />
+            <Pressable onPress={() => {
+              onPress();
+              setIsActive(false)
+            }}>
+              <WimmyAnimated />
+            </Pressable>
             {/* <Image source={Splash} style={{ width: 400, height: 200, position: 'absolute', zIndex: -1, bottom: -125}} /> */}
           </View>
-        </Pressable> : <></>
+        </View> : <></>
       }
     </>
   )
