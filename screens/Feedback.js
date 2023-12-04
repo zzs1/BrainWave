@@ -108,7 +108,6 @@ export default function Feedback({ navigation }) {
     const [speech, setSpeech] = React.useState("");
     const listAvailableVoices = async () => {
         let voice = await Speech.getAvailableVoicesAsync()
-        console.log(voice)
     }
     React.useEffect(() => listAvailableVoices)
     const WimmySpeak = () => {
@@ -163,10 +162,6 @@ export default function Feedback({ navigation }) {
 
                     <FeedbackBox text={AIFeedback} loading={feedLoading} />
                     <PrimaryButton name="NEXT" onPress={() => {
-                        if (points > 2) {
-                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : puzzleType.toLowerCase() === 'pattern recognition' ? setPatternProgress(patternProgress + 20) : null;
-                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : puzzleType.toLowerCase() === 'pattern recognition' ? setPatternLevel(patternLevel + 1) : null;
-                        };
                         handleWimCoins();
                         handleStartButton();
                     }} />
@@ -192,7 +187,13 @@ export default function Feedback({ navigation }) {
                         }}>Level: {puzzleType.toLowerCase() === 'numbers problems' ? numberLevel : puzzleType.toLowerCase() === 'logic problems' ? logicLevel : patternLevel}</Text>
                         <Image />
                     </View>
-                    <PrimaryButton name="NEXT" onPress={handleStartButton} />
+                    <PrimaryButton name="NEXT" onPress={() => {
+                        if (points > 2) {
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberProgress(numberProgress + 20) : puzzleType.toLowerCase() === 'logic problems' ? setLogicProgress(logicProgress + 20) : puzzleType.toLowerCase() === 'pattern recognition' ? setPatternProgress(patternProgress + 20) : null;
+                            puzzleType.toLowerCase() === 'numbers problems' ? setNumberLevel(numberLevel + 1) : puzzleType.toLowerCase() === 'logic problems' ? setLogicLevel(logicLevel + 1) : puzzleType.toLowerCase() === 'pattern recognition' ? setPatternLevel(patternLevel + 1) : null;
+                        };
+                        handleStartButton();
+                    }} />
                 </View>
             )}
 

@@ -164,7 +164,6 @@ export default function WordProblemsPage({ navigation }) {
     const [speech, setSpeech] = React.useState("");
     const listAvailableVoices = async () => {
         let voice = await Speech.getAvailableVoicesAsync()
-        console.log(voice)
     }
     React.useEffect(() => listAvailableVoices)
     const WimmySpeak = (text) => {
