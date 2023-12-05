@@ -46,7 +46,7 @@ export default function WimmyPopup({
             }}>
               <WimmyAnimated />
             </Pressable>
-            {/* <Image source={Splash} style={{ width: 400, height: 200, position: 'absolute', zIndex: -1, bottom: -125}} /> */}
+            <Image source={Splash} style={{ width: 400, height: 200, position: 'absolute', zIndex: -1, bottom: -125}} />
           </View>
         </View> : <></>
       }
