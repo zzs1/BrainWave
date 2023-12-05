@@ -72,6 +72,7 @@ export default function UserLogin({ navigation }) {
                         placeholder="Type your Password..."
                         onChangeText={(text) => setPassword(text)}
                         value={password}
+                        secureTextEntry={true}
                     />
                 </View>
                 <PrimaryButton name='LOG IN' onPress={() => {

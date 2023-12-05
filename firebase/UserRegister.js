@@ -99,6 +99,7 @@ export default function UserRegister({navigation}) {
                         placeholder="Type your Password..."
                         onChangeText={(text) => setPassword(text)}
                         value={password}
+                        secureTextEntry={true}
                     />
                 </View>
                 <PrimaryButton name='REGISTER' onPress={() => {

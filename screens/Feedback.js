@@ -324,7 +324,7 @@ export default function Feedback({ navigation }) {
                         </View>
                     </KeyboardAvoidingView>
 
-                    <PrimaryButton name="NEXT" onPress={() => {
+                    <PrimaryButton name="FINISH" onPress={() => {
                         updateUser();
                         navigation.push('PuzzleMap');
                     }} />
