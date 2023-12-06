@@ -25,11 +25,14 @@ import { useStreak } from "use-streak";
 import { getChat, getFeedBack } from "../libs/getAPI.js";
 import * as  Speech from 'expo-speech';
 
+import SoundBlack from '../assets/Icons/sound-black.svg'
+import SoundWhite from '../assets/Icons/sound-white.svg'
+
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 export default function Feedback({ navigation }) {
-    const { colors } = useTheme();
+    const { colors, dark } = useTheme();
     const {
         logicLevel, setLogicLevel,
         numberLevel, setNumberLevel,
@@ -149,7 +152,7 @@ export default function Feedback({ navigation }) {
                 <WimmyAnimated />
             </View>
             <Pressable style={styles.speech_button} title="speech" onPress={WimmySpeak}>
-                <Image source={require("../assets/Icons/VolumeBlack.png")} height={40} width={50} />
+                <Image source={dark ? SoundWhite : SoundBlack} height={42} width={50} style={{objectFit: 'contain'}}/>
             </Pressable>
 
             {currentScreen === 1 && (
