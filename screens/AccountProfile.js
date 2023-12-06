@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: screenHeight,
+        height: screenHeight - 50,
         width: screenWidth,
         paddingTop: 50,
     },

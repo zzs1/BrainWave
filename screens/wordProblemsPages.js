@@ -73,7 +73,7 @@ export default function WordProblemsPage({ navigation }) {
     const [optIndex, setOptIndex] = useState(shuffle([0, 1, 2, 3]));
 
     useEffect(() => {
-        if (currentScreen === 1) {
+        if (currentScreen === 4) {
             handleSend();
         }
     }, [currentScreen])
@@ -464,7 +464,7 @@ export default function WordProblemsPage({ navigation }) {
             )}
 
             <Pressable style={styles.tail} onPress={() => {
-                if (currentScreen > 1) {
+                if (currentScreen < 4) {
                     handleSend();
                 }
                 setIsActive(true);
