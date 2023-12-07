@@ -27,6 +27,7 @@ import * as  Speech from 'expo-speech';
 
 import SoundBlack from '../assets/Icons/sound-black.svg'
 import SoundWhite from '../assets/Icons/sound-white.svg'
+import VolumePause from '../assets/Icons/sound-icon-pause.svg'
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -111,15 +112,44 @@ export default function Feedback({ navigation }) {
     const [speech, setSpeech] = React.useState("");
     const listAvailableVoices = async () => {
         let voice = await Speech.getAvailableVoicesAsync()
+        console.log(voice)
     }
-    React.useEffect(() => listAvailableVoices)
+    let speechInstance;
+
+    React.useEffect(() => {
+        listAvailableVoices();
+        
+        return() => {
+            Speech.stop()
+        }
+    }, []);
+    React.useEffect(() => {
+        if(!isPlaying && Speech) {
+            Speech.stop();
+        }
+    }, [isPlaying])
+
     const WimmySpeak = () => {
+       
+        console.log("SPEAKING");
         const speaking = `${AIFeedback}`;
         options = {
             voice: "en-us-x-iol-local"
         }
-        Speech.speak(speaking)
+     
+       Speech.speak(speaking,options)
 
+    }
+    const [isPlaying, setIsPlaying] = useState(false);
+    const playPause = () => {
+        const preValue = isPlaying;
+        setIsPlaying(!preValue);
+        if (!preValue) {
+            WimmySpeak()
+        } else{
+            Speech.stop()
+        }
+        
     }
 
     const updateUser = async () => {
@@ -151,9 +181,23 @@ export default function Feedback({ navigation }) {
             <View style={styles.image_box}>
                 <WimmyAnimated />
             </View>
-            <Pressable style={styles.speech_button} title="speech" onPress={WimmySpeak}>
-                <Image source={dark ? SoundWhite : SoundBlack} height={42} width={50} style={{objectFit: 'contain'}}/>
-            </Pressable>
+           
+            <Pressable style={styles.speech_button} title="speech" onPress={playPause}>
+                {
+                    isPlaying ?
+                    <Image 
+                    source={dark ? SoundWhite : SoundBlack}
+                    contentFit='contain'
+                    height={42} width={50} style={{objectFit: 'contain'}}
+/>
+                  
+                    
+               
+                    :   <Image source={require('../assets/Icons/sound-icon-pause.svg')}
+                      height={42} width={50} style={{objectFit: 'contain'}}/> }
+                     
+                
+                </Pressable>
 
             {currentScreen === 1 && (
                 <View style={styles.main_container}>
