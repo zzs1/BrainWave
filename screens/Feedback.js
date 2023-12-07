@@ -116,7 +116,7 @@ export default function Feedback({ navigation }) {
     const WimmySpeak = () => {
         const speaking = `${AIFeedback}`;
         options = {
-            voice: "com.apple.speech.synthesis.voice.Fred"
+            voice: "en-us-x-iol-local"
         }
         Speech.speak(speaking)
 
