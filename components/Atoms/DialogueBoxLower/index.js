@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { StyleSheet, Text, View, Button, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Button, Pressable, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import * as Speech from 'expo-speech';
 import { Image } from 'expo-image';
@@ -79,12 +79,15 @@ export default function DialogueBoxLower({
                 fontFamily: isDyslexic ? 'Lexend-Bold' : 'Poppins-Bold'
             }}>{title}</Text>
             {
-                loading ? <WimmyThinking /> :
+                loading ? <WimmyThinking /> : <ScrollView style={{
+                    maxHeight: 400
+                }}>
                     <Text style={{
                         ...styles.desc,
                         color: colors.text,
                         fontFamily: isDyslexic ? 'Lexend-Regular' : 'Poppins-Regular'
                     }}>{desc}</Text>
+                </ScrollView>
             }
             <View style={{
                 display: 'flex',
